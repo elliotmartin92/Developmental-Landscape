@@ -1,6 +1,6 @@
 shinyUI(pageWithSidebar(
   
-  headerPanel(uiOutput("sel")),
+  headerPanel(uiOutput("info")),
   
   sidebarPanel(
     uiOutput("choose_dataset"),

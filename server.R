@@ -4,6 +4,7 @@ library(rgdal)
 library(sf)
 library(ggplot2)
 library(ggmap)
+library(plotly)
 
 data.seq = read.csv("www/Dev_TPMS.csv", stringsAsFactors = FALSE)
 FBID = data.seq$V1
@@ -90,20 +91,32 @@ shinyServer(function(input, output) {
   output$distPlot <- renderPlot({
     if (is.null(input$variable))
       return()
-    shape.plot = as.data.frame(shape[1])
+    if (input$dataset == "FBID") {
     color.GSC = as.character(data.seq[data.seq$V1 %in% input$variable, 9])
     color.CB = as.character(data.seq[data.seq$V1 %in% input$variable, 10])
     color.Cyst = as.character(data.seq[data.seq$V1 %in% input$variable, 11])
     color.Virgin = as.character(data.seq[data.seq$V1 %in% input$variable, 12])
+    
+    TPM.GSC = as.character(data.seq[data.seq$V1 %in% input$variable, 3])
+    TPMs = c(1,2,3,4)
+    }
+    else{
+      color.GSC = as.character(data.seq[data.seq$symbol %in% input$variable, 9])
+      color.CB = as.character(data.seq[data.seq$symbol %in% input$variable, 10])
+      color.Cyst = as.character(data.seq[data.seq$symbol %in% input$variable, 11])
+      color.Virgin = as.character(data.seq[data.seq$symbol %in% input$variable, 12]) 
+    }
+    shape.plot = data.frame(shape)
+    shape.plot$TPMs = seq(1:34)
     shape.plot$FID_[c(18,25)] = color.GSC
     shape.plot$FID_[c(2,19)] = color.CB
     shape.plot$FID_[c(20:23)] = color.Cyst
     shape.plot$FID_[c(33)] = color.Virgin
     ggplot(data = shape.plot)+
-      geom_sf(aes(fill=`FID_`), color = "black")+
+      geom_sf(aes(geometry=geometry, fill=`FID_`, alpha=TPMs), color = "black")+
       scale_fill_manual(values = pal)+
       theme_void()+
       theme(panel.grid.major = element_line(colour = "transparent"))
   })
-  # output$sel = renderText(as.character(shape.plot[1]$FID_[2]))
+  output$sel = renderText(as.character(input$plot_hover))
 })
