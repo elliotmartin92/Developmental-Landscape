@@ -6,7 +6,7 @@ library(ggplot2)
 library(ggmap)
 library(purrr)
 
-data.seq = readRDS("preprocessed_seq_data.RDS")
+data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
 shape = readRDS("preprocessed_sf.RDS")
 
 pal <- c(
