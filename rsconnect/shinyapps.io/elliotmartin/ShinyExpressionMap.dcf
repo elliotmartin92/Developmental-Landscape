@@ -1,0 +1,12 @@
+name: ShinyExpressionMap
+title: ShinyExpressionMap
+username:
+account: elliotmartin
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1967760
+bundleId: 2899449
+url: https://elliotmartin.shinyapps.io/ShinyExpressionMap/
+when: 1584650790.17735
+asMultiple: FALSE
+asStatic: FALSE

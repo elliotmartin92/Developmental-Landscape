@@ -4,38 +4,11 @@ library(rgdal)
 library(sf)
 library(ggplot2)
 library(ggmap)
-library(plotly)
 library(purrr)
 
-data.seq = read.csv("www/Dev_TPMS.csv", stringsAsFactors = FALSE)
-FBID = data.seq$V1
+data.seq = readRDS("preprocessed_seq_data.RDS")
+shape = readRDS("preprocessed_sf.RDS")
 
-Symbol = data.seq$symbol
-data.seq = data.seq[-6]
-data_sets <- c("FBID", "Symbol")
-
-shape <- read_sf(dsn = "www/germPoly/.", layer = "germPoly")
-data.seq$test = 1:length(data.seq$V1)
-data.seq$TKVbin1 = cut(as.numeric(data.seq$TKV), breaks = c(0,10,100,250,1000,2500,100000), 
-                       labels=c("NA","VeryLow","Low","Med","High","VeryHigh"))
-
-data.seq$Bambin1 = cut(as.numeric(data.seq$Bam), breaks = c(0,10,100,250,1000,2500,100000), 
-                       labels=c("NA","VeryLow","Low","Med","High","VeryHigh"))
-
-data.seq$Cystbin1 = cut(as.numeric(data.seq$bamhs.bam1), breaks = c(0,10,100,250,1000,2500,100000), 
-                        labels=c("NA","VeryLow","Low","Med","High","VeryHigh"))
-
-data.seq$Virginbin1 = cut(as.numeric(data.seq$VirginNG4), breaks = c(0,10,100,250,1000,2500,100000), 
-                          labels=c("NA","VeryLow","Low","Med","High","VeryHigh"))
-
-# shape$FID_ = seq(from = 1, to = 340, by = 10)
-shape$FID_[1] = "NR"
-shape$FID_[shape$LineWt == 35] = "NA"
-shape$FID_[shape$LineWt == 106] = "NA"
-shape$FID_[shape$Color == 7] = "Black"
-shape$FID_[shape$FID_ == 0] = "NA"
-# shape$FID_[2] = "Med"
-shape$FID_ = factor(shape$FID_, c("NR", "NA", "VeryLow", "Low", "Med", "High", "VeryHigh", "Black"))
 pal <- c(
   "Black" = "Black",
   "VeryHigh" = "#FF0000",
@@ -48,6 +21,10 @@ pal <- c(
 )
 
 shinyServer(function(input, output) {
+  
+  session$onSessionEnded(function() {
+    stopApp()
+    })
   
   # Drop-down selection box for which data set
   output$choose_dataset <- renderUI({
@@ -93,10 +70,10 @@ shinyServer(function(input, output) {
     if (is.null(input$variable))
       return()
     if (input$dataset == "FBID") {
-    color.GSC = as.character(data.seq[data.seq$V1 %in% input$variable, 9])
-    color.CB = as.character(data.seq[data.seq$V1 %in% input$variable, 10])
-    color.Cyst = as.character(data.seq[data.seq$V1 %in% input$variable, 11])
-    color.Virgin = as.character(data.seq[data.seq$V1 %in% input$variable, 12])
+    color.GSC = as.character(data.seq[data.seq$V1 %in% input$variable, 8])
+    color.CB = as.character(data.seq[data.seq$V1 %in% input$variable, 9])
+    color.Cyst = as.character(data.seq[data.seq$V1 %in% input$variable, 10])
+    color.Virgin = as.character(data.seq[data.seq$V1 %in% input$variable, 11])
     
     TPM.GSC = (data.seq[data.seq$V1 %in% input$variable, 3])
     TPM.CB = (data.seq[data.seq$V1 %in% input$variable, 4])
@@ -104,10 +81,10 @@ shinyServer(function(input, output) {
     TPM.Virgin = (data.seq[data.seq$V1 %in% input$variable, 6])
     }
     else{
-      color.GSC = as.character(data.seq[data.seq$symbol %in% input$variable, 9])
-      color.CB = as.character(data.seq[data.seq$symbol %in% input$variable, 10])
-      color.Cyst = as.character(data.seq[data.seq$symbol %in% input$variable, 11])
-      color.Virgin = as.character(data.seq[data.seq$symbol %in% input$variable, 12]) 
+      color.GSC = as.character(data.seq[data.seq$symbol %in% input$variable, 8])
+      color.CB = as.character(data.seq[data.seq$symbol %in% input$variable, 9])
+      color.Cyst = as.character(data.seq[data.seq$symbol %in% input$variable, 10])
+      color.Virgin = as.character(data.seq[data.seq$symbol %in% input$variable, 11]) 
       
       TPM.GSC = (data.seq[data.seq$symbol %in% input$variable, 3])
       TPM.CB = (data.seq[data.seq$symbol %in% input$variable, 4])
