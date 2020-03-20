@@ -107,5 +107,4 @@ shinyServer(function(input, output, session) {
         annotate("text", label=as.character(paste0(round(TPMs[4], digits=1), " TPM")), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=5)
     }
   })
-  output$sel = renderText(as.character(input$plot_hover))
 })
