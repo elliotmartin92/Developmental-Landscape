@@ -4,10 +4,11 @@ library(rgdal)
 library(sf)
 library(ggplot2)
 library(ggmap)
-library(purrr)
+library(shinycssloaders)
+library(cowplot)
 
 data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
-shape = readRDS("preprocessed_sf.RDS")
+shape.plot = readRDS("preprocessed_sf.RDS")
 
 pal <- c(
   "Black" = "Black",
@@ -16,11 +17,10 @@ pal <- c(
   "Med" = "#FF5656", 
   "Low" = "#FF8181", 
   "VeryLow" = "#FFACAC",
-  "NA" = "#D6D6D6",
-  "NR" = "#FFFFFF"
+  "None" = "#D6D6D6"
 )
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   session$onSessionEnded(function() {
     stopApp()
@@ -67,52 +67,42 @@ shinyServer(function(input, output) {
   })
   
   output$distPlot <- renderPlot({
-    if (is.null(input$variable))
+    if (is.null(input$variable)) {
       return()
+    }
     if (input$dataset == "FBID") {
-    color.GSC = as.character(data.seq[data.seq$V1 %in% input$variable, 8])
-    color.CB = as.character(data.seq[data.seq$V1 %in% input$variable, 9])
-    color.Cyst = as.character(data.seq[data.seq$V1 %in% input$variable, 10])
-    color.Virgin = as.character(data.seq[data.seq$V1 %in% input$variable, 11])
-    
-    TPM.GSC = (data.seq[data.seq$V1 %in% input$variable, 3])
-    TPM.CB = (data.seq[data.seq$V1 %in% input$variable, 4])
-    TPM.Cyst = (data.seq[data.seq$V1 %in% input$variable, 5])
-    TPM.Virgin = (data.seq[data.seq$V1 %in% input$variable, 6])
+      all.colors = data.seq[data.seq$V1 %in% input$variable, 8:11]
     }
     else{
-      color.GSC = as.character(data.seq[data.seq$symbol %in% input$variable, 8])
-      color.CB = as.character(data.seq[data.seq$symbol %in% input$variable, 9])
-      color.Cyst = as.character(data.seq[data.seq$symbol %in% input$variable, 10])
-      color.Virgin = as.character(data.seq[data.seq$symbol %in% input$variable, 11]) 
-      
-      TPM.GSC = (data.seq[data.seq$symbol %in% input$variable, 3])
-      TPM.CB = (data.seq[data.seq$symbol %in% input$variable, 4])
-      TPM.Cyst = (data.seq[data.seq$symbol %in% input$variable, 5])
-      TPM.Virgin = (data.seq[data.seq$symbol %in% input$variable, 6])
+      all.colors = data.seq[data.seq$symbol %in% input$variable, 8:11]
     }
-    shape.plot = data.frame(shape)
-    TPMs = c(TPM.GSC, TPM.CB, TPM.Cyst, TPM.Virgin)
-    shape.plot$FID_[c(18,25)] = color.GSC
-    shape.plot$FID_[c(2,19)] = color.CB
-    shape.plot$FID_[c(20:23)] = color.Cyst
-    shape.plot$FID_[c(33)] = color.Virgin
-    shape_centroids = st_centroid(shape)
-    shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
- 
+    shape.plot$FID_[c(18,25)] = all.colors[[1]]
+    shape.plot$FID_[c(2,19)] = all.colors[[2]]
+    shape.plot$FID_[c(20:23)] = all.colors[[2]]
+    shape.plot$FID_[c(33)] = all.colors[[4]]
+
     p=ggplot(data = shape.plot)+
       geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
-      scale_fill_manual(values = pal)+
+      scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
       theme(panel.grid.major = element_line(colour = "transparent"))
     
-    if (input$displayTPM==FALSE){
-      p}
+    if (input$displayTPM==FALSE){p}
     else{
+      if (input$dataset == "FBID") {
+        TPMs = data.seq[data.seq$V1 %in% input$variable, 3:6]
+      }
+      else{
+        TPMs = data.seq[data.seq$symbol %in% input$variable, 3:6]
+      }
+      TPMs = round(TPMs, digits = 1)
+      shape_centroids = st_centroid(shape)
+      shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
+      
       p+
-        annotate("text", label=as.character(paste0(round(TPMs[1], digits=1), "\nTPM")), x=shape.x.y[18,1], y=shape.x.y[18,2], size=5)+
-        annotate("text", label=as.character(paste0(round(TPMs[2], digits=1), "\nTPM")), x=shape.x.y[19,1], y=shape.x.y[19,2], size=5)+
-        annotate("text", label=as.character(paste0(round(TPMs[3], digits=1), " TPM")), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=5)+
+        annotate("text", label=as.character(paste0(TPMs[1], "\nTPM")), x=shape.x.y[18,1], y=shape.x.y[18,2], size=5)+
+        annotate("text", label=as.character(paste0(TPMs[2], "\nTPM")), x=shape.x.y[19,1], y=shape.x.y[19,2], size=5)+
+        annotate("text", label=as.character(paste0(TPMs[3], " TPM")), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=5)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
         annotate("text", label=as.character(paste0(round(TPMs[4], digits=1), " TPM")), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=5)
     }
