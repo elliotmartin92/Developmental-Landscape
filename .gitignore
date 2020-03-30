@@ -2,3 +2,4 @@
 *.fastq.gz
 *.out.bam
 fastqs/STAR_indexing/
+.Rproj.user
