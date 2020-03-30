@@ -1,0 +1,4 @@
+/deprecated
+*.fastq.gz
+*.out.bam
+fastqs/STAR_indexing/
