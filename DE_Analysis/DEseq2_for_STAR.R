@@ -52,6 +52,7 @@ fbgn_to_symbol =  function(fbid){
                         keytype="FLYBASE") %>% data.table()
 }
 
+comparison_samples = unique(design$all[grep(pattern = "input", x = design$all)])
 comparisons = 
 
 res <- results(dds, contrast = c("all", "BamHSbam_input", "youngWT_input")) #change genotypes to desired
