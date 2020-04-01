@@ -1,0 +1,25 @@
+original_names,standarized_name
+09_9_S9_R1_001.fastq.gz,WT_1
+10_10_S10_R1_001.fastq.gz,WT_2
+11_bam_hsbam_1_S10_R1_001.fastq.gz,BamHSbam_1
+12_bam_hsbam_2_S11_R1_001.fastq.gz,BamHSbam_2
+13_bam_RNAi_S13_R1_001.fastq.gz,BamRNAi_1
+13_BamRNAi_3_1_S13_R1_001.fastq.gz,BamRNAi_2
+14_BamRNAi_3_2_S14_R1_001.fastq.gz,BamRNAi_3
+17_bam_2_2_S17_R1_001.fastq.gz,BamRNAi_4
+17_Hsbam1_S17_R1_001.fastq.gz,BamHSbam_3
+18_bam_2_3_S18_R1_001.fastq.gz,BamRNAi_5
+18_Hsbam2_S18_R1_001.fastq.gz,BamHSbam_4
+19_HSBAM2_S16_R1_001.fastq.gz,BamHSbam_5
+5_YOUNG_S5_R1_001.fastq.gz,Virgin_1
+7_Ngvir_2_S7_R1_001.fastq.gz,Virgin_2
+AllTKV.fastq.gz,TKV_1
+BAM_S3_R1_001.fastq.gz,BamRNAi_5
+BamHSbam_1.fastq.gz,BamHSbam_6
+BamHSbam_2.fastq.gz,BamHSbam_7
+BAMT_S8_R1_001.fastq.gz,X puro
+DCR1_S3_R1_001.fastq.gz,WT_3
+DCR2_S4_R1_001.fastq.gz,WT_4
+NG41_S20_R1_001.fastq.gz,WT_5
+UASTKV_S15_R1_001.fastq.gz,TKV_2
+VIRGIN_S16_R1_001.fastq.gz,Virgin_3
