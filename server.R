@@ -4,7 +4,6 @@ library(rgdal)
 library(sf)
 library(ggplot2)
 library(ggmap)
-library(shinycssloaders)
 library(cowplot)
 
 data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)

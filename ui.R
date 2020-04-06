@@ -1,3 +1,4 @@
+library(shinycssloaders)
 shinyUI(pageWithSidebar(
   
   headerPanel(uiOutput("info")),
