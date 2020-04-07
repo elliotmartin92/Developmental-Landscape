@@ -5,6 +5,7 @@ library(sf)
 library(ggplot2)
 library(ggmap)
 library(cowplot)
+library(purrr)
 
 data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
 shape.plot = readRDS("preprocessed_sf.RDS")
