@@ -25,8 +25,8 @@ pal <- c(
   "None" = "#D6D6D6"
 )
 
-shinyServer(function(input, output, session) {
-  
+shinyServer(function(input, output, session, width) {
+  width <- session$client_data$output_ap_plot_width
   session$onSessionEnded(function() {
     stopApp()
     })
@@ -70,7 +70,6 @@ shinyServer(function(input, output, session) {
     head(dat, 20)
     
   })
-  
   output$distPlot <- renderPlot({
     if (is.null(input$variable)) {
       return()
@@ -85,13 +84,15 @@ shinyServer(function(input, output, session) {
     shape.plot$FID_[c(2,19)] = all.colors[[2]]
     shape.plot$FID_[c(20:23)] = all.colors[[2]]
     shape.plot$FID_[c(33)] = all.colors[[4]]
+    text_scale = session$client_data$output_ap_plot_width
 
     p=ggplot(data = shape.plot)+
       geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
       scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
       theme(panel.grid.major = element_line(colour = "transparent"),
-            panel.background = element_rect(fill = "transparent"),
+            panel.background = element_rect(fill = "transparent", colour = "transparent"),
+            panel.border = element_rect(fill = "transparent", colour = "transparent"),
             legend.position = "none")
     
     if (input$displayTPM==FALSE){p}
@@ -106,23 +107,24 @@ shinyServer(function(input, output, session) {
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       
       p+
-        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=4)+
-        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=4)+
-        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=4)+
+        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=6)+
+        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=6)+
+        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=6)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
-        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=4)
+        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=6)
     }
-  }, height = 200, width = 600)
+  })
   legend.data = data.frame(Name = names(pal), Color = pal)
   legend.data.cull = legend.data[-1,]
   legend.data.cull$Name = factor(legend.data.cull$Name, 
                             levels = c("None", "Very Low", "Low", "Med", "High", "Very High")) 
+  
   output$legend <- renderPlot({
     l = ggplot(legend.data.cull)+
       geom_area(aes(x=1, y=1, fill=Name))+
       scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
-      theme(legend.position = "top") +
+      theme(legend.position = "top")+
       guides(fill = guide_legend(nrow = 1))
     l
   })
