@@ -1,7 +1,6 @@
 library(shinycssloaders)
 
 ui <- fluidPage(
-  dashboardHeader(),
   sidebarPanel(
     withSpinner(uiOutput("choose_dataset")),
                 uiOutput("choose_columns"),
@@ -10,6 +9,6 @@ ui <- fluidPage(
   
   mainPanel(
     align="center",
-    plotOutput("legend", height = "20px"),
+    plotOutput("legend", height = "40px"),
     withSpinner(plotOutput("distPlot", width = "auto")))
 )
