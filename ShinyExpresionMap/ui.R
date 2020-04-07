@@ -16,7 +16,7 @@ shinyUI(pageWithSidebar(
     hr(),
     uiOutput('myPanel'),
     plotOutput("legend", height = "20px"),
-    withSpinner(plotOutput("distPlot", height = "500px", width = "100%"))
+    withSpinner(plotOutput("distPlot", width = "100%"))
   )
 ))
 
