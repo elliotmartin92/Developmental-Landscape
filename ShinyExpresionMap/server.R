@@ -122,10 +122,12 @@ shinyServer(function(input, output, session, width) {
   output$legend <- renderPlot({
     l = ggplot(legend.data.cull)+
       geom_area(aes(x=1, y=1, fill=Name))+
-      scale_fill_manual(values = pal, name="Binned Expression")+
+      scale_fill_manual(values = pal, name="Binned\nExpression")+
       theme_void()+
-      theme(legend.position = "top")+
-      guides(fill = guide_legend(nrow = 1))
+      guides(fill = guide_legend(nrow = 1))+
+      theme(legend.position = "top",
+            legend.text = element_text(size=13),
+            legend.title = element_text(size=16))
     l
   })
 })
