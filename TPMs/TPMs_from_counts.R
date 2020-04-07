@@ -46,9 +46,12 @@ tpms_long_mean = tpms_inputs_long %>%
   summarise(MeanTPM = mean(TPM), se = std(TPM))
 
 tpms_long_mean$MeanTPMpmError = paste0(round(tpms_long_mean$MeanTPM, digits = 1), "±", round(tpms_long_mean$se, digits = 1))
+tpms_long_mean$Group = factor(tpms_long_mean$Group, 
+                              levels = c("TKV_input", "BamRNAi_input", "BamHSbam_input", "youngWT_input", "pelo_cyo_input"))
 
 tpms_wide_mean = tpms_long_mean %>% 
+  arrange(Group) %>% 
   dplyr::select(-se) %>% 
   pivot_wider(names_from = Group, values_from = c(MeanTPM, MeanTPMpmError))
 
-saveRDS(tpms_wide_mean, file = "Mean_TPMs_and_text")
+saveRDS(tpms_wide_mean, file = "TPMs/Mean_TPMs_and_text.RDS")

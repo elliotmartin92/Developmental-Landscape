@@ -9,6 +9,11 @@ library(purrr)
 
 data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
 shape.plot = readRDS("preprocessed_sf.RDS")
+shape = readRDS("preloaded_shape.RDS")
+
+FBID = data.seq$FBGN
+Symbol = data.seq$symbol
+data_sets <- c("FBID", "Symbol")
 
 pal <- c(
   "Black" = "Black",
@@ -71,10 +76,10 @@ shinyServer(function(input, output, session) {
       return()
     }
     if (input$dataset == "FBID") {
-      all.colors = data.seq[data.seq$V1 %in% input$variable, 8:11]
+      all.colors = data.seq[data.seq$FBGN %in% input$variable, 13:17]
     }
     else{
-      all.colors = data.seq[data.seq$symbol %in% input$variable, 8:11]
+      all.colors = data.seq[data.seq$symbol %in% input$variable, 13:17]
     }
     shape.plot$FID_[c(18,25)] = all.colors[[1]]
     shape.plot$FID_[c(2,19)] = all.colors[[2]]
@@ -92,21 +97,20 @@ shinyServer(function(input, output, session) {
     if (input$displayTPM==FALSE){p}
     else{
       if (input$dataset == "FBID") {
-        TPMs = data.seq[data.seq$V1 %in% input$variable, 3:6]
+        TPMs = data.seq[data.seq$FBGN %in% input$variable, 7:11][1,]
       }
       else{
-        TPMs = data.seq[data.seq$symbol %in% input$variable, 3:6]
+        TPMs = data.seq[data.seq$symbol %in% input$variable, 7:11][1,]
       }
-      TPMs = round(TPMs, digits = 1)
       shape_centroids = st_centroid(shape)
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       
       p+
-        annotate("text", label=as.character(paste0(TPMs[1], "\nTPM")), x=shape.x.y[18,1], y=shape.x.y[18,2], size=5)+
-        annotate("text", label=as.character(paste0(TPMs[2], "\nTPM")), x=shape.x.y[19,1], y=shape.x.y[19,2], size=5)+
-        annotate("text", label=as.character(paste0(TPMs[3], " TPM")), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=5)+
+        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=4)+
+        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=4)+
+        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=4)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
-        annotate("text", label=as.character(paste0(round(TPMs[4], digits=1), " TPM")), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=5)
+        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=4)
     }
   }, height = 200, width = 600)
   legend.data = data.frame(Name = names(pal), Color = pal)

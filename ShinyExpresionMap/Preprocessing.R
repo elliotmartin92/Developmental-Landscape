@@ -1,25 +1,37 @@
 library(sf)
+library(org.Dm.eg.db)
+library(annotate)
+library(tidyverse)
 
-data.seq = read.csv("www/Dev_TPMS.csv", stringsAsFactors = FALSE)
-FBID = data.seq$V1
+fbgn_to_symbol =  function(fbid){
+  AnnotationDbi::select(org.Dm.eg.db, fbid, 
+                        columns=c("SYMBOL"), 
+                        keytype="FLYBASE")
+}
 
-Symbol = data.seq$symbol
-data.seq = data.seq[-6]
-data_sets <- c("FBID", "Symbol")
+data.seq = readRDS("TPMs/Mean_TPMs_and_text.RDS")
+data.seq$FBGN = as.character(data.seq$FBGN)
+Symbol = fbgn_to_symbol(data.seq$FBGN)[[2]]
+data.seq$symbol = Symbol
 
-shape <- read_sf(dsn = "www/germPoly/.", layer = "germPoly")
-data.seq$TKVbin1 = cut(as.numeric(data.seq$TKV), breaks = c(-1,10,100,250,1000,2500,100000), 
+# data.seq = data.seq[-6]
+data.seq$TKVbin1 = cut(as.numeric(data.seq$MeanTPM_TKV_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                        labels=c("None","Very Low","Low","Med","High","Very High"))
 
-data.seq$Bambin1 = cut(as.numeric(data.seq$Bam), breaks = c(-1,10,100,250,1000,2500,100000), 
+data.seq$Bambin1 = cut(as.numeric(data.seq$MeanTPM_BamRNAi_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                        labels=c("None","Very Low","Low","Med","High","Very High"))
 
-data.seq$Cystbin1 = cut(as.numeric(data.seq$bamhs.bam1), breaks = c(-1,10,100,250,1000,2500,100000), 
+data.seq$Cystbin1 = cut(as.numeric(data.seq$MeanTPM_BamHSbam_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                         labels=c("None","Very Low","Low","Med","High","Very High"))
 
-data.seq$Virginbin1 = cut(as.numeric(data.seq$VirginNG4), breaks = c(-1,10,100,250,1000,2500,100000), 
+data.seq$Virginbin1 = cut(as.numeric(data.seq$MeanTPM_youngWT_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                           labels=c("None","Very Low","Low","Med","High","Very High"))
 
+data.seq$Adult = cut(as.numeric(data.seq$MeanTPM_pelo_cyo_input), breaks = c(-1,10,100,250,1000,2500,100000), 
+                          labels=c("None","Very Low","Low","Med","High","Very High"))
+
+
+shape = read_sf(dsn = "ShinyExpresionMap/www/germPoly", layer = "germPoly")
 # shape$FID_ = seq(from = 1, to = 340, by = 10)
 shape$FID_[1] = "NR"
 shape$FID_[shape$LineWt == 35] = "NA"
@@ -30,5 +42,6 @@ shape$FID_[shape$FID_ == 0] = "NA"
 shape$FID_ = factor(shape$FID_, c("None", "Very Low", "Low", "Med", "High", "Very High", "Black"))
 shape.plot = data.frame(shape)
 
-saveRDS(data.seq, "preprocessed_seq_data.RDS", compress = TRUE)
-saveRDS(shape.plot, "preprocessed_sf.RDS", compress = TRUE)
+saveRDS(data.seq, "ShinyExpresionMap/preprocessed_seq_data.RDS", compress = TRUE)
+saveRDS(shape.plot, "ShinyExpresionMap/preprocessed_sf.RDS", compress = TRUE)
+saveRDS(shape, "ShinyExpresionMap/preloaded_shape.RDS", compress = TRUE)
