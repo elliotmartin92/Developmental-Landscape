@@ -366,7 +366,7 @@ zcat      "BamHSbam_input_3.fastq.gz"
 WARNING: --limitBAMsortRAM=0, will use genome size as RAM limit for BAM sorting
 Finished loading and checking parameters
 Reading genome generation parameters:
-### STAR   --runMode genomeGenerate   --runThreadN 8   --genomeDir Output/   --genomeFastaFiles dm6.fa      --sjdbGTFfile dm6.refGene.gtf   --sjdbOverhang 75
+### STAR   --runMode genomeGenerate   --runThreadN 8   --genomeDir dm6_STAR_index/   --genomeFastaFiles dm6.fa      --sjdbGTFfile dm6.ensGene.gtf   --sjdbOverhang 75
 ### GstrandBit=32
 versionGenome                 20201        ~RE-DEFINED
 genomeFastaFiles              dm6.fa        ~RE-DEFINED
@@ -375,13 +375,13 @@ genomeChrBinNbits             18     ~RE-DEFINED
 genomeSAsparseD               1     ~RE-DEFINED
 sjdbOverhang                  75     ~RE-DEFINED
 sjdbFileChrStartEnd           -        ~RE-DEFINED
-sjdbGTFfile                   dm6.refGene.gtf     ~RE-DEFINED
+sjdbGTFfile                   dm6.ensGene.gtf     ~RE-DEFINED
 sjdbGTFchrPrefix              -     ~RE-DEFINED
 sjdbGTFfeatureExon            exon     ~RE-DEFINED
 sjdbGTFtagExonParentTranscripttranscript_id     ~RE-DEFINED
 sjdbGTFtagExonParentGene      gene_id     ~RE-DEFINED
 sjdbInsertSave                Basic     ~RE-DEFINED
-genomeFileSizes               635850381   1250510864        ~RE-DEFINED
+genomeFileSizes               635889037   1250827664        ~RE-DEFINED
 Genome version is compatible with current STAR version
 Number of real (reference) chromosomes= 1870
 1	chr2L	23513712	0
@@ -2255,23 +2255,23 @@ Number of real (reference) chromosomes= 1870
 1869	chrY_CP007107v1_random	73091	626262016
 1870	chrY_CP007108v1_random	66731	626524160
 --sjdbOverhang = 75 taken from the generated genome
-Started loading the genome: Fri Mar 27 20:12:36 2020
+Started loading the genome: Mon Apr  6 17:10:09 2020
 
-Genome: size given as a parameter = 635850381
-SA: size given as a parameter = 1250510864
+Genome: size given as a parameter = 635889037
+SA: size given as a parameter = 1250827664
 SAindex: size given as a parameter = 1
 Read from SAindex: pGe.gSAindexNbases=14  nSAi=357913940
-nGenome=635850381;  nSAbyte=1250510864
-GstrandBit=32   SA number of indices=303154148
+nGenome=635889037;  nSAbyte=1250827664
+GstrandBit=32   SA number of indices=303230948
 Shared memory is not used for genomes. Allocated a private copy of the genome.
-Genome file size: 635850381 bytes; state: good=1 eof=0 fail=0 bad=0
-Loading Genome ... done! state: good=1 eof=0 fail=0 bad=0; loaded 635850381 bytes
-SA file size: 1250510864 bytes; state: good=1 eof=0 fail=0 bad=0
-Loading SA ... done! state: good=1 eof=0 fail=0 bad=0; loaded 1250510864 bytes
+Genome file size: 635889037 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading Genome ... done! state: good=1 eof=0 fail=0 bad=0; loaded 635889037 bytes
+SA file size: 1250827664 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading SA ... done! state: good=1 eof=0 fail=0 bad=0; loaded 1250827664 bytes
 Loading SAindex ... done: 1565873619 bytes
-Finished loading the genome: Fri Mar 27 20:12:40 2020
+Finished loading the genome: Mon Apr  6 17:10:10 2020
 
-Processing splice junctions database sjdbN=60027,   pGe.sjdbOverhang=75 
+Processing splice junctions database sjdbN=60283,   pGe.sjdbOverhang=75 
 alignIntronMax=alignMatesGapMax=0, the max intron size will be approximately determined by (2^winBinNbits)*winAnchorDistNbins=589824
 Created thread # 1
 Created thread # 2
@@ -2282,37 +2282,37 @@ Created thread # 4
 Created thread # 5
 Created thread # 6
 Created thread # 7
-BAM sorting: 272511 mapped reads
+BAM sorting: 272510 mapped reads
 BAM sorting bins genomic start loci:
 1	0	5071618
-2	0	8363997
+2	0	8363999
 3	0	10947975
 4	0	10947977
 5	0	10947977
-6	0	13196715
-7	0	20443616
-8	1	4516015
-9	1	9566273
-10	1	11895372
-11	1	14215412
-12	1	18139674
-13	1	20946316
-14	1	24044658
-15	2	1788083
-16	2	5750027
-17	2	9376413
-18	2	9716883
+6	0	13196730
+7	0	20444227
+8	1	4516018
+9	1	9566310
+10	1	11895374
+11	1	14215413
+12	1	18139933
+13	1	20946317
+14	1	24044671
+15	2	1788907
+16	2	5750160
+17	2	9376414
+18	2	9717005
 19	2	13580061
-20	2	18877525
-21	2	27268381
-22	3	8648800
+20	2	18880263
+21	2	27268383
+22	3	8651890
 23	3	11590383
-24	3	13427709
-25	3	16637640
-26	3	22022228
-27	3	25699165
+24	3	13427746
+25	3	16637858
+26	3	22024260
+27	3	25699575
 28	3	30206531
-29	4	1004152
+29	4	1007950
 30	5	4667
 31	5	11566
 32	5	12744
@@ -2320,34 +2320,34 @@ BAM sorting bins genomic start loci:
 34	5	12793
 35	5	13319
 36	332	470
-37	1222	17079
+37	1222	17080
 38	1222	47049
 39	1222	62810
 40	1222	73004
-41	1223	2720151
-42	1223	6741840
-43	1223	10384956
-44	1223	13746276
-45	1223	17639569
+41	1223	2726976
+42	1223	6741845
+43	1223	10406878
+44	1223	13746279
+45	1223	17639775
 46	1223	23212919
-47	1223	23432210
+47	1223	23432212
 48	1439	1228
 Thread #0 end of input stream, nextChar=-1
 Completed: thread #0
-Completed: thread #2
 Completed: thread #1
 Joined thread # 1
-Joined thread # 2
+Completed: thread #3
 Completed: thread #4
 Completed: thread #7
-Completed: thread #3
+Completed: thread #5
+Completed: thread #2
+Joined thread # 2
 Joined thread # 3
 Joined thread # 4
-Completed: thread #6
-Completed: thread #5
 Joined thread # 5
+Completed: thread #6
 Joined thread # 6
 Joined thread # 7
-Mar 27 20:20:44 ..... started sorting BAM
-Max memory needed for sorting = 323454245
+Apr 06 17:15:14 ..... started sorting BAM
+Max memory needed for sorting = 323464488
 ALL DONE!

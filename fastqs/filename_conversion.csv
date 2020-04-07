@@ -23,3 +23,7 @@ TKV_i1_S4_R1_001.fastq.gz,TKV_input_1
 TKV_i2_S12_R1_001.fastq.gz,TKV_input_2
 TKV_p1_S10_R1_001.fastq.gz,TKV_polysome_1
 TKV_p2_S7_R1_001.fastq.gz,TKV_polysome_2
+20_HBAM2T_S17_R1_001.fastq.gz,BamHSbam_input_4
+21_HBAM2P_S18_R1_001.fastq.gz,BamHSbam_polysome4
+26_P-Bam_S16_R1_001.fastq.gz,BamRNAi_polysome_3
+44_T-bam_S2_R1_001.fastq.gz,BamRNAi_input_3

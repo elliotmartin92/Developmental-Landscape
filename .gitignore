@@ -3,3 +3,4 @@
 *.out.bam
 fastqs/STAR_indexing/
 .Rproj.user
+bkp*
