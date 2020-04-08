@@ -1,6 +1,9 @@
 library(shinycssloaders)
 
 ui <- fluidPage(
+  
+  headerPanel(""),
+  
   sidebarPanel(
     withSpinner(uiOutput("choose_dataset")),
                 uiOutput("choose_columns"),

@@ -5,8 +5,9 @@ account: elliotmartin
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1967760
-bundleId: 2977798
+bundleId: 2983669
 url: https://elliotmartin.shinyapps.io/ShinyExpressionMap/
-when: 1586209055.70553
+when: 1586299152.07992
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: depricated_ui.R|Preprocessing.R|README.md|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds|www
