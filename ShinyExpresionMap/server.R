@@ -25,6 +25,7 @@ pal <- c(
   "None" = "#D6D6D6"
 )
 
+
 shinyServer(function(input, output, session, width) {
   width <- session$client_data$output_ap_plot_width
   session$onSessionEnded(function() {
@@ -80,11 +81,14 @@ shinyServer(function(input, output, session, width) {
     else{
       all.colors = data.seq[data.seq$symbol %in% input$variable, 13:17]
     }
+    
+    plotwidth <- session$clientData[["output_distPlot_width"]]
+    text_scale = plotwidth/205
+    
     shape.plot$FID_[c(18,25)] = all.colors[[1]]
     shape.plot$FID_[c(2,19)] = all.colors[[2]]
     shape.plot$FID_[c(20:23)] = all.colors[[2]]
     shape.plot$FID_[c(33)] = all.colors[[4]]
-    text_scale = session$client_data$output_ap_plot_width
 
     p=ggplot(data = shape.plot)+
       geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
@@ -107,11 +111,11 @@ shinyServer(function(input, output, session, width) {
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       
       p+
-        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=6)+
-        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=6)+
-        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=6)+
+        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=text_scale)+
+        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=text_scale)+
+        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=text_scale)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
-        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=6)
+        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=text_scale)
     }
   })
   legend.data = data.frame(Name = names(pal), Color = pal)
