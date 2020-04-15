@@ -6,14 +6,20 @@ library(org.Dm.eg.db)
 library(annotate)
 source("Y:/Data/ElliotMartin/rscripts/Finished Scripts/ggplotWhiteTheme.R")
 
-temp = list.files(path = "../fastqs/STAR_processed_files/", pattern = "*ReadsPerGene.out.tab", recursive = TRUE)
+temp = list.files(path = "fastqs/STAR_processed_files/", pattern = "*ReadsPerGene.out.tab", recursive = TRUE)
 data.table(temp)
 pick = temp[] #pick or reorder featurecounts
 data.table(pick)
 temp_names = unlist(strsplit(pick, 'ReadsPerGene.out.tab'))
 picked_names = unlist(strsplit(temp_names, '/'))[seq(2, length(temp_names)*2, 2)]
+
+picked_names[grep("pelo_cyo", picked_names)] = 
+  paste0("pelo.cyo", 
+         sapply(strsplit(
+           picked_names[grep("pelo_cyo", picked_names)], "pelo_cyo"), `[`, 2)) #disgusting one-liner to change pelo_cyo to pelo.cyo
+       
 groups = strsplit(picked_names, '*_[0-9]')
-myfiles = lapply(paste0("../fastqs/STAR_processed_files/", pick),
+myfiles = lapply(paste0("fastqs/STAR_processed_files/", pick),
                  read.delim,
                  stringsAsFactors = F,
                  header = F)
@@ -52,8 +58,23 @@ fbgn_to_symbol =  function(fbid){
                         keytype="FLYBASE") %>% data.table()
 }
 
-comparison_samples = unique(design$all[grep(pattern = "input", x = design$all)])
-comparisons = 
+pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.05, log2FC_cutoff=2){
+  if(GenotypeA==GenotypeB){return(NA)}
+  res <- results(dds, contrast = c("all", GenotypeA, GenotypeB))
+  resTable <- data.table(rownames(res), as.data.table(res))
+  up = resTable %>% filter(padj < padj_cutoff) %>% filter(log2FoldChange > log2FC_cutoff)
+  down = resTable %>% filter(padj < padj_cutoff) %>% filter(log2FoldChange < -log2FC_cutoff)
+  changing_genes = c(up$V1, down$V1)
+  return(changing_genes)
+}
+
+comparison_samples = levels(droplevels(unique(design$all[grep(pattern = "input", x = design$all)])))
+
+all_pairwise_comparisions = sapply(comparison_samples, function(GenotypeA) sapply(comparison_samples, function(GenotypeB) pairwise_dds(GenotypeA, GenotypeB)))
+head(all_pairwise_comparisions)
+all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
+head(all_pairwise_comparisions_flat)
+write_rds(all_pairwise_comparisions_uniqueflat, path = "ShinyExpresionMap/developmentally_regulated_gene_list.RDS")
 
 res <- results(dds, contrast = c("all", "BamHSbam_input", "youngWT_input")) #change genotypes to desired
 resTable <- data.table(rownames(res), as.data.table(res))
