@@ -1,5 +1,6 @@
 library(shiny)
 library(shinyWidgets)
+library(heatmaply)
 library(rgdal)
 library(sf)
 library(ggplot2)
@@ -83,7 +84,7 @@ shinyServer(function(input, output, session, width) {
     }
     
     plotwidth <- session$clientData[["output_distPlot_width"]]
-    text_scale = plotwidth/205
+    text_scale = plotwidth/260
     
     shape.plot$FID_[c(18,25)] = all.colors[[1]]
     shape.plot$FID_[c(2,19)] = all.colors[[2]]
@@ -133,5 +134,22 @@ shinyServer(function(input, output, session, width) {
             legend.text = element_text(size=13),
             legend.title = element_text(size=16))
     l
+  })
+  output$heatPlot <- renderPlotly({
+    changing_genes = readRDS("developmentally_regulated_gene_list.RDS")
+    modls = function(x){log2(x+1)}
+    heat.data = data.seq %>%
+      filter(FBGN %in% changing_genes) %>%
+      dplyr::select(MeanTPM_TKV_input,
+             MeanTPM_BamRNAi_input,
+             MeanTPM_BamHSbam_input,
+             MeanTPM_youngWT_input,
+             MeanTPM_pelo_cyo_input) %>% 
+      modls() %>%
+      data.frame()
+      rownames(heat.data) = data.seq %>% filter(FBGN %in% changing_genes) %>% pull(FBGN)
+      heatmaply(heat.data,
+                showticklabels = c(TRUE, FALSE),
+                seriate = "none")
   })
 })

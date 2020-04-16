@@ -58,7 +58,7 @@ fbgn_to_symbol =  function(fbid){
                         keytype="FLYBASE") %>% data.table()
 }
 
-pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.05, log2FC_cutoff=2){
+pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.005, log2FC_cutoff=4){
   if(GenotypeA==GenotypeB){return(NA)}
   res <- results(dds, contrast = c("all", GenotypeA, GenotypeB))
   resTable <- data.table(rownames(res), as.data.table(res))
