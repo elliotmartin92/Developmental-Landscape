@@ -1,5 +1,6 @@
 library(shinycssloaders)
 library(shinydashboard)
+library(plotly)
 
 ui = dashboardPage(
   dashboardHeader(title = "Oogenesis Viz"),
