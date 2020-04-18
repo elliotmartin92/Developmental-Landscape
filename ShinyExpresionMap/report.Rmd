@@ -1,0 +1,31 @@
+---
+title: "Ovary App Report"
+output:
+html_document:
+fig_caption: yes
+header-includes:
+  \usepackage{float}
+  \let\origfigure\figure
+  \let\endorigfigure\endfigure
+  \renewenvironment{figure}[1][2] {
+  \expandafter\origfigure\expandafter[H]
+  } {
+  \endorigfigure
+  }
+params:
+  n: NA
+---
+<br><br><br><br>
+```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center"}
+  dist_leg
+```
+
+```{r, echo=FALSE, fig.height = 2.2, fig.align = "center", fig.cap="**Figure**: Here is a really important caption."}
+  dist_pl
+```
+
+<br><br><br><br>
+
+```{r, echo=FALSE, fig.height = 4, fig.align = "center", fig.cap="**Figure**: Here is a really important caption."}
+  heat
+```

@@ -9,7 +9,9 @@ library(plotly)
 library(ggmap)
 library(cowplot)
 library(purrr)
+library(tinytex)
 
+ps = .libPaths()
 data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
 shape.plot = readRDS("preprocessed_sf.RDS")
 shape = readRDS("preloaded_shape.RDS")
@@ -93,7 +95,7 @@ shinyServer(function(input, output, session, width) {
     shape.plot$FID_[c(20:23)] = all.colors[[2]]
     shape.plot$FID_[c(33)] = all.colors[[4]]
 
-    p=ggplot(data = shape.plot)+
+    dist_pl=ggplot(data = shape.plot)+
       geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
       scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
@@ -102,7 +104,10 @@ shinyServer(function(input, output, session, width) {
             panel.border = element_rect(fill = "transparent", colour = "transparent"),
             legend.position = "none")
     
-    if (input$displayTPM==FALSE){p}
+    if (input$displayTPM==FALSE){
+      dist_pl <<- dist_pl
+      dist_pl
+      }
     else{
       if (input$dataset == "FBID") {
         TPMs = data.seq[data.seq$FBGN %in% input$variable, 7:11][1,]
@@ -113,12 +118,14 @@ shinyServer(function(input, output, session, width) {
       shape_centroids = st_centroid(shape)
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       
-      p+
+      dist_pl = dist_pl+
         annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=text_scale)+
         annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=text_scale)+
         annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=text_scale)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
         annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=text_scale)
+      dist_pl <<- dist_pl
+      dist_pl
     }
   })
   legend.data = data.frame(Name = names(pal), Color = pal)
@@ -127,7 +134,7 @@ shinyServer(function(input, output, session, width) {
                             levels = c("None", "Very Low", "Low", "Med", "High", "Very High")) 
   
   output$legend <- renderPlot({
-    l = ggplot(legend.data.cull)+
+    dist_leg = ggplot(legend.data.cull)+
       geom_area(aes(x=1, y=1, fill=Name))+
       scale_fill_manual(values = pal, name="Binned\nExpression")+
       theme_void()+
@@ -135,7 +142,8 @@ shinyServer(function(input, output, session, width) {
       theme(legend.position = "top",
             legend.text = element_text(size=13),
             legend.title = element_text(size=16))
-    l
+    dist_leg
+    dist_leg <<- dist_leg
   })
   output$heatPlot <- renderPlotly({
     changing_genes = readRDS("developmentally_regulated_gene_list.RDS")
@@ -150,8 +158,25 @@ shinyServer(function(input, output, session, width) {
       modls() %>%
       data.frame()
       rownames(heat.data) = data.seq %>% filter(FBGN %in% changing_genes) %>% pull(FBGN)
-      heatmaply(heat.data,
+      heat = heatmaply(heat.data,
                 showticklabels = c(TRUE, FALSE),
                 seriate = "none")
+      heat
+      heat <<- heat
   })
+  output$report <- downloadHandler(
+    # For PDF output, change this to "report.pdf"
+    filename = "report.html",
+    content = function(file) {
+      # Copy the report file to a temporary directory before processing it, in
+      # case we don't have write permissions to the current working dir (which
+      # can happen when deployed).
+      tempReport <- file.path(tempdir(), "report.Rmd")
+      file.copy("report.Rmd", tempReport, overwrite = TRUE)
+      
+      # Knit the document, passing in the `params` list, and eval it in a
+      # child of the global environment (this isolates the code in the document
+      # from the code in this app).
+      rmarkdown::render(tempReport, output_file = file)
+      })
 })
