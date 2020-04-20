@@ -13,8 +13,10 @@ library(tinytex)
 
 ps = .libPaths()
 data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
-shape.plot = readRDS("preprocessed_sf.RDS")
-shape = readRDS("preloaded_shape.RDS")
+shape.plot = readRDS("preprocessed_sf.RDS") #data to populate shape file for distPlot
+shape = readRDS("preloaded_shape.RDS") #shape file for distPlot
+
+#setting some variables for distPlot that must be declared outside of the server function
 
 FBID = data.seq$FBGN
 Symbol = data.seq$symbol
@@ -30,19 +32,33 @@ pal <- c(
   "None" = "#D6D6D6"
 )
 
-
-shinyServer(function(input, output, session, width) {
-  width <- session$client_data$output_ap_plot_width
+####Shiny Server variable initialization and housekeeping####
+#server initialization and check to ensure server shutsdown cleanly on tab closure
+shinyServer(function(input, output, session) {
   session$onSessionEnded(function() {
     stopApp()
     })
+  
+  #keeping track of the page being viewed for report output
+  observe({
+  
+  if(input$reportPage == "All Pages"){
+    pages_to_report <<- "all"
+  }
+    else if(input$reportPage == "Current Page"){
+      pages_to_report <<- input$tabs
+    }
+    else{
+      print("No report selection made")
+      }
+  })
   
   # Drop-down selection box for which data set
   output$choose_dataset <- renderUI({
     selectInput("dataset", "Data set", as.list(data_sets))
   })
   
-  # Check boxes
+  # Selction for FBGNs or Gene Symbols
   output$choose_columns <- renderUI({
     # If missing input, return to avoid error later in function
     if(is.null(input$dataset))
@@ -50,12 +66,10 @@ shinyServer(function(input, output, session, width) {
     
     # Get the data set with the appropriate name
     dat <- get(input$dataset)
-    
-    # Create the checkboxes and select them all by default
-      selectInput("variable", "Gene of Interest #1", dat)
+    selectInput("variable", "Gene of Interest #1", dat)
   })
   
-  # Output the data
+  # Output the data as a table for gene selection
   output$data_table <- renderTable({
     # If missing input, return to avoid error later in function
     if(is.null(input$dataset))
@@ -72,10 +86,12 @@ shinyServer(function(input, output, session, width) {
     # Keep the selected columns
     dat <- dat[, input$columns, drop = FALSE]
     
-    # Return first 20 rows
+    # Return first 20 rows for display
     head(dat, 20)
     
   })
+  
+####Plotting distPlot####
   output$distPlot <- renderPlot({
     if (is.null(input$variable)) {
       return()
@@ -87,14 +103,17 @@ shinyServer(function(input, output, session, width) {
       all.colors = data.seq[data.seq$symbol %in% input$variable, 13:17]
     }
     
+    #scale text off of tab size
     plotwidth <- session$clientData[["output_distPlot_width"]]
     text_scale = plotwidth/260
     
+    #mapping different features in shape to have proper base colors
     shape.plot$FID_[c(18,25)] = all.colors[[1]]
     shape.plot$FID_[c(2,19)] = all.colors[[2]]
     shape.plot$FID_[c(20:23)] = all.colors[[2]]
     shape.plot$FID_[c(33)] = all.colors[[4]]
 
+    #plotting distplot
     dist_pl=ggplot(data = shape.plot)+
       geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
       scale_fill_manual(values = pal, name="Binned Expression")+
@@ -104,7 +123,7 @@ shinyServer(function(input, output, session, width) {
             panel.border = element_rect(fill = "transparent", colour = "transparent"),
             legend.position = "none")
     
-    if (input$displayTPM==FALSE){
+    if (input$displayTPM==FALSE){ #switch for TPM display
       dist_pl <<- dist_pl
       dist_pl
       }
@@ -115,6 +134,8 @@ shinyServer(function(input, output, session, width) {
       else{
         TPMs = data.seq[data.seq$symbol %in% input$variable, 7:11][1,]
       }
+      
+      #adding TPM values to the proper place on the shape
       shape_centroids = st_centroid(shape)
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       
@@ -128,6 +149,7 @@ shinyServer(function(input, output, session, width) {
       dist_pl
     }
   })
+  #Adding seperate legend so that all legend values can always be displayed
   legend.data = data.frame(Name = names(pal), Color = pal)
   legend.data.cull = legend.data[-1,]
   legend.data.cull$Name = factor(legend.data.cull$Name, 
@@ -145,6 +167,8 @@ shinyServer(function(input, output, session, width) {
     dist_leg
     dist_leg <<- dist_leg
   })
+  
+  #### Plotting of heatmap ####
   output$heatPlot <- renderPlotly({
     changing_genes = readRDS("developmentally_regulated_gene_list.RDS")
     modls = function(x){log2(x+1)}
@@ -164,6 +188,8 @@ shinyServer(function(input, output, session, width) {
       heat
       heat <<- heat
   })
+  
+  # report function calls report.Rmd to knit an rmarkdown file to save data analysis
   output$report <- downloadHandler(
     # For PDF output, change this to "report.pdf"
     filename = "report.html",
@@ -171,7 +197,7 @@ shinyServer(function(input, output, session, width) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      tempReport <- file.path(tempdir(), "report.Rmd")
+      tempReport = file.path(tempdir(), "report.Rmd")
       file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
       # Knit the document, passing in the `params` list, and eval it in a

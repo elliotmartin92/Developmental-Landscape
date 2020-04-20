@@ -15,17 +15,30 @@ header-includes:
 params:
   n: NA
 ---
-<br><br><br><br>
-```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center"}
+
+```{r setup, echo=FALSE}
+library(knitr)
+
+if (pages_to_report == "DevProg" || pages_to_report == "all") {
+  distPlot_to_display = TRUE
+}else{distPlot_to_display = FALSE}
+
+if (pages_to_report == "heatmap" || pages_to_report == "all") {
+  heatmap_to_display = TRUE
+}else{heatmap_to_display = FALSE}
+
+```
+<br><br>
+
+```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center", eval=distPlot_to_display}
   dist_leg
 ```
 
-```{r, echo=FALSE, fig.height = 2.2, fig.align = "center", fig.cap="**Figure**: Here is a really important caption."}
+```{r, echo=FALSE, fig.height = 2.2, fig.align = "center", eval=distPlot_to_display, fig.cap="**Figure**: Here is a really important caption."}
   dist_pl
 ```
+`r if(distPlot_to_display){"<br><br><br><br>"}`
 
-<br><br><br><br>
-
-```{r, echo=FALSE, fig.height = 4, fig.align = "center", fig.cap="**Figure**: Here is a really important caption."}
+```{r, echo=FALSE, fig.height = 4, fig.align = "center", eval=heatmap_to_display, fig.cap="**Figure**: Here is a really important caption."}
   heat
 ```
