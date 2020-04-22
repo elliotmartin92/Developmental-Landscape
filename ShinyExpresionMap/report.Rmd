@@ -18,6 +18,7 @@ params:
 
 ```{r setup, echo=FALSE}
 library(knitr)
+library(gginnards)
 
 if (pages_to_report == "DevProg" || pages_to_report == "all") {
   distPlot_to_display = TRUE
@@ -35,10 +36,31 @@ if (pages_to_report == "heatmap" || pages_to_report == "all") {
 ```
 
 ```{r, echo=FALSE, fig.height = 2.2, fig.align = "center", eval=distPlot_to_display, fig.cap="**Figure**: Here is a really important caption."}
-  dist_pl
+
+if (input$displayTPM==FALSE){ #switch for TPM display
+      dist_pl_rmd
+     }else{
+      if (input$dataset == "FBID") {
+        TPMs = data.seq[data.seq$FBGN %in% input$variable, 7:11][1,]
+      }else{
+        TPMs = data.seq[data.seq$symbol %in% input$variable, 7:11][1,]
+      }
+      
+      #adding TPM values to the proper place on the shape
+      shape_centroids = st_centroid(shape)
+      shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
+      
+      dist_pl_rmd = dist_pl_rmd+
+        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=2)+
+        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=2)+
+        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=2)+
+        annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
+        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=2)
+      dist_pl_rmd
+    }
 ```
 `r if(distPlot_to_display){"<br><br><br><br>"}`
 
-```{r, echo=FALSE, fig.height = 4, fig.align = "center", eval=heatmap_to_display, fig.cap="**Figure**: Here is a really important caption."}
+```{r, echo=FALSE, fig.height = 6, fig.align = "center", eval=heatmap_to_display, fig.cap="**Figure**: Here is a really important caption."}
   heat
 ```

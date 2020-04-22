@@ -42,7 +42,7 @@ ui = dashboardPage(skin = "purple",
       tabItem(tabName = "heatmap", 
               fluidRow(
                 box(
-                  width = 12,
+                  width = 12, height = 6,
                   withSpinner(plotlyOutput("heatPlot", width = "auto")))))
     ))
 )
