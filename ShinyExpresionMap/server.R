@@ -122,9 +122,8 @@ shinyServer(function(input, output, session) {
             panel.background = element_rect(fill = "transparent", colour = "transparent"),
             panel.border = element_rect(fill = "transparent", colour = "transparent"),
             legend.position = "none")
-    
+    dist_pl_rmd <<- dist_pl
     if (input$displayTPM==FALSE){ #switch for TPM display
-      dist_pl <<- dist_pl
       dist_pl
       }
     else{
@@ -145,7 +144,6 @@ shinyServer(function(input, output, session) {
         annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=text_scale)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
         annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=text_scale)
-      dist_pl <<- dist_pl
       dist_pl
     }
   })
