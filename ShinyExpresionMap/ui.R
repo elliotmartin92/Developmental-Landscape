@@ -26,13 +26,13 @@ ui = dashboardPage(skin = "purple",
                 box(
                   width = 12,
                   plotOutput("legend", height = "40px"),
-                  withSpinner(plotOutput("distPlot", width = "auto"))
+                  withSpinner(plotOutput("ovary_map", width = "auto"))
                 ),
                 box(
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),
                   uiOutput("choose_columns"),
-                  checkboxInput("displayTPM", "Display TPMs", FALSE),
+                  checkboxInput("displayTPM", "Display TPMs", TRUE),
                   br()
               )
               )
