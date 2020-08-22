@@ -166,7 +166,7 @@ shinyServer(function(input, output, session) {
     dist_leg <<- dist_leg
   })
   
-  #### Plotting of heatmap ####
+#### Plotting of heatmap ####
   output$heatPlot <- renderPlotly({
     changing_genes = readRDS("developmentally_regulated_gene_list.RDS")
     modls = function(x){log2(x+1)}
