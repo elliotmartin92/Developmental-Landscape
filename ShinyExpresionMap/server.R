@@ -13,6 +13,8 @@ library(tinytex)
 source("server_modules/ovary_map.R")
 
 ps = .libPaths()
+data_sets <- c("FBID", "Symbol")
+GO_term_tib =  read_tsv("Preprocessed_data/all_go_terms.tsv")
 
 ####Shiny Server variable initialization and housekeeping####
 #server initialization and check to ensure server shutsdown cleanly on tab closure
@@ -66,11 +68,25 @@ shinyServer(function(input, output, session) {
       return()
     
     # Keep the selected columns
-    dat <- dat[, input$columns, drop = FALSE]
+    dat = dat[, input$columns, drop = FALSE]
     
     # Return first 20 rows for display
     head(dat, 20)
     
+  })
+  
+  # Output the data as a table for GO selection
+  
+  output$choose_GO_term <- renderUI({
+    # Get the data set
+    selectInput("variable", "GO Term to Plot", GO_term_tib$description)
+  })
+  
+  output$GO_term_table <- renderTable({
+    
+    # Return first 20 rows for display
+    GO_term_tib = GO_term_tib[, input$choose_GO_term, drop = FALSE]
+    head(GO_term_tib$description, 20)
   })
   
 ####Plotting ovary_map####
@@ -86,7 +102,7 @@ shinyServer(function(input, output, session) {
               displayTPM = input$displayTPM, 
               gene_of_interest = input$variable, 
               text_scale = text_scale)
-    ovary_map_plot = plot_and_leg[1]
+    ovary_map_plot <<- plot_and_leg[1]
     ovary_map_legend <<- plot_and_leg[2]
     ovary_map_plot
   })
@@ -101,6 +117,12 @@ shinyServer(function(input, output, session) {
     source("server_modules/heat_map.R")
       heat
   })
+
+#### Plotting of heatmap ####
+output$violinPlot <- renderPlot({
+  source("server_modules/violin_genes.R")
+  test_violin
+})
   
   # report function calls report.Rmd to knit an rmarkdown file to save data analysis
   output$report <- downloadHandler(

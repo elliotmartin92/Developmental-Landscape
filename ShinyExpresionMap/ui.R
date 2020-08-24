@@ -8,6 +8,7 @@ ui = dashboardPage(skin = "purple",
     sidebarMenu(id = "tabs",
     menuItem("Developmental Progression", tabName = "DevProg", icon = icon("dashboard")),
     menuItem("Heatmap", tabName = "heatmap", icon = icon("th")),
+    menuItem("Gene Groups", tabName = "violin", icon = icon("far fa-chart-bar")),
     menuItem("Generate report", icon = icon("fas fa-file-download"), tabName = "DownloadTab",
              # Input directly under menuItem
              radioButtons("reportPage", "Generate Report for:",
@@ -16,7 +17,6 @@ ui = dashboardPage(skin = "purple",
              downloadButton("report"))
   )),
     dashboardBody(
-      # Include the custom styling
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")),
       tabItems(
@@ -33,16 +33,24 @@ ui = dashboardPage(skin = "purple",
                   withSpinner(uiOutput("choose_dataset")),
                   uiOutput("choose_columns"),
                   checkboxInput("displayTPM", "Display TPMs", TRUE),
-                  br()
-              )
-              )
-      ),
+                  br()))),
       
       # Second tab content
       tabItem(tabName = "heatmap", 
               fluidRow(
                 box(
-                  width = 12, height = 6,
-                  withSpinner(plotlyOutput("heatPlot", width = "auto")))))
+                  width = 12,
+                  withSpinner(plotlyOutput("heatPlot", width = "auto"))))),
+      
+      # third tab content
+      tabItem(tabName = "violin",
+              fluidRow(
+                box(
+                  width = 12,
+                  withSpinner(plotOutput("violinPlot", width = "auto"))),
+              box(
+                title = "Controls",
+                uiOutput("GO_term_table"),
+                br())))
     ))
 )
