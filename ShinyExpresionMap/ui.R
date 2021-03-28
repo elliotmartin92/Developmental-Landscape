@@ -1,6 +1,5 @@
 library(shinycssloaders)
 library(shinydashboard)
-library(plotly)
 
 ui = dashboardPage(skin = "purple", 
   dashboardHeader(title = "Oogenesis Viz"),
@@ -17,6 +16,7 @@ ui = dashboardPage(skin = "purple",
              downloadButton("report"))
   )),
     dashboardBody(
+      # Include the custom styling (sidebar color)
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")),
       tabItems(
@@ -26,8 +26,7 @@ ui = dashboardPage(skin = "purple",
                 box(
                   width = 12,
                   plotOutput("legend", height = "40px"),
-                  withSpinner(plotOutput("ovary_map", width = "auto"))
-                ),
+                  withSpinner(plotOutput("ovary_map", width = "auto"))),
                 box(
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),
@@ -50,7 +49,7 @@ ui = dashboardPage(skin = "purple",
                   withSpinner(plotOutput("violinPlot", width = "auto"))),
               box(
                 title = "Controls",
-                uiOutput("GO_term_table"),
+                uiOutput("choose_GO_term"),
                 br())))
     ))
 )
