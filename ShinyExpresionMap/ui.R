@@ -30,7 +30,9 @@ ui = dashboardPage(skin = "purple",
                 box(
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),
-                  uiOutput("choose_columns"),
+                  # selectizeInput('dataset', label = "choose_dataset", choices = NULL),
+                  selectizeInput('variable', label = "Gene of Interest", choices = NULL),
+                  # uiOutput("choose_columns"),
                   checkboxInput("displayTPM", "Display TPMs", TRUE),
                   br()))),
       

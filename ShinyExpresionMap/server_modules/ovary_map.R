@@ -6,7 +6,7 @@ shape = readRDS("preloaded_shape.RDS") #shape file for distPlot
 
 FBID = data.seq$FBGN
 Symbol = data.seq$symbol
-data_sets <- c("FBID", "Symbol")
+# data_sets <- c("FBID", "Symbol")
 
 pal <- c(
   "Black" = "Black",
@@ -20,7 +20,7 @@ pal <- c(
 
 ovary_map = function(gene_name_format="FBID", displayTPM=TRUE, gene_of_interest="NA", text_scale=10, graphic_to_generate){
   if (graphic_to_generate == "legend") {
-    #Adding seperate legend so that all legend values can always be displayed
+    #Adding separate legend so that all legend values can always be displayed
     legend.data = data.frame(Name = names(pal), Color = pal)
     legend.data.cull = legend.data[-1,]
     legend.data.cull$Name = factor(legend.data.cull$Name, 

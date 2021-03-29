@@ -44,14 +44,11 @@ shinyServer(function(input, output, session) {
   })
   
   # Selction for FBGNs or Gene Symbols
-  output$choose_columns <- renderUI({
-    # If missing input, return to avoid error later in function
-    if(is.null(input$dataset))
-      return()
-    
+  observeEvent(input$dataset, {
     # Get the data set with the appropriate name
     dat <- get(input$dataset)
-    selectInput("variable", "Gene of Interest", dat)
+    updateSelectizeInput(session = session, inputId = "variable",
+                    label = "Gene of Interest", choices = dat, server = TRUE)
   })
   
   # Output the data as a table for GO selection
