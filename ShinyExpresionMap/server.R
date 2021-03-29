@@ -52,10 +52,8 @@ shinyServer(function(input, output, session) {
   })
   
   # Output the data as a table for GO selection
-    output$choose_GO_term <- renderUI({
-    # Get the data set
-    selectInput("GO_term", "GO Term to Plot", GO_term_description)
-  })
+  updateSelectizeInput(session = session, inputId = "GO_term",
+                        label = "GO Term to Plot", choices = GO_term_description, server = TRUE)
   
 ####Plotting ovary_map####
   output$ovary_map <- renderPlot({
@@ -74,7 +72,7 @@ shinyServer(function(input, output, session) {
     ovary_map_plot
   })
   
-  #Adding seperate legend so that all legend values can always be displayed
+  #Adding separate legend so that all legend values can always be displayed
   output$legend <- renderPlot({
     ovary_map_legend <<- ovary_map(graphic_to_generate = "legend")
     ovary_map_legend

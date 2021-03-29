@@ -30,9 +30,7 @@ ui = dashboardPage(skin = "purple",
                 box(
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),
-                  # selectizeInput('dataset', label = "choose_dataset", choices = NULL),
                   selectizeInput('variable', label = "Gene of Interest", choices = NULL),
-                  # uiOutput("choose_columns"),
                   checkboxInput("displayTPM", "Display TPMs", TRUE),
                   br()))),
       
@@ -51,7 +49,7 @@ ui = dashboardPage(skin = "purple",
                   withSpinner(plotOutput("violinPlot", width = "auto"))),
               box(
                 title = "Controls",
-                uiOutput("choose_GO_term"),
+                selectizeInput('GO_term', label = "choose_GO_term", choices = NULL),
                 br())))
     ))
 )
