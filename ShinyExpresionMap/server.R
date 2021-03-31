@@ -10,6 +10,7 @@ library(ggmap)
 library(cowplot)
 library(purrr)
 library(tinytex)
+library(quanteda)
 source("server_modules/ovary_map.R")
 
 ps = .libPaths()
@@ -40,19 +41,19 @@ shinyServer(function(input, output, session) {
   
   # Drop-down selection box for which data set
   output$choose_dataset <- renderUI({
-    selectInput("dataset", "Data set", as.list(data_sets))
+    selectInput("dataset", "Data set", as.list(data_sets), selected = "Symbol")
   })
   
   # Selction for FBGNs or Gene Symbols
   observeEvent(input$dataset, {
     # Get the data set with the appropriate name
     dat <- get(input$dataset)
-    updateSelectizeInput(session = session, inputId = "variable",
+    updateSelectizeInput(session = session, inputId = "variable", selected = "RpS19b",
                     label = "Gene of Interest", choices = dat, server = TRUE)
   })
   
   # Output the data as a table for GO selection
-  updateSelectizeInput(session = session, inputId = "GO_term",
+  updateSelectizeInput(session = session, inputId = "GO_term", selected = "large ribosomal subunit",
                         label = "GO Term to Plot", choices = GO_term_description, server = TRUE)
   
 ####Plotting ovary_map####
@@ -84,13 +85,16 @@ shinyServer(function(input, output, session) {
       heat
   })
 
-#### Plotting of heatmap ####
+#### Plotting of violinplot ####
 output$violinPlot <- renderPlot({
   source("server_modules/violin_genes.R")
   if (is.null(input$GO_term)) {
     return()
   }
-  gene_violin_plot_global <<- gene_violin(genes_by_GO = TRUE, GO_term = input$GO_term)
+  gene_violin_plot_global <<- gene_violin(genes_by_GO = input$violin_geneList_option, 
+                                          GO_term = input$GO_term,
+                                          gene_of_interest = input$Gene_interest_list,
+                                          normalization = input$violin_normalization_option)
   gene_violin_plot_global
 })
   

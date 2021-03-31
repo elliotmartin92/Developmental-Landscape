@@ -5,8 +5,7 @@ heat.data = data.seq %>%
   dplyr::select(MeanTPM_TKV_input,
                 MeanTPM_BamRNAi_input,
                 MeanTPM_BamHSbam_input,
-                MeanTPM_youngWT_input,
-                MeanTPM_pelo_cyo_input) %>% 
+                MeanTPM_youngWT_input) %>% 
   modls() %>%
   data.frame()
 rownames(heat.data) = data.seq %>% filter(FBGN %in% changing_genes) %>% pull(FBGN)

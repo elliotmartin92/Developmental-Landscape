@@ -1,7 +1,6 @@
 library(DESeq2)
 library(data.table)
-library(dplyr)
-library(plyr)
+library(tidyverse)
 library(org.Dm.eg.db)
 library(annotate)
 source("Y:/Data/ElliotMartin/rscripts/Finished Scripts/ggplotWhiteTheme.R")
@@ -53,7 +52,7 @@ fbgn_to_symbol =  function(fbid){
                         keytype="FLYBASE") %>% data.table()
 }
 
-pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.005, log2FC_cutoff=4){
+pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.05, log2FC_cutoff=2){
   if(GenotypeA==GenotypeB){return(NA)}
   res <- results(dds, contrast = c("all", GenotypeA, GenotypeB))
   resTable <- data.table(rownames(res), as.data.table(res))
@@ -63,15 +62,16 @@ pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.005, log2FC_cutoff=4
   return(changing_genes)
 }
 
-comparison_samples = levels(droplevels(unique(design$all[grep(pattern = "input", x = design$all)])))
+comparison_samples = unique(design$all[grep(pattern = "input", x = design$all)])
+number_comparisons = (length(comparison_samples)*((length(comparison_samples)-1)))/2 #number of pairwise comparisons
 
 all_pairwise_comparisions = sapply(comparison_samples, function(GenotypeA) sapply(comparison_samples, function(GenotypeB) pairwise_dds(GenotypeA, GenotypeB)))
 head(all_pairwise_comparisions)
 all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
-head(all_pairwise_comparisions_flat)
-write_rds(all_pairwise_comparisions_uniqueflat, path = "ShinyExpresionMap/developmentally_regulated_gene_list.RDS")
+head(all_pairwise_comparisions_uniqueflat)
+write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/developmentally_regulated_gene_list.RDS")
 
-res <- results(dds, contrast = c("all", "BamHSbam_input", "youngWT_input")) #change genotypes to desired
-resTable <- data.table(rownames(res), as.data.table(res))
-up = resTable %>% filter(padj<.05) %>% filter(log2FoldChange > 1.5)
-down = resTable %>% filter(padj<.05) %>% filter(log2FoldChange < -1.5)
+# res <- results(dds, contrast = c("all", "BamHSbam_input", "youngWT_input")) #change genotypes to desired
+# resTable <- data.table(rownames(res), as.data.table(res))
+# up = resTable %>% filter(padj<.05) %>% filter(log2FoldChange > 1.5)
+# down = resTable %>% filter(padj<.05) %>% filter(log2FoldChange < -1.5)

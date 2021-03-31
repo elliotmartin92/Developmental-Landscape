@@ -1,5 +1,6 @@
 library(shinycssloaders)
 library(shinydashboard)
+library(plotly)
 
 ui = dashboardPage(skin = "purple", 
   dashboardHeader(title = "Oogenesis Viz"),
@@ -49,7 +50,17 @@ ui = dashboardPage(skin = "purple",
                   withSpinner(plotOutput("violinPlot", width = "auto"))),
               box(
                 title = "Controls",
+                radioButtons("violin_geneList_option", label = "Radio buttons",
+                             choices = list("Select genes by GO term" = "GO_term_selection", 
+                                            "Enter custom list of genes" = "Custom_selection"), 
+                             selected = "GO_term_selection"),
                 selectizeInput('GO_term', label = "choose_GO_term", choices = NULL),
+                textInput("Gene_interest_list", "Genes of Interest List", "Enter genes"),
+                verbatimTextOutput("value"),
+                radioButtons("violin_normalization_option", label = "Radio buttons",
+                             choices = list("Normalize each gene to 1 in UAS-TKV" = "each_gene", 
+                                            "Normalize mean to 1 in UAS-TKV" = "mean_gene"), 
+                             selected = "each_gene"),
                 br())))
     ))
 )

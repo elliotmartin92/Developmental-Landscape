@@ -18,7 +18,7 @@ pal <- c(
   "None" = "#D6D6D6"
 )
 
-ovary_map = function(gene_name_format="FBID", displayTPM=TRUE, gene_of_interest="NA", text_scale=10, graphic_to_generate){
+ovary_map = function(gene_name_format="Symbol", displayTPM=TRUE, gene_of_interest="RpS19b", text_scale=10, graphic_to_generate){
   if (graphic_to_generate == "legend") {
     #Adding separate legend so that all legend values can always be displayed
     legend.data = data.frame(Name = names(pal), Color = pal)
