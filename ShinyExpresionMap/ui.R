@@ -59,7 +59,7 @@ ui = dashboardPage(skin = "purple",
                 verbatimTextOutput("value"),
                 radioButtons("violin_normalization_option", label = "Radio buttons",
                              choices = list("Normalize each gene to 1 in UAS-TKV" = "each_gene", 
-                                            "Normalize mean to 1 in UAS-TKV" = "mean_gene"), 
+                                            "log2(TPMs+1)" = "unNorm"), 
                              selected = "each_gene"),
                 br())))
     ))

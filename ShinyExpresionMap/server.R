@@ -12,6 +12,7 @@ library(purrr)
 library(tinytex)
 library(quanteda)
 source("server_modules/ovary_map.R")
+source("server_modules/ggplotWhiteTheme.R")
 
 ps = .libPaths()
 data_sets <- c("FBID", "Symbol")
