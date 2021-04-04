@@ -59,7 +59,7 @@ shinyServer(function(input, output, session) {
   
 ####Plotting ovary_map####
   output$ovary_map <- renderPlot({
-    if (is.null(input$variable)) {
+    if(is.null(input$variable) | is.null(input$dataset)) {
       return()
     }
     #scale text off of tab size
@@ -102,7 +102,7 @@ output$violinPlot <- renderPlot({
   # report function calls report.Rmd to knit an rmarkdown file to save data analysis
   output$report <- downloadHandler(
     # For PDF output, change this to "report.pdf"
-    filename = "report.html",
+    filename = "Ovary_App_Report.html",
     content = function(file) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
