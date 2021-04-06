@@ -42,6 +42,6 @@ shape$FID_[shape$FID_ == 0] = "NA"
 shape$FID_ = factor(shape$FID_, c("None", "Very Low", "Low", "Med", "High", "Very High", "Black"))
 shape.plot = data.frame(shape)
 
-saveRDS(data.seq, "ShinyExpresionMap/preprocessed_seq_data.RDS", compress = TRUE)
-saveRDS(shape.plot, "ShinyExpresionMap/preprocessed_sf.RDS", compress = TRUE)
-saveRDS(shape, "ShinyExpresionMap/preloaded_shape.RDS", compress = TRUE)
+saveRDS(data.seq, "ShinyExpresionMap/Preprocessed_data/preprocessed_seq_data.RDS", compress = TRUE)
+saveRDS(shape.plot, "ShinyExpresionMap/Preprocessed_data/preprocessed_sf.RDS", compress = TRUE)
+saveRDS(shape, "ShinyExpresionMap/Preprocessed_data/preloaded_shape.RDS", compress = TRUE)

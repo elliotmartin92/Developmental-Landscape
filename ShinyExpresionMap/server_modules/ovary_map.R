@@ -1,6 +1,6 @@
-data.seq = readRDS("preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
-shape.plot = readRDS("preprocessed_sf.RDS") #data to populate shape file for distPlot
-shape = readRDS("preloaded_shape.RDS") #shape file for distPlot
+data.seq = readRDS("Preprocessed_data/preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
+shape.plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
+shape = readRDS("Preprocessed_data/preloaded_shape.RDS") #shape file for distPlot
 
 #setting some variables for distPlot that must be declared outside of the server function
 

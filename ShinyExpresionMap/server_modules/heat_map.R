@@ -1,4 +1,4 @@
-changing_genes = readRDS("developmentally_regulated_gene_list.RDS")
+changing_genes = readRDS("Preprocessed_data/developmentally_regulated_gene_list.RDS")
 modls = function(x){log2(x+1)}
 heat.data = data.seq %>%
   filter(FBGN %in% changing_genes) %>%
