@@ -4,13 +4,15 @@ library(tidyverse)
 
 # This script computes TPMs for all libraries and computes polysome/input ratio
 
-temp = list.files(path = "fastqs/STAR_processed_files/", pattern = "*ReadsPerGene.out.tab", recursive = TRUE)
+temp = list.files(path = "fastqs/STAR_processed_files/", pattern = "*ReadsPerGene.out.tab$", recursive = TRUE)
 data.table(temp)
 pick = temp[] #pick or reorder featurecounts
 data.table(pick)
 temp_names = unlist(strsplit(pick, 'ReadsPerGene.out.tab'))
 picked_names = unlist(strsplit(temp_names, '/'))[seq(2, length(temp_names)*2, 2)]
-picked_names = str_replace(string = picked_names, pattern = "pelo_cyo", replacement = "peloCyo")
+picked_names
+
+groups = strsplit(picked_names, '*_[0-9]')
 myfiles = lapply(paste0("fastqs/STAR_processed_files/", pick),
                  read.delim,
                  stringsAsFactors = F,
@@ -19,8 +21,7 @@ allseq = data.frame(myfiles)
 rownames(allseq) = allseq[[1]]
 allseq = allseq[c(seq(from = 4, to = length(allseq), by = 4))]
 colnames(allseq) = picked_names
-allseq = allseq[-(1:4),]
-head(allseq)
+allseq = allseq[-(1:4),] #remove header/summary rows
 
 ####TPM####
 tpm = function(counts, lengths) {
@@ -36,7 +37,6 @@ tpms_all = data.table(apply(X = allseq, 2, tpm, lengths=featLens[[2]]))
 rownames(tpms_all) = rownames(allseq)
 tpms_all_tib = as_tibble(data.frame(FBGN = rownames(tpms_all), tpms_all))
 head(tpms_all_tib)
-# write_rds(tpms_all_tib, "ShinyExpresionMap/raw_tpms_all.rds")
 
 tpms_all_long = tpms_all_tib %>% 
   pivot_longer(
@@ -46,11 +46,17 @@ tpms_all_long = tpms_all_tib %>%
     values_to = "TPM"
 )
 
+polysome_ratios = tpms_all_long %>% 
+  group_by(FBGN, Genotype, Replicate) %>% 
+  mutate(polysome_over_input = (TPM+1)/(TPM[Source=="input"]+1))
+
 std <- function(x) sd(x)/sqrt(length(x))
 
-tpms_long_mean = tpms_all_long %>% 
+polysome_ratios_mean = polysome_ratios %>% 
   group_by(Genotype, Source, FBGN) %>% 
-  summarise(MeanTPM = mean(TPM), se = std(TPM))
+  summarise(MeanTPM = mean(TPM), se = std(TPM),
+            Mean_polysome_over_input = mean(polysome_over_input), se = std(polysome_over_input)) %>% 
+  mutate()
 
 tpms_long_mean$MeanTPMpmError = paste0(round(signif(tpms_long_mean$MeanTPM, digits = 3), digits = 1), "±", 
                                        round(signif(tpms_long_mean$se, digits = 3), digits = 1))
