@@ -26,6 +26,7 @@ allseq = allseq[-(1:4),] #remove header/summary rows
 # allseq = allseq[!apply(allseq, MARGIN = 1, FUN = function(y) any(y==0)),]
 
 genotype = sapply(strsplit(picked_names, "_"),`[`,1)
+
 type = sapply(strsplit(picked_names, "_"),`[`,2)
 rep = sapply(strsplit(picked_names, "_"),`[`,3)
 

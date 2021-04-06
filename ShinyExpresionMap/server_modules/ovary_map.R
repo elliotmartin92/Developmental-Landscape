@@ -1,4 +1,4 @@
-data.seq = readRDS("Preprocessed_data/preprocessed_seq_data.RDS") #data from preprocessed tpms (binned/organized)
+data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
 shape.plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
 shape = readRDS("Preprocessed_data/preloaded_shape.RDS") #shape file for distPlot
 

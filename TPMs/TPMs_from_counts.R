@@ -2,7 +2,7 @@ library(data.table)
 library(stringr)
 library(tidyverse)
 
-temp = list.files(path = "fastqs/STAR_processed_files/", pattern = "*ReadsPerGene.out.tab", recursive = TRUE)
+temp = list.files(path = "fastqs/STAR_processed_files/", pattern = "*ReadsPerGene.out.tab$", recursive = TRUE)
 data.table(temp)
 pick = temp[] #pick or reorder featurecounts
 data.table(pick)
@@ -57,3 +57,17 @@ tpms_wide_mean = tpms_long_mean %>%
   pivot_wider(names_from = Group, values_from = c(MeanTPM, MeanTPMpmError))
 
 saveRDS(tpms_wide_mean, file = "TPMs/Mean_TPMs_and_text.RDS")
+
+tpms_wide_mean$TKVbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_TKV_input), breaks = c(-1,10,100,250,1000,2500,100000), 
+                       labels=c("None","Very Low","Low","Med","High","Very High"))
+
+tpms_wide_mean$Bambin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_BamRNAi_input), breaks = c(-1,10,100,250,1000,2500,100000), 
+                       labels=c("None","Very Low","Low","Med","High","Very High"))
+
+tpms_wide_mean$Cystbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_BamHSbam_input), breaks = c(-1,10,100,250,1000,2500,100000), 
+                        labels=c("None","Very Low","Low","Med","High","Very High"))
+
+tpms_wide_mean$Virginbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_youngWT_input), breaks = c(-1,10,100,250,1000,2500,100000), 
+                          labels=c("None","Very Low","Low","Med","High","Very High"))
+
+saveRDS(polysome_ratios_mean_wide, "ShinyExpresionMap/Preprocessed_data/preprocessed_polysome_seq_data.RDS", compress = TRUE)

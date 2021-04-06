@@ -1,4 +1,4 @@
-data.seq = readRDS("preprocessed_seq_data.RDS")
+data.seq = readRDS("preprocessed_RNA_seq_data.RDS")
 gene_violin = function(genes_by_GO="GO_term_selection", GO_term=NA, gene_of_interest=NA, normalization="each_gene"){
   #select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
