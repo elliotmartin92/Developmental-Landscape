@@ -1,5 +1,16 @@
-data.seq = readRDS("preprocessed_RNA_seq_data.RDS")
-gene_violin = function(genes_by_GO="GO_term_selection", GO_term=NA, gene_of_interest=NA, normalization="each_gene"){
+data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
+
+gene_violin = function(data_set_to_plot="Input_seq", 
+                       genes_by_GO="GO_term_selection", 
+                       GO_term=NA, gene_of_interest=NA, 
+                       normalization="each_gene"){
+  if(data_set_to_plot=="Input_seq"){
+    data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
+    data.seq_pared = data.seq[1:5] #extract columns used for plotting
+  }else if(data_set_to_plot=="Polysome_seq"){
+    data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
+    data.seq_pared = data.seq[c(1, 3:6)] #extract columns used for plotting
+  }
   #select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
     GO_Term_to_FBID = read_rds("Preprocessed_data/GO_Term_to_FBID.rds")
@@ -7,43 +18,66 @@ gene_violin = function(genes_by_GO="GO_term_selection", GO_term=NA, gene_of_inte
     selected_GO_id = GO_term_tib$GOID[GO_term_tib$description == GO_term]
     FBIDs_in_GO_id = GO_Term_to_FBID$ensembl_id[GO_Term_to_FBID$go_id == selected_GO_id]
     selected_gene_data = 
-      data.seq %>% 
+      data.seq_pared %>% 
+      set_names(c("FBGN",
+               "UAS-tkv", 
+               "bam RNAi", 
+               "bam RNAi; HS-bam", 
+               "Young WT")) %>% 
       filter(FBGN %in% FBIDs_in_GO_id) %>%
-      dplyr::select(1:5) %>% 
-      pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_TPM")
+      pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_expression")
     # Use custom gene list
   }else if(genes_by_GO=="Custom_selection"){
     # tokenize input to get around variable seps from user
     gene_of_interest_tokens = unique(unlist(tokens(gene_of_interest, remove_punct = TRUE)))
     selected_gene_data = 
-      data.seq %>% 
+      data.seq_pared %>% 
+      set_names(c("FBGN",
+               "UAS-tkv", 
+               "bam RNAi", 
+               "bam RNAi; HS-bam", 
+               "Young WT")) %>%
       filter(FBGN %in% gene_of_interest_tokens) %>%
-      dplyr::select(1:5) %>% 
-      pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_TPM")
+      pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_expression")
   }
   # normalize each gene to the value in UAS-tkv 
   # (also +1 to num and denom to prevent div zero errors and Infs from log)
   # type of normalization changes y-axis label here
-  if(normalization == "each_gene"){
-    yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM)")
-    selected_gene_data_norm = selected_gene_data %>% 
-      dplyr::group_by(FBGN) %>% 
-      dplyr::mutate(Norm_TPM = log2((Mean_TPM+1)/(Mean_TPM[Genotype=="MeanTPM_TKV_input"]+1)))
-  } else if(normalization == "unNorm"){
-    yaxis_label = expression("log"[2]*"(TPM+1)")
-    selected_gene_data_norm = selected_gene_data %>% 
-      dplyr::ungroup() %>% 
-      dplyr::mutate(Norm_TPM = log2(Mean_TPM+1))
+  if(data_set_to_plot=="Input_seq"){
+    if(normalization == "each_gene"){
+      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM)")
+      selected_gene_data_norm = 
+        selected_gene_data %>% 
+        dplyr::group_by(FBGN) %>% 
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
+    } else if(normalization == "unNorm"){
+      yaxis_label = expression("log"[2]*"(TPM+1)")
+      selected_gene_data_norm = selected_gene_data %>% 
+        dplyr::ungroup() %>% 
+        dplyr::mutate(Norm_expression = log2(Mean_expression+1))
+    }
+  }else if(data_set_to_plot=="Polysome_seq"){
+    if(normalization == "each_gene"){
+      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TE)")
+      selected_gene_data_norm = selected_gene_data %>% 
+        dplyr::group_by(FBGN) %>% 
+        dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
+    } else if(normalization == "unNorm"){
+      yaxis_label = expression("log"[2]*"(TE)")
+      selected_gene_data_norm = selected_gene_data %>% 
+        dplyr::ungroup() %>% 
+        dplyr::mutate(Norm_expression = log2(Mean_expression))
+    }
   }
   # order factors
   selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
-                                            levels = c("MeanTPM_TKV_input", 
-                                                       "MeanTPM_BamRNAi_input", 
-                                                       "MeanTPM_BamHSbam_input", 
-                                                       "MeanTPM_youngWT_input"))
+                                            levels = c("UAS-tkv", 
+                                                       "bam RNAi", 
+                                                       "bam RNAi; HS-bam", 
+                                                       "Young WT"))
   # violin plot
     gene_violin_plot = 
-      ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_TPM))+
+      ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
       ylab(yaxis_label)+
       scale_x_discrete(labels=c("UAS-tkv", 

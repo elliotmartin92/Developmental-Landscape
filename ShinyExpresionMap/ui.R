@@ -6,7 +6,7 @@ ui = dashboardPage(skin = "purple",
   dashboardHeader(title = "Oogenesis Viz"),
   dashboardSidebar(
     sidebarMenu(id = "tabs",
-      menuItem("Generate report", icon = icon("fas fa-table"), tabName = "DatasetTab", startExpanded = TRUE,
+      menuItem("Select a dataset", icon = icon("fas fa-table"), tabName = "DatasetTab", startExpanded = TRUE,
               # Input directly under menuItem
               radioButtons("SeqDataset", "View dataset:",
                 choices = list("Input mRNAseq" = "Input_seq", 

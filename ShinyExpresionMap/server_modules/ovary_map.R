@@ -23,7 +23,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
   if(data_set_to_plot=="Input_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
     }else if(data_set_to_plot=="Polysome_seq"){
-      data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
+      data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed tpms (binned/organized)
     }else{
       return("Missing data_set_to_plot")
     }

@@ -93,7 +93,8 @@ output$violinPlot <- renderPlot({
   if (is.null(input$GO_term)) {
     return()
   }
-  gene_violin_plot_global <<- gene_violin(genes_by_GO = input$violin_geneList_option, 
+  gene_violin_plot_global <<- gene_violin(data_set_to_plot = input$SeqDataset,
+                                          genes_by_GO = input$violin_geneList_option, 
                                           GO_term = input$GO_term,
                                           gene_of_interest = input$Gene_interest_list,
                                           normalization = input$violin_normalization_option)
