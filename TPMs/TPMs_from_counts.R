@@ -58,6 +58,16 @@ tpms_wide_mean = tpms_long_mean %>%
 
 saveRDS(tpms_wide_mean, file = "TPMs/Mean_TPMs_and_text.RDS")
 
+fbgn_to_symbol =  function(fbid){
+  AnnotationDbi::select(org.Dm.eg.db, fbid, 
+                        columns=c("SYMBOL"), 
+                        keytype="FLYBASE")
+}
+
+tpms_wide_mean$FBGN = as.character(tpms_wide_mean$FBGN)
+Symbol = fbgn_to_symbol(tpms_wide_mean$FBGN)[[2]]
+tpms_wide_mean$symbol = Symbol
+
 tpms_wide_mean$TKVbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_TKV_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                        labels=c("None","Very Low","Low","Med","High","Very High"))
 
@@ -70,4 +80,4 @@ tpms_wide_mean$Cystbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_BamHSbam_input),
 tpms_wide_mean$Virginbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_youngWT_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                           labels=c("None","Very Low","Low","Med","High","Very High"))
 
-saveRDS(polysome_ratios_mean_wide, "ShinyExpresionMap/Preprocessed_data/preprocessed_polysome_seq_data.RDS", compress = TRUE)
+saveRDS(tpms_wide_mean, "ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS", compress = TRUE)

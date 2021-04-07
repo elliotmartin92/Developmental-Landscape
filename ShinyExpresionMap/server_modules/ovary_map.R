@@ -1,12 +1,10 @@
-data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
 shape.plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
 shape = readRDS("Preprocessed_data/preloaded_shape.RDS") #shape file for distPlot
+data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
 #setting some variables for distPlot that must be declared outside of the server function
-
 FBID = data.seq$FBGN
 Symbol = data.seq$symbol
-# data_sets <- c("FBID", "Symbol")
 
 pal <- c(
   "Black" = "Black",
@@ -18,8 +16,17 @@ pal <- c(
   "None" = "#D6D6D6"
 )
 
+bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
+
 ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", displayTPM=TRUE, gene_of_interest="RpS19b", 
                      text_scale=10, graphic_to_generate){
+  if(data_set_to_plot=="Input_seq"){
+      data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
+    }else if(data_set_to_plot=="Polysome_seq"){
+      data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
+    }else{
+      return("Missing data_set_to_plot")
+    }
   if (graphic_to_generate == "legend") {
     #Adding separate legend so that all legend values can always be displayed
     legend.data = data.frame(Name = names(pal), Color = pal)
@@ -38,9 +45,9 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     return(dist_leg)
   }else if (graphic_to_generate == "map"){
     if (gene_name_format == "FBID") {
-      all.colors = data.seq[data.seq$FBGN %in% gene_of_interest, 13:17]
+      all.colors = data.seq[data.seq$FBGN %in% gene_of_interest, names(data.seq) %in% bins]
     }else{
-      all.colors = data.seq[data.seq$symbol %in% gene_of_interest, 13:17]
+      all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% bins]
     }
     
     #mapping different features in shape to have proper base colors
@@ -62,13 +69,21 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     if (displayTPM==FALSE){ #switch for TPM display
     }
     else{
-      if (gene_name_format == "FBID") {
-        TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 7:11][1,]
+      if (data_set_to_plot=="Input_seq"){
+        if (gene_name_format == "FBID") {
+          TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 6:9][1,]
+        }
+        else{
+          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 6:9][1,]
+        }
+      }else if(data_set_to_plot=="Polysome_seq"){
+        if (gene_name_format == "FBID") {
+          TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 19:22][1,]
+        }
+        else{
+          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 19:22][1,]
+        }
       }
-      else{
-        TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 7:11][1,]
-      }
-      
       #adding TPM values to the proper place on the shape
       shape_centroids = st_centroid(shape)
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))

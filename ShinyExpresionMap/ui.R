@@ -8,7 +8,7 @@ ui = dashboardPage(skin = "purple",
     sidebarMenu(id = "tabs",
       menuItem("Generate report", icon = icon("fas fa-table"), tabName = "DatasetTab", startExpanded = TRUE,
               # Input directly under menuItem
-              radioButtons("Dataset", "View dataset:",
+              radioButtons("SeqDataset", "View dataset:",
                 choices = list("Input mRNAseq" = "Input_seq", 
                                "Polysome-seq"= "Polysome_seq"), 
                 selected = "Input_seq",

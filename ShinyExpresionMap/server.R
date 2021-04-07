@@ -66,11 +66,12 @@ shinyServer(function(input, output, session) {
     plotwidth <- session$clientData[["output_ovary_map_width"]]
     text_scale = plotwidth/260
     
-    ovary_map_plot <<- ovary_map(gene_name_format = input$dataset, 
-              displayTPM = input$displayTPM, 
-              gene_of_interest = input$variable, 
-              text_scale = text_scale, 
-              graphic_to_generate = "map")
+    ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
+                                 gene_name_format = input$dataset, 
+                                 displayTPM = input$displayTPM, 
+                                 gene_of_interest = input$variable, 
+                                 text_scale = text_scale, 
+                                 graphic_to_generate = "map")
     ovary_map_plot
   })
   

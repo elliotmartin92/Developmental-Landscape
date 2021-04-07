@@ -1,18 +1,5 @@
 library(sf)
-library(org.Dm.eg.db)
-library(annotate)
 library(tidyverse)
-
-fbgn_to_symbol =  function(fbid){
-  AnnotationDbi::select(org.Dm.eg.db, fbid, 
-                        columns=c("SYMBOL"), 
-                        keytype="FLYBASE")
-}
-
-data.seq = readRDS("TPMs/Mean_TPMs_and_text.RDS")
-data.seq$FBGN = as.character(data.seq$FBGN)
-Symbol = fbgn_to_symbol(data.seq$FBGN)[[2]]
-data.seq$symbol = Symbol
 
 shape = read_sf(dsn = "ShinyExpresionMap/www/germPoly", layer = "germPoly")
 # shape$FID_ = seq(from = 1, to = 340, by = 10)

@@ -1,6 +1,8 @@
 library(data.table)
 library(stringr)
 library(tidyverse)
+library(org.Dm.eg.db)
+library(annotate)
 
 # This script computes TPMs for all libraries and computes polysome/input ratio
 
@@ -49,7 +51,10 @@ tpms_all_long = tpms_all_tib %>%
 polysome_ratios = tpms_all_long %>% 
   group_by(FBGN, Genotype, Replicate) %>% 
   mutate(polysome_over_input = (TPM+1)/(TPM[Source=="input"]+1)) %>% 
-  mutate(log2_polysome_over_input = log2(polysome_over_input))
+  mutate(log2_polysome_over_input = log2(polysome_over_input)) %>% 
+  filter(Source == "polysome") %>% 
+  group_by(FBGN, Source, Replicate) %>% 
+  mutate(TKV_normalized_log2_polysome_over_input = log2_polysome_over_input-log2_polysome_over_input[Genotype=="TKV"])
 
 std <- function(x) sd(x)/sqrt(length(x))
 
@@ -70,7 +75,6 @@ polysome_ratios_mean$Genotype = factor(polysome_ratios_mean$Genotype,
 
 polysome_ratios_mean_wide = polysome_ratios_mean %>% 
   arrange(Genotype) %>% 
-  filter(Source == "polysome") %>% 
   pivot_wider(names_from = Genotype, values_from = c(Mean_polysome_over_input, 
                                                      Mean_polysome_over_input_error, 
                                                      Mean_log2_polysome_over_input,
@@ -79,20 +83,30 @@ polysome_ratios_mean_wide = polysome_ratios_mean %>%
 
 saveRDS(polysome_ratios_mean_wide, file = "TPMs/Polysome_Input_ratio_and_text.RDS")
 
+fbgn_to_symbol =  function(fbid){
+  AnnotationDbi::select(org.Dm.eg.db, fbid, 
+                        columns=c("SYMBOL"), 
+                        keytype="FLYBASE")
+}
+
+polysome_ratios_mean_wide$FBGN = as.character(polysome_ratios_mean_wide$FBGN)
+Symbol = fbgn_to_symbol(polysome_ratios_mean_wide$FBGN)[[2]]
+polysome_ratios_mean_wide$symbol = Symbol
+
 polysome_ratios_mean_wide$TKVbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_TKV), 
-                                        breaks = c(-10,-5,-1,0,1,5,10), 
+                                        breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                         labels=c("None","Very Low","Low","Med","High","Very High"))
 
 polysome_ratios_mean_wide$Bambin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_BamRNAi), 
-                                        breaks = c(-10,-5,-1,0,1,5,10), 
+                                        breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                         labels=c("None","Very Low","Low","Med","High","Very High"))
 
 polysome_ratios_mean_wide$Cystbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_BamRNAi), 
-                                         breaks = c(-10,-5,-1,0,1,5,10), 
+                                         breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                          labels=c("None","Very Low","Low","Med","High","Very High"))
 
 polysome_ratios_mean_wide$Virginbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_BamRNAi), 
-                                           breaks = c(-10,-5,-1,0,1,5,10), 
+                                           breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                            labels=c("None","Very Low","Low","Med","High","Very High"))
 
-saveRDS(polysome_ratios_mean_wide, "ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS", compress = TRUE)
+saveRDS(polysome_ratios_mean_wide, "ShinyExpresionMap/Preprocessed_data/preprocessed_polysome_seq_data.RDS", compress = TRUE)
