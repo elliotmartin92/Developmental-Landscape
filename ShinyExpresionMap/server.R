@@ -11,6 +11,8 @@ library(cowplot)
 library(purrr)
 library(tinytex)
 library(quanteda)
+library(ggpubr)
+library(rstatix)
 source("server_modules/ovary_map.R")
 source("server_modules/ggplotWhiteTheme.R")
 
