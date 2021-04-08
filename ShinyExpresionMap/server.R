@@ -54,10 +54,18 @@ shinyServer(function(input, output, session) {
     updateSelectizeInput(session = session, inputId = "variable", selected = "RpS19b",
                     label = "Gene of Interest", choices = dat, server = TRUE)
   })
-  
+  observe({
+    if (input$violin_geneList_option == "GO_term_selection") {
+      shinyjs::show("GO_term")
+      shinyjs::hide("Gene_interest_list")
+    } else {
+      shinyjs::show("Gene_interest_list")
+      shinyjs::hide("GO_term")
+    }
+  })
   # Output the data as a table for GO selection
   updateSelectizeInput(session = session, inputId = "GO_term", selected = "large ribosomal subunit",
-                        label = "GO Term to Plot", choices = GO_term_description, server = TRUE)
+                        label = "GO Term to Plot", choices = GO_term_description, server = TRUE, )
   
 ####Plotting ovary_map####
   output$ovary_map <- renderPlot({
@@ -95,6 +103,12 @@ output$violinPlot <- renderPlot({
   if (is.null(input$GO_term)) {
     return()
   }
+  validate(
+    need(input$GO_term != "" | input$violin_geneList_option != "GO_term_selection", "Please select a GO term")
+  )
+  validate(
+    need(input$Gene_interest_list != "" | input$violin_geneList_option != "Custom_selection", "Please enter a list of FBids")
+  )
   gene_violin_plot_global <<- gene_violin(data_set_to_plot = input$SeqDataset,
                                           genes_by_GO = input$violin_geneList_option, 
                                           GO_term = input$GO_term,
