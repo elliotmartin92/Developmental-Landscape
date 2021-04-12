@@ -1,5 +1,11 @@
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
+genotype_levels = c(
+  "UAS-tkv", 
+  "bam RNAi", 
+  "bam RNAi; HS-bam", 
+  "Young WT")
+
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
                        GO_term=NA, gene_of_interest=NA, 
@@ -50,11 +56,26 @@ gene_violin = function(data_set_to_plot="Input_seq",
         selected_gene_data %>% 
         dplyr::group_by(FBGN) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
+      stats = selected_gene_data_norm %>% 
+        group_by(Genotype) %>%
+        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
+        mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
+        arrange(Genotype) %>% 
+        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
+        bind_cols("x" = 1:length(genotype_levels),
+                  "xmin" = 1:length(genotype_levels),
+                  "xmax" = 1:length(genotype_levels))
+        
     } else if(normalization == "unNorm"){
       yaxis_label = expression("log"[2]*"(TPM+1)")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::ungroup() %>% 
         dplyr::mutate(Norm_expression = log2(Mean_expression+1))
+      stats = selected_gene_data_norm %>% 
+        ungroup() %>% 
+        wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
     }
   }else if(data_set_to_plot=="Polysome_seq"){
     if(normalization == "each_gene"){
@@ -62,28 +83,43 @@ gene_violin = function(data_set_to_plot="Input_seq",
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
+      stats = selected_gene_data_norm %>% 
+        group_by(Genotype) %>% 
+        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
+        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
+       mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
+        arrange(Genotype) %>% 
+        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
+        bind_cols("x" = 1:length(genotype_levels),
+                  "xmin" = 1:length(genotype_levels),
+                  "xmax" = 1:length(genotype_levels))
+      
     } else if(normalization == "unNorm"){
       yaxis_label = expression("log"[2]*"(TE)")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::ungroup() %>% 
         dplyr::mutate(Norm_expression = log2(Mean_expression))
+      stats = selected_gene_data_norm %>% 
+        ungroup() %>% 
+        wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
     }
   }
   # order factors
   selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
-                                            levels = c("UAS-tkv", 
-                                                       "bam RNAi", 
-                                                       "bam RNAi; HS-bam", 
-                                                       "Young WT"))
+                                            levels = genotype_levels)
   # violin plot
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
+      stat_pvalue_manual(stats)+
+      # stat_compare_means()+
       ylab(yaxis_label)+
-      scale_x_discrete(labels=c("UAS-tkv", 
-             "bam RNAi", 
-             "bam RNAi; HS-bam", 
-             "Young WT"))+
+      # scale_x_discrete(labels=c("UAS-tkv", 
+      #        "bam RNAi", 
+      #        "bam RNAi; HS-bam", 
+      #        "Young WT"))+
+      scale_y_continuous(expand = expansion(mult = c(0, 0.1)))+
       stat_summary(mapping = aes(group = Genotype), 
                    fun = median, fun.min = median, fun.max = median,
                    geom = "crossbar", width = 0.4)+
