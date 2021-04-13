@@ -33,8 +33,31 @@ if (pages_to_report == "violin" || pages_to_report == "all") {
   violin_to_display = TRUE
 }else{violin_to_display = FALSE}
 
-fig_nums <- captioner()
-fig_nums("ovary_map", paste0("Plot of", ,"expression over development."))
+fig_nums = captioner()
+
+if (input$violin_normalization_option == "each_gene") {
+  TKV_normaliztion_text = " normalized to expression in UAS-tkv "
+}else if (input$violin_normalization_option == "unNorm") {
+  TKV_normaliztion_text = " "
+}
+
+if(input$SeqDataset == "Input_seq"){
+  fig_nums("ovary_map", paste("Plot of", input$variable,"log~2~(TPM+1) over development."))
+  fig_nums("heat_map", "Heatmap of log~2~(TPM+1) of input mRNA expression over development.")
+  if (input$violin_geneList_option == "GO_term_selection") {
+    fig_nums("violin_plot", paste0("Plot of genes in the GO-term \"", input$GO_term,"\" over development representing log~2~(TPM+1)", TKV_normaliztion_text ,"of input mRNA"))
+  }else if(input$violin_geneList_option == "Custom_selection"){
+    fig_nums("violin_plot", paste0("Plot of log~2~(TPM+1)", TKV_normaliztion_text, "of a custom gene group over development of input mRNA expression"))
+  }
+}else if (input$SeqDataset == "Polysome_seq") {
+  fig_nums("ovary_map", paste("Plot of", input$variable,"log~2~(TE) over development."))
+  fig_nums("heat_map", "Heatmap of log~2~(TE) over development.")
+  if (input$violin_geneList_option == "GO_term_selection") {
+      fig_nums("violin_plot", paste0("Plot of log~2~(TE)", TKV_normaliztion_text, "of genes in the GO-term \"", input$GO_term, "\" over development."))
+  }else if(input$violin_geneList_option == "Custom_selection"){
+    fig_nums("violin_plot", paste0("Plot of log~2~(TE)", TKV_normaliztion_text, "of a custom gene group over development."))
+  }
+}
 ```
 <br><br>
 
@@ -42,16 +65,16 @@ fig_nums("ovary_map", paste0("Plot of", ,"expression over development."))
   ovary_map_legend
 ```
 
-```{r, echo=FALSE, fig.height = 5, fig.width= 14, fig.align = "center", eval=distPlot_to_display, fig.cap="**Figure 1**: Plot of gene expression over development."}
-ovary_map_plot
+```{r, echo=FALSE, fig.height = 5, fig.width= 14, fig.align = "center", eval=distPlot_to_display, fig.cap=fig_nums("ovary_map")}
+  ovary_map_plot
 ```
 `r if(distPlot_to_display){"<br><br><br><br>"}`
 
-```{r, echo=FALSE, fig.height = 6, fig.width= 12, fig.align = "center", eval=heatmap_to_display, fig.cap="**Figure 2**: All significantly changing genes over development."}
-  heat
+```{r, echo=FALSE, fig.height = 6, fig.width= 12, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map")}
+  heat_map_global
 ```
 <br><br><br><br>
-```{r, echo=FALSE, fig.height = 4, fig.width= 12, fig.align = "center", eval=violin_to_display, fig.cap="**Figure 3**: Plot of gene group over development."}
-gene_violin_plot_global
+```{r, echo=FALSE, fig.height = 4, fig.width= 12, fig.align = "center", eval=violin_to_display, fig.cap=fig_nums("violin_plot")}
+  gene_violin_plot_global
 ```
 
