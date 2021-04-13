@@ -12,5 +12,5 @@ shape$FID_[shape$FID_ == 0] = "NA"
 shape$FID_ = factor(shape$FID_, c("None", "Very Low", "Low", "Med", "High", "Very High", "Black"))
 shape.plot = data.frame(shape)
 
-saveRDS(shape.plot, "preprocessed_sf.RDS", compress = TRUE)
+saveRDS(shape.plot, "Preprocessed_data/preprocessed_sf.RDS", compress = TRUE)
 saveRDS(shape, "Preprocessed_data/preloaded_shape.RDS", compress = TRUE)

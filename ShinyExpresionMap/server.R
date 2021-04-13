@@ -94,7 +94,8 @@ shinyServer(function(input, output, session) {
 #### Plotting of heatmap ####
   output$heatPlot <- renderPlotly({
     source("server_modules/heat_map.R")
-      heat
+    DE_heatmap(data_set_to_plot = input$SeqDataset)
+    heat_map_global
   })
 
 #### Plotting of violinplot ####

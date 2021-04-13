@@ -95,6 +95,12 @@
       "Source": "Bioconductor",
       "Hash": "a87d32010153cba996c97fe2a52403e6"
     },
+    "GO.db": {
+      "Package": "GO.db",
+      "Version": "3.12.1",
+      "Source": "Bioconductor",
+      "Hash": "1ed8d8ec3449f0c6fba5f1932ac333ae"
+    },
     "GenomeInfoDb": {
       "Package": "GenomeInfoDb",
       "Version": "1.26.4",
@@ -288,6 +294,12 @@
       "Version": "1.68.0",
       "Source": "Bioconductor",
       "Hash": "3553333f7949ea3d722760136f3660ae"
+    },
+    "anota2seq": {
+      "Package": "anota2seq",
+      "Version": "1.12.0",
+      "Source": "Bioconductor",
+      "Hash": "a9a11584aea57958452dcef4026cfbb0"
     },
     "askpass": {
       "Package": "askpass",
@@ -561,6 +573,12 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "9a374a10e3c0dbf1a0e207af019bfcea"
+    },
+    "edgeR": {
+      "Package": "edgeR",
+      "Version": "3.32.1",
+      "Source": "Bioconductor",
+      "Hash": "9728a55a7f19cfab9c54d84b4e59f143"
     },
     "egg": {
       "Package": "egg",
@@ -924,6 +942,12 @@
       "Repository": "CRAN",
       "Hash": "3471fb65971f1a7b2d4ae7848cf2db8d"
     },
+    "limma": {
+      "Package": "limma",
+      "Version": "3.46.0",
+      "Source": "Bioconductor",
+      "Hash": "78b860aa595c42e02464243a213b3e6d"
+    },
     "lme4": {
       "Package": "lme4",
       "Version": "1.1-26",
@@ -1007,6 +1031,12 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "9fd59716311ee82cba83dc2826fc5577"
+    },
+    "multtest": {
+      "Package": "multtest",
+      "Version": "2.46.0",
+      "Source": "Bioconductor",
+      "Hash": "ed9c77133258cbc68fdacc03a5388c36"
     },
     "munsell": {
       "Package": "munsell",
@@ -1210,6 +1240,12 @@
       "Repository": "CRAN",
       "Hash": "d41a5849071941c6c269b57324515398"
     },
+    "qvalue": {
+      "Package": "qvalue",
+      "Version": "2.22.0",
+      "Source": "Bioconductor",
+      "Hash": "7ad7e5648b5f859c3d7b348003f092d1"
+    },
     "rappdirs": {
       "Package": "rappdirs",
       "Version": "0.3.3",
@@ -1398,6 +1434,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "133639dc106955eee4ffb8ec73edac37"
+    },
+    "shinyjs": {
+      "Package": "shinyjs",
+      "Version": "2.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9ddfc91d4280eaa34c2103951538976f"
     },
     "sna": {
       "Package": "sna",

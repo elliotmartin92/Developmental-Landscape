@@ -19,6 +19,7 @@ params:
 ```{r setup, echo=FALSE, include=FALSE}
 library(knitr)
 library(gginnards)
+library(captioner)
 
 if (pages_to_report == "DevProg" || pages_to_report == "all") {
   distPlot_to_display = TRUE
@@ -31,6 +32,9 @@ if (pages_to_report == "heatmap" || pages_to_report == "all") {
 if (pages_to_report == "violin" || pages_to_report == "all") {
   violin_to_display = TRUE
 }else{violin_to_display = FALSE}
+
+fig_nums <- captioner()
+fig_nums("ovary_map", paste0("Plot of", ,"expression over development."))
 ```
 <br><br>
 
