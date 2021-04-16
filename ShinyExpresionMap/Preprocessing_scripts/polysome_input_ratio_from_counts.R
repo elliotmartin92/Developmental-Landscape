@@ -72,10 +72,9 @@ polysome_ratios_mean$Genotype = factor(polysome_ratios_mean$Genotype,
                               levels = c("TKV", "BamRNAi", "BamHSbam", "youngWT"))
 
 polysome_ratios_mean_wide = polysome_ratios_mean %>% 
+  select(-Mean_polysome_over_input, -Mean_polysome_over_input_error, -Source) %>% 
   arrange(Genotype) %>% 
-  pivot_wider(names_from = Genotype, values_from = c(Mean_polysome_over_input, 
-                                                     Mean_polysome_over_input_error, 
-                                                     Mean_log2_polysome_over_input,
+  pivot_wider(names_from = Genotype, values_from = c(Mean_log2_polysome_over_input,
                                                      Mean_log2_polysome_over_input_error,
                                                      log2MeanRatioError))
 

@@ -16,16 +16,19 @@ pal <- c(
   "None" = "#ECFFFF"
 )
 
-bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
-
 ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", displayTPM=TRUE, gene_of_interest="RpS19b", 
                      text_scale=10, graphic_to_generate){
   if(data_set_to_plot=="Input_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
       expression_unit = "TPM"
+      colfunc <- colorRampPalette(c("white", "cyan"))
+      color_scale_seq = colfunc(log2(30000))
     }else if(data_set_to_plot=="Polysome_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed TE (binned/organized)
       expression_unit = "TE"
+      x = seq(-.5, 2, by = .1)
+      normal_ramp = 1-dnorm(x, mean = .5, sd = 0.3)[1:11]*.75
+      color_scale_seq = rgb(normal_ramp, 1, 1)
     }else{
       return("Missing data_set_to_plot")
     }
@@ -47,21 +50,31 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     return(dist_leg)
   }else if (graphic_to_generate == "map"){
     if (gene_name_format == "FBID") {
-      all.colors = data.seq[data.seq$FBGN %in% gene_of_interest, names(data.seq) %in% bins]
+      if (data_set_to_plot=="Input_seq") {
+        expression_color = log2(data.seq[data.seq$FBGN %in% gene_of_interest, 2:5]+1)
+      }else if (data_set_to_plot=="Polysome_seq") {
+        expression_color = round(data.seq[data.seq$FBGN %in% gene_of_interest, 2:5]+7)
+      }
+      all.colors = color_scale_seq[unlist(expression_color)]
     }else{
-      all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% bins]
+      if (data_set_to_plot=="Input_seq") {
+        expression_color = round(log2(data.seq[data.seq$symbol %in% gene_of_interest, 2:5]+1))
+      }else if (data_set_to_plot=="Polysome_seq") {
+        expression_color = round(data.seq[data.seq$symbol %in% gene_of_interest, 2:5]+7)
+      }
+      all.colors = color_scale_seq[unlist(expression_color)]
     }
     
     #mapping different features in shape to have proper base colors
     shape.plot$FID_[c(18,25)] = all.colors[[1]]
     shape.plot$FID_[c(2,19)] = all.colors[[2]]
-    shape.plot$FID_[c(20:23)] = all.colors[[2]]
+    shape.plot$FID_[c(20:23)] = all.colors[[3]]
     shape.plot$FID_[c(33)] = all.colors[[4]]
     
     #plotting distplot
-    dist_pl=ggplot(data = shape.plot)+
+    dist_pl=ggplot(data = shape.plot[-1,])+
       geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
-      scale_fill_manual(values = pal, name="Binned Expression")+
+      scale_fill_identity()+
       theme_void()+
       theme(panel.grid.major = element_line(colour = "transparent"),
             panel.background = element_rect(fill = "transparent", colour = "transparent"),
@@ -80,10 +93,10 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         }
       }else if(data_set_to_plot=="Polysome_seq"){
         if (gene_name_format == "FBID") {
-          TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 19:22][1,]
+          TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 10:13][1,]
         }
         else{
-          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 19:22][1,]
+          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 10:13][1,]
         }
       }
       #adding TPM values to the proper place on the shape
