@@ -35,7 +35,7 @@ rownames(tpms) = rownames(allseq)
 tpms_inputs = tpms[is_input]
 tpms_inputs_tib = as_tibble(data.frame(FBGN = rownames(tpms_inputs), tpms_inputs))
 head(tpms_inputs_tib)
-write_rds(tpms_inputs_tib, "ShinyExpresionMap/raw_tpms_input.rds")
+write_rds(tpms_inputs_tib, "ShinyExpresionMap/Preprocessed_data/raw_tpms_input.rds")
 
 tpms_inputs_long = tpms_inputs_tib %>% pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "TPM")
 groups = unlist(strsplit(tpms_inputs_long$Genotype, '*_[0-9]')) 
@@ -58,6 +58,7 @@ tpms_wide_mean = tpms_long_mean %>%
 
 saveRDS(tpms_wide_mean, file = "TPMs/Mean_TPMs_and_text.RDS")
 
+library(org.Dm.eg.db)
 fbgn_to_symbol =  function(fbid){
   AnnotationDbi::select(org.Dm.eg.db, fbid, 
                         columns=c("SYMBOL"), 

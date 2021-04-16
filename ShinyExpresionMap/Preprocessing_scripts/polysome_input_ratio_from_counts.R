@@ -52,9 +52,7 @@ polysome_ratios = tpms_all_long %>%
   group_by(FBGN, Genotype, Replicate) %>% 
   mutate(polysome_over_input = (TPM+1)/(TPM[Source=="input"]+1)) %>% 
   mutate(log2_polysome_over_input = log2(polysome_over_input)) %>% 
-  filter(Source == "polysome") %>% 
-  group_by(FBGN, Source, Replicate) %>% 
-  mutate(TKV_normalized_log2_polysome_over_input = log2_polysome_over_input-log2_polysome_over_input[Genotype=="TKV"])
+  filter(Source == "polysome")
 
 std <- function(x) sd(x)/sqrt(length(x))
 
@@ -101,11 +99,11 @@ polysome_ratios_mean_wide$Bambin1 = cut(as.numeric(polysome_ratios_mean_wide$Mea
                                         breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                         labels=c("None","Very Low","Low","Med","High","Very High"))
 
-polysome_ratios_mean_wide$Cystbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_BamRNAi), 
+polysome_ratios_mean_wide$Cystbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_BamHSbam), 
                                          breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                          labels=c("None","Very Low","Low","Med","High","Very High"))
 
-polysome_ratios_mean_wide$Virginbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_BamRNAi), 
+polysome_ratios_mean_wide$Virginbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_youngWT), 
                                            breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 
                                            labels=c("None","Very Low","Low","Med","High","Very High"))
 

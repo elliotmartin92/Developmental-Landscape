@@ -46,6 +46,33 @@ tpms_all_long = tpms_all_tib %>%
     values_to = "TPM"
 )
 
+std <- function(x) sd(x)/sqrt(length(x))
+
+tpms_long_mean = tpms_all_long %>% 
+  group_by(FBGN, Genotype, Source) %>% 
+  mutate(MeanTPM = mean(TPM),
+         se = std(TPM))
+
+
+tpms_long_mean$MeanTPMpmError = paste0(round(signif(tpms_long_mean$MeanTPM, digits = 3), digits = 1), "±", 
+                                       round(signif(tpms_long_mean$se, digits = 3), digits = 1))
+
+tpms_long_mean$Genotype = factor(tpms_long_mean$Genotype, 
+                              levels = c("TKV", "BamRNAi", "BamHSbam", "youngWT"))
+
+tpms_wide_mean = tpms_long_mean %>% 
+  arrange(Genotype) %>% 
+  dplyr::select(-se, -Replicate, -TPM) %>%
+  distinct() %>% 
+  pivot_wider(names_from = c(Genotype, Source), values_from = c(MeanTPM, MeanTPMpmError))
+
+saveRDS(tpms_wide_mean, file = "TPMs/All_Mean_TPMs_and_text.RDS")
+
+tpms_all_long
+
+tpms_all_long$Genotype = factor(tpms_all_long$Genotype, 
+                                levels = c("TKV", "BamRNAi", "BamHSbam", "youngWT"))
+
 polysome_ratios = tpms_all_long %>% 
   group_by(FBGN, Genotype, Replicate) %>% 
   mutate(polysome_over_input = (TPM+1)/(TPM[Source=="input"]+1))
@@ -58,25 +85,6 @@ polysome_ratios_mean = polysome_ratios %>%
             Mean_polysome_over_input = mean(polysome_over_input), se = std(polysome_over_input)) %>% 
   mutate()
 
-tpms_long_mean$MeanTPMpmError = paste0(round(signif(tpms_long_mean$MeanTPM, digits = 3), digits = 1), "±", 
-                                       round(signif(tpms_long_mean$se, digits = 3), digits = 1))
-
-tpms_long_mean$Genotype = factor(tpms_long_mean$Genotype, 
-                              levels = c("TKV", "BamRNAi", "BamHSbam", "youngWT", "peloCyo"))
-
-tpms_wide_mean = tpms_long_mean %>% 
-  arrange(Genotype) %>% 
-  dplyr::select(-se) %>% 
-  pivot_wider(names_from = c(Genotype, Source), values_from = c(MeanTPM, MeanTPMpmError))
-
-# saveRDS(tpms_wide_mean, file = "TPMs/All_Mean_TPMs_and_text.RDS")
-
-
-tpms_all_long
-
-tpms_all_long$Genotype = factor(tpms_all_long$Genotype, 
-                                levels = c("TKV", "BamRNAi", "BamHSbam", "youngWT", "peloCyo"))
-
 mean_log2_polysome_input_ratio =
 tpms_all_long %>% 
   group_by(FBGN, Genotype, Replicate) %>% 
@@ -88,32 +96,5 @@ tpms_all_long %>%
   arrange(Genotype) %>%
   pivot_wider(names_from = Genotype, values_from = Mean_Log2_Plus1_Polysome_Input_Ratio)
 
-# saveRDS(tpms_wide_mean, file = "TPMs/Polysome_Input_ratio_and_text.RDS")
-
-rp = read.xlsx("../RibosomeBiogen/PolysomeSeq/RPs.xlsx")
-
-test = 
-mean_log2_polysome_input_ratio %>% 
-  filter(FBGN %in% rp[[1]]) %>%
-  pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "TE")
-
-test$Genotype = factor(test$Genotype, 
-                                levels = c("TKV", "BamRNAi", "BamHSbam", "youngWT", "peloCyo"))
-
-ggplot(test, aes(Genotype, TE))+
-  geom_boxplot()+
-  geom_point()
-
-tpms_wide_mean$color = "nontarget"
-tpms_wide_mean$color[tpms_wide_mean$FBGN %in% rp[[1]]] = "RP"
-tpms_wide_mean$color = factor(tpms_wide_mean$color, levels = c("RP", "nontarget"))
-
-tpms_wide_mean %>% 
-  arrange(color) %>% 
-  ggplot(aes(x=log2(MeanTPM_youngWT_input+1), y=log2(MeanTPM_youngWT_polysome)+1), color=color)+
-  geom_point()+
-  scale_color_manual(values = c("nontarget" = "black", 
-                                "RP" = "darkred"))+
-  xlim(c(0,16))+
-  ylim(c(0,16))
+saveRDS(tpms_wide_mean, file = "TPMs/Polysome_Input_ratio_and_text.RDS")
   
