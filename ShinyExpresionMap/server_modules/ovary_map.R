@@ -8,12 +8,12 @@ Symbol = data.seq$symbol
 
 pal <- c(
   "Black" = "Black",
-  "Very High" = "#19FFFF",
-  "High" = "#6FFFFF",
-  "Med" = "#98FFFF", 
-  "Low" = "#B2FFFF", 
-  "Very Low" = "#E0FFFF",
-  "None" = "#ECFFFF"
+  "Very High" = "#00ffff",
+  "High" = "#66ffff",
+  "Med" = "#99ffff", 
+  "Low" = "#ccffff", 
+  "Very Low" = "#e5ffff",
+  "None" = "#bdbdbd"
 )
 
 bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
