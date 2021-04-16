@@ -8,12 +8,12 @@ Symbol = data.seq$symbol
 
 pal <- c(
   "Black" = "Black",
-  "Very High" = "#FF0000",
-  "High" = "#FF2B2B",
-  "Med" = "#FF5656", 
-  "Low" = "#FF8181", 
-  "Very Low" = "#FFACAC",
-  "None" = "#D6D6D6"
+  "Very High" = "#19FFFF",
+  "High" = "#6FFFFF",
+  "Med" = "#98FFFF", 
+  "Low" = "#B2FFFF", 
+  "Very Low" = "#E0FFFF",
+  "None" = "#ECFFFF"
 )
 
 bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
@@ -22,8 +22,10 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
                      text_scale=10, graphic_to_generate){
   if(data_set_to_plot=="Input_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
+      expression_unit = "TPM"
     }else if(data_set_to_plot=="Polysome_seq"){
-      data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed tpms (binned/organized)
+      data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed TE (binned/organized)
+      expression_unit = "TE"
     }else{
       return("Missing data_set_to_plot")
     }
@@ -89,11 +91,11 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       
       dist_pl = dist_pl+
-        annotate("text", label=paste0(TPMs[1], "\nTPM"), x=shape.x.y[18,1], y=shape.x.y[18,2], size=text_scale)+
-        annotate("text", label=paste0(TPMs[2], "\nTPM"), x=shape.x.y[19,1], y=shape.x.y[19,2], size=text_scale)+
-        annotate("text", label=paste0(TPMs[3], " TPM"), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=text_scale)+
+        annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[18,1], y=shape.x.y[18,2], size=text_scale)+
+        annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[19,1], y=shape.x.y[19,2], size=text_scale)+
+        annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=text_scale)+
         annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
-        annotate("text", label=paste0(TPMs[4], " TPM"), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=text_scale)
+        annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=text_scale)
     }
    return(dist_pl)
     }else{
