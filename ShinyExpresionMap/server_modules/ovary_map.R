@@ -1,4 +1,4 @@
-shape.plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
+merge_plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
 shape = readRDS("Preprocessed_data/preloaded_shape.RDS") #shape file for distPlot
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
@@ -53,14 +53,14 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     }
     
     #mapping different features in shape to have proper base colors
-    shape.plot$FID_[c(18,25)] = all.colors[[1]]
-    shape.plot$FID_[c(2,19)] = all.colors[[2]]
-    shape.plot$FID_[c(20:23)] = all.colors[[2]]
-    shape.plot$FID_[c(33)] = all.colors[[4]]
+    merge_plot$FID_[c(18,25)] = all.colors[[1]]
+    merge_plot$FID_[c(2,19)] = all.colors[[2]]
+    merge_plot$FID_[c(20:23)] = all.colors[[2]]
+    merge_plot$FID_[c(33)] = all.colors[[4]]
     
     #plotting distplot
-    dist_pl=ggplot(data = shape.plot)+
-      geom_sf(aes(geometry=geometry, fill=`FID_`), color = "black")+
+    dist_pl=ggplot(data = merge_plot)+
+      geom_sf(aes(geometry=geometry), color = "black")+
       scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
       theme(panel.grid.major = element_line(colour = "transparent"),
