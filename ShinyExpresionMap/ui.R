@@ -11,7 +11,8 @@ ui = dashboardPage(skin = "purple",
               # Input directly under menuItem
               radioButtons("SeqDataset", "View dataset:",
                 choices = list("Input mRNAseq" = "Input_seq", 
-                               "Polysome-seq"= "Polysome_seq"), 
+                               "Polysome-seq"= "Polysome_seq",
+                               "Single Cell-seq"= "Single_cell_seq"), 
                 selected = "Input_seq",
                 width = '98%')),
       menuItem("Developmental Progression", tabName = "DevProg", icon = icon("dashboard")),
@@ -41,7 +42,7 @@ ui = dashboardPage(skin = "purple",
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),
                   selectizeInput('variable', label = "Gene of Interest", choices = NULL),
-                  checkboxInput("displayTPM", "Display TPMs", TRUE),
+                  checkboxInput("displayTPM", "Display Expression Values", TRUE),
                   br()))),
       
       # Second tab content

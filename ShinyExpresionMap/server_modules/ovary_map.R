@@ -12,11 +12,21 @@ pal <- c(
   "High" = "#66ffff",
   "Med" = "#99ffff", 
   "Low" = "#ccffff", 
-  "Very Low" = "#e5ffff",
-  "None" = "#bdbdbd"
-)
+  "Very Low" = "#d9ffff",
+  "None" = "#bdbdbd",
+  "White" = "White",
+  "line" = "Black")
 
-bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
+bulk_bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
+sc_seq_bins = c("bin_GSC/CB/2-cc",
+                "bin_4-cc",
+                "bin_8-cc",
+                "bin_16-cc.2a.I",
+                "bin_16-cc.2a.II",
+                "bin_16-cc.2ab",
+                "bin_16-cc.2b",
+                "bin_16-cc.3",
+                "bin_St2")
 
 ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", displayTPM=TRUE, gene_of_interest="RpS19b", 
                      text_scale=10, graphic_to_generate){
@@ -26,6 +36,9 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     }else if(data_set_to_plot=="Polysome_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed TE (binned/organized)
       expression_unit = "TE"
+    }else if(data_set_to_plot=="Single_cell_seq"){
+      data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS") #data from preprocessed SC-seq (binned/organized)
+      expression_unit = "dunno"
     }else{
       return("Missing data_set_to_plot")
     }
@@ -46,21 +59,42 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
             legend.title = element_text(size=16))
     return(dist_leg)
   }else if (graphic_to_generate == "map"){
-    if (gene_name_format == "FBID") {
-      all.colors = data.seq[data.seq$FBGN %in% gene_of_interest, names(data.seq) %in% bins]
-    }else{
-      all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% bins]
+    if(data_set_to_plot=="Input_seq" | data_set_to_plot=="Polysome_seq"){
+      if (gene_name_format == "FBID") {
+        all.colors = data.seq[data.seq$FBGN %in% gene_of_interest, names(data.seq) %in% bulk_bins]
+      }else{
+        all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% bulk_bins]
+      }
+    }else if (data_set_to_plot=="Single_cell_seq") {
+        all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% sc_seq_bins]
     }
-    
     #mapping different features in shape to have proper base colors
-    merge_plot$FID_[c(18,25)] = all.colors[[1]]
-    merge_plot$FID_[c(2,19)] = all.colors[[2]]
-    merge_plot$FID_[c(20:23)] = all.colors[[2]]
-    merge_plot$FID_[c(33)] = all.colors[[4]]
-    
+    if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
+      cysts_stages = c("2CC", "4CC", "8CC", "16CC_2A1", "16CC_2A2", "16CC_2AB", "16CC_2B", "16CC_3")
+      merge_plot$color[merge_plot$cell_type=="GSC"] = all.colors[[1]]
+      merge_plot$color[merge_plot$cell_type=="CB"] = all.colors[[2]]
+      merge_plot$color[merge_plot$cell_type %in% cysts_stages] = all.colors[[3]]
+      merge_plot$color[merge_plot$cell_type=="ST2"] = all.colors[[4]]
+    }else if (data_set_to_plot=="Single_cell_seq"){
+      merge_plot$color[merge_plot$cell_type=="GSC"] = all.colors[[1]]
+      merge_plot$color[merge_plot$cell_type=="CB"] = all.colors[[1]]
+      merge_plot$color[merge_plot$cell_type=="2CC"] = all.colors[[1]]
+      merge_plot$color[merge_plot$cell_type=="4CC"] = all.colors[[2]]
+      merge_plot$color[merge_plot$cell_type=="8CC"] = all.colors[[3]]
+      merge_plot$color[merge_plot$cell_type=="16CC_2A1"] = all.colors[[4]]
+      merge_plot$color[merge_plot$cell_type=="16CC_2A2"] = all.colors[[5]]
+      merge_plot$color[merge_plot$cell_type=="16CC_2AB"] = all.colors[[6]]
+      merge_plot$color[merge_plot$cell_type=="16CC_2B"] = all.colors[[7]]
+      merge_plot$color[merge_plot$cell_type=="16CC_3"] = all.colors[[8]]
+    }
+
     #plotting distplot
-    dist_pl=ggplot(data = merge_plot)+
-      geom_sf(aes(geometry=geometry), color = "black")+
+    dist_pl = merge_plot %>%
+      st_as_sf() %>% 
+      mutate(region_index = row_number()) %>%
+      mutate(color = color %>% forcats::fct_reorder(-region_index)) %>%
+      ggplot()+
+      geom_sf(aes(geometry=geometry, fill=color), color = "grey50")+
       scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
       theme(panel.grid.major = element_line(colour = "transparent"),
@@ -85,17 +119,26 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         else{
           TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 19:22][1,]
         }
+      }else if(data_set_to_plot=="Single_cell_seq"){
+        if (gene_name_format == "FBID") {
+          TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 19:22][1,]
+        }else{
+          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 2:10][1,]
+        }
       }
       #adding TPM values to the proper place on the shape
       shape_centroids = st_centroid(shape)
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
-      
+      if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
       dist_pl = dist_pl+
-        annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[18,1], y=shape.x.y[18,2], size=text_scale)+
-        annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[19,1], y=shape.x.y[19,2], size=text_scale)+
-        annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[22,1]+.1, y=shape.x.y[22,2]-.5, size=text_scale)+
-        annotate("segment", x=shape.x.y[22,1]-.5, xend=shape.x.y[22,1]+.7, y=shape.x.y[22,2]-.35, yend=shape.x.y[22,2]-.35)+
-        annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[33,1], y=shape.x.y[33,2]+.25, size=text_scale)
+        annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[24,1], y=shape.x.y[24,2], size=text_scale)+
+        annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[26,1], y=shape.x.y[26,2], size=text_scale)+
+        annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[27,1]+2.34, y=shape.x.y[31,2]-0.7, size=text_scale)+
+        annotate("segment", x=shape.x.y[27,1], xend=shape.x.y[33,1]+.7, y=shape.x.y[31,2]-.6, yend=shape.x.y[31,2]-.6)+
+        annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[23,1], y=shape.x.y[23,2]+.25, size=text_scale)
+      }else if (data_set_to_plot=="Single_cell_seq"){
+        dist_pl
+      }
     }
    return(dist_pl)
     }else{

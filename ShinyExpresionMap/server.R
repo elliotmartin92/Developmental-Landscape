@@ -74,7 +74,7 @@ shinyServer(function(input, output, session) {
     }
     #scale text off of tab size
     plotwidth <- session$clientData[["output_ovary_map_width"]]
-    text_scale = plotwidth/260
+    text_scale = plotwidth/375
     
     ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
                                  gene_name_format = input$dataset, 
