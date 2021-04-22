@@ -19,7 +19,7 @@ GC_clusters %>%
   pivot_longer(-c(symbol, FBGN), names_to = "Stage", values_to = "Expression") %>% 
   dplyr::group_by(symbol, FBGN, Stage) %>% 
   mutate(bin = cut(as.numeric(Expression), 
-         breaks = c(-1,0.05,0.5,5,10,100,200), 
+         breaks = c(-1,0.05,0.25,0.5,2.5,25,200), 
          labels=c("None","Very Low","Low","Med","High","Very High"))) %>% 
   pivot_wider(id_cols = symbol, names_from = Stage, values_from = c(Expression, bin))
 head(GC_preprocessed)

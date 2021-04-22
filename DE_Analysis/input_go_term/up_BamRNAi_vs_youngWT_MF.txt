@@ -1,0 +1,37 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (897)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+GPI anchor binding (GO:0034235)	14	8	.91	+	8.80	2.75E-05	8.76E-03
+glycolipid binding (GO:0051861)	16	9	1.04	+	8.66	9.42E-06	6.75E-03
+growth factor receptor binding (GO:0070851)	23	8	1.49	+	5.36	4.15E-04	4.96E-02
+extracellular ligand-gated ion channel activity (GO:0005230)	53	13	3.44	+	3.78	1.48E-04	2.65E-02
+cell adhesion molecule binding (GO:0050839)	65	15	4.22	+	3.55	8.48E-05	1.87E-02
+peptidase inhibitor activity (GO:0030414)	100	22	6.49	+	3.39	4.02E-06	5.76E-03
+neurotransmitter receptor activity (GO:0030594)	68	14	4.42	+	3.17	4.02E-04	5.01E-02
+peptidase regulator activity (GO:0061134)	107	22	6.95	+	3.17	1.03E-05	5.88E-03
+endopeptidase inhibitor activity (GO:0004866)	97	19	6.30	+	3.02	7.16E-05	1.87E-02
+endopeptidase regulator activity (GO:0061135)	99	19	6.43	+	2.95	9.09E-05	1.74E-02
+G protein-coupled receptor activity (GO:0004930)	115	20	7.47	+	2.68	1.95E-04	3.10E-02
+enzyme inhibitor activity (GO:0004857)	133	23	8.64	+	2.66	7.18E-05	1.72E-02
+metallopeptidase activity (GO:0008237)	139	22	9.03	+	2.44	3.50E-04	5.28E-02
+cation channel activity (GO:0005261)	168	25	10.91	+	2.29	3.59E-04	5.15E-02
+calcium ion binding (GO:0005509)	202	28	13.12	+	2.13	4.30E-04	4.93E-02
+transmembrane signaling receptor activity (GO:0004888)	342	47	22.21	+	2.12	7.40E-06	7.07E-03
+passive transmembrane transporter activity (GO:0022803)	270	35	17.54	+	2.00	3.67E-04	5.01E-02
+channel activity (GO:0015267)	270	35	17.54	+	2.00	3.67E-04	4.79E-02
+signaling receptor activity (GO:0038023)	402	51	26.11	+	1.95	2.20E-05	9.03E-03
+molecular transducer activity (GO:0060089)	402	51	26.11	+	1.95	2.20E-05	7.90E-03
+organic cyclic compound binding (GO:0097159)	2741	131	178.02	-	.74	8.91E-05	1.82E-02
+heterocyclic compound binding (GO:1901363)	2721	129	176.72	-	.73	7.04E-05	2.02E-02
+DNA binding (GO:0003677)	946	34	61.44	-	.55	1.80E-04	3.03E-02
+nucleic acid binding (GO:0003676)	1742	57	113.14	-	.50	3.07E-09	8.79E-06
+catalytic activity, acting on RNA (GO:0140098)	262	2	17.02	-	.12	2.08E-05	9.93E-03

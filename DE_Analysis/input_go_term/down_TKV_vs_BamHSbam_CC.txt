@@ -1,0 +1,27 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (243)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+cation channel complex (GO:0034703)	52	6	.91	+	6.56	4.79E-04	4.26E-02
+cell surface (GO:0009986)	70	7	1.23	+	5.68	3.64E-04	3.73E-02
+axon (GO:0030424)	247	17	4.35	+	3.91	3.46E-06	9.24E-04
+supramolecular fiber (GO:0099512)	204	13	3.59	+	3.62	1.04E-04	1.54E-02
+supramolecular polymer (GO:0099081)	207	13	3.64	+	3.57	1.20E-04	1.60E-02
+synapse (GO:0045202)	312	17	5.49	+	3.10	5.99E-05	9.98E-03
+neuron projection (GO:0043005)	465	23	8.18	+	2.81	1.32E-05	2.93E-03
+cell junction (GO:0030054)	452	22	7.95	+	2.77	2.59E-05	4.93E-03
+supramolecular complex (GO:0099080)	332	16	5.84	+	2.74	3.72E-04	3.54E-02
+plasma membrane bounded cell projection (GO:0120025)	687	31	12.09	+	2.56	2.39E-06	1.06E-03
+cell projection (GO:0042995)	691	31	12.16	+	2.55	2.68E-06	8.92E-04
+integral component of plasma membrane (GO:0005887)	506	22	8.90	+	2.47	1.28E-04	1.55E-02
+intrinsic component of plasma membrane (GO:0031226)	520	22	9.15	+	2.40	2.50E-04	2.78E-02
+plasma membrane (GO:0005886)	1416	51	24.91	+	2.05	1.15E-06	7.69E-04
+cell periphery (GO:0071944)	1801	61	31.69	+	1.93	4.76E-07	6.34E-04

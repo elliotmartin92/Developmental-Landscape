@@ -1,0 +1,74 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (239)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+vitelline membrane formation involved in chorion-containing eggshell formation (GO:0007305)	13	7	.22	+	31.12	2.42E-08	2.11E-05
+vitelline membrane formation (GO:0030704)	13	7	.22	+	31.12	2.42E-08	1.90E-05
+egg coat formation (GO:0035803)	13	7	.22	+	31.12	2.42E-08	1.72E-05
+extracellular matrix assembly (GO:0085029)	20	7	.35	+	20.23	2.51E-07	1.09E-04
+xenobiotic metabolic process (GO:0006805)	15	4	.26	+	15.41	2.59E-04	3.82E-02
+response to xenobiotic stimulus (GO:0009410)	15	4	.26	+	15.41	2.59E-04	3.75E-02
+cellular response to xenobiotic stimulus (GO:0071466)	15	4	.26	+	15.41	2.59E-04	3.68E-02
+peptide catabolic process (GO:0043171)	29	5	.50	+	9.96	2.54E-04	3.82E-02
+extracellular matrix organization (GO:0030198)	65	7	1.12	+	6.22	2.17E-04	3.54E-02
+chitin-based cuticle development (GO:0040003)	198	13	3.43	+	3.79	6.65E-05	1.33E-02
+cuticle development (GO:0042335)	233	13	4.03	+	3.22	3.06E-04	3.99E-02
+proteolysis (GO:0006508)	844	40	14.61	+	2.74	1.15E-08	1.12E-05
+organonitrogen compound metabolic process (GO:1901564)	2766	74	47.87	+	1.55	8.50E-05	1.62E-02
+cellular process (GO:0009987)	7208	88	124.73	-	.71	3.03E-06	1.13E-03
+localization (GO:0051179)	2183	18	37.78	-	.48	2.12E-04	3.53E-02
+cellular component organization (GO:0016043)	2608	20	45.13	-	.44	1.11E-05	2.80E-03
+cellular component organization or biogenesis (GO:0071840)	2758	21	47.73	-	.44	3.72E-06	1.27E-03
+cellular macromolecule metabolic process (GO:0044260)	2173	15	37.60	-	.40	1.34E-05	3.28E-03
+cellular protein metabolic process (GO:0044267)	1643	11	28.43	-	.39	1.62E-04	2.75E-02
+regulation of biological quality (GO:0065008)	1355	8	23.45	-	.34	2.43E-04	3.73E-02
+biological regulation (GO:0065007)	4427	26	76.61	-	.34	3.26E-14	1.27E-10
+regulation of biological process (GO:0050789)	3966	21	68.63	-	.31	8.11E-14	2.11E-10
+regulation of gene expression (GO:0010468)	1624	8	28.10	-	.28	8.65E-06	2.42E-03
+system development (GO:0048731)	1634	8	28.28	-	.28	5.88E-06	1.70E-03
+regulation of metabolic process (GO:0019222)	2172	10	37.59	-	.27	3.77E-08	2.27E-05
+regulation of macromolecule metabolic process (GO:0060255)	2016	9	34.89	-	.26	7.71E-08	4.31E-05
+regulation of cellular biosynthetic process (GO:0031326)	1411	6	24.42	-	.25	1.05E-05	2.82E-03
+regulation of biosynthetic process (GO:0009889)	1415	6	24.49	-	.25	1.06E-05	2.77E-03
+regulation of response to stimulus (GO:0048583)	948	4	16.41	-	.24	3.93E-04	4.96E-02
+regulation of cellular process (GO:0050794)	3693	15	63.91	-	.23	1.32E-15	1.03E-11
+regulation of cellular metabolic process (GO:0031323)	1979	8	34.25	-	.23	3.27E-08	2.13E-05
+regulation of nitrogen compound metabolic process (GO:0051171)	1828	7	31.63	-	.22	9.52E-08	4.96E-05
+regulation of cellular macromolecule biosynthetic process (GO:2000112)	1353	5	23.41	-	.21	4.35E-06	1.31E-03
+regulation of macromolecule biosynthetic process (GO:0010556)	1358	5	23.50	-	.21	4.34E-06	1.36E-03
+positive regulation of biological process (GO:0048518)	1694	6	29.31	-	.20	1.17E-07	5.72E-05
+regulation of cell communication (GO:0010646)	886	3	15.33	-	.20	2.36E-04	3.77E-02
+regulation of signaling (GO:0023051)	886	3	15.33	-	.20	2.36E-04	3.69E-02
+regulation of RNA biosynthetic process (GO:2001141)	1184	4	20.49	-	.20	1.65E-05	3.91E-03
+regulation of transcription, DNA-templated (GO:0006355)	1184	4	20.49	-	.20	1.65E-05	3.79E-03
+regulation of nucleic acid-templated transcription (GO:1903506)	1184	4	20.49	-	.20	1.65E-05	3.69E-03
+regulation of primary metabolic process (GO:0080090)	1854	6	32.08	-	.19	1.12E-08	1.25E-05
+positive regulation of cellular process (GO:0048522)	1559	5	26.98	-	.19	2.10E-07	9.68E-05
+regulation of RNA metabolic process (GO:0051252)	1311	4	22.69	-	.18	1.66E-06	6.50E-04
+cellular localization (GO:0051641)	991	3	17.15	-	.17	5.66E-05	1.17E-02
+regulation of nucleobase-containing compound metabolic process (GO:0019219)	1352	4	23.40	-	.17	1.18E-06	4.87E-04
+cellular macromolecule biosynthetic process (GO:0034645)	744	2	12.87	-	.16	3.81E-04	4.89E-02
+animal organ development (GO:0048513)	1144	3	19.80	-	.15	3.94E-06	1.28E-03
+macromolecule biosynthetic process (GO:0009059)	763	2	13.20	-	.15	2.63E-04	3.61E-02
+negative regulation of metabolic process (GO:0009892)	770	2	13.32	-	.15	2.65E-04	3.57E-02
+organelle organization (GO:0006996)	1746	3	30.21	-	.10	1.48E-10	2.89E-07
+intracellular transport (GO:0046907)	651	1	11.27	-	.09	2.62E-04	3.66E-02
+tube development (GO:0035295)	689	1	11.92	-	.08	1.20E-04	2.08E-02
+animal organ morphogenesis (GO:0009887)	710	1	12.29	-	.08	8.13E-05	1.59E-02
+negative regulation of biological process (GO:0048519)	1460	2	25.27	-	.08	2.65E-09	3.45E-06
+establishment of localization in cell (GO:0051649)	785	1	13.58	-	.07	2.51E-05	5.45E-03
+negative regulation of cellular metabolic process (GO:0031324)	632	0	10.94	-	 < 0.01	2.53E-05	5.34E-03
+morphogenesis of an epithelium (GO:0002009)	570	0	9.86	-	 < 0.01	8.68E-05	1.58E-02
+tube morphogenesis (GO:0035239)	497	0	8.60	-	 < 0.01	2.89E-04	3.83E-02
+negative regulation of cellular process (GO:0048523)	1267	0	21.93	-	 < 0.01	2.87E-10	4.50E-07
+chromosome organization (GO:0051276)	563	0	9.74	-	 < 0.01	8.57E-05	1.60E-02
+negative regulation of nitrogen compound metabolic process (GO:0051172)	573	0	9.92	-	 < 0.01	8.80E-05	1.56E-02
+regulation of cellular component organization (GO:0051128)	755	0	13.07	-	 < 0.01	3.32E-06	1.18E-03

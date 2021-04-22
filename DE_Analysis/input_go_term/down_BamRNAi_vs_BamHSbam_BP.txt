@@ -1,0 +1,39 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (200)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+heat shock-mediated polytene chromosome puffing (GO:0035080)	9	5	.13	+	38.36	1.02E-06	1.33E-03
+polytene chromosome puffing (GO:0035079)	10	5	.14	+	34.53	1.51E-06	1.68E-03
+protein refolding (GO:0042026)	24	9	.35	+	25.90	5.89E-10	4.61E-06
+chaperone cofactor-dependent protein refolding (GO:0051085)	30	7	.43	+	16.11	7.79E-07	1.52E-03
+'de novo' posttranslational protein folding (GO:0051084)	30	7	.43	+	16.11	7.79E-07	1.22E-03
+chaperone-mediated protein folding (GO:0061077)	48	10	.70	+	14.39	8.07E-09	3.15E-05
+'de novo' protein folding (GO:0006458)	35	7	.51	+	13.81	1.92E-06	1.88E-03
+cellular response to heat (GO:0034605)	35	7	.51	+	13.81	1.92E-06	1.67E-03
+cellular response to unfolded protein (GO:0034620)	43	6	.62	+	9.64	6.58E-05	2.57E-02
+response to unfolded protein (GO:0006986)	45	6	.65	+	9.21	8.28E-05	2.94E-02
+response to heat (GO:0009408)	82	10	1.19	+	8.42	7.32E-07	1.91E-03
+glutathione metabolic process (GO:0006749)	50	6	.72	+	8.29	1.41E-04	4.59E-02
+cellular response to topologically incorrect protein (GO:0035967)	60	7	.87	+	8.06	4.58E-05	2.11E-02
+response to topologically incorrect protein (GO:0035966)	62	7	.90	+	7.80	5.55E-05	2.28E-02
+response to oxygen levels (GO:0070482)	75	8	1.09	+	7.37	2.36E-05	1.42E-02
+response to decreased oxygen levels (GO:0036293)	67	7	.97	+	7.21	8.72E-05	2.96E-02
+protein folding (GO:0006457)	125	10	1.81	+	5.52	2.35E-05	1.53E-02
+response to temperature stimulus (GO:0009266)	133	10	1.93	+	5.19	3.86E-05	2.16E-02
+cellular response to organic substance (GO:0071310)	262	13	3.79	+	3.43	1.63E-04	4.90E-02
+response to abiotic stimulus (GO:0009628)	411	18	5.95	+	3.02	4.37E-05	2.14E-02
+primary metabolic process (GO:0044238)	3939	32	57.04	-	.56	5.01E-05	2.18E-02
+cellular aromatic compound metabolic process (GO:0006725)	1452	6	21.03	-	.29	1.52E-04	4.74E-02
+organic cyclic compound metabolic process (GO:1901360)	1503	6	21.77	-	.28	7.43E-05	2.77E-02
+nucleobase-containing compound metabolic process (GO:0006139)	1328	4	19.23	-	.21	4.37E-05	2.28E-02
+heterocycle metabolic process (GO:0046483)	1402	4	20.30	-	.20	1.37E-05	9.76E-03
+RNA metabolic process (GO:0016070)	801	1	11.60	-	.09	1.68E-04	4.87E-02
+nucleic acid metabolic process (GO:0090304)	1059	1	15.34	-	.07	4.71E-06	3.69E-03

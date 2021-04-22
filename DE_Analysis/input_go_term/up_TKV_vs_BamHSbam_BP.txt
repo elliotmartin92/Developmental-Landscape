@@ -1,0 +1,36 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (256)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+proteolysis (GO:0006508)	844	56	15.64	+	3.58	1.94E-16	1.51E-12
+protein metabolic process (GO:0019538)	2139	65	39.65	+	1.64	5.61E-05	2.44E-02
+organonitrogen compound metabolic process (GO:1901564)	2766	81	51.27	+	1.58	1.37E-05	7.13E-03
+cellular process (GO:0009987)	7208	88	133.61	-	.66	1.46E-08	2.28E-05
+multicellular organismal process (GO:0032501)	3454	36	64.02	-	.56	2.82E-05	1.30E-02
+developmental process (GO:0032502)	2729	27	50.58	-	.53	1.23E-04	4.38E-02
+anatomical structure development (GO:0048856)	2603	25	48.25	-	.52	9.44E-05	3.69E-02
+biological regulation (GO:0065007)	4427	40	82.06	-	.49	3.79E-09	7.40E-06
+multicellular organism development (GO:0007275)	2253	20	41.76	-	.48	1.03E-04	3.83E-02
+regulation of biological process (GO:0050789)	3966	33	73.51	-	.45	2.84E-09	1.11E-05
+regulation of cellular process (GO:0050794)	3693	29	68.45	-	.42	2.85E-09	7.42E-06
+cellular component organization (GO:0016043)	2608	20	48.34	-	.41	1.37E-06	1.19E-03
+cellular component organization or biogenesis (GO:0071840)	2758	21	51.12	-	.41	4.44E-07	5.79E-04
+cellular macromolecule metabolic process (GO:0044260)	2173	16	40.28	-	.40	7.26E-06	4.37E-03
+heterocycle metabolic process (GO:0046483)	1402	9	25.99	-	.35	1.33E-04	4.52E-02
+organelle organization (GO:0006996)	1746	9	32.36	-	.28	7.98E-07	8.92E-04
+system development (GO:0048731)	1634	8	30.29	-	.26	1.08E-06	1.06E-03
+negative regulation of biological process (GO:0048519)	1460	7	27.06	-	.26	4.16E-06	3.26E-03
+gene expression (GO:0010467)	1098	5	20.35	-	.25	8.27E-05	3.40E-02
+negative regulation of cellular process (GO:0048523)	1267	5	23.49	-	.21	4.62E-06	3.28E-03
+animal organ development (GO:0048513)	1144	4	21.21	-	.19	8.03E-06	4.49E-03
+nucleic acid metabolic process (GO:0090304)	1059	3	19.63	-	.15	6.25E-06	4.08E-03
+cell cycle (GO:0007049)	613	0	11.36	-	 < 0.01	1.71E-05	8.36E-03
+cell cycle process (GO:0022402)	515	0	9.55	-	 < 0.01	1.34E-04	4.36E-02

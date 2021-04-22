@@ -1,0 +1,53 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (959)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+voltage-gated calcium channel activity (GO:0005245)	9	6	.62	+	9.60	2.22E-04	1.77E-02
+GPI anchor binding (GO:0034235)	14	8	.97	+	8.23	4.32E-05	4.95E-03
+glycolipid binding (GO:0051861)	16	8	1.11	+	7.20	8.85E-05	8.45E-03
+protein folding chaperone (GO:0044183)	16	8	1.11	+	7.20	8.85E-05	8.18E-03
+structural constituent of muscle (GO:0008307)	15	7	1.04	+	6.72	3.42E-04	2.45E-02
+misfolded protein binding (GO:0051787)	18	8	1.25	+	6.40	1.67E-04	1.45E-02
+voltage-gated cation channel activity (GO:0022843)	30	12	2.08	+	5.76	9.41E-06	1.59E-03
+growth factor activity (GO:0008083)	21	8	1.46	+	5.49	3.86E-04	2.70E-02
+potassium channel activity (GO:0005267)	36	13	2.50	+	5.20	9.85E-06	1.57E-03
+voltage-gated channel activity (GO:0022832)	39	13	2.71	+	4.80	1.99E-05	2.71E-03
+voltage-gated ion channel activity (GO:0005244)	39	13	2.71	+	4.80	1.99E-05	2.59E-03
+calcium channel activity (GO:0005262)	45	14	3.12	+	4.48	1.83E-05	2.62E-03
+potassium ion transmembrane transporter activity (GO:0015079)	54	15	3.75	+	4.00	2.84E-05	3.54E-03
+transmitter-gated channel activity (GO:0022835)	45	12	3.12	+	3.84	2.44E-04	1.89E-02
+transmitter-gated ion channel activity (GO:0022824)	45	12	3.12	+	3.84	2.44E-04	1.84E-02
+extracellular ligand-gated ion channel activity (GO:0005230)	53	14	3.68	+	3.80	8.27E-05	8.17E-03
+cation channel activity (GO:0005261)	168	42	11.67	+	3.60	4.36E-11	1.25E-07
+cell adhesion molecule binding (GO:0050839)	65	16	4.51	+	3.54	5.42E-05	5.97E-03
+calcium ion transmembrane transporter activity (GO:0015085)	58	14	4.03	+	3.48	1.86E-04	1.57E-02
+ligand-gated cation channel activity (GO:0099094)	70	16	4.86	+	3.29	1.15E-04	1.03E-02
+unfolded protein binding (GO:0051082)	83	18	5.76	+	3.12	7.90E-05	8.09E-03
+G protein-coupled receptor activity (GO:0004930)	115	22	7.99	+	2.76	6.97E-05	7.40E-03
+gated channel activity (GO:0022836)	190	36	13.19	+	2.73	7.11E-07	1.70E-04
+passive transmembrane transporter activity (GO:0022803)	270	51	18.75	+	2.72	2.57E-09	3.68E-06
+channel activity (GO:0015267)	270	51	18.75	+	2.72	2.57E-09	2.45E-06
+metal ion transmembrane transporter activity (GO:0046873)	196	37	13.61	+	2.72	5.05E-07	1.31E-04
+ion channel activity (GO:0005216)	255	48	17.71	+	2.71	8.48E-09	6.08E-06
+sodium ion transmembrane transporter activity (GO:0015081)	101	19	7.01	+	2.71	2.57E-04	1.89E-02
+inorganic cation transmembrane transporter activity (GO:0022890)	313	52	21.73	+	2.39	7.25E-08	3.46E-05
+transmembrane signaling receptor activity (GO:0004888)	342	55	23.75	+	2.32	8.03E-08	3.29E-05
+cation transmembrane transporter activity (GO:0008324)	330	53	22.91	+	2.31	1.49E-07	4.26E-05
+signaling receptor activity (GO:0038023)	402	61	27.91	+	2.19	1.31E-07	4.68E-05
+molecular transducer activity (GO:0060089)	402	61	27.91	+	2.19	1.31E-07	4.16E-05
+inorganic molecular entity transmembrane transporter activity (GO:0015318)	498	67	34.58	+	1.94	1.33E-06	2.94E-04
+ion transmembrane transporter activity (GO:0015075)	564	72	39.16	+	1.84	3.30E-06	6.31E-04
+transmembrane transporter activity (GO:0022857)	708	86	49.16	+	1.75	2.53E-06	5.17E-04
+transporter activity (GO:0005215)	757	87	52.56	+	1.66	1.41E-05	2.13E-03
+catalytic activity (GO:0003824)	3908	195	271.36	-	.72	4.88E-08	2.80E-05
+nucleic acid binding (GO:0003676)	1742	79	120.96	-	.65	3.70E-05	4.42E-03
+transferase activity (GO:0016740)	1245	54	86.45	-	.62	1.96E-04	1.60E-02
+catalytic activity, acting on RNA (GO:0140098)	262	2	18.19	-	.11	6.33E-06	1.13E-03

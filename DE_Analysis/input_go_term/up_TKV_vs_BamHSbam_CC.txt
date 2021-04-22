@@ -1,0 +1,36 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (256)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+vitelline envelope (GO:0060388)	7	3	.13	+	23.12	6.50E-04	4.13E-02
+smooth septate junction (GO:0005920)	7	3	.13	+	23.12	6.50E-04	3.94E-02
+egg coat (GO:0035805)	8	3	.15	+	20.23	8.82E-04	4.90E-02
+extracellular region (GO:0005576)	1042	40	19.31	+	2.07	1.48E-05	1.52E-03
+Unclassified (UNCLASSIFIED)	2918	101	54.09	+	1.87	4.79E-11	9.13E-09
+cellular anatomical entity (GO:0110165)	9030	134	167.38	-	.80	2.11E-05	2.01E-03
+cellular_component (GO:0005575)	10893	155	201.91	-	.77	4.79E-11	1.06E-08
+cytoplasm (GO:0005737)	4369	47	80.98	-	.58	2.40E-06	2.67E-04
+intracellular anatomical structure (GO:0005622)	6464	64	119.82	-	.53	1.59E-12	7.05E-10
+organelle (GO:0043226)	5473	45	101.45	-	.44	6.34E-14	8.45E-11
+intracellular organelle (GO:0043229)	5190	42	96.20	-	.44	2.73E-13	1.82E-10
+membrane-bounded organelle (GO:0043227)	4825	39	89.44	-	.44	3.84E-12	1.28E-09
+intracellular membrane-bounded organelle (GO:0043231)	4575	36	84.80	-	.42	8.48E-12	2.26E-09
+protein-containing complex (GO:0032991)	2723	19	50.47	-	.38	6.92E-08	1.02E-05
+intracellular organelle lumen (GO:0070013)	1027	6	19.04	-	.32	6.50E-04	4.33E-02
+organelle lumen (GO:0043233)	1028	6	19.05	-	.31	6.49E-04	4.81E-02
+membrane-enclosed lumen (GO:0031974)	1028	6	19.05	-	.31	6.49E-04	4.55E-02
+nucleus (GO:0005634)	2777	15	51.47	-	.29	2.12E-10	3.54E-08
+catalytic complex (GO:1902494)	1003	5	18.59	-	.27	3.21E-04	2.85E-02
+nuclear protein-containing complex (GO:0140513)	840	4	15.57	-	.26	7.96E-04	4.61E-02
+intracellular non-membrane-bounded organelle (GO:0043232)	1558	7	28.88	-	.24	9.82E-07	1.31E-04
+non-membrane-bounded organelle (GO:0043228)	1558	7	28.88	-	.24	9.82E-07	1.19E-04
+ribonucleoprotein complex (GO:1990904)	558	1	10.34	-	.10	5.63E-04	4.41E-02
+chromosome (GO:0005694)	585	1	10.84	-	.09	3.87E-04	3.23E-02

@@ -1,0 +1,22 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (247)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+heme binding (GO:0020037)	139	13	2.49	+	5.23	2.79E-06	8.00E-03
+tetrapyrrole binding (GO:0046906)	140	13	2.50	+	5.19	3.00E-06	4.30E-03
+iron ion binding (GO:0005506)	151	13	2.70	+	4.81	6.47E-06	6.18E-03
+oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen (GO:0016705)	168	12	3.00	+	3.99	8.13E-05	3.33E-02
+serine hydrolase activity (GO:0017171)	257	17	4.60	+	3.70	7.06E-06	5.06E-03
+serine-type peptidase activity (GO:0008236)	257	17	4.60	+	3.70	7.06E-06	4.05E-03
+serine-type endopeptidase activity (GO:0004252)	236	14	4.22	+	3.32	1.38E-04	3.96E-02
+peptidase activity (GO:0008233)	533	24	9.53	+	2.52	4.76E-05	2.27E-02
+oxidoreductase activity (GO:0016491)	665	27	11.89	+	2.27	1.35E-04	4.30E-02
+nucleic acid binding (GO:0003676)	1742	12	31.15	-	.39	8.54E-05	3.06E-02

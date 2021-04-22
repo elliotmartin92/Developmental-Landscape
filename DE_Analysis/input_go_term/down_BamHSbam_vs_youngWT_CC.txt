@@ -1,0 +1,35 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (239)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+egg coat (GO:0035805)	8	7	.14	+	50.56	2.16E-09	7.21E-07
+vitelline envelope (GO:0060388)	7	6	.12	+	49.53	3.53E-08	5.89E-06
+chitin-based extracellular matrix (GO:0062129)	132	10	2.28	+	4.38	1.57E-04	1.16E-02
+extracellular matrix (GO:0031012)	273	18	4.72	+	3.81	2.49E-06	2.37E-04
+external encapsulating structure (GO:0030312)	307	19	5.31	+	3.58	3.13E-06	2.78E-04
+extracellular space (GO:0005615)	701	26	12.13	+	2.14	3.16E-04	2.11E-02
+extracellular region (GO:0005576)	1042	37	18.03	+	2.05	3.86E-05	3.22E-03
+Unclassified (UNCLASSIFIED)	2918	85	50.50	+	1.68	3.91E-07	4.34E-05
+cellular_component (GO:0005575)	10893	154	188.50	-	.82	3.91E-07	4.01E-05
+intracellular anatomical structure (GO:0005622)	6464	65	111.86	-	.58	1.11E-09	4.92E-07
+intracellular membrane-bounded organelle (GO:0043231)	4575	41	79.17	-	.52	4.59E-08	6.80E-06
+membrane-bounded organelle (GO:0043227)	4825	41	83.50	-	.49	2.32E-09	6.18E-07
+intracellular organelle (GO:0043229)	5190	42	89.81	-	.47	3.02E-11	2.01E-08
+organelle (GO:0043226)	5473	42	94.71	-	.44	3.52E-13	4.69E-10
+nucleus (GO:0005634)	2777	16	48.06	-	.33	1.61E-08	3.06E-06
+protein-containing complex (GO:0032991)	2723	15	47.12	-	.32	7.85E-09	1.74E-06
+catalytic complex (GO:1902494)	1003	4	17.36	-	.23	1.97E-04	1.38E-02
+nuclear lumen (GO:0031981)	818	3	14.16	-	.21	6.92E-04	4.19E-02
+intracellular non-membrane-bounded organelle (GO:0043232)	1558	5	26.96	-	.19	2.10E-07	2.80E-05
+non-membrane-bounded organelle (GO:0043228)	1558	5	26.96	-	.19	2.10E-07	2.54E-05
+chromosome (GO:0005694)	585	1	10.12	-	.10	8.34E-04	4.84E-02
+nucleoplasm (GO:0005654)	545	0	9.43	-	 < 0.01	1.29E-04	1.01E-02
+vesicle (GO:0031982)	473	0	8.19	-	 < 0.01	4.32E-04	2.74E-02

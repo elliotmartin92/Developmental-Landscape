@@ -1,0 +1,82 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (897)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+myosin filament (GO:0032982)	5	4	.32	+	12.32	1.35E-03	2.77E-02
+striated muscle myosin thick filament (GO:0005863)	5	4	.32	+	12.32	1.35E-03	2.73E-02
+myofilament (GO:0036379)	12	7	.78	+	8.98	8.08E-05	2.83E-03
+sarcomere (GO:0030017)	62	19	4.03	+	4.72	2.83E-07	1.57E-05
+myofibril (GO:0030016)	67	20	4.35	+	4.60	1.97E-07	1.14E-05
+postsynaptic membrane (GO:0045211)	48	14	3.12	+	4.49	1.66E-05	6.89E-04
+contractile fiber (GO:0043292)	72	21	4.68	+	4.49	1.36E-07	8.25E-06
+collagen-containing extracellular matrix (GO:0062023)	43	12	2.79	+	4.30	9.43E-05	3.07E-03
+I band (GO:0031674)	45	12	2.92	+	4.11	1.36E-04	4.21E-03
+Z disc (GO:0030018)	44	11	2.86	+	3.85	4.11E-04	1.01E-02
+postsynapse (GO:0098794)	77	18	5.00	+	3.60	1.47E-05	6.55E-04
+ion channel complex (GO:0034702)	77	17	5.00	+	3.40	4.73E-05	1.85E-03
+axoneme (GO:0005930)	59	13	3.83	+	3.39	3.66E-04	9.19E-03
+transmembrane transporter complex (GO:1902495)	92	20	5.98	+	3.35	1.27E-05	5.84E-04
+ciliary plasm (GO:0097014)	60	13	3.90	+	3.34	4.20E-04	1.02E-02
+synaptic membrane (GO:0097060)	70	15	4.55	+	3.30	1.73E-04	4.90E-03
+plasma membrane signaling receptor complex (GO:0098802)	48	10	3.12	+	3.21	2.44E-03	4.64E-02
+cell surface (GO:0009986)	70	14	4.55	+	3.08	5.18E-04	1.23E-02
+transporter complex (GO:1990351)	103	20	6.69	+	2.99	5.19E-05	1.98E-03
+receptor complex (GO:0043235)	83	15	5.39	+	2.78	8.39E-04	1.83E-02
+neuromuscular junction (GO:0031594)	83	15	5.39	+	2.78	8.39E-04	1.80E-02
+integral component of plasma membrane (GO:0005887)	506	77	32.86	+	2.34	1.31E-10	1.75E-08
+intrinsic component of plasma membrane (GO:0031226)	520	79	33.77	+	2.34	6.90E-11	1.02E-08
+actin cytoskeleton (GO:0015629)	112	17	7.27	+	2.34	2.44E-03	4.71E-02
+anchoring junction (GO:0070161)	154	23	10.00	+	2.30	6.52E-04	1.50E-02
+supramolecular fiber (GO:0099512)	204	30	13.25	+	2.26	1.40E-04	4.24E-03
+supramolecular polymer (GO:0099081)	207	30	13.44	+	2.23	1.56E-04	4.63E-03
+cell junction (GO:0030054)	452	64	29.36	+	2.18	5.30E-08	3.54E-06
+synapse (GO:0045202)	312	43	20.26	+	2.12	1.51E-05	6.48E-04
+plasma membrane protein complex (GO:0098797)	169	23	10.98	+	2.10	1.97E-03	3.91E-02
+plasma membrane (GO:0005886)	1416	179	91.97	+	1.95	1.38E-16	3.07E-14
+extracellular matrix (GO:0031012)	273	34	17.73	+	1.92	6.70E-04	1.51E-02
+cell periphery (GO:0071944)	1801	213	116.97	+	1.82	5.72E-17	1.53E-14
+extracellular space (GO:0005615)	701	82	45.53	+	1.80	1.54E-06	7.61E-05
+neuron projection (GO:0043005)	465	54	30.20	+	1.79	1.12E-04	3.57E-03
+extracellular region (GO:0005576)	1042	118	67.68	+	1.74	2.05E-08	1.52E-06
+integral component of membrane (GO:0016021)	1443	157	93.72	+	1.68	8.49E-10	8.09E-08
+intrinsic component of membrane (GO:0031224)	1470	159	95.47	+	1.67	8.38E-10	8.60E-08
+plasma membrane bounded cell projection (GO:0120025)	687	74	44.62	+	1.66	6.46E-05	2.39E-03
+cell projection (GO:0042995)	691	74	44.88	+	1.65	6.90E-05	2.49E-03
+membrane (GO:0016020)	2881	258	187.12	+	1.38	6.63E-08	4.21E-06
+cytoplasm (GO:0005737)	4369	212	283.76	-	.75	3.26E-07	1.74E-05
+intracellular anatomical structure (GO:0005622)	6464	294	419.83	-	.70	1.74E-16	3.31E-14
+protein-containing complex (GO:0032991)	2723	119	176.85	-	.67	9.53E-07	4.89E-05
+organelle (GO:0043226)	5473	223	355.46	-	.63	1.55E-19	5.15E-17
+intracellular organelle (GO:0043229)	5190	199	337.08	-	.59	9.11E-22	4.05E-19
+endomembrane system (GO:0012505)	1186	45	77.03	-	.58	8.42E-05	2.88E-03
+organelle membrane (GO:0031090)	846	30	54.95	-	.55	3.40E-04	8.72E-03
+nucleus (GO:0005634)	2777	97	180.36	-	.54	5.38E-13	8.97E-11
+catalytic complex (GO:1902494)	1003	34	65.14	-	.52	2.78E-05	1.12E-03
+membrane-bounded organelle (GO:0043227)	4825	163	313.38	-	.52	4.59E-27	3.06E-24
+intracellular membrane-bounded organelle (GO:0043231)	4575	144	297.14	-	.48	3.87E-29	5.16E-26
+endoplasmic reticulum (GO:0005783)	512	15	33.25	-	.45	7.77E-04	1.73E-02
+nuclear lumen (GO:0031981)	818	23	53.13	-	.43	5.17E-06	2.46E-04
+nucleoplasm (GO:0005654)	545	14	35.40	-	.40	9.26E-05	3.09E-03
+intracellular organelle lumen (GO:0070013)	1027	25	66.70	-	.37	6.56E-09	5.83E-07
+organelle lumen (GO:0043233)	1028	25	66.77	-	.37	6.56E-09	5.46E-07
+membrane-enclosed lumen (GO:0031974)	1028	25	66.77	-	.37	6.56E-09	5.14E-07
+envelope (GO:0031975)	455	11	29.55	-	.37	2.36E-04	6.54E-03
+organelle envelope (GO:0031967)	455	11	29.55	-	.37	2.36E-04	6.41E-03
+mitochondrial envelope (GO:0005740)	336	8	21.82	-	.37	1.33E-03	2.77E-02
+mitochondrion (GO:0005739)	868	16	56.38	-	.28	4.22E-10	5.11E-08
+nuclear protein-containing complex (GO:0140513)	840	15	54.56	-	.27	5.53E-10	6.15E-08
+mitochondrial protein-containing complex (GO:0098798)	272	4	17.67	-	.23	3.01E-04	7.87E-03
+ribonucleoprotein complex (GO:1990904)	558	8	36.24	-	.22	4.58E-08	3.21E-06
+nucleolus (GO:0005730)	222	3	14.42	-	.21	1.01E-03	2.13E-02
+mitochondrial matrix (GO:0005759)	172	2	11.17	-	.18	2.19E-03	4.29E-02
+spliceosomal complex (GO:0005681)	189	1	12.28	-	.08	1.70E-04	4.94E-03
+catalytic step 2 spliceosome (GO:0071013)	126	0	8.18	-	 < 0.01	5.69E-04	1.33E-02
+precatalytic spliceosome (GO:0071011)	143	0	9.29	-	 < 0.01	2.73E-04	7.27E-03

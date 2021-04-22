@@ -1,0 +1,27 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (243)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+heat shock-mediated polytene chromosome puffing (GO:0035080)	9	5	.16	+	31.58	2.61E-06	5.11E-03
+polytene chromosome puffing (GO:0035079)	10	5	.18	+	28.42	3.87E-06	4.32E-03
+protein refolding (GO:0042026)	24	10	.42	+	23.68	1.81E-10	1.41E-06
+protein complex oligomerization (GO:0051259)	18	5	.32	+	15.79	3.87E-05	2.52E-02
+chaperone cofactor-dependent protein refolding (GO:0051085)	30	7	.53	+	13.26	2.80E-06	4.39E-03
+'de novo' posttranslational protein folding (GO:0051084)	30	7	.53	+	13.26	2.80E-06	3.65E-03
+chaperone-mediated protein folding (GO:0061077)	48	11	.84	+	13.02	4.44E-09	1.74E-05
+'de novo' protein folding (GO:0006458)	35	7	.62	+	11.37	6.82E-06	6.67E-03
+cellular response to heat (GO:0034605)	35	7	.62	+	11.37	6.82E-06	5.93E-03
+response to heat (GO:0009408)	82	11	1.44	+	7.62	5.76E-07	1.50E-03
+response to decreased oxygen levels (GO:0036293)	67	8	1.18	+	6.79	4.42E-05	2.47E-02
+response to oxygen levels (GO:0070482)	75	8	1.32	+	6.06	9.19E-05	4.79E-02
+protein folding (GO:0006457)	125	11	2.20	+	5.00	2.40E-05	1.70E-02
+response to temperature stimulus (GO:0009266)	133	11	2.34	+	4.70	4.08E-05	2.45E-02
+response to abiotic stimulus (GO:0009628)	411	21	7.23	+	2.90	2.01E-05	1.58E-02

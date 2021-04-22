@@ -1,0 +1,28 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (239)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+structural constituent of vitelline membrane (GO:0008316)	3	3	.05	+	57.79	9.36E-05	2.06E-02
+metalloaminopeptidase activity (GO:0070006)	24	5	.42	+	12.04	1.16E-04	2.22E-02
+metalloexopeptidase activity (GO:0008235)	51	8	.88	+	9.06	6.54E-06	1.71E-03
+exopeptidase activity (GO:0008238)	89	12	1.54	+	7.79	1.39E-07	6.66E-05
+serine hydrolase activity (GO:0017171)	257	24	4.45	+	5.40	7.96E-11	1.14E-07
+serine-type peptidase activity (GO:0008236)	257	24	4.45	+	5.40	7.96E-11	7.60E-08
+serine-type endopeptidase activity (GO:0004252)	236	21	4.08	+	5.14	2.86E-09	2.05E-06
+structural constituent of chitin-based cuticle (GO:0005214)	147	11	2.54	+	4.32	8.20E-05	1.96E-02
+structural constituent of cuticle (GO:0042302)	151	11	2.61	+	4.21	1.03E-04	2.10E-02
+peptidase activity (GO:0008233)	533	36	9.22	+	3.90	8.03E-12	2.30E-08
+endopeptidase activity (GO:0004175)	392	24	6.78	+	3.54	1.80E-07	7.36E-05
+hydrolase activity (GO:0016787)	1755	59	30.37	+	1.94	7.28E-07	2.32E-04
+catalytic activity (GO:0003824)	3908	106	67.63	+	1.57	2.19E-07	7.84E-05
+nucleic acid binding (GO:0003676)	1742	9	30.15	-	.30	4.29E-06	1.23E-03
+protein binding (GO:0005515)	2277	11	39.40	-	.28	2.67E-08	1.53E-05
+DNA binding (GO:0003677)	946	3	16.37	-	.18	1.19E-04	2.14E-02

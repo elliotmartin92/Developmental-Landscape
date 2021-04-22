@@ -1,0 +1,17 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (247)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+organic hydroxy compound catabolic process (GO:1901616)	26	6	.46	+	12.90	1.71E-05	3.34E-02
+biological regulation (GO:0065007)	4427	46	79.17	-	.58	3.33E-06	2.61E-02
+regulation of biological process (GO:0050789)	3966	40	70.93	-	.56	6.56E-06	2.57E-02
+regulation of cellular process (GO:0050794)	3693	36	66.05	-	.55	7.85E-06	2.05E-02
+cell cycle (GO:0007049)	613	0	10.96	-	 < 0.01	2.55E-05	3.99E-02

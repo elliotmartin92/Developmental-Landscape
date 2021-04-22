@@ -1,0 +1,43 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (531)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+postsynaptic membrane (GO:0045211)	48	8	1.85	+	4.33	9.94E-04	4.42E-02
+axoneme (GO:0005930)	59	9	2.27	+	3.97	8.60E-04	4.25E-02
+ciliary plasm (GO:0097014)	60	9	2.31	+	3.90	9.57E-04	4.40E-02
+contractile fiber (GO:0043292)	72	10	2.77	+	3.61	8.68E-04	4.13E-02
+cilium (GO:0005929)	168	17	6.46	+	2.63	5.21E-04	3.02E-02
+integral component of plasma membrane (GO:0005887)	506	45	19.45	+	2.31	7.00E-07	9.33E-05
+intrinsic component of plasma membrane (GO:0031226)	520	46	19.99	+	2.30	5.54E-07	8.20E-05
+synapse (GO:0045202)	312	25	12.00	+	2.08	1.05E-03	4.50E-02
+plasma membrane (GO:0005886)	1416	97	54.44	+	1.78	4.94E-08	9.41E-06
+extracellular space (GO:0005615)	701	46	26.95	+	1.71	6.57E-04	3.51E-02
+cell periphery (GO:0071944)	1801	116	69.24	+	1.68	5.25E-08	8.75E-06
+integral component of membrane (GO:0016021)	1443	90	55.48	+	1.62	7.99E-06	6.65E-04
+intrinsic component of membrane (GO:0031224)	1470	91	56.52	+	1.61	9.44E-06	7.40E-04
+extracellular region (GO:0005576)	1042	63	40.06	+	1.57	6.22E-04	3.46E-02
+membrane (GO:0016020)	2881	145	110.77	+	1.31	5.11E-04	3.10E-02
+cytoplasm (GO:0005737)	4369	129	167.98	-	.77	2.86E-04	2.01E-02
+intracellular anatomical structure (GO:0005622)	6464	175	248.53	-	.70	2.42E-10	6.46E-08
+protein-containing complex (GO:0032991)	2723	72	104.69	-	.69	3.40E-04	2.16E-02
+organelle (GO:0043226)	5473	133	210.42	-	.63	4.11E-12	1.37E-09
+intracellular organelle (GO:0043229)	5190	117	199.54	-	.59	5.18E-14	2.30E-11
+nucleus (GO:0005634)	2777	55	106.77	-	.52	4.20E-09	9.32E-07
+membrane-bounded organelle (GO:0043227)	4825	95	185.51	-	.51	1.55E-17	1.03E-14
+intracellular membrane-bounded organelle (GO:0043231)	4575	82	175.90	-	.47	1.50E-19	2.00E-16
+nuclear lumen (GO:0031981)	818	13	31.45	-	.41	2.91E-04	1.94E-02
+intracellular organelle lumen (GO:0070013)	1027	14	39.49	-	.35	3.45E-06	3.07E-04
+organelle lumen (GO:0043233)	1028	14	39.52	-	.35	3.45E-06	3.54E-04
+membrane-enclosed lumen (GO:0031974)	1028	14	39.52	-	.35	3.45E-06	3.28E-04
+nucleoplasm (GO:0005654)	545	7	20.95	-	.33	7.66E-04	3.93E-02
+nuclear protein-containing complex (GO:0140513)	840	9	32.30	-	.28	2.08E-06	2.31E-04
+mitochondrion (GO:0005739)	868	9	33.37	-	.27	1.11E-06	1.34E-04
+ribonucleoprotein complex (GO:1990904)	558	5	21.45	-	.23	5.10E-05	3.78E-03

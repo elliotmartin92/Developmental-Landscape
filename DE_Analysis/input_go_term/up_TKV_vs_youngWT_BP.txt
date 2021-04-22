@@ -1,0 +1,68 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (531)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+positive regulation of voltage-gated potassium channel activity (GO:1903818)	16	6	.62	+	9.75	1.13E-04	3.14E-02
+positive regulation of potassium ion transmembrane transporter activity (GO:1901018)	17	6	.65	+	9.18	1.48E-04	3.85E-02
+regulation of synaptic transmission, cholinergic (GO:0032222)	17	6	.65	+	9.18	1.48E-04	3.72E-02
+positive regulation of potassium ion transport (GO:0043268)	18	6	.69	+	8.67	1.91E-04	4.03E-02
+regulation of potassium ion transmembrane transporter activity (GO:1901016)	18	6	.69	+	8.67	1.91E-04	3.92E-02
+positive regulation of potassium ion transmembrane transport (GO:1901381)	18	6	.69	+	8.67	1.91E-04	3.82E-02
+positive regulation of cation channel activity (GO:2001259)	22	7	.85	+	8.28	7.03E-05	2.75E-02
+regulation of potassium ion transmembrane transport (GO:1901379)	19	6	.73	+	8.21	2.43E-04	3.80E-02
+positive regulation of ion transmembrane transporter activity (GO:0032414)	26	7	1.00	+	7.00	1.69E-04	4.14E-02
+positive regulation of transporter activity (GO:0032411)	26	7	1.00	+	7.00	1.69E-04	4.01E-02
+regulation of cation channel activity (GO:2001257)	30	8	1.15	+	6.94	6.14E-05	2.67E-02
+muscle system process (GO:0003012)	27	7	1.04	+	6.74	2.06E-04	4.04E-02
+positive regulation of cation transmembrane transport (GO:1904064)	27	7	1.04	+	6.74	2.06E-04	3.94E-02
+positive regulation of ion transmembrane transport (GO:0034767)	29	7	1.11	+	6.28	3.00E-04	4.52E-02
+positive regulation of transmembrane transport (GO:0034764)	29	7	1.11	+	6.28	3.00E-04	4.43E-02
+negative regulation of endopeptidase activity (GO:0010951)	39	9	1.50	+	6.00	5.64E-05	2.59E-02
+negative regulation of peptidase activity (GO:0010466)	40	9	1.54	+	5.85	6.68E-05	2.75E-02
+regulation of transmembrane transporter activity (GO:0022898)	37	8	1.42	+	5.62	2.15E-04	4.01E-02
+regulation of ion transmembrane transporter activity (GO:0032412)	37	8	1.42	+	5.62	2.15E-04	3.92E-02
+regulation of transporter activity (GO:0032409)	37	8	1.42	+	5.62	2.15E-04	3.83E-02
+regulation of cation transmembrane transport (GO:1904062)	40	8	1.54	+	5.20	3.42E-04	4.78E-02
+chaperone-mediated protein folding (GO:0061077)	48	9	1.85	+	4.88	2.25E-04	3.91E-02
+modulation of chemical synaptic transmission (GO:0050804)	142	17	5.46	+	3.11	8.46E-05	2.88E-02
+regulation of trans-synaptic signaling (GO:0099177)	142	17	5.46	+	3.11	8.46E-05	2.76E-02
+organic substance metabolic process (GO:0071704)	4282	113	164.63	-	.69	1.16E-06	1.81E-03
+metabolic process (GO:0008152)	4546	119	174.78	-	.68	1.89E-07	7.41E-04
+nitrogen compound metabolic process (GO:0006807)	3683	94	141.60	-	.66	2.17E-06	1.89E-03
+primary metabolic process (GO:0044238)	3939	100	151.45	-	.66	4.86E-07	9.51E-04
+regulation of metabolic process (GO:0019222)	2172	53	83.51	-	.63	1.88E-04	4.20E-02
+regulation of macromolecule metabolic process (GO:0060255)	2016	49	77.51	-	.63	3.20E-04	4.56E-02
+cellular metabolic process (GO:0044237)	3795	92	145.91	-	.63	8.88E-08	6.95E-04
+macromolecule metabolic process (GO:0043170)	3227	78	124.07	-	.63	1.24E-06	1.62E-03
+cellular macromolecule metabolic process (GO:0044260)	2173	52	83.55	-	.62	1.13E-04	3.06E-02
+regulation of gene expression (GO:0010468)	1624	34	62.44	-	.54	7.38E-05	2.75E-02
+organic cyclic compound metabolic process (GO:1901360)	1503	31	57.79	-	.54	1.03E-04	2.97E-02
+cellular aromatic compound metabolic process (GO:0006725)	1452	29	55.83	-	.52	7.88E-05	2.80E-02
+regulation of RNA biosynthetic process (GO:2001141)	1184	23	45.52	-	.51	2.34E-04	3.90E-02
+regulation of transcription, DNA-templated (GO:0006355)	1184	23	45.52	-	.51	2.34E-04	3.82E-02
+regulation of nucleic acid-templated transcription (GO:1903506)	1184	23	45.52	-	.51	2.34E-04	3.74E-02
+nucleobase-containing compound metabolic process (GO:0006139)	1328	25	51.06	-	.49	5.45E-05	2.66E-02
+heterocycle metabolic process (GO:0046483)	1402	26	53.90	-	.48	2.26E-05	1.18E-02
+gene expression (GO:0010467)	1098	20	42.22	-	.47	1.86E-04	4.27E-02
+regulation of RNA metabolic process (GO:0051252)	1311	23	50.40	-	.46	1.73E-05	9.68E-03
+regulation of nucleobase-containing compound metabolic process (GO:0019219)	1352	23	51.98	-	.44	5.67E-06	4.03E-03
+nucleic acid metabolic process (GO:0090304)	1059	15	40.72	-	.37	4.65E-06	3.64E-03
+female gamete generation (GO:0007292)	623	8	23.95	-	.33	3.19E-04	4.63E-02
+RNA metabolic process (GO:0016070)	801	8	30.80	-	.26	1.89E-06	1.84E-03
+germ cell development (GO:0007281)	701	7	26.95	-	.26	8.78E-06	5.28E-03
+regionalization (GO:0003002)	456	4	17.53	-	.23	2.27E-04	3.86E-02
+oogenesis (GO:0048477)	571	3	21.95	-	.14	1.26E-06	1.40E-03
+RNA processing (GO:0006396)	545	2	20.95	-	.10	3.61E-07	9.40E-04
+regulation of cell cycle (GO:0051726)	311	1	11.96	-	.08	1.91E-04	4.14E-02
+mRNA processing (GO:0006397)	267	0	10.27	-	 < 0.01	9.54E-05	2.87E-02
+ncRNA metabolic process (GO:0034660)	327	0	12.57	-	 < 0.01	8.40E-06	5.47E-03
+RNA splicing (GO:0008380)	229	0	8.80	-	 < 0.01	2.89E-04	4.43E-02
+ncRNA processing (GO:0034470)	262	0	10.07	-	 < 0.01	8.86E-05	2.77E-02

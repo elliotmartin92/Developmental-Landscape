@@ -1,0 +1,16 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (243)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+protein folding chaperone (GO:0044183)	16	6	.28	+	21.31	1.49E-06	2.13E-03
+misfolded protein binding (GO:0051787)	18	6	.32	+	18.95	2.60E-06	2.49E-03
+heat shock protein binding (GO:0031072)	39	8	.69	+	11.66	1.25E-06	3.58E-03
+unfolded protein binding (GO:0051082)	83	10	1.46	+	6.85	4.56E-06	3.27E-03

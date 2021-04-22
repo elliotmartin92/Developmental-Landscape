@@ -1,0 +1,25 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (247)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+larval serum protein complex (GO:0005616)	4	3	.07	+	41.94	1.78E-04	2.16E-02
+Unclassified (UNCLASSIFIED)	2918	84	52.19	+	1.61	3.26E-06	6.20E-04
+cellular_component (GO:0005575)	10893	163	194.81	-	.84	3.26E-06	5.43E-04
+cytoplasm (GO:0005737)	4369	47	78.14	-	.60	1.19E-05	1.77E-03
+intracellular anatomical structure (GO:0005622)	6464	68	115.60	-	.59	9.48E-10	3.16E-07
+organelle (GO:0043226)	5473	51	97.88	-	.52	3.88E-10	5.18E-07
+intracellular organelle (GO:0043229)	5190	47	92.82	-	.51	4.24E-10	2.82E-07
+protein-containing complex (GO:0032991)	2723	24	48.70	-	.49	3.20E-05	4.26E-03
+membrane-bounded organelle (GO:0043227)	4825	42	86.29	-	.49	7.69E-10	3.42E-07
+intracellular membrane-bounded organelle (GO:0043231)	4575	39	81.82	-	.48	1.68E-09	4.48E-07
+intracellular non-membrane-bounded organelle (GO:0043232)	1558	11	27.86	-	.39	3.12E-04	3.47E-02
+non-membrane-bounded organelle (GO:0043228)	1558	11	27.86	-	.39	3.12E-04	3.20E-02
+nucleus (GO:0005634)	2777	19	49.66	-	.38	1.24E-07	2.74E-05

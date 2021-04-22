@@ -1,0 +1,14 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (151)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+glutathione transferase activity (GO:0004364)	40	6	.44	+	13.72	9.50E-06	2.72E-02
+transferase activity, transferring alkyl or aryl (other than methyl) groups (GO:0016765)	64	7	.70	+	10.00	1.12E-05	1.61E-02
