@@ -13,10 +13,33 @@ gene_violin = function(data_set_to_plot="Input_seq",
   if(data_set_to_plot=="Input_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     data.seq_pared = data.seq[1:5] #extract columns used for plotting
+    column_names = c("FBGN",
+                     "UAS-tkv", 
+                     "bam RNAi", 
+                     "bam RNAi; HS-bam", 
+                     "Young WT")
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
     data.seq_pared = data.seq[c(1, 3:6)] #extract columns used for plotting
-  }
+    column_names = c("FBGN",
+                     "UAS-tkv", 
+                     "bam RNAi", 
+                     "bam RNAi; HS-bam", 
+                     "Young WT")
+  }else if (data_set_to_plot == "Single_cell_seq"){
+    data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS")
+    data.seq_pared = data.seq[c(1, 2:10)] #extract columns used for plotting
+    column_names = c("Symbol",
+                     "GSC CB 2CC", 
+                     "4CC", 
+                     "8CC", 
+                     "16CC",
+                     "16CC 2a 1",
+                     "16CC 2a 2",
+                     "16CC 2b",
+                     "16CC 3",
+                     "St2")
+      }
   #select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
     GO_Term_to_FBID = read_rds("Preprocessed_data/GO_Term_to_FBID.rds")
@@ -25,11 +48,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     FBIDs_in_GO_id = GO_Term_to_FBID$ensembl_id[GO_Term_to_FBID$go_id == selected_GO_id]
     selected_gene_data = 
       data.seq_pared %>% 
-      set_names(c("FBGN",
-               "UAS-tkv", 
-               "bam RNAi", 
-               "bam RNAi; HS-bam", 
-               "Young WT")) %>% 
+      set_names(column_names) %>% 
       filter(FBGN %in% FBIDs_in_GO_id) %>%
       pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_expression")
     # Use custom gene list
@@ -38,11 +57,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     gene_of_interest_tokens = unique(unlist(tokens(gene_of_interest, remove_punct = TRUE)))
     selected_gene_data = 
       data.seq_pared %>% 
-      set_names(c("FBGN",
-               "UAS-tkv", 
-               "bam RNAi", 
-               "bam RNAi; HS-bam", 
-               "Young WT")) %>%
+      set_names(column_names) %>%
       filter(FBGN %in% gene_of_interest_tokens) %>%
       pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_expression")
   }
