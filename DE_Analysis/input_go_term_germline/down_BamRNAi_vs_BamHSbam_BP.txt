@@ -1,0 +1,33 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (103)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+heat shock-mediated polytene chromosome puffing (GO:0035080)	9	5	.07	+	74.49	3.83E-08	4.28E-05
+polytene chromosome puffing (GO:0035079)	10	5	.07	+	67.04	5.71E-08	5.58E-05
+protein refolding (GO:0042026)	24	9	.18	+	50.28	1.56E-12	1.22E-08
+chaperone cofactor-dependent protein refolding (GO:0051085)	30	7	.22	+	31.29	8.50E-09	2.22E-05
+'de novo' posttranslational protein folding (GO:0051084)	30	7	.22	+	31.29	8.50E-09	1.66E-05
+chaperone-mediated protein folding (GO:0061077)	48	10	.36	+	27.93	1.23E-11	4.81E-08
+'de novo' protein folding (GO:0006458)	35	7	.26	+	26.82	2.16E-08	3.38E-05
+cellular response to heat (GO:0034605)	35	6	.26	+	22.99	5.18E-07	3.68E-04
+cellular response to unfolded protein (GO:0034620)	43	6	.32	+	18.71	1.54E-06	8.01E-04
+response to unfolded protein (GO:0006986)	45	6	.34	+	17.88	1.95E-06	9.55E-04
+cellular response to topologically incorrect protein (GO:0035967)	60	7	.45	+	15.64	5.99E-07	3.91E-04
+response to topologically incorrect protein (GO:0035966)	62	7	.46	+	15.14	7.34E-07	4.42E-04
+response to heat (GO:0009408)	82	9	.61	+	14.72	2.22E-08	2.89E-05
+response to decreased oxygen levels (GO:0036293)	67	7	.50	+	14.01	1.19E-06	6.64E-04
+glutathione metabolic process (GO:0006749)	50	5	.37	+	13.41	5.23E-05	1.95E-02
+response to hypoxia (GO:0001666)	62	6	.46	+	12.98	1.07E-05	4.42E-03
+response to oxygen levels (GO:0070482)	75	7	.56	+	12.51	2.39E-06	1.10E-03
+protein folding (GO:0006457)	125	10	.93	+	10.73	5.80E-08	5.04E-05
+response to temperature stimulus (GO:0009266)	133	10	.99	+	10.08	1.00E-07	7.83E-05
+cellular response to organic substance (GO:0071310)	262	11	1.95	+	5.63	5.48E-06	2.38E-03
+cellular response to chemical stimulus (GO:0070887)	372	12	2.77	+	4.33	2.62E-05	1.02E-02

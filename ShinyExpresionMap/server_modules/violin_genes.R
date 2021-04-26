@@ -1,11 +1,5 @@
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
-genotype_levels = c(
-  "UAS-tkv", 
-  "bam RNAi", 
-  "bam RNAi; HS-bam", 
-  "Young WT")
-
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
                        GO_term=NA, gene_of_interest=NA, 
@@ -18,6 +12,11 @@ gene_violin = function(data_set_to_plot="Input_seq",
                      "bam RNAi", 
                      "bam RNAi; HS-bam", 
                      "Young WT")
+    genotype_levels = c(
+      "UAS-tkv", 
+      "bam RNAi", 
+      "bam RNAi; HS-bam", 
+      "Young WT")
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
     data.seq_pared = data.seq[c(1, 3:6)] #extract columns used for plotting
@@ -26,10 +25,16 @@ gene_violin = function(data_set_to_plot="Input_seq",
                      "bam RNAi", 
                      "bam RNAi; HS-bam", 
                      "Young WT")
+    genotype_levels = c(
+      "UAS-tkv", 
+      "bam RNAi", 
+      "bam RNAi; HS-bam", 
+      "Young WT")
+    
   }else if (data_set_to_plot == "Single_cell_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS")
-    data.seq_pared = data.seq[c(1, 2:10)] #extract columns used for plotting
-    column_names = c("Symbol",
+    data.seq_pared = data.seq[c(20, 2:10)] #extract columns used for plotting
+    column_names = c("FBGN",
                      "GSC CB 2CC", 
                      "4CC", 
                      "8CC", 
@@ -39,12 +44,22 @@ gene_violin = function(data_set_to_plot="Input_seq",
                      "16CC 2b",
                      "16CC 3",
                      "St2")
-      }
+    genotype_levels = c("GSC CB 2CC", 
+                        "4CC", 
+                        "8CC", 
+                        "16CC",
+                        "16CC 2a 1",
+                        "16CC 2a 2",
+                        "16CC 2b",
+                        "16CC 3",
+                        "St2")
+    }
+  
   #select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
     GO_Term_to_FBID = read_rds("Preprocessed_data/GO_Term_to_FBID.rds")
-    # method to take go term and make list of genes
-    selected_GO_id = GO_term_tib$GOID[GO_term_tib$description == GO_term]
+    # method to take go term and make list of gen
+    selected_GO_id = GO_term_tib$GOID[GO_term_tib$description == GO_term] #Globally declared map of ID to description
     FBIDs_in_GO_id = GO_Term_to_FBID$ensembl_id[GO_Term_to_FBID$go_id == selected_GO_id]
     selected_gene_data = 
       data.seq_pared %>% 
@@ -109,11 +124,41 @@ gene_violin = function(data_set_to_plot="Input_seq",
                   "xmin" = 1:length(genotype_levels),
                   "xmax" = 1:length(genotype_levels))
       
-    } else if(normalization == "unNorm"){
+    }else if(normalization == "unNorm"){
       yaxis_label = expression("log"[2]*"(TE)")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::ungroup() %>% 
         dplyr::mutate(Norm_expression = log2(Mean_expression))
+      
+      stats = selected_gene_data_norm %>% 
+        ungroup() %>% 
+        wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
+    }
+  }else if(data_set_to_plot=="Single_cell_seq"){
+    if(normalization == "each_gene"){
+      yaxis_label = expression("log"[2]*"(CPM) normalized to GSC/CB/2CC")
+      selected_gene_data_norm = selected_gene_data %>% 
+        dplyr::group_by(FBGN) %>% 
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC CB 2CC"]+1)))
+      
+      stats = selected_gene_data_norm %>% 
+        group_by(Genotype) %>% 
+        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% #bug here
+        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
+        mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
+        arrange(Genotype) %>% 
+        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
+        bind_cols("x" = 1:length(genotype_levels),
+                  "xmin" = 1:length(genotype_levels),
+                  "xmax" = 1:length(genotype_levels))
+      
+    }else if(normalization == "unNorm"){
+      yaxis_label = expression("log"[2]*"(CPM+1)")
+      selected_gene_data_norm = selected_gene_data %>% 
+        dplyr::ungroup() %>% 
+        dplyr::mutate(Norm_expression = log2(Mean_expression+1))
+      
       stats = selected_gene_data_norm %>% 
         ungroup() %>% 
         wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
