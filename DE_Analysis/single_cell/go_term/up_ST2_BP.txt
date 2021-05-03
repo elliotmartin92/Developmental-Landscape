@@ -1,0 +1,68 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (52)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+homoserine metabolic process (GO:0009092)	2	2	.01	+	 > 100	8.24E-05	2.80E-02
+transsulfuration (GO:0019346)	2	2	.01	+	 > 100	8.24E-05	2.69E-02
+cysteine biosynthetic process (GO:0019344)	2	2	.01	+	 > 100	8.24E-05	2.58E-02
+cysteine biosynthetic process via cystathionine (GO:0019343)	2	2	.01	+	 > 100	8.24E-05	2.48E-02
+cysteine metabolic process (GO:0006534)	3	2	.01	+	 > 100	1.37E-04	3.25E-02
+glutathione biosynthetic process (GO:0006750)	4	2	.02	+	 > 100	2.05E-04	4.11E-02
+regulation of meiotic cell cycle phase transition (GO:1901993)	4	2	.02	+	 > 100	2.05E-04	4.01E-02
+pronuclear migration (GO:0035046)	4	2	.02	+	 > 100	2.05E-04	3.91E-02
+sperm aster formation (GO:0035044)	4	2	.02	+	 > 100	2.05E-04	3.82E-02
+homocysteine metabolic process (GO:0050667)	4	2	.02	+	 > 100	2.05E-04	3.73E-02
+nonribosomal peptide biosynthetic process (GO:0019184)	5	2	.02	+	 > 100	2.86E-04	4.87E-02
+karyogamy (GO:0000741)	5	2	.02	+	 > 100	2.86E-04	4.77E-02
+pronuclear fusion (GO:0007344)	5	2	.02	+	 > 100	2.86E-04	4.67E-02
+regulation of meiotic cell cycle (GO:0051445)	19	3	.07	+	41.94	7.29E-05	2.59E-02
+single fertilization (GO:0007338)	33	5	.12	+	40.24	2.79E-07	4.36E-04
+fertilization (GO:0009566)	35	5	.13	+	37.94	3.63E-07	4.74E-04
+pole cell development (GO:0007277)	30	3	.11	+	26.56	2.51E-04	4.36E-02
+pole plasm mRNA localization (GO:0019094)	34	3	.13	+	23.43	3.53E-04	5.03E-02
+sulfur compound biosynthetic process (GO:0044272)	49	4	.18	+	21.68	4.50E-05	1.96E-02
+glutathione metabolic process (GO:0006749)	50	4	.19	+	21.25	4.85E-05	1.90E-02
+intracellular mRNA localization (GO:0008298)	68	4	.26	+	15.62	1.50E-04	3.35E-02
+cellular modified amino acid metabolic process (GO:0006575)	83	4	.31	+	12.80	3.11E-04	4.68E-02
+nucleus organization (GO:0006997)	86	4	.32	+	12.35	3.54E-04	4.95E-02
+regulation of reproductive process (GO:2000241)	120	5	.45	+	11.07	1.02E-04	2.66E-02
+oocyte development (GO:0048599)	129	5	.49	+	10.29	1.41E-04	3.25E-02
+RNA localization (GO:0006403)	164	6	.62	+	9.72	3.97E-05	1.94E-02
+sulfur compound metabolic process (GO:0006790)	168	6	.63	+	9.49	4.52E-05	1.86E-02
+oocyte differentiation (GO:0009994)	151	5	.57	+	8.79	2.87E-04	4.58E-02
+mRNA metabolic process (GO:0016071)	341	8	1.28	+	6.23	4.26E-05	1.96E-02
+organelle assembly (GO:0070925)	391	8	1.47	+	5.43	1.09E-04	2.75E-02
+female gamete generation (GO:0007292)	623	12	2.35	+	5.12	2.94E-06	2.30E-03
+oogenesis (GO:0048477)	571	10	2.15	+	4.65	4.98E-05	1.86E-02
+germ cell development (GO:0007281)	701	12	2.64	+	4.55	9.64E-06	6.28E-03
+cellular process involved in reproduction in multicellular organism (GO:0022412)	839	14	3.16	+	4.43	1.97E-06	1.71E-03
+multi-organism reproductive process (GO:0044703)	1035	17	3.90	+	4.36	1.39E-07	5.43E-04
+sexual reproduction (GO:0019953)	1035	17	3.90	+	4.36	1.39E-07	3.62E-04
+multi-organism process (GO:0051704)	1036	17	3.90	+	4.36	1.41E-07	2.75E-04
+cell cycle (GO:0007049)	613	10	2.31	+	4.33	8.94E-05	2.50E-02
+gamete generation (GO:0007276)	902	14	3.40	+	4.12	4.55E-06	3.23E-03
+reproductive process (GO:0022414)	1167	18	4.39	+	4.10	1.34E-07	1.05E-03
+developmental process involved in reproduction (GO:0003006)	878	13	3.31	+	3.93	1.78E-05	1.07E-02
+multicellular organismal reproductive process (GO:0048609)	1027	14	3.87	+	3.62	1.97E-05	1.10E-02
+reproduction (GO:0000003)	1402	18	5.28	+	3.41	1.96E-06	1.92E-03
+cellular component assembly (GO:0022607)	1020	13	3.84	+	3.39	8.32E-05	2.41E-02
+cellular component biogenesis (GO:0044085)	1186	14	4.47	+	3.14	9.44E-05	2.55E-02
+multicellular organism reproduction (GO:0032504)	1265	14	4.76	+	2.94	1.87E-04	3.94E-02
+cellular nitrogen compound metabolic process (GO:0034641)	1757	17	6.62	+	2.57	1.61E-04	3.50E-02
+anatomical structure development (GO:0048856)	2603	21	9.80	+	2.14	2.88E-04	4.51E-02
+developmental process (GO:0032502)	2729	22	10.27	+	2.14	1.87E-04	3.85E-02
+cellular component organization (GO:0016043)	2608	21	9.82	+	2.14	2.95E-04	4.53E-02
+cellular component organization or biogenesis (GO:0071840)	2758	22	10.38	+	2.12	3.29E-04	4.77E-02
+multicellular organismal process (GO:0032501)	3454	25	13.00	+	1.92	3.29E-04	4.85E-02
+cellular metabolic process (GO:0044237)	3795	27	14.29	+	1.89	2.42E-04	4.31E-02
+metabolic process (GO:0008152)	4546	32	17.12	+	1.87	3.90E-05	2.03E-02
+organic substance metabolic process (GO:0071704)	4282	30	16.12	+	1.86	1.15E-04	2.81E-02
+cellular process (GO:0009987)	7208	45	27.14	+	1.66	3.73E-07	4.16E-04

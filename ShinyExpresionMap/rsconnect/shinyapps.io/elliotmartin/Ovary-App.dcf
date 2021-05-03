@@ -5,9 +5,9 @@ account: elliotmartin
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2131095
-bundleId: 4466577
+bundleId: 4535340
 url: https://elliotmartin.shinyapps.io/Ovary-App/
-when: 1618332749.49633
+when: 1619703734.58057
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: depricated_ui.R|README.md|Rplot001.jpg|Rplot013.jpg|Rplot017.jpg|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds|Preprocessing_scripts/all_go_term_tsv_generation.R|Preprocessing_scripts/Preprocessing_ovary_map.R
+ignoredFiles: depricated_ui.R|README.md|Rplot001.jpg|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds|Preprocessing_scripts

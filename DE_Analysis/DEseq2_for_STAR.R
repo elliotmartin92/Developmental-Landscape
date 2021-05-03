@@ -43,12 +43,14 @@ dds <- DESeq(dds)
 rld <- rlog(dds, blind = FALSE)
 head(assay(rld), 3)
 plotPCA(rld, intgroup = c("all"))
+
 # function to convert fbgn to symbols
 fbgn_to_symbol =  function(fbid){
   AnnotationDbi::select(org.Dm.eg.db, fbid, 
                         columns=c("SYMBOL"), 
                         keytype="FLYBASE") %>% data.table()
 }
+
 # function to extract pairwise comparisions from deseq2 dds object
 pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.05, log2FC_cutoff=2){
   if(GenotypeA==GenotypeB){return(NA)}

@@ -1,0 +1,45 @@
+---
+title: "DE_notes"
+author: "Elliot Martin"
+date: "4/28/2021"
+output: powerpoint_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Interesting genes
+  * sticky - FBgn0002466  
+    +   Up in bam-cysts  
+    +   Involved in cytokinesis/contractile ring  
+    +   Has oogenesis defect
+    +   No endogenous GFP line 
+    +   private antibody
+    
+  * r-l - FBgn0003257  
+    +   Up in bam-cysts, strong translation control
+    +   Involved in oocyte localization
+    +   Antibody? 
+
+  * Gli - FBgn0001987  
+    +   Up in early stages (mRNA), translation up in cysts
+    +   Involved in gypsy regulation
+    +   reported fertile, no other oogen. data
+    +   lots of reagents
+    
+  * Gli - FBgn0001987  
+    +   Up in early stages (mRNA)
+    +   Involved in Mad regulation - no data from oogenesis
+    +   some reagents (maybe not public)
+    
+  * otk/otk2 - FBgn0004839  
+    +   weird mirrored expression in GSC vs daughter
+    +   Involved in axon guidance/cell adhesion (cell signaling?)
+    +   some reagents (maybe not public)
+    
+  * smurf - FBgn0029006  
+    +   translationally up in daughter
+    +   degrades TKV allowing for differentiation
+    +   some reagents (maybe not public)
+    

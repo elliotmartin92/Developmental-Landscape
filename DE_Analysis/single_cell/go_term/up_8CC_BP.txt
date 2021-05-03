@@ -1,0 +1,36 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (24)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+pyrimidine nucleoside monophosphate biosynthetic process (GO:0009130)	5	2	.01	+	 > 100	6.02E-05	2.77E-02
+pyrimidine nucleoside monophosphate metabolic process (GO:0009129)	5	2	.01	+	 > 100	6.02E-05	2.62E-02
+deoxyribonucleotide biosynthetic process (GO:0009263)	6	2	.01	+	 > 100	8.02E-05	3.14E-02
+deoxyribonucleotide metabolic process (GO:0009262)	8	2	.01	+	 > 100	1.29E-04	4.19E-02
+mitotic nuclear division (GO:0140014)	102	4	.18	+	22.57	3.07E-05	2.19E-02
+DNA packaging (GO:0006323)	109	4	.19	+	21.12	3.95E-05	2.21E-02
+meiosis I cell cycle process (GO:0061982)	111	4	.19	+	20.74	4.23E-05	2.21E-02
+DNA conformation change (GO:0071103)	136	4	.24	+	16.93	9.12E-05	3.24E-02
+mitotic cell cycle process (GO:1903047)	278	7	.48	+	14.49	3.75E-07	7.33E-04
+meiotic cell cycle process (GO:1903046)	204	5	.35	+	14.10	2.52E-05	1.97E-02
+meiotic cell cycle (GO:0051321)	215	5	.37	+	13.38	3.23E-05	2.10E-02
+nuclear division (GO:0000280)	247	5	.43	+	11.65	6.17E-05	2.54E-02
+chromatin organization (GO:0006325)	358	7	.62	+	11.25	1.97E-06	3.09E-03
+cell cycle process (GO:0022402)	515	10	.89	+	11.17	6.90E-09	5.40E-05
+organelle fission (GO:0048285)	262	5	.46	+	10.98	8.11E-05	3.02E-02
+chromosome organization (GO:0051276)	563	10	.98	+	10.22	1.59E-08	6.23E-05
+mitotic cell cycle (GO:0000278)	404	7	.70	+	9.97	4.33E-06	5.65E-03
+cell cycle (GO:0007049)	613	10	1.07	+	9.39	3.53E-08	9.21E-05
+regulation of nitrogen compound metabolic process (GO:0051171)	1828	12	3.18	+	3.78	1.70E-05	1.66E-02
+regulation of primary metabolic process (GO:0080090)	1854	12	3.22	+	3.72	1.96E-05	1.70E-02
+regulation of cellular metabolic process (GO:0031323)	1979	12	3.44	+	3.49	3.82E-05	2.30E-02
+regulation of macromolecule metabolic process (GO:0060255)	2016	12	3.50	+	3.43	4.61E-05	2.25E-02
+regulation of metabolic process (GO:0019222)	2172	12	3.77	+	3.18	9.74E-05	3.31E-02
+cellular process (GO:0009987)	7208	23	12.53	+	1.84	4.42E-06	4.94E-03

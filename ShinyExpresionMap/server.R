@@ -24,12 +24,31 @@ GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
 GO_term_description <<- GO_term_tib$description
 
 ####Shiny Server variable initialization and housekeeping####
-#server initialization and check to ensure server shutsdown cleanly on tab closure
+#server initialization and check to ensure server shuts down cleanly on tab closure
 shinyServer(function(input, output, session) {
-  session$onSessionEnded(function() {
-    stopApp()
-    })
+  session$onSessionEnded(function(){stopApp()})
   
+  # implements logic for tutorial button
+  steps <- reactive(
+    data.frame(
+      element=c(".view_DatasetTab", 
+                ".view_DevProg", 
+                ".view_heatmap",
+                ".view_violin",
+                ".view_report"),
+      intro=c(
+        "Select a seq dataset.",
+        "Select a vizualiation/tool: Developmental Progression",
+        "Select a vizualiation/tool: Heatmap",
+        "Select a vizualiation/tool: Gene Groups",
+        "Create figure(s) from your vizualization"
+      ),
+      position=c("auto", "auto", "auto", "auto", "auto")
+    )
+  )
+  # observes help button press, initiates tutorial on press
+  observeEvent(input$help_btn,
+               introjs(session, options = list(steps=steps(), "nextLabel"="Next", "nextToDone"="true")))
   #keeping track of the page being viewed for report output
   observe({
   

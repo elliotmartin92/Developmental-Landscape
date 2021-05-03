@@ -42,7 +42,7 @@ if (input$violin_normalization_option == "each_gene") {
 }
 
 if(input$SeqDataset == "Input_seq"){
-  fig_nums("ovary_map", paste("Plot of", input$variable,"TPM+ over development."))
+  fig_nums("ovary_map", paste("Plot of", input$variable,"TPM over development."))
   fig_nums("heat_map", "Heatmap of log~2~(TPM+1) of input mRNA expression over development.")
   if (input$violin_geneList_option == "GO_term_selection") {
     fig_nums("violin_plot", paste0("Plot of genes in the GO-term \"", input$GO_term,"\" over development representing log~2~(TPM+1)", normaliztion_text ,"of input mRNA"))

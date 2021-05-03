@@ -1,0 +1,180 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (49)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+cell aging (GO:0007569)	3	2	.01	+	 > 100	1.22E-04	9.24E-03
+regulation of cytokinesis, actomyosin contractile ring assembly (GO:2000431)	4	2	.01	+	 > 100	1.82E-04	1.28E-02
+regulation of spindle assembly (GO:0090169)	6	2	.02	+	93.95	3.38E-04	2.08E-02
+regulation of cytokinetic process (GO:0032954)	7	2	.02	+	80.53	4.34E-04	2.55E-02
+regulation of spindle organization (GO:0090224)	7	2	.02	+	80.53	4.34E-04	2.53E-02
+spindle midzone assembly (GO:0051255)	7	2	.02	+	80.53	4.34E-04	2.51E-02
+cellular protein-containing complex localization (GO:0034629)	9	2	.03	+	62.63	6.60E-04	3.56E-02
+actomyosin contractile ring assembly (GO:0000915)	14	3	.05	+	60.40	2.73E-05	2.88E-03
+DNA replication-independent nucleosome assembly (GO:0006336)	10	2	.04	+	56.37	7.90E-04	4.07E-02
+assembly of actomyosin apparatus involved in cytokinesis (GO:0000912)	15	3	.05	+	56.37	3.26E-05	3.36E-03
+DNA replication-independent nucleosome organization (GO:0034724)	11	2	.04	+	51.25	9.32E-04	4.44E-02
+actomyosin contractile ring organization (GO:0044837)	23	4	.08	+	49.02	2.28E-06	4.24E-04
+chromosome localization (GO:0050000)	26	4	.09	+	43.36	3.53E-06	5.88E-04
+metaphase plate congression (GO:0051310)	20	3	.07	+	42.28	7.00E-05	6.01E-03
+establishment of chromosome localization (GO:0051303)	23	3	.08	+	36.76	1.02E-04	8.22E-03
+regulation of cytokinesis (GO:0032465)	24	3	.09	+	35.23	1.14E-04	8.86E-03
+cytokinetic process (GO:0032506)	38	4	.13	+	29.67	1.40E-05	1.76E-03
+meiotic cytokinesis (GO:0033206)	44	4	.16	+	25.62	2.39E-05	2.67E-03
+regulation of microtubule cytoskeleton organization (GO:0070507)	45	4	.16	+	25.05	2.60E-05	2.82E-03
+regulation of cell division (GO:0051302)	45	4	.16	+	25.05	2.60E-05	2.78E-03
+male meiosis cytokinesis (GO:0007112)	34	3	.12	+	24.87	2.96E-04	1.93E-02
+nucleosome assembly (GO:0006334)	35	3	.12	+	24.16	3.21E-04	1.99E-02
+positive regulation of protein polymerization (GO:0032273)	37	3	.13	+	22.85	3.74E-04	2.25E-02
+cortical actin cytoskeleton organization (GO:0030866)	53	4	.19	+	21.27	4.74E-05	4.37E-03
+negative regulation of translation (GO:0017148)	60	4	.21	+	18.79	7.49E-05	6.30E-03
+regulation of neuroblast proliferation (GO:1902692)	47	3	.17	+	17.99	7.24E-04	3.85E-02
+negative regulation of cell development (GO:0010721)	47	3	.17	+	17.99	7.24E-04	3.83E-02
+cortical cytoskeleton organization (GO:0030865)	63	4	.22	+	17.90	8.97E-05	7.39E-03
+chromatin assembly (GO:0031497)	48	3	.17	+	17.62	7.68E-04	4.00E-02
+mitotic cytokinesis (GO:0000281)	50	3	.18	+	16.91	8.59E-04	4.25E-02
+positive regulation of protein-containing complex assembly (GO:0031334)	50	3	.18	+	16.91	8.59E-04	4.23E-02
+positive regulation of supramolecular fiber organization (GO:1902905)	50	3	.18	+	16.91	8.59E-04	4.20E-02
+regulation of microtubule-based process (GO:0032886)	67	4	.24	+	16.83	1.13E-04	8.80E-03
+mitotic nuclear division (GO:0140014)	102	6	.36	+	16.58	2.07E-06	3.96E-04
+negative regulation of cellular amide metabolic process (GO:0034249)	69	4	.24	+	16.34	1.25E-04	9.43E-03
+chromatin assembly or disassembly (GO:0006333)	52	3	.18	+	16.26	9.57E-04	4.54E-02
+mitotic sister chromatid segregation (GO:0000070)	87	5	.31	+	16.20	1.75E-05	2.10E-03
+positive regulation of cytoskeleton organization (GO:0051495)	53	3	.19	+	15.95	1.01E-03	4.75E-02
+chromosome condensation (GO:0030261)	54	3	.19	+	15.66	1.06E-03	4.95E-02
+DNA packaging (GO:0006323)	109	6	.39	+	15.52	2.99E-06	5.44E-04
+cytoskeleton-dependent cytokinesis (GO:0061640)	92	5	.33	+	15.32	2.26E-05	2.60E-03
+meiosis I cell cycle process (GO:0061982)	111	6	.39	+	15.24	3.31E-06	5.75E-04
+regulation of cytoskeleton organization (GO:0051493)	167	9	.59	+	15.19	9.29E-09	6.60E-06
+cytokinesis (GO:0000910)	93	5	.33	+	15.15	2.38E-05	2.69E-03
+regulation of actin cytoskeleton organization (GO:0032956)	112	6	.40	+	15.10	3.48E-06	5.91E-04
+protein-DNA complex assembly (GO:0065004)	76	4	.27	+	14.83	1.79E-04	1.28E-02
+regulation of actin filament-based process (GO:0032970)	114	6	.40	+	14.83	3.83E-06	6.25E-04
+nucleosome organization (GO:0034728)	76	4	.27	+	14.83	1.79E-04	1.27E-02
+male meiotic nuclear division (GO:0007140)	79	4	.28	+	14.27	2.06E-04	1.39E-02
+sister chromatid segregation (GO:0000819)	101	5	.36	+	13.95	3.47E-05	3.48E-03
+chromosome segregation (GO:0007059)	166	8	.59	+	13.58	1.53E-07	5.97E-05
+actomyosin structure organization (GO:0031032)	83	4	.29	+	13.58	2.47E-04	1.65E-02
+nuclear chromosome segregation (GO:0098813)	147	7	.52	+	13.42	1.06E-06	2.24E-04
+regulation of neurogenesis (GO:0050767)	130	6	.46	+	13.01	7.90E-06	1.12E-03
+DNA conformation change (GO:0071103)	136	6	.48	+	12.43	1.01E-05	1.39E-03
+regulation of cell development (GO:0060284)	162	7	.57	+	12.18	1.98E-06	3.86E-04
+cell division (GO:0051301)	235	10	.83	+	11.99	1.11E-08	7.25E-06
+meiotic cell cycle (GO:0051321)	215	9	.76	+	11.80	7.51E-08	3.45E-05
+protein-DNA complex subunit organization (GO:0071824)	123	5	.44	+	11.46	8.55E-05	7.12E-03
+asymmetric cell division (GO:0008356)	101	4	.36	+	11.16	5.07E-04	2.85E-02
+meiotic cell cycle process (GO:1903046)	204	8	.72	+	11.05	6.91E-07	1.50E-04
+regulation of RNA splicing (GO:0043484)	107	4	.38	+	10.54	6.25E-04	3.42E-02
+nuclear division (GO:0000280)	247	9	.88	+	10.27	2.34E-07	7.97E-05
+meiotic nuclear division (GO:0140013)	165	6	.59	+	10.25	2.91E-05	3.04E-03
+mitotic cell cycle process (GO:1903047)	278	10	.99	+	10.14	5.16E-08	2.52E-05
+regulation of supramolecular fiber organization (GO:1902903)	116	4	.41	+	9.72	8.38E-04	4.23E-02
+organelle fission (GO:0048285)	262	9	.93	+	9.68	3.79E-07	1.06E-04
+regulation of cell differentiation (GO:0045595)	275	9	.98	+	9.22	5.62E-07	1.33E-04
+chromosome organization (GO:0051276)	563	18	2.00	+	9.01	4.23E-13	3.31E-09
+mitotic cell cycle (GO:0000278)	404	12	1.43	+	8.37	1.54E-08	9.27E-06
+regulation of nervous system development (GO:0051960)	212	6	.75	+	7.98	1.12E-04	8.88E-03
+chromatin organization (GO:0006325)	358	10	1.27	+	7.87	5.03E-07	1.23E-04
+negative regulation of cellular protein metabolic process (GO:0032269)	180	5	.64	+	7.83	4.76E-04	2.74E-02
+negative regulation of protein metabolic process (GO:0051248)	181	5	.64	+	7.79	4.87E-04	2.76E-02
+regulation of cell cycle process (GO:0010564)	187	5	.66	+	7.54	5.63E-04	3.12E-02
+male gamete generation (GO:0048232)	301	8	1.07	+	7.49	1.13E-05	1.48E-03
+cell cycle (GO:0007049)	613	16	2.17	+	7.36	2.22E-10	2.89E-07
+organelle localization (GO:0051640)	230	6	.82	+	7.35	1.73E-04	1.27E-02
+negative regulation of macromolecule biosynthetic process (GO:0010558)	433	11	1.54	+	7.16	3.13E-07	9.79E-05
+negative regulation of cellular macromolecule biosynthetic process (GO:2000113)	433	11	1.54	+	7.16	3.13E-07	9.41E-05
+regulation of multicellular organismal development (GO:2000026)	277	7	.98	+	7.12	5.79E-05	5.03E-03
+cell cycle process (GO:0022402)	515	13	1.83	+	7.11	2.29E-08	1.28E-05
+negative regulation of gene expression (GO:0010629)	319	8	1.13	+	7.07	1.71E-05	2.09E-03
+regulation of organelle organization (GO:0033043)	365	9	1.29	+	6.95	5.45E-06	8.52E-04
+negative regulation of transcription by RNA polymerase II (GO:0000122)	203	5	.72	+	6.94	8.09E-04	4.14E-02
+negative regulation of cellular biosynthetic process (GO:0031327)	449	11	1.59	+	6.91	4.45E-07	1.16E-04
+negative regulation of biosynthetic process (GO:0009890)	449	11	1.59	+	6.91	4.45E-07	1.12E-04
+posttranscriptional regulation of gene expression (GO:0010608)	209	5	.74	+	6.74	9.19E-04	4.41E-02
+negative regulation of signal transduction (GO:0009968)	337	8	1.20	+	6.69	2.51E-05	2.77E-03
+spermatogenesis (GO:0007283)	255	6	.90	+	6.63	2.99E-04	1.93E-02
+negative regulation of response to stimulus (GO:0048585)	388	9	1.38	+	6.54	8.82E-06	1.23E-03
+negative regulation of cell communication (GO:0010648)	364	8	1.29	+	6.19	4.30E-05	4.21E-03
+negative regulation of signaling (GO:0023057)	365	8	1.29	+	6.18	4.38E-05	4.23E-03
+negative regulation of nitrogen compound metabolic process (GO:0051172)	573	12	2.03	+	5.90	6.29E-07	1.41E-04
+cell fate commitment (GO:0045165)	297	6	1.05	+	5.69	6.59E-04	3.58E-02
+negative regulation of macromolecule metabolic process (GO:0010605)	724	14	2.57	+	5.45	1.54E-07	5.75E-05
+regulation of cell cycle (GO:0051726)	311	6	1.10	+	5.44	8.34E-04	4.24E-02
+regulation of cellular component biogenesis (GO:0044087)	312	6	1.11	+	5.42	8.48E-04	4.25E-02
+negative regulation of RNA biosynthetic process (GO:1902679)	364	7	1.29	+	5.42	3.03E-04	1.93E-02
+negative regulation of transcription, DNA-templated (GO:0045892)	364	7	1.29	+	5.42	3.03E-04	1.91E-02
+negative regulation of nucleic acid-templated transcription (GO:1903507)	364	7	1.29	+	5.42	3.03E-04	1.90E-02
+negative regulation of cellular metabolic process (GO:0031324)	632	12	2.24	+	5.35	1.73E-06	3.48E-04
+negative regulation of RNA metabolic process (GO:0051253)	382	7	1.36	+	5.16	4.04E-04	2.41E-02
+pattern specification process (GO:0007389)	493	9	1.75	+	5.15	5.63E-05	4.95E-03
+negative regulation of metabolic process (GO:0009892)	770	14	2.73	+	5.12	3.24E-07	9.37E-05
+regulation of developmental process (GO:0050793)	668	12	2.37	+	5.06	3.05E-06	5.43E-04
+negative regulation of nucleobase-containing compound metabolic process (GO:0045934)	399	7	1.42	+	4.94	5.22E-04	2.91E-02
+regionalization (GO:0003002)	456	8	1.62	+	4.94	2.00E-04	1.36E-02
+negative regulation of cellular process (GO:0048523)	1267	22	4.50	+	4.89	7.23E-11	1.89E-07
+negative regulation of biological process (GO:0048519)	1460	24	5.18	+	4.63	1.92E-11	7.49E-08
+cellular process involved in reproduction in multicellular organism (GO:0022412)	839	13	2.98	+	4.37	5.41E-06	8.64E-04
+anatomical structure formation involved in morphogenesis (GO:0048646)	521	8	1.85	+	4.33	4.84E-04	2.76E-02
+imaginal disc development (GO:0007444)	538	8	1.91	+	4.19	5.97E-04	3.29E-02
+tube development (GO:0035295)	689	10	2.44	+	4.09	1.37E-04	1.01E-02
+gamete generation (GO:0007276)	902	13	3.20	+	4.06	1.17E-05	1.51E-03
+organelle organization (GO:0006996)	1746	25	6.19	+	4.04	1.13E-10	1.76E-07
+animal organ morphogenesis (GO:0009887)	710	10	2.52	+	3.97	1.75E-04	1.27E-02
+cytoskeleton organization (GO:0007010)	569	8	2.02	+	3.96	8.57E-04	4.27E-02
+morphogenesis of an epithelium (GO:0002009)	570	8	2.02	+	3.96	8.67E-04	4.21E-02
+regulation of multicellular organismal process (GO:0051239)	573	8	2.03	+	3.94	8.96E-04	4.33E-02
+cellular developmental process (GO:0048869)	1584	22	5.62	+	3.91	4.92E-09	3.85E-06
+nervous system development (GO:0007399)	1009	14	3.58	+	3.91	7.62E-06	1.10E-03
+reproductive process (GO:0022414)	1167	16	4.14	+	3.86	1.60E-06	3.30E-04
+developmental process involved in reproduction (GO:0003006)	878	12	3.12	+	3.85	4.61E-05	4.34E-03
+tissue morphogenesis (GO:0048729)	588	8	2.09	+	3.83	1.06E-03	4.95E-02
+regulation of cellular component organization (GO:0051128)	755	10	2.68	+	3.73	2.85E-04	1.89E-02
+animal organ development (GO:0048513)	1144	15	4.06	+	3.70	6.48E-06	9.56E-04
+epithelium development (GO:0060429)	921	12	3.27	+	3.67	7.29E-05	6.19E-03
+tissue development (GO:0009888)	1007	13	3.57	+	3.64	3.72E-05	3.69E-03
+germ cell development (GO:0007281)	701	9	2.49	+	3.62	7.50E-04	3.94E-02
+cell differentiation (GO:0030154)	1572	20	5.58	+	3.59	1.49E-07	6.12E-05
+multicellular organismal reproductive process (GO:0048609)	1027	13	3.64	+	3.57	4.56E-05	4.35E-03
+generation of neurons (GO:0048699)	794	10	2.82	+	3.55	4.25E-04	2.52E-02
+multi-organism reproductive process (GO:0044703)	1035	13	3.67	+	3.54	4.94E-05	4.49E-03
+sexual reproduction (GO:0019953)	1035	13	3.67	+	3.54	4.94E-05	4.44E-03
+multi-organism process (GO:0051704)	1036	13	3.68	+	3.54	4.99E-05	4.43E-03
+neurogenesis (GO:0022008)	841	10	2.98	+	3.35	6.64E-04	3.56E-02
+regulation of cellular macromolecule biosynthetic process (GO:2000112)	1353	16	4.80	+	3.33	1.07E-05	1.44E-03
+regulation of macromolecule biosynthetic process (GO:0010556)	1358	16	4.82	+	3.32	1.12E-05	1.49E-03
+cellular component organization (GO:0016043)	2608	30	9.25	+	3.24	8.77E-11	1.71E-07
+regulation of RNA metabolic process (GO:0051252)	1311	15	4.65	+	3.22	3.26E-05	3.32E-03
+reproduction (GO:0000003)	1402	16	4.97	+	3.22	1.67E-05	2.07E-03
+regulation of cellular biosynthetic process (GO:0031326)	1411	16	5.01	+	3.20	1.81E-05	2.14E-03
+regulation of biosynthetic process (GO:0009889)	1415	16	5.02	+	3.19	1.87E-05	2.19E-03
+regulation of nucleobase-containing compound metabolic process (GO:0019219)	1352	15	4.80	+	3.13	4.67E-05	4.34E-03
+regulation of gene expression (GO:0010468)	1624	18	5.76	+	3.12	5.94E-06	9.11E-04
+cell development (GO:0048468)	1270	14	4.51	+	3.11	9.68E-05	7.89E-03
+system development (GO:0048731)	1634	18	5.80	+	3.10	6.47E-06	9.74E-04
+regulation of RNA biosynthetic process (GO:2001141)	1184	13	4.20	+	3.09	1.92E-04	1.34E-02
+regulation of transcription, DNA-templated (GO:0006355)	1184	13	4.20	+	3.09	1.92E-04	1.33E-02
+regulation of nucleic acid-templated transcription (GO:1903506)	1184	13	4.20	+	3.09	1.92E-04	1.31E-02
+cellular component organization or biogenesis (GO:0071840)	2758	30	9.79	+	3.07	3.64E-10	4.07E-07
+cellular component assembly (GO:0022607)	1020	11	3.62	+	3.04	7.71E-04	3.99E-02
+multicellular organism reproduction (GO:0032504)	1265	13	4.49	+	2.90	3.66E-04	2.24E-02
+multicellular organism development (GO:0007275)	2253	23	7.99	+	2.88	5.91E-07	1.36E-04
+anatomical structure development (GO:0048856)	2603	26	9.24	+	2.82	9.14E-08	3.97E-05
+anatomical structure morphogenesis (GO:0009653)	1444	14	5.12	+	2.73	3.72E-04	2.25E-02
+developmental process (GO:0032502)	2729	26	9.68	+	2.69	2.43E-07	7.91E-05
+regulation of nitrogen compound metabolic process (GO:0051171)	1828	17	6.49	+	2.62	1.15E-04	8.79E-03
+regulation of primary metabolic process (GO:0080090)	1854	17	6.58	+	2.58	1.37E-04	1.02E-02
+regulation of cellular process (GO:0050794)	3693	33	13.10	+	2.52	3.73E-09	3.65E-06
+regulation of macromolecule metabolic process (GO:0060255)	2016	18	7.15	+	2.52	1.12E-04	8.93E-03
+regulation of cellular metabolic process (GO:0031323)	1979	17	7.02	+	2.42	3.03E-04	1.94E-02
+regulation of biological process (GO:0050789)	3966	34	14.07	+	2.42	4.80E-09	4.17E-06
+multicellular organismal process (GO:0032501)	3454	29	12.25	+	2.37	4.24E-07	1.14E-04
+regulation of metabolic process (GO:0019222)	2172	18	7.71	+	2.34	2.91E-04	1.92E-02
+biological regulation (GO:0065007)	4427	35	15.71	+	2.23	2.51E-08	1.31E-05
+cellular process (GO:0009987)	7208	43	25.57	+	1.68	1.79E-07	6.35E-05

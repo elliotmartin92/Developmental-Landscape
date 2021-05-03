@@ -2,10 +2,18 @@ library(shinycssloaders)
 library(shinydashboard)
 library(plotly)
 library(shinyjs)
+library(rintrojs)
 
-ui = dashboardPage(skin = "purple", 
+# adds a class to a shiny element
+add_class <- function(x, class) {
+  x$attribs <- append(x$attribs, list(class = class))
+  x
+}
+
+ui = dashboardPage(skin = "purple",
   dashboardHeader(title = "Oogenesis Viz"),
   dashboardSidebar(
+    introjsUI(),
     sidebarMenu(id = "tabs",
       menuItem("Select a dataset", icon = icon("fas fa-table"), tabName = "DatasetTab", startExpanded = TRUE,
               # Input directly under menuItem
@@ -14,16 +22,21 @@ ui = dashboardPage(skin = "purple",
                                "Polysome-seq"= "Polysome_seq",
                                "Single Cell-seq"= "Single_cell_seq"), 
                 selected = "Input_seq",
-                width = '98%')),
-      menuItem("Developmental Progression", tabName = "DevProg", icon = icon("dashboard")),
-      menuItem("Heatmap", tabName = "heatmap", icon = icon("th")),
-      menuItem("Gene Groups", tabName = "violin", icon = icon("far fa-chart-bar")),
+                width = '98%')) %>% add_class("view_DatasetTab"), 
+      menuItem("Developmental Progression", tabName = "DevProg", icon = icon("dashboard")) %>% 
+        add_class("view_DevProg"),
+      menuItem("Heatmap", tabName = "heatmap", icon = icon("th")) %>% 
+        add_class("view_heatmap"),
+      menuItem("Gene Groups", tabName = "violin", icon = icon("far fa-chart-bar")) %>% 
+        add_class("view_violin"),
       menuItem("Generate report", icon = icon("fas fa-file-download"), tabName = "DownloadTab",
              # Input directly under menuItem
              radioButtons("reportPage", "Generate Report for:",
-                         choices = list("All Pages", "Current Page"), selected = "All Pages",
+                         choices = list("Current Page", "All Pages"), selected = "Current Page",
                          width = '98%'),
-             downloadButton("report"))
+             downloadButton("report")) %>% 
+               add_class("view_report"),
+      actionButton("help_btn","Help", icon = icon("far fa-question-circle"))
   )),
     dashboardBody(
       shinyjs::useShinyjs(),
@@ -68,8 +81,8 @@ ui = dashboardPage(skin = "purple",
                 textInput("Gene_interest_list", "Genes of Interest List", "Enter a list of FBids"),
                 verbatimTextOutput("value"),
                 radioButtons("violin_normalization_option", label = "Normalization",
-                             choices = list("Normalize each gene to 1 in UAS-TKV" = "each_gene", 
-                                            "log2(TPMs+1)" = "unNorm"), 
+                             choices = list("Normalize each gene" = "each_gene", 
+                                            "Log normalized Expression" = "unNorm"), 
                              selected = "each_gene"),
                 br())))
     ))

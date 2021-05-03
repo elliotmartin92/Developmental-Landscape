@@ -1,6 +1,7 @@
 library(DESeq2)
 library(data.table)
 library(tidyverse)
+library(openxlsx)
 library(org.Dm.eg.db)
 library(annotate)
 source("Y:/Data/ElliotMartin/rscripts/Finished Scripts/ggplotWhiteTheme.R")
@@ -41,13 +42,50 @@ dds = DESeqDataSetFromMatrix(countData = allseq,
                              colData = design,
                              design =  ~ type + genotype + genotype:type)
 
-dds <- DESeq(dds, test="LRT", reduced = ~ type + genotype)
+dds = DESeq(dds, test="LRT", reduced = ~ type + genotype)
 resultsNames(dds)
-res <- results(dds)
-resTable <- data.table(rownames(res), as.data.table(res))
-pvalue_cutoff = 0.1
-log2FC_cutoff = 1
-up = resTable %>% filter(pvalue < pvalue_cutoff) %>% filter(log2FoldChange > log2FC_cutoff)
-down = resTable %>% filter(pvalue < pvalue_cutoff) %>% filter(log2FoldChange < -log2FC_cutoff)
-changing_genes = c(up$V1, down$V1)
-write_rds(changing_genes, file = "ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list_polysome.RDS")
+
+# function to convert fbgn to symbols
+fbgn_to_symbol =  function(fbid){
+  AnnotationDbi::select(org.Dm.eg.db, fbid, 
+                        columns=c("SYMBOL"), 
+                        keytype="FLYBASE") %>% data.table()
+}
+
+pairwise_dds = function(GenotypeA, GenotypeB, pval_cutoff=0.05, log2FC_cutoff=1){
+  if(GenotypeA==GenotypeB){return(NA)}
+  res <- results(dds, contrast = c("genotype", GenotypeA, GenotypeB))
+  resTable <- data.table(rownames(res), as.data.table(res))
+  resTable = dplyr::rename(resTable, FBGN = "V1")
+  fb_symbols = fbgn_to_symbol(resTable$FBGN)[[2]]
+  resTable = add_column(resTable, symbol=fb_symbols, .after = "FBGN")
+  up = resTable %>% filter(pvalue < pval_cutoff) %>% filter(log2FoldChange > log2FC_cutoff)
+  down = resTable %>% filter(pvalue < pval_cutoff) %>% filter(log2FoldChange < -log2FC_cutoff)
+
+  addWorksheet(wb, sheetName = paste("down in", GenotypeA, "vs", GenotypeB))
+  writeData(wb, paste("down in", GenotypeA, "vs", GenotypeB), down)
+
+  addWorksheet(wb, sheetName = paste("up in", GenotypeA, "vs", GenotypeB))
+  writeData(wb, paste("up in", GenotypeA, "vs", GenotypeB), up)
+
+  addWorksheet(wb, sheetName = paste("all", GenotypeA, "vs", GenotypeB))
+  writeData(wb, paste("all", GenotypeA, "vs", GenotypeB), resTable)
+
+  changing_genes = c(up$FBGN, down$FBGN)
+  return(changing_genes)
+}
+# extract samples to be compared
+comparison_samples = as.character(unique(design$genotype))
+comparison_samples = comparison_samples[c(3,2,1,4)]
+number_comparisons = (length(comparison_samples)*((length(comparison_samples)-1)))/2 #number of pairwise comparisons
+# initialize excel workbook prior to pairwise_dds call
+wb = createWorkbook()
+# pairwise_dds call
+all_pairwise_comparisions = sapply(comparison_samples, function(GenotypeA) sapply(comparison_samples, function(GenotypeB) pairwise_dds(GenotypeA, GenotypeB)))
+saveWorkbook(wb, file = "DE_Analysis/input_DE_pairwise_comparisions.xlsx", overwrite = TRUE) #save workbook
+head(all_pairwise_comparisions)
+# flatten pairwise comparisons and remove redundant entries
+all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
+head(all_pairwise_comparisions_uniqueflat)
+# write all DE genes to an RDS
+write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/developmentally_regulated_gene_list.RDS")

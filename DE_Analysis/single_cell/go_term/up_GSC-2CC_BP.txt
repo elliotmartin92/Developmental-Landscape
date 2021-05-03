@@ -1,0 +1,22 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4495804 Released 2021-02-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (20)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+negative regulation of macromolecule biosynthetic process (GO:0010558)	433	6	.63	+	9.57	2.62E-05	3.42E-02
+negative regulation of cellular macromolecule biosynthetic process (GO:2000113)	433	6	.63	+	9.57	2.62E-05	2.93E-02
+negative regulation of cellular biosynthetic process (GO:0031327)	449	6	.65	+	9.23	3.21E-05	2.79E-02
+negative regulation of biosynthetic process (GO:0009890)	449	6	.65	+	9.23	3.21E-05	2.51E-02
+negative regulation of nitrogen compound metabolic process (GO:0051172)	573	7	.83	+	8.44	1.06E-05	2.76E-02
+negative regulation of cellular metabolic process (GO:0031324)	632	7	.92	+	7.65	1.99E-05	3.11E-02
+negative regulation of macromolecule metabolic process (GO:0010605)	724	8	1.05	+	7.63	4.23E-06	3.31E-02
+negative regulation of metabolic process (GO:0009892)	770	8	1.12	+	7.17	6.65E-06	2.60E-02
+negative regulation of cellular process (GO:0048523)	1267	9	1.83	+	4.91	3.09E-05	3.02E-02
+negative regulation of biological process (GO:0048519)	1460	10	2.11	+	4.73	1.21E-05	2.37E-02
