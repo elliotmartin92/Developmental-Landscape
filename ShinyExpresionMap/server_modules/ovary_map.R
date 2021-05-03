@@ -128,7 +128,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         }
       }
       #adding TPM values to the proper place on the shape
-      shape_centroids = st_centroid(shape)
+      shape_centroids = suppressWarnings(st_centroid(shape))
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
       dist_pl = dist_pl+
