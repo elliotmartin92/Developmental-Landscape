@@ -100,6 +100,7 @@ shinyServer(function(input, output, session) {
     ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
                                  gene_name_format = input$dataset, 
                                  displayTPM = input$displayTPM, 
+                                 display_stage_labels = input$display_stage_labels,
                                  gene_of_interest = input$variable, 
                                  text_scale = text_scale, 
                                  graphic_to_generate = "map")

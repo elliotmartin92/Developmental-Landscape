@@ -56,6 +56,7 @@ ui = dashboardPage(skin = "purple",
                   withSpinner(uiOutput("choose_dataset")),
                   selectizeInput('variable', label = "Gene of Interest", choices = NULL),
                   checkboxInput("displayTPM", "Display Expression Values", TRUE),
+                  checkboxInput("display_stage_labels", "Display Stage Labels", TRUE),
                   br()))),
       
       # Second tab content
