@@ -5,9 +5,9 @@ account: elliotmartin
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2131095
-bundleId: 4535340
+bundleId: 4555648
 url: https://elliotmartin.shinyapps.io/Ovary-App/
-when: 1619703734.58057
+when: 1620136120.92278
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: depricated_ui.R|README.md|Rplot001.jpg|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds|Preprocessing_scripts
+ignoredFiles: depricated_ui.R|README.md|Rplot001.jpg|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds
