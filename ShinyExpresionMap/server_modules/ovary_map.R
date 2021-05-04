@@ -28,7 +28,8 @@ sc_seq_bins = c("bin_GSC/CB/2-cc",
                 "bin_16-cc.3",
                 "bin_St2")
 
-ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", displayTPM=TRUE, gene_of_interest="RpS19b", 
+ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", displayTPM=TRUE, display_stage_labels=TRUE,
+                     gene_of_interest="RpS19b", 
                      text_scale=10, graphic_to_generate){
   if(data_set_to_plot=="Input_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
@@ -129,26 +130,84 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       }
       #adding TPM values to the proper place on the shape
       shape_centroids = st_centroid(shape)
+      shape_ymin = st_bbox(shape$geometry)[[2]]
+      shape_ymax = st_bbox(shape$geometry)[[4]]
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
       if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
       dist_pl = dist_pl+
         annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[24,1], y=shape.x.y[24,2], size=text_scale)+
         annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[26,1], y=shape.x.y[26,2], size=text_scale)+
-        annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[27,1]+2.34, y=shape.x.y[31,2]-0.7, size=text_scale)+
-        annotate("segment", x=shape.x.y[27,1], xend=shape.x.y[33,1]+.7, y=shape.x.y[31,2]-.6, yend=shape.x.y[31,2]-.6)+
+        annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[27,1]+2.34,  y=shape_ymin-.1, size=text_scale)+
+        annotate("segment", x=shape.x.y[27,1], xend=shape.x.y[33,1]+.7, y=shape_ymin-.17, yend=shape_ymin-0.17)+
         annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[23,1], y=shape.x.y[23,2]+.25, size=text_scale)
       }else if (data_set_to_plot=="Single_cell_seq"){
         dist_pl = dist_pl+
-          annotate("text", label=paste0(TPMs[1], " ", expression_unit), x=shape.x.y[24,1]+0.234, y=shape.x.y[31,2]-0.35, size=text_scale)+
-          annotate("segment", x=shape.x.y[24,1]-0.1, xend=shape.x.y[26,1]+0.1, y=shape.x.y[31,2]-.3, yend=shape.x.y[31,2]-.3)+
+          annotate("text", label=paste0(TPMs[1], " ", expression_unit), 
+                   x=st_bbox(shape[24,])[[1]]+(st_bbox(shape[27,])[[3]]-st_bbox(shape[24,])[[1]])/2,
+                   y=shape_ymin+0.27, size=text_scale)+
+          annotate("segment", x=st_bbox(shape[24,])[[1]], xend=st_bbox(shape[27,])[[3]], y=shape_ymin+0.2, yend=shape_ymin+0.2)+
           annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[28,1], y=shape.x.y[28,2], size=text_scale)+
           annotate("text", label=paste0(TPMs[3], "\n", expression_unit), x=shape.x.y[29,1], y=shape.x.y[29,2], size=text_scale)+
           annotate("text", label=paste0(TPMs[4], "\n", expression_unit), x=shape.x.y[30,1], y=shape.x.y[30,2], size=text_scale)+
           annotate("text", label=paste0(TPMs[5], "\n", expression_unit), x=shape.x.y[31,1], y=shape.x.y[31,2], size=text_scale)+
           annotate("text", label=paste0(TPMs[6], "\n", expression_unit), x=shape.x.y[32,1], y=shape.x.y[32,2], size=text_scale)+
-          annotate("text", label=paste0(TPMs[7], "\n", expression_unit), x=shape.x.y[33,1], y=shape.x.y[33,2], size=text_scale)+
-          annotate("text", label=paste0(TPMs[8], "\n", expression_unit), x=shape.x.y[34,1], y=shape.x.y[34,2], size=text_scale)+
+          annotate("text", label=paste0(TPMs[7], "\n", expression_unit), x=shape.x.y[34,1], y=shape.x.y[34,2], size=text_scale)+
+          annotate("text", label=paste0(TPMs[8], "\n", expression_unit), x=shape.x.y[33,1], y=shape.x.y[33,2], size=text_scale)+
           annotate("text", label=paste0(TPMs[9], "\n", expression_unit), x=shape.x.y[23,1], y=shape.x.y[23,2], size=text_scale)
+      }
+    }
+    if (display_stage_labels==FALSE){ #switch for label display
+    }else{
+      if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
+        dist_pl = dist_pl+
+          # TKV cell label
+          annotate("text", label="UAS-Tkv", x=shape.x.y[24,1]-0.24, y=shape_ymin-0.24, size=text_scale)+
+          annotate("segment", x=shape.x.y[24,1], xend=shape.x.y[24,1]-0.24, 
+                 y=st_bbox(shape$geometry[24])[[2]], yend=shape_ymin-0.17)+
+          # bamRNAi cell label
+          annotate("text", label="bam RNAi", x=shape.x.y[26,1]-0.24, y=shape_ymax+0.24, size=text_scale)+
+          annotate("segment", x=shape.x.y[26,1], xend=shape.x.y[26,1]-0.24, 
+                   y=st_bbox(shape$geometry[26])[[4]], yend=shape_ymax+0.17)+
+          # bamHSbam line label (redraws line in case)
+          annotate("text", label="bamRNAi HS-bam", x=shape.x.y[27,1]+2.34, y=shape_ymin-0.24, size=text_scale)+
+          annotate("segment", x=shape.x.y[27,1], xend=shape.x.y[33,1]+0.7, y=shape_ymin-0.17, yend=shape_ymin-0.17)+
+          # youngWT cell label 
+          annotate("text", label="young WT", x=shape.x.y[23,1]+0.24, y=shape_ymax+0.24, size=text_scale)+
+          annotate("segment", x=shape.x.y[23,1], xend=shape.x.y[23,1]+0.24, y=st_bbox(shape$geometry[23,1])[[4]], yend=shape_ymax+0.17)
+
+        
+      }else if (data_set_to_plot=="Single_cell_seq"){
+        dist_pl = dist_pl+
+          annotate("text", label="GSC/CB/2CC", 
+                   x=st_bbox(shape[24,])[[1]]+(st_bbox(shape[27,])[[3]]-st_bbox(shape[24,])[[1]])/2,
+                   y=shape_ymin+0.13, size=text_scale)+
+          annotate("segment", x=st_bbox(shape[24,])[[1]], xend=st_bbox(shape[27,])[[3]], y=shape_ymin+0.2, yend=shape_ymin+0.2)+
+          annotate("text", label="4-CC", x=shape.x.y[28,1], y=shape_ymax+0.24, size=text_scale)+
+          annotate("text", label="8-CC", x=shape.x.y[29,1], y=shape_ymin-0.24, size=text_scale)+
+          annotate("text", label="16-CC 2aI", x=shape.x.y[30,1], y=shape_ymax+0.24, size=text_scale)+
+          annotate("text", label="16-CC 2aII", x=shape.x.y[31,1], y=shape_ymin-0.24, size=text_scale)+
+          annotate("text", label="16-CC 2ab", x=shape.x.y[32,1], y=shape_ymax+0.24, size=text_scale)+
+          annotate("text", label="16-CC 2b", x=shape.x.y[34,1], y=shape_ymin-0.24, size=text_scale)+
+          annotate("text", label="16-CC 3", x=shape.x.y[33,1], y=shape_ymax+0.24, size=text_scale)+
+          annotate("text", label="ST2", x=shape.x.y[23,1], y=shape_ymin-0.24, size=text_scale)+
+          
+          annotate("segment", x=shape.x.y[28,1], xend=shape.x.y[28,1],
+                   y=st_bbox(shape$geometry[28])[[4]], yend=shape_ymax+0.17)+
+          annotate("segment", x=shape.x.y[29,1], xend=shape.x.y[29,1],
+                   y=st_bbox(shape$geometry[29])[[2]], yend=shape_ymin-0.17)+
+          annotate("segment", x=shape.x.y[30,1], xend=shape.x.y[30,1],
+                   y=st_bbox(shape$geometry[30])[[4]], yend=shape_ymax+0.17)+
+          annotate("segment", x=shape.x.y[31,1], xend=shape.x.y[31,1],
+                   y=st_bbox(shape$geometry[31])[[2]], yend=shape_ymin-0.17)+
+          annotate("segment", x=shape.x.y[32,1], xend=shape.x.y[32,1],
+                   y=st_bbox(shape$geometry[32])[[4]], yend=shape_ymax+0.17)+
+          annotate("segment", x=shape.x.y[34,1], xend=shape.x.y[34,1],
+                   y=st_bbox(shape$geometry[33])[[2]], yend=shape_ymin-0.17)+
+          annotate("segment", x=shape.x.y[33,1], xend=shape.x.y[33,1],
+                   y=st_bbox(shape$geometry[34])[[4]], yend=shape_ymax+0.17)+
+          annotate("segment", x=shape.x.y[23,1], xend=shape.x.y[23,1],
+                   y=st_bbox(shape$geometry[23])[[2]], yend=shape_ymin-0.17)
+          
       }
     }
    return(dist_pl)
