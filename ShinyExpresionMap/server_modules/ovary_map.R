@@ -4,7 +4,7 @@ data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
 #setting some variables for distPlot that must be declared outside of the server function
 FBID = data.seq$FBGN
-Symbol = data.seq$symbol
+Symbol = data.seq$Symbol
 
 pal <- c(
   "Black" = "Black",
@@ -64,10 +64,10 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       if (gene_name_format == "FBID") {
         all.colors = data.seq[data.seq$FBGN %in% gene_of_interest, names(data.seq) %in% bulk_bins]
       }else{
-        all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% bulk_bins]
+        all.colors = data.seq[data.seq$Symbol %in% gene_of_interest, names(data.seq) %in% bulk_bins]
       }
     }else if (data_set_to_plot=="Single_cell_seq_germline") {
-        all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% sc_seq_bins]
+        all.colors = data.seq[data.seq$Symbol %in% gene_of_interest, names(data.seq) %in% sc_seq_bins]
     }
     #mapping different features in shape to have proper base colors
     if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
@@ -88,6 +88,8 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       merge_plot$color[merge_plot$cell_type=="16CC_2B"] = all.colors[[7]]
       merge_plot$color[merge_plot$cell_type=="16CC_3"] = all.colors[[8]]
       merge_plot$color[merge_plot$cell_type=="ST2"] = all.colors[[9]]
+    }else if (data_set_to_plot=="Single_cell_seq_soma"){
+      
     }
 
     #plotting distplot
@@ -113,20 +115,20 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
           TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 6:9][1,]
         }
         else{
-          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 6:9][1,]
+          TPMs = data.seq[data.seq$Symbol %in% gene_of_interest, 6:9][1,]
         }
       }else if(data_set_to_plot=="Polysome_seq"){
         if (gene_name_format == "FBID") {
           TPMs = data.seq[data.seq$FBGN %in% gene_of_interest, 19:22][1,]
         }
         else{
-          TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 19:22][1,]
+          TPMs = data.seq[data.seq$Symbol %in% gene_of_interest, 19:22][1,]
         }
       }else if(data_set_to_plot=="Single_cell_seq_germline"){
         if (gene_name_format == "FBID") {
           TPMs = signif(data.seq[data.seq$FBGN %in% gene_of_interest, 2:10][1,], 2)
         }else{
-          TPMs = signif(data.seq[data.seq$symbol %in% gene_of_interest, 2:10][1,], 2)
+          TPMs = signif(data.seq[data.seq$Symbol %in% gene_of_interest, 2:10][1,], 2)
         }
       }
       #adding TPM values to the proper place on the shape

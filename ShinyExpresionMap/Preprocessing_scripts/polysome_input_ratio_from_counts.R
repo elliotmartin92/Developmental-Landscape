@@ -89,7 +89,7 @@ fbgn_to_symbol =  function(fbid){
 
 polysome_ratios_mean_wide$FBGN = as.character(polysome_ratios_mean_wide$FBGN)
 Symbol = fbgn_to_symbol(polysome_ratios_mean_wide$FBGN)[[2]]
-polysome_ratios_mean_wide$symbol = Symbol
+polysome_ratios_mean_wide$Symbol = Symbol
 
 polysome_ratios_mean_wide$TKVbin1 = cut(as.numeric(polysome_ratios_mean_wide$Mean_log2_polysome_over_input_TKV), 
                                         breaks = c(-11,-0.5,-0.2,0,0.2,0.5,11), 

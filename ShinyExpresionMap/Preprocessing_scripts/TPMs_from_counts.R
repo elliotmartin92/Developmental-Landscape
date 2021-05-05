@@ -67,7 +67,7 @@ fbgn_to_symbol =  function(fbid){
 
 tpms_wide_mean$FBGN = as.character(tpms_wide_mean$FBGN)
 Symbol = fbgn_to_symbol(tpms_wide_mean$FBGN)[[2]]
-tpms_wide_mean$symbol = Symbol
+tpms_wide_mean$Symbol = Symbol
 
 tpms_wide_mean$TKVbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_TKV_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                        labels=c("None","Very Low","Low","Med","High","Very High"))
