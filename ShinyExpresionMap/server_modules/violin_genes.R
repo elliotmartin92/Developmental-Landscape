@@ -31,7 +31,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "bam RNAi; HS-bam", 
                         "Young WT")
     
-  }else if (data_set_to_plot == "Single_cell_seq"){
+  }else if (data_set_to_plot == "Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS")
     data.seq_pared = data.seq[c(20, 2:10)] #extract columns used for plotting
     column_names = c("FBGN",
@@ -135,7 +135,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
         wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
         add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
     }
-  }else if(data_set_to_plot=="Single_cell_seq"){
+  }else if(data_set_to_plot=="Single_cell_seq_germline"){
     if(normalization == "each_gene"){
       yaxis_label = expression("log normalized expression to GSC/CB/2CC")
       selected_gene_data_norm = selected_gene_data %>% 

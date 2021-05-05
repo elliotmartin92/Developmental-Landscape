@@ -40,7 +40,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq"){
         "Young WT")
     rownames(heat.data) = data.seq %>% filter(FBGN %in% changing_genes) %>% pull(FBGN)
   
-  }else if (data_set_to_plot == "Single_cell_seq"){
+  }else if (data_set_to_plot == "Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS")
     changing_genes = readRDS("Preprocessed_data/Single_cell_seq_regulated_gene_list.RDS")
     heat.data = data.seq %>% 

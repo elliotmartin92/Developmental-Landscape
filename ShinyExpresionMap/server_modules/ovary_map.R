@@ -37,7 +37,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     }else if(data_set_to_plot=="Polysome_seq"){
       data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed TE (binned/organized)
       expression_unit = "TE"
-    }else if(data_set_to_plot=="Single_cell_seq"){
+    }else if(data_set_to_plot=="Single_cell_seq_germline"){
       data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS") #data from preprocessed SC-seq (binned/organized)
       expression_unit = "NC"
     }else{
@@ -66,7 +66,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       }else{
         all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% bulk_bins]
       }
-    }else if (data_set_to_plot=="Single_cell_seq") {
+    }else if (data_set_to_plot=="Single_cell_seq_germline") {
         all.colors = data.seq[data.seq$symbol %in% gene_of_interest, names(data.seq) %in% sc_seq_bins]
     }
     #mapping different features in shape to have proper base colors
@@ -76,7 +76,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       merge_plot$color[merge_plot$cell_type=="CB"] = all.colors[[2]]
       merge_plot$color[merge_plot$cell_type %in% cysts_stages] = all.colors[[3]]
       merge_plot$color[merge_plot$cell_type=="ST2"] = all.colors[[4]]
-    }else if (data_set_to_plot=="Single_cell_seq"){
+    }else if (data_set_to_plot=="Single_cell_seq_germline"){
       merge_plot$color[merge_plot$cell_type=="GSC"] = all.colors[[1]]
       merge_plot$color[merge_plot$cell_type=="CB"] = all.colors[[1]]
       merge_plot$color[merge_plot$cell_type=="2CC"] = all.colors[[1]]
@@ -122,7 +122,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         else{
           TPMs = data.seq[data.seq$symbol %in% gene_of_interest, 19:22][1,]
         }
-      }else if(data_set_to_plot=="Single_cell_seq"){
+      }else if(data_set_to_plot=="Single_cell_seq_germline"){
         if (gene_name_format == "FBID") {
           TPMs = signif(data.seq[data.seq$FBGN %in% gene_of_interest, 2:10][1,], 2)
         }else{
@@ -141,7 +141,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[4,1]+2.10,  y=shape_ymin-.1, size=text_scale)+
         annotate("segment", x=shape.x.y[4,1], xend=shape.x.y[10,1]+.7, y=shape_ymin-.17, yend=shape_ymin-0.17)+
         annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[12,1], y=shape.x.y[12,2]+.25, size=text_scale)
-      }else if (data_set_to_plot=="Single_cell_seq"){
+      }else if (data_set_to_plot=="Single_cell_seq_germline"){
         dist_pl = dist_pl+
           # GSC-2CC
           annotate("text", label=paste0(TPMs[1], " ", expression_unit), 
@@ -186,7 +186,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
           annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1]+0.24, y=st_bbox(shape$geometry[12,1])[[4]], yend=shape_ymax+0.17)
 
         
-      }else if (data_set_to_plot=="Single_cell_seq"){
+      }else if (data_set_to_plot=="Single_cell_seq_germline"){
         dist_pl = dist_pl+
           annotate("text", label="GSC/CB/2CC", 
                    x=st_bbox(shape[1,])[[1]]+(st_bbox(shape[4,])[[3]]-st_bbox(shape[1,])[[1]])/2,
