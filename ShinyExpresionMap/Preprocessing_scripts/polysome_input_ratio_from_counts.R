@@ -31,7 +31,7 @@ tpm = function(counts, lengths) {
   rate / sum(rate) * 1e6
 }
 
-featLens = read.table(file = "TPMs/Feature_lengths_dm6ensgene.tabular",  
+featLens = read.table(file = "Normalized_expression/Feature_lengths_dm6ensgene.tabular",  
                       header = TRUE, 
                       stringsAsFactors = FALSE)
 
@@ -79,7 +79,7 @@ polysome_ratios_mean_wide = polysome_ratios_mean %>%
                                                      Mean_log2_polysome_over_input_error,
                                                      log2MeanRatioError))
 
-saveRDS(polysome_ratios_mean_wide, file = "TPMs/Polysome_Input_ratio_and_text.RDS")
+saveRDS(polysome_ratios_mean_wide, file = "Normalized_expression/Polysome_Input_ratio_and_text.RDS")
 
 fbgn_to_symbol =  function(fbid){
   AnnotationDbi::select(org.Dm.eg.db, fbid, 

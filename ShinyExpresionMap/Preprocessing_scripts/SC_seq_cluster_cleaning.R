@@ -1,7 +1,7 @@
 library(tidyverse)
 library(openxlsx)
 
-GC_clusters = read.xlsx("TPMs/SC_seq_expression.xlsx", sheet = 1)
+GC_clusters = read.xlsx("Normalized_expression/SC_seq_expression.xlsx", sheet = 1)
 head(GC_clusters)
 names(GC_clusters)[names(GC_clusters) == "X1"] = "symbol"
 
@@ -24,7 +24,7 @@ GC_clusters %>%
   pivot_wider(id_cols = symbol, names_from = Stage, values_from = c(Expression, bin))
 head(GC_preprocessed)
 
-conversion_table = read.xlsx("TPMs/Symbol_to_FBID_table.xlsx")
+conversion_table = read.xlsx("Normalized_expression/Symbol_to_FBID_table.xlsx")
 GC_preprocessed_fbgn = left_join(x = GC_preprocessed, 
                                  y = conversion_table, 
                                  by = c("symbol"="submitted_item")) %>% 
