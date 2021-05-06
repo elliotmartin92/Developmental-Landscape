@@ -41,7 +41,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
              "bin_16-cc.3",
              "bin_St2")
   }else if(data_set_to_plot=="Single_cell_seq_soma"){
-    data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS") #data from preprocessed  somaSC-seq (binned/organized)
+    data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS") #data from preprocessed somaSC-seq (binned/organized)
     expression_unit = "NE"
     bins = c("bin_TF/CC",
              "bin_aEC",
@@ -122,6 +122,14 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
             panel.border = element_rect(fill = "transparent", colour = "transparent"),
             legend.position = "none")
     dist_pl_rmd <<- dist_pl
+    
+    # fetch parameters required for either type of label
+    if (displayTPM==TRUE | display_stage_labels==TRUE){
+      shape_centroids = st_centroid(shape)
+      shape_ymin = st_bbox(shape$geometry)[[2]]
+      shape_ymax = st_bbox(shape$geometry)[[4]]
+      shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
+    }
     if (displayTPM==FALSE){ #switch for TPM display
     }else{
       if (data_set_to_plot=="Input_seq"){
@@ -150,10 +158,6 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         }
       }
         #adding TPM values to the proper place on the shape
-        shape_centroids = st_centroid(shape)
-        shape_ymin = st_bbox(shape$geometry)[[2]]
-        shape_ymax = st_bbox(shape$geometry)[[4]]
-        shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
         if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
           dist_pl = dist_pl+
             annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[1,1], y=shape.x.y[1,2], size=text_scale)+
