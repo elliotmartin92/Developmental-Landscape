@@ -32,7 +32,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "Young WT")
     
   }else if (data_set_to_plot == "Single_cell_seq_germline"){
-    data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data.RDS")
+    data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS")
     data.seq_pared = data.seq[c(20, 2:10)] #extract columns used for plotting
     column_names = c("FBGN",
                      "GSC CB 2CC", 

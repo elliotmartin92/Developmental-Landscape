@@ -1,8 +1,8 @@
 library(sf)
 library(tidyverse)
 
-lines = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_lines_v2")
-shape = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_poly_v2")
+lines = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_lines_v3")
+shape = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_poly_v3")
 lines$cell_type = "line"
 lines$region = "line"
 lines$color = "line"
@@ -15,7 +15,7 @@ merge_plot$color = factor(merge_plot$color,
 
 dev_order = c("GSC", "CB", "2CC", "4CC", "8CC",
               "16CC_2A1", "16CC_2A2", "16CC_2AB", "16CC_2B", "16CC_3", "ST2", 
-              "CC", "cap_cells", "pre-stalk", "EC_a", "EC_c", "EC_p", "polar", "FSC", "stalk", "background", "line")
+              "TF/CC", "EC_a", "EC_c", "EC_p", "FSC", "pre-stalk", "stalk", "polar", "background", "line")
 
 shape = shape %>% arrange(match(cell_type, dev_order))
 

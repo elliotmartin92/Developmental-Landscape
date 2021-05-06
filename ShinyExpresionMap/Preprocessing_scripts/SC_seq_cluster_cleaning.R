@@ -20,10 +20,9 @@ convert_sc_symbol_to_FBGN = function(sheet_name){
     
   # save results as RDS object
   write_rds(single_cell_data_converted, 
-            paste0("ShinyExpresionMap/Preprocessed_data/preprocessed_single_cell_seq_data", sheet_name,".RDS"))
+            paste0("ShinyExpresionMap/Preprocessed_data/preprocessed_single_cell_seq_data_", sheet_name,".RDS"))
 }
 
 # apply convert_sc_symbol_to_FBGN to each sheet of single cell data
 sheets_names = getSheetNames("Normalized_expression/SC_seq_expression.xlsx")
 lapply(sheets_names, convert_sc_symbol_to_FBGN)
-
