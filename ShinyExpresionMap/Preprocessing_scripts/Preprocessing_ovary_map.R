@@ -1,8 +1,8 @@
 library(sf)
 library(tidyverse)
 
-lines = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_lines_v3")
-shape = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_poly_v3")
+lines = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_lines_v5")
+shape = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_poly_v5")
 lines$cell_type = "line"
 lines$region = "line"
 lines$color = "line"
