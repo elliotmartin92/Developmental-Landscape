@@ -1,0 +1,25 @@
+﻿dataset,plot,selection,normalization,text
+Input_seq,ovary_map,NA,NA,Plot of input_variable TPM over development.
+Input_seq,heat_map,NA,NA,Heatmap of log~2~(TPM+1) of input mRNA expression over development.
+Input_seq,violin_genes,GO_term_selection,each_gene,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(TPM+1)  normalized to expression in UAS-Tkv 
+Input_seq,violin_genes,Custom_selection,each_gene,Plot of custom gene group over development representing log~2~(TPM+1)  normalized to expression in UAS-Tkv 
+Input_seq,violin_genes,GO_term_selection,unNorm,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(TPM+1)
+Input_seq,violin_genes,Custom_selection,unNorm,Plot of custom gene group over development representing log~2~(TPM+1)
+Polysome_seq,ovary_map,NA,NA,Plot of input_variable TE over development.
+Polysome_seq,heat_map,NA,NA,Heatmap of log~2~(TE) of input mRNA expression over development.
+Polysome_seq,violin_genes,GO_term_selection,each_gene,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(TE)  normalized to expression in UAS-Tkv 
+Polysome_seq,violin_genes,Custom_selection,each_gene,Plot of custom gene group over development representing log~2~(TE)  normalized to expression in UAS-Tkv 
+Polysome_seq,violin_genes,GO_term_selection,unNorm,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(TE)
+Polysome_seq,violin_genes,Custom_selection,unNorm,Plot of custom gene group over development representing log~2~(TE)
+Single_cell_seq_germline,ovary_map,NA,NA,Plot of input_variable NE over development.
+Single_cell_seq_germline,heat_map,NA,NA,Heatmap of log~2~(NE) of input mRNA expression over development.
+Single_cell_seq_germline,violin_genes,GO_term_selection,each_gene,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(NE)  normalized to expression in the GSC/CB/2CC cluster
+Single_cell_seq_germline,violin_genes,Custom_selection,each_gene,Plot of custom gene group over development representing log~2~(NE)  normalized to expression in the GSC/CB/2CC cluster
+Single_cell_seq_germline,violin_genes,GO_term_selection,unNorm,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(NE)
+Single_cell_seq_germline,violin_genes,Custom_selection,unNorm,Plot of custom gene group over development representing log~2~(NE)
+Single_cell_seq_soma,ovary_map,NA,NA,Plot of input_variable NE .
+Single_cell_seq_soma,heat_map,NA,NA,Heatmap of log~2~(NE) of input mRNA expression in the soma.
+Single_cell_seq_soma,violin_genes,GO_term_selection,each_gene,Plot of gene expression in the GO-term input_GO_term over development representing log~2~(NE)  normalized to TBD
+Single_cell_seq_soma,violin_genes,Custom_selection,each_gene,Plot of custom gene group over development representing log~2~(NE)  normalized to TBD
+Single_cell_seq_soma,violin_genes,GO_term_selection,unNorm,Plot of gene expression in the GO-term input_GO_term in the soma representing log~2~(NE)
+Single_cell_seq_soma,violin_genes,Custom_selection,unNorm,Plot of custom gene group expression in the soma representing log~2~(NE)
