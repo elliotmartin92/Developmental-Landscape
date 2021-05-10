@@ -25,7 +25,7 @@ tpm = function(counts, lengths) {
   rate / sum(rate) * 1e6
 }
 
-featLens = read.table(file = "TPMs/Feature_lengths_dm6ensgene.tabular",  header = TRUE, stringsAsFactors = FALSE)
+featLens = read.table(file = "Normalized_expression/Feature_lengths_dm6ensgene.tabular",  header = TRUE, stringsAsFactors = FALSE)
 
 
 is_input = !is.na(str_extract(picked_names, "input"))
@@ -56,7 +56,7 @@ tpms_wide_mean = tpms_long_mean %>%
   dplyr::select(-se) %>% 
   pivot_wider(names_from = Group, values_from = c(MeanTPM, MeanTPMpmError))
 
-saveRDS(tpms_wide_mean, file = "TPMs/Mean_TPMs_and_text.RDS")
+saveRDS(tpms_wide_mean, file = "Normalized_expression/Mean_TPMs_and_text.RDS")
 
 library(org.Dm.eg.db)
 fbgn_to_symbol =  function(fbid){
@@ -67,7 +67,7 @@ fbgn_to_symbol =  function(fbid){
 
 tpms_wide_mean$FBGN = as.character(tpms_wide_mean$FBGN)
 Symbol = fbgn_to_symbol(tpms_wide_mean$FBGN)[[2]]
-tpms_wide_mean$symbol = Symbol
+tpms_wide_mean$Symbol = Symbol
 
 tpms_wide_mean$TKVbin1 = cut(as.numeric(tpms_wide_mean$MeanTPM_TKV_input), breaks = c(-1,10,100,250,1000,2500,100000), 
                        labels=c("None","Very Low","Low","Med","High","Very High"))

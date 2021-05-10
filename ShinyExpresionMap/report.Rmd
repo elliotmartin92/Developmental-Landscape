@@ -21,56 +21,49 @@ library(knitr)
 library(gginnards)
 library(captioner)
 
-if (pages_to_report == "DevProg" || pages_to_report == "all") {
+fig_nums <- captioner()
+
+if (pages_to_report == "DevProg" || pages_to_report == "all" & exists("ovary_map_dataset_plotted")) {
   distPlot_to_display = TRUE
+  
+  ovary_map_raw =
+    figure_legends_table %>%
+    filter(plot == "ovary_map") %>%
+    filter(dataset == ovary_map_dataset_plotted) %>%
+    pull(text)
+  ovary_map = str_replace(ovary_map_raw, "input_variable", input$variable)
+  fig_nums("ovary_map", ovary_map)
+  
 }else{distPlot_to_display = FALSE}
 
-if (pages_to_report == "heatmap" || pages_to_report == "all") {
+if (pages_to_report == "heatmap" || pages_to_report == "all" & exists("heat_map_dataset_plotted")) {
   heatmap_to_display = TRUE
+  
+  heatmap_legend_raw =
+    figure_legends_table %>%
+    filter(plot == "heat_map") %>%
+    filter(dataset == heat_map_dataset_plotted) %>%
+    pull(text)
+  heatmap_legend = heatmap_legend_raw
+  fig_nums("heat_map", heatmap_legend)
+  
 }else{heatmap_to_display = FALSE}
 
-if (pages_to_report == "violin" || pages_to_report == "all") {
+if (pages_to_report == "violin" || pages_to_report == "all" & exists("violin_plot_dataset_plotted")) {
   violin_to_display = TRUE
+  
+  violin_legend_raw = 
+    figure_legends_table %>% 
+    filter(plot == "violin_genes") %>% 
+    filter(dataset == violin_plot_dataset_plotted) %>% 
+    filter(selection == input$violin_geneList_option) %>% 
+    filter(normalization == input$violin_normalization_option) %>% 
+    pull(text)
+  violin_legend = str_replace(violin_legend_raw, "input_GO_term", input$GO_term)
+  fig_nums("violin_plot", violin_legend)
+  
 }else{violin_to_display = FALSE}
 
-fig_nums = captioner()
-
-if (input$violin_normalization_option == "each_gene") {
-  normaliztion_text = " normalized to expression in UAS-tkv "
-}else if (input$violin_normalization_option == "unNorm") {
-  normaliztion_text = " "
-}
-
-if(input$SeqDataset == "Input_seq"){
-  fig_nums("ovary_map", paste("Plot of", input$variable,"TPM over development."))
-  fig_nums("heat_map", "Heatmap of log~2~(TPM+1) of input mRNA expression over development.")
-  if (input$violin_geneList_option == "GO_term_selection") {
-    fig_nums("violin_plot", paste0("Plot of genes in the GO-term \"", input$GO_term,"\" over development representing log~2~(TPM+1)", normaliztion_text ,"of input mRNA"))
-  }else if(input$violin_geneList_option == "Custom_selection"){
-    fig_nums("violin_plot", paste0("Plot of log~2~(TPM+1)", normaliztion_text, "of a custom gene group over development of input mRNA expression"))
-  }
-}else if (input$SeqDataset == "Polysome_seq") {
-  fig_nums("ovary_map", paste("Plot of", input$variable,"log~2~(TE) over development."))
-  fig_nums("heat_map", "Heatmap of log~2~(TE) over development.")
-  if (input$violin_geneList_option == "GO_term_selection") {
-    fig_nums("violin_plot", paste0("Plot of log~2~(TE)", normaliztion_text, "of genes in the GO-term \"", input$GO_term, "\" over development."))
-  }else if(input$violin_geneList_option == "Custom_selection"){
-    fig_nums("violin_plot", paste0("Plot of log~2~(TE)", normaliztion_text, "of a custom gene group over development."))
-  }
-}else if (input$SeqDataset == "Single_cell_seq") {
-  if (input$violin_normalization_option == "each_gene") {
-    normaliztion_text = " normalized to expression in GSC/CB/2CC "
-  }else if (input$violin_normalization_option == "unNorm") {
-    normaliztion_text = " "
-  }
-  fig_nums("ovary_map", paste("Plot of", input$variable,"CPM over development."))
-  fig_nums("heat_map", "Heatmap of log~2~(CPM+1) of input mRNA expression over development.")
-  if (input$violin_geneList_option == "GO_term_selection") {
-    fig_nums("violin_plot", paste0("Plot of genes in the GO-term \"", input$GO_term,"\" over development representing log~2~(CPM+1)", normaliztion_text ,"of mRNA"))
-  }else if(input$violin_geneList_option == "Custom_selection"){
-    fig_nums("violin_plot", paste0("Plot of log~2~(CPM+1)", normaliztion_text, "of a custom gene group over development of mRNA expression"))
-  }
-}
 ```
 <br><br>
 
@@ -81,6 +74,7 @@ if(input$SeqDataset == "Input_seq"){
 ```{r, echo=FALSE, fig.height = 5, fig.width= 14, fig.align = "center", eval=distPlot_to_display, fig.cap=fig_nums("ovary_map")}
   ovary_map_plot
 ```
+
 `r if(distPlot_to_display){"<br><br><br><br>"}`
 
 ```{r, echo=FALSE, fig.height = 6, fig.width= 12, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map")}
