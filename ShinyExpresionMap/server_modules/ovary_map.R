@@ -73,7 +73,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
   if (graphic_to_generate == "legend") {
     #Adding separate legend so that all legend values can always be displayed
     legend.data = data.frame(Name = names(pal), Color = pal)
-    legend.data.cull = legend.data[-1,]
+    legend.data.cull = legend.data[-c(1,8,9), ]
     legend.data.cull$Name = factor(legend.data.cull$Name, 
                                    levels = c("None", "Very Low", "Low", "Med", "High", "Very High")) 
     
@@ -162,15 +162,15 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
         }
       }else if(data_set_to_plot=="Single_cell_seq_germline"){
         if (gene_name_format == "FBID") {
-          TPMs = signif(data.seq[data.seq$FBGN %in% gene_of_interest, 2:10][1,], 2)
+          TPMs = signif(data.seq[data.seq$FBGN %in% gene_of_interest, 3:11][1,], 2)
         }else{
-          TPMs = signif(data.seq[data.seq$Symbol %in% gene_of_interest, 2:10][1,], 2)
+          TPMs = signif(data.seq[data.seq$Symbol %in% gene_of_interest, 3:11][1,], 2)
         }
       }else if(data_set_to_plot=="Single_cell_seq_soma"){
         if (gene_name_format == "FBID") {
-          TPMs = signif(data.seq[data.seq$FBGN %in% gene_of_interest, 2:9][1,], 2)
+          TPMs = signif(data.seq[data.seq$FBGN %in% gene_of_interest, 3:10][1,], 2)
         }else{
-          TPMs = signif(data.seq[data.seq$Symbol %in% gene_of_interest, 2:9][1,], 2)
+          TPMs = signif(data.seq[data.seq$Symbol %in% gene_of_interest, 3:10][1,], 2)
         }
       }
         #adding TPM values to the proper place on the shape
@@ -356,6 +356,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
                        yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.2)
           }
         }
+        .GlobalEnv$ovary_map_dataset_plotted = data_set_to_plot
         return(dist_pl)
       }else{
         message("graphic_to_generate should be of type 'map', or 'legend'")

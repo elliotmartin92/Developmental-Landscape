@@ -16,7 +16,7 @@ convert_sc_symbol_to_FBGN = function(sheet_name){
     mutate(bin = cut(as.numeric(Expression), 
                      breaks = c(-1,0.05,0.25,0.5,2.5,25,200), 
                      labels=c("None","Very Low","Low","Med","High","Very High"))) %>% 
-    pivot_wider(id_cols = Symbol, names_from = Stage, values_from = c(Expression, bin))
+    pivot_wider(id_cols = c(FBGN, Symbol), names_from = Stage, values_from = c(Expression, bin))
     
   # save results as RDS object
   write_rds(single_cell_data_converted, 

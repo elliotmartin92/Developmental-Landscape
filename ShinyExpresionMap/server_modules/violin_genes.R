@@ -35,7 +35,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     
   }else if (data_set_to_plot == "Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS")
-    data.seq_pared = data.seq[c(1, 2:10)] #extract columns used for plotting
+    data.seq_pared = data.seq[c(1, 3:11)] #extract columns used for plotting
     column_names = c("FBGN",
                      "GSC CB 2CC", 
                      "4CC", 
@@ -58,7 +58,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "St2")
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS")
-    data.seq_pared = data.seq[c(1, 2:9)] #extract columns used for plotting
+    data.seq_pared = data.seq[c(1, 3:10)] #extract columns used for plotting
     
     column_names = c("FBGN",
                      "TF/CC", 
@@ -236,5 +236,6 @@ gene_violin = function(data_set_to_plot="Input_seq",
       geom_point(position = position_jitter(seed = 1, width = 0.2), color="grey60")+
       theme_white()
       # geom_line(mapping = aes(group = FBGN))
+    .GlobalEnv$violin_plot_dataset_plotted = data_set_to_plot
     return(gene_violin_plot)
 }

@@ -23,6 +23,7 @@ ps = .libPaths()
 data_sets <- c("FBID", "Symbol")
 GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
 GO_term_description <<- GO_term_tib$description
+figure_legends_table <<- read_csv("Figure_legends.csv")
 
 ####Shiny Server variable initialization and housekeeping####
 #server initialization and check to ensure server shuts down cleanly on tab closure

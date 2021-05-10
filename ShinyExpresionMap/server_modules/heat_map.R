@@ -11,5 +11,6 @@ DE_heatmap = function(data_set_to_plot="Input_seq"){
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     heatmap_local = readRDS("Preprocessed_data/Single_cell_seq_soma_plotly_heatmap.RDS")
   }
+  .GlobalEnv$heat_map_dataset_plotted = data_set_to_plot
   heat_map_global <<- heatmap_local
 }
