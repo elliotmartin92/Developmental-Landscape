@@ -25,7 +25,7 @@ GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
 GO_term_description <<- GO_term_tib$description
 figure_legends_table <<- read_csv("Figure_legends.csv")
 
-####Shiny Server variable initialization and housekeeping####
+####Shiny Server gene_of_interest initialization and housekeeping####
 #server initialization and check to ensure server shuts down cleanly on tab closure
 shinyServer(function(input, output, session) {
   session$onSessionEnded(function(){stopApp()})
@@ -74,7 +74,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$dataset, {
     # Get the data set with the appropriate name
     dat <- get(input$dataset)
-    updateSelectizeInput(session = session, inputId = "variable", selected = "RpS19b",
+    updateSelectizeInput(session = session, inputId = "gene_of_interest", selected = "RpS19b",
                     label = "Gene of Interest", choices = dat, server = TRUE)
   })
   observe({
@@ -92,7 +92,7 @@ shinyServer(function(input, output, session) {
   
 ####Plotting ovary_map####
   output$ovary_map <- renderPlot({
-    if(is.null(input$variable) | is.null(input$dataset)) {
+    if(is.null(input$gene_of_interest) | is.null(input$dataset)) {
       return()
     }
     #scale text off of tab size
@@ -103,7 +103,7 @@ shinyServer(function(input, output, session) {
                                  gene_name_format = input$dataset, 
                                  displayTPM = input$displayTPM, 
                                  display_stage_labels = input$display_stage_labels,
-                                 gene_of_interest = input$variable, 
+                                 gene_of_interest = input$gene_of_interest, 
                                  text_scale = text_scale, 
                                  graphic_to_generate = "map")
     ovary_map_plot

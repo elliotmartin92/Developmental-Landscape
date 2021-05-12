@@ -31,7 +31,7 @@ if (pages_to_report == "DevProg" || pages_to_report == "all" & exists("ovary_map
     filter(plot == "ovary_map") %>%
     filter(dataset == ovary_map_dataset_plotted) %>%
     pull(text)
-  ovary_map = str_replace(ovary_map_raw, "input_variable", input$variable)
+  ovary_map = str_replace(ovary_map_raw, "input_gene_of_interest", input$gene_of_interest)
   fig_nums("ovary_map", ovary_map)
   
 }else{distPlot_to_display = FALSE}
