@@ -57,8 +57,14 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "16CC 3",
                         "St2")
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
-    data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS")
-    data.seq_pared = data.seq[c(1, 3:10)] #extract columns used for plotting
+    if (normalization == "each_gene") {
+      data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS")
+      data.seq_pared = data.seq[c(1, 3:10)] #extract columns used for plotting
+    }else if (data_set_to_plot == "unNorm") {
+      data.seq = readRDS("Preprocessed_data/single_cell_seq_fold_changes_germarium_soma.RDS")
+      data.seq_pared = data.seq[-1]
+    }
+
     
     column_names = c("FBGN",
                      "TF/CC", 
@@ -209,7 +215,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                   "xmax" = 1:length(genotype_levels))
       
     }else if(normalization == "unNorm"){
-      yaxis_label = expression("log normalized expression")
+      yaxis_label = expression("Relative log fold change")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::ungroup() %>% 
         dplyr::mutate(Norm_expression = Mean_expression)

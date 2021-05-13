@@ -65,7 +65,12 @@ ui = dashboardPage(skin = "purple",
               fluidRow(
                 box(
                   width = 12,
-                  withSpinner(plotlyOutput("heatPlot", width = "auto"))))),
+                  withSpinner(plotlyOutput("heatPlot", width = "auto"))),
+                box(
+                  title = "Controls",
+                  checkboxInput("display_heatmap_row_labs", "Display Row Labels", FALSE),
+                    )
+                )),
       
       # third tab content
       tabItem(tabName = "violin",

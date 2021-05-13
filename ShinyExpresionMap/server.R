@@ -118,7 +118,7 @@ shinyServer(function(input, output, session) {
 #### Plotting of heatmap ####
   output$heatPlot <- renderPlotly({
     source("server_modules/heat_map.R")
-    DE_heatmap(data_set_to_plot = input$SeqDataset)
+    DE_heatmap(data_set_to_plot = input$SeqDataset, row_labels = input$display_heatmap_row_labs)
     heat_map_global
   })
 
