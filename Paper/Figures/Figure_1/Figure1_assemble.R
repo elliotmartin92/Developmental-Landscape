@@ -2,11 +2,18 @@ library(magick)
 library(patchwork)
 
 image_panel = function(path, colors_to_return, genotype_annotation, main_annotation, red_annotation, green_annotation, blue_annotation) {
-  rgb_image_raw = image_read(path)
-  test = image_ggplot(rgb_image_raw)
-  test
-
-  rgb_image = image_scale(rgb_image_raw, "29.38778988028459%")
+  working_dir = gsub("\\/", "\\\\", getwd())
+  win_path = gsub("\\/", "\\\\", path)
+  system(command = cat("e: & magick convert -units PixelsPerInch", win_path, "-density 245", working_dir, "\\tmp.png"))
+  rgb_image_raw = image_read(tmp.png)
+  rm("tmp.png")
+  image_raw_greyscales = lapply(colors_to_return, function(x) {image_separate(rgb_image_raw, x)})
+  
+  auto_annotation_grey = function(color_to_annotate, greyscale_image, annotation){
+    greyscale_annotated = image_annotate(image_red, text = annotation, gravity = "northeast", 
+                                         color = "white", size = 12, font = "Helvetica")
+    return(greyscale_annotated)
+  }
   
   if ("red" %in% colors_to_return) {
     image_red = image_separate(rps19b_protein_scale)[1]
@@ -44,7 +51,7 @@ image_panel = function(path, colors_to_return, genotype_annotation, main_annotat
   return(test)
 }
 
-image_panel(path = "Paper/Figures/Figure 1/Control.Rps19b-GFP.40x.4_s3_5.tif", 
+image_panel(path = "E:/Documents/Developmental-Landscape/Paper/Figures/Figure 1/Control.Rps19b-GFP.40x.4_s3_5.tif", 
             colors_to_return = c("red", "green", "blue"), 
             genotype_annotation = "RpS19b::GFP",
             red_annotation = "1B1", green_annotation = "RpS19 ", blue_annotation = "Vasa")
