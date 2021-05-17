@@ -1,11 +1,28 @@
 ---
-title: "Ovary_app_panels"
-author: "Elliot Martin"
-date: "5/13/2021"
 output: pdf_document
+geometry: margin=0in
+
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = 'pdf')
 ```
 
+```{r FigA, echo=FALSE, message=FALSE, fig.width=(3*(2.0694+0.2297)), fig.height=2*(1.1837+0.1012), fig.align='left'}
+source("../../../Paper/Helper_functions/image_panel.R")
+
+FigA = image_panel(path = "../../../Paper/Figures/Figure_1/Control.Rps19b-GFP.40x.4_s3_5.tif", 
+            colors_to_return = c("red", "blue"), 
+            genotype_annotation = "RpS19b::GFP",
+            red_annotation = "1B1", blue_annotation = "Vasa ",
+            label_letters = c("A", "A'", "A''"))
+
+FigB = image_panel(path = "../../../Paper/Figures/Figure_1/Control.Rps19b-GFP.40x.4_s3_5.tif", 
+            colors_to_return = c("red", "blue"), 
+            genotype_annotation = "RpS19b::GFP",
+            red_annotation = "1B1", blue_annotation = "Vasa ",
+            label_letters = c("B", "B'", "B''"))
+FigA/FigB
+# ggsave(filename = "FigA.pdf", FigA, width = 2*(3*(2.0694+0.026)), height = (1.1596+0.026))
+
+```
