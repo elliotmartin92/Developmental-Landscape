@@ -1,5 +1,6 @@
 library(magick)
 library(patchwork)
+library(multipanelfigure)
 
 image_panel = function(path, colors_to_return, genotype_annotation, main_annotation, red_annotation, green_annotation, blue_annotation) {
   working_dir = gsub("\\/", "\\\\", getwd())
