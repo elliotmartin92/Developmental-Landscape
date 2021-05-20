@@ -1,5 +1,5 @@
 library(shiny)
-library(shinyWidgets)
+# library(shinyWidgets)
 library(dtplyr)
 library(tidyverse)
 library(heatmaply)
@@ -15,7 +15,7 @@ library(quanteda)
 library(ggpubr)
 library(rstatix)
 library(Cairo)
-source("server_modules/ovary_map.R")
+# source("server_modules/ovary_map.R")
 source("server_modules/ggplotWhiteTheme.R")
 options(shiny.usecairo=T)
 
@@ -33,21 +33,25 @@ shinyServer(function(input, output, session) {
   # implements logic for tutorial button
   steps <- reactive(
     data.frame(
-      element=c(".view_DatasetTab", 
-                ".view_DevProg", 
-                ".view_heatmap",
-                ".view_violin",
-                ".view_report"),
+      element=c(
+        ".view_Cartoon", 
+        ".view_DatasetTab", 
+        ".view_DevProg", 
+        ".view_heatmap",
+        ".view_violin",
+        ".view_report"),
       intro=c(
-        "Select a seq dataset.",
-        "Select a vizualiation/tool: Developmental Progression",
-        "Select a vizualiation/tool: Heatmap",
-        "Select a vizualiation/tool: Gene Groups",
-        "Create figure(s) from your vizualization"
+        "View a color-coded cartoon illustrating early oogenesis stages",
+        "You can select a seq dataset",
+        "You can view several vizualiations/tools such as: Developmental Progression",
+        "Heatmaps",
+        "Or Gene Groups",
+        "You can download vizualizations you've made using the report tool"
       ),
-      position=c("auto", "auto", "auto", "auto", "auto")
+      position=c("auto", "auto", "auto", "auto", "auto", "auto")
     )
   )
+  
   # observes help button press, initiates tutorial on press
   observeEvent(input$help_btn,
                introjs(session, options = list(steps=steps(), "nextLabel"="Next", "nextToDone"="true")))
@@ -85,6 +89,11 @@ shinyServer(function(input, output, session) {
       shinyjs::show("Gene_interest_list")
       shinyjs::hide("GO_term")
     }
+    if (input$tabs == "DevProg") {
+      shinyjs::show("cartoon_toggle")
+    } else {
+      shinyjs::hide("cartoon_toggle")
+    }
   })
   # Output the data as a table for GO selection
   updateSelectizeInput(session = session, inputId = "GO_term", selected = "large ribosomal subunit",
@@ -92,27 +101,41 @@ shinyServer(function(input, output, session) {
   
 ####Plotting ovary_map####
   output$ovary_map <- renderPlot({
-    if(is.null(input$gene_of_interest) | is.null(input$dataset)) {
-      return()
-    }
     #scale text off of tab size
     plotwidth <- session$clientData[["output_ovary_map_width"]]
     text_scale = plotwidth/375
     
-    ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
-                                 gene_name_format = input$dataset, 
-                                 displayTPM = input$displayTPM, 
-                                 display_stage_labels = input$display_stage_labels,
-                                 gene_of_interest = input$gene_of_interest, 
-                                 text_scale = text_scale, 
-                                 graphic_to_generate = "map")
-    ovary_map_plot
-  })
+    if (input$cartoon_toggle == FALSE) {
+      source("server_modules/ovary_map_cartoon.R")
+      cartoon_toggle_global <<- FALSE
+        ovary_map_plot <<- ovary_map_cartoon(text_scale = text_scale)
+        ovary_map_plot
+    }else{
+      source("server_modules/ovary_map.R")
+      cartoon_toggle_global <<- TRUE
+      if(is.null(input$gene_of_interest) | is.null(input$dataset)) {
+        return()
+      }
+      ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
+                                   gene_name_format = input$dataset, 
+                                   displayTPM = input$displayTPM, 
+                                   display_stage_labels = input$display_stage_labels,
+                                   gene_of_interest = input$gene_of_interest, 
+                                   text_scale = text_scale, 
+                                   graphic_to_generate = "map")
+      ovary_map_plot
+    }
+  }, height = function() { session$clientData$output_ovary_map_width*0.3} #sets aspect ratio of plot, in conjuction width=auto in UI
+  )
   
-  #Adding separate legend so that all legend values can always be displayed
+  # Dont render legend in cartoon view
   output$legend <- renderPlot({
-    ovary_map_legend <<- ovary_map(graphic_to_generate = "legend")
-    ovary_map_legend
+    if (input$cartoon_toggle == FALSE) {
+    # Adding separate legend so that all legend values can always be displayed
+    }else{
+      ovary_map_legend <<- ovary_map(graphic_to_generate = "legend")
+      ovary_map_legend
+    }
   })
   
 #### Plotting of heatmap ####

@@ -23,3 +23,4 @@ Single_cell_seq_soma,violin_genes,GO_term_selection,each_gene,Plot of gene expre
 Single_cell_seq_soma,violin_genes,Custom_selection,each_gene,Plot of custom gene group over development representing log~2~(NE)  normalized to TBD
 Single_cell_seq_soma,violin_genes,GO_term_selection,unNorm,Plot of gene expression in the GO-term input_GO_term in the soma representing log~2~(NE)
 Single_cell_seq_soma,violin_genes,Custom_selection,unNorm,Plot of custom gene group expression in the soma representing log~2~(NE)
+Cartoon,ovary_map,NA,NA,Cartoon of germarium illustrating early development. 

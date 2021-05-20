@@ -1,5 +1,6 @@
 library(shinycssloaders)
 library(shinydashboard)
+library(shinyWidgets)
 library(plotly)
 library(shinyjs)
 library(rintrojs)
@@ -15,13 +16,16 @@ ui = dashboardPage(skin = "purple",
   dashboardSidebar(
     introjsUI(),
     sidebarMenu(id = "tabs",
+                prettyToggle(inputId = "cartoon_toggle", label_on = "Display Cartoon", label_off = "Display Seq Data", value = TRUE,
+                             shape = "round", fill = FALSE, outline = FALSE, icon_on = icon("fas fa-toggle-on"), icon_off = icon("fas fa-toggle-off"),
+                             animation = "smooth") %>% add_class("view_Cartoon"),
       menuItem("Select a dataset", icon = icon("fas fa-table"), tabName = "DatasetTab", startExpanded = TRUE,
               # Input directly under menuItem
-              radioButtons("SeqDataset", "View dataset:",
+              awesomeRadio("SeqDataset", "View dataset:",
                 choices = list("Input mRNAseq" = "Input_seq", 
                                "Polysome-seq"= "Polysome_seq",
-                               "Single Cell-seq: Germline (Slaidina 2021)"= "Single_cell_seq_germline",
-                               "Single Cell-seq: Soma (Slaidina 2021)"= "Single_cell_seq_soma"), 
+                               "Single Cell-seq: Germline"= "Single_cell_seq_germline",
+                               "Single Cell-seq: Soma"= "Single_cell_seq_soma"), 
                 selected = "Input_seq",
                 width = '98%')) %>% add_class("view_DatasetTab"), 
       menuItem("Developmental Progression", tabName = "DevProg", icon = icon("dashboard")) %>% 
@@ -51,7 +55,7 @@ ui = dashboardPage(skin = "purple",
                 box(
                   width = 12,
                   plotOutput("legend", height = "40px"),
-                  withSpinner(plotOutput("ovary_map", width = "auto"))),
+                  withSpinner(plotOutput("ovary_map", height = "auto"))),
                 box(
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),

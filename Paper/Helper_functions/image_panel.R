@@ -2,20 +2,19 @@ library(magick)
 library(ggplot2)
 library(cowplot)
 library(multipanelfigure)
+library(extrafont)
+font_import(paths = c("C:/Users/Elliot/AppData/Local/Microsoft/Windows/Fonts/"), prompt = F)
 
 image_panel = function(path, colors_to_return, genotype_annotation,
                        red_annotation=NA, green_annotation=NA, blue_annotation=NA, label_letters) {
   
   greyscale_annotate = function(greyscale, color_annotation, label_letters){
-    grey_annotated = image_annotate(greyscale, text = color_annotation, gravity = "northeast", 
-                                    color = "white", size = (12*3.402778), font = "Helvetica")
-    grey_annotated_letter = image_annotate(grey_annotated, text = label_letters, gravity = "northwest", 
-                                           location = "+5", color = "white", size = (12*3.402778), font = "Helvetica")
-    # image_write(grey_annotated_letter, path = "temp_ano.tif", format = "tiff")
-    # image_gg = "temp_ano.tif"
-    gg = ggdraw() + draw_image(grey_annotated_letter, scale = 1)+
-      theme(plot.margin = unit(c(0, 0, 0, 0), units = "in"), aspect.ratio = (1.1837)/(2.0694))
-    # rm("temp_ano.tif")
+    gg = ggdraw() + draw_image(greyscale, scale = 1)+
+      theme(plot.margin = unit(c(0, 0, 0, 0), units = "in"))+
+      annotate(geom = "text",  x = 0.98, y = 0.96, hjust = 1, vjust = 1,
+               label = color_annotation, color = "white", family = "Helvetica", size = 12/.pt)+
+      annotate(geom = "text", x = 0.02, y = 0.96, hjust = 0, vjust = 1,
+               label = label_letters, color = "white", family = "Helvetica", size = 12/.pt)
     return(gg)
   }
   
@@ -39,55 +38,62 @@ image_panel = function(path, colors_to_return, genotype_annotation,
                   SIMPLIFY = FALSE, USE.NAMES = T)
   
   annotation_spacer = 0
-  image_ano = rgb_image_raw
+  # image_ano = rgb_image_raw
+  image_ano = ggdraw() + draw_image(rgb_image_raw, scale = 1)+
+    theme(plot.margin = unit(c(0, 0, 0, 0), units = "in"))
+  
   if (!is.na(red_annotation)) {
-    image_ano = image_annotate(image_ano, text = red_annotation, gravity = "northeast", 
-                               color = "#ED1C24", size = 12*3.402778, font = "Helvetica",
-                               location = paste0("+", annotation_spacer))
-    annotation_spacer = annotation_spacer + strwidth(red_annotation , units = "inches", 
-                                                     family = "Helvetica", ps = par(ps = 12*3.402778))*72
+    image_ano = image_ano +
+      annotate(geom = "text",  x = 0.98, y = 0.96, hjust = 1, vjust = 1,
+               label = red_annotation, color = "#ED1C24", family = "Helvetica", size = 12/.pt)
+    # image_ano = image_annotate(image_ano, text = red_annotation, gravity = "northeast", 
+    #                            color = "#ED1C24", size = 12*3.402778, font = "Helvetica",
+    #                            location = paste0("+", annotation_spacer))
+    annotation_spacer = annotation_spacer + strwidth(paste0(red_annotation, " ") , units = "inches", family = "Helvetica")/2.0694
     
   }
   if (!is.na(green_annotation)) {
-    image_ano = image_annotate(image_ano, text = green_annotation, gravity = "northeast", 
-                               color = "#00A651", size = 12*3.402778, font = "Helvetica",
-                               location = paste0("+", annotation_spacer))
-    annotation_spacer = annotation_spacer + strwidth(green_annotation , units = "inches", 
-                                                     family = "Helvetica", ps = par(ps = 12*3.402778))*72
+    image_ano = image_ano +
+      annotate(geom = "text", x = 0.98-annotation_spacer, y = 0.96, hjust = 1, vjust = 1, 
+               label = green_annotation, color = "#00A651", family = "Helvetica", size = 12/.pt)
+    annotation_spacer = annotation_spacer + strwidth(paste0(green_annotation, " ") , units = "inches", 
+                                                     family = "Helvetica")/2.0694
   }
   if (!is.na(blue_annotation)) {
-    image_ano = image_annotate(image_ano, text = blue_annotation, gravity = "northeast", 
-                               color = "#00AEEF", size = 12*3.402778, font = "Helvetica",
-                               location = paste0("+", annotation_spacer))
+    image_ano = image_ano +
+      annotate(geom = "text", x = 0.98-annotation_spacer, y = 0.96, hjust = 1, vjust = 1, 
+               label = blue_annotation, color = "#1C75BC", family = "Helvetica", size = 12/.pt)
   }
   
-  image_fully_ano = image_annotate(image_ano, text = genotype_annotation, gravity = "southwest", 
-                                   color = "white", size = 12*3.402778, font = "Helvetica") %>% 
-    image_annotate(text = label_letters[[1]], gravity = "northwest", color = "white", 
-                   size = 12*3.402778, font = "Helvetica", location = "+5")
+  # image_fully_ano = image_annotate(image_ano, text = genotype_annotation, gravity = "southwest", 
+  #                                  color = "white", size = 12*3.402778, font = "Helvetica") %>% 
+  #   image_annotate(text = label_letters[[1]], gravity = "northwest", color = "white", 
+  #                  size = 12*3.402778, font = "Helvetica", location = "0")
   
-  image_write(image_fully_ano, path = "temp_image_ano.tif", format = "tiff")
-
-  image_ano_gg = "temp_image_ano.tif"
+  color_gg = image_ano+
+    annotate(geom = "text", x = 0.02, y = 0.96, hjust = 0, vjust = 1, 
+             label = label_letters[[1]], color = "white", family = "Helvetica", size = 12/.pt)+
+    annotate(geom = "text", x = 0.02, y = 0.04, hjust = 0, vjust = 0, 
+             label = genotype_annotation, color = "white", family = "Helvetica", size = 12/.pt)
   
-  color_gg = ggdraw() + draw_image(image_fully_ano, scale = 1)+
-    theme(plot.margin = unit(c(0, 0, 0, 0), units = "in"), aspect.ratio = (1.1837)/(2.0694))
+  color_gg
   all_gg$color = color_gg
   names(all_gg) = c(colors_to_return, "color")
   image_order_vector = c("color", colors_to_return)
   all_gg_ordered = all_gg[order(factor(names(all_gg), levels = image_order_vector))]
 
+  options("multipanelfigure.defaultdpi"= 245) 
+  
   figure = multi_panel_figure(
     width = c(2.0694, 2.0694, 2.0694),
-    height = c(1.1837), rows = 1, row_spacing = 0, column_spacing = 0.025, unit = "in")
+    height = c(1.1837), rows = 1, row_spacing = 0, column_spacing = 0.025, unit = "in", panel_label_type = "none")
   
   figure = figure %>% 
-    fill_panel(all_gg_ordered[[1]], label = "", scaling = "none", panel_clip = "on") %>% 
-    fill_panel(all_gg_ordered[[2]], label = "", scaling = "none", panel_clip = "on") %>% 
-    fill_panel(all_gg_ordered[[3]], label = "", scaling = "none", panel_clip = "on")
+    fill_panel(all_gg_ordered[[1]], label = "", scaling = "fit", panel_clip = "off") %>% 
+    fill_panel(all_gg_ordered[[2]], label = "", scaling = "fit", panel_clip = "off") %>% 
+    fill_panel(all_gg_ordered[[3]], label = "", scaling = "fit", panel_clip = "off")
   figure
   
-  assembled_images = plot_grid(plotlist = all_gg_ordered, nrow = 1) #+theme(plot.margin = unit(c(0, 0, 0, 0), units = "in"))
   return(figure)
   
 }

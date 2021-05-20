@@ -25,16 +25,29 @@ fig_nums <- captioner()
 
 if (pages_to_report == "DevProg" || pages_to_report == "all" & exists("ovary_map_dataset_plotted")) {
   distPlot_to_display = TRUE
-  
-  ovary_map_raw =
-    figure_legends_table %>%
-    filter(plot == "ovary_map") %>%
-    filter(dataset == ovary_map_dataset_plotted) %>%
-    pull(text)
-  ovary_map = str_replace(ovary_map_raw, "input_gene_of_interest", input$gene_of_interest)
-  fig_nums("ovary_map", ovary_map)
-  
-}else{distPlot_to_display = FALSE}
+  if (input$cartoon_toggle == FALSE) {
+    distPlot_legend_to_display = FALSE
+    ovary_map_text_raw =
+      figure_legends_table %>%
+      filter(plot == "ovary_map") %>%
+      filter(dataset == "Cartoon") %>%
+      pull(text)
+    ovary_map_text = ovary_map_text_raw
+    fig_nums("ovary_map", ovary_map_text)
+  }else{
+    distPlot_legend_to_display = TRUE
+    ovary_map_text_raw =
+      figure_legends_table %>%
+      filter(plot == "ovary_map") %>%
+      filter(dataset == ovary_map_dataset_plotted) %>%
+      pull(text)
+    ovary_map_text = str_replace(ovary_map_text_raw, "input_gene_of_interest", input$gene_of_interest)
+    fig_nums("ovary_map", ovary_map_text)
+  }
+}else{
+  distPlot_legend_to_display = FALSE
+  distPlot_to_display = FALSE
+}
 
 if (pages_to_report == "heatmap" || pages_to_report == "all" & exists("heat_map_dataset_plotted")) {
   heatmap_to_display = TRUE
@@ -67,7 +80,7 @@ if (pages_to_report == "violin" || pages_to_report == "all" & exists("violin_plo
 ```
 <br><br>
 
-```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center", eval=distPlot_to_display}
+```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center", eval=distPlot_legend_to_display}
   ovary_map_legend
 ```
 
@@ -77,7 +90,7 @@ if (pages_to_report == "violin" || pages_to_report == "all" & exists("violin_plo
 
 `r if(distPlot_to_display){"<br><br><br><br>"}`
 
-```{r, echo=FALSE, fig.height = 6, fig.width= 12, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map")}
+```{r, echo=FALSE, fig.height = 6, fig.width= 6, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map")}
   heat_map_global
 ```
 <br><br><br><br>
