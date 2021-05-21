@@ -164,7 +164,7 @@ output$violinPlot = renderPlot({
   )
   
   plotwidth = round(session$clientData[["output_violinPlot_width"]], -2)
-  text_scale_violin = plotwidth/80
+  text_scale_violin = plotwidth/60
   assign("input", input, envir = shinyEnv)
   assign("violinPlot_SeqDataset", input$SeqDataset, envir = shinyEnv)
   gene_violin_plot_global <<- gene_violin(data_set_to_plot = input$SeqDataset,
@@ -174,7 +174,7 @@ output$violinPlot = renderPlot({
                                           normalization = input$violin_normalization_option,
                                           text_scale = text_scale_violin)
   gene_violin_plot_global
-})
+}, height = function() { round(session$clientData$output_violinPlot_width, -2)*0.33},)
   
   # report function calls report.Rmd to knit an rmarkdown file to save data analysis
   output$report <- downloadHandler(

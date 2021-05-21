@@ -87,7 +87,7 @@ ui = dashboardPage(skin = "purple",
               fluidRow(
                 box(
                   width = 12,
-                  withSpinner(plotOutput("violinPlot", width = "auto"))),
+                  withSpinner(plotOutput("violinPlot", height = "auto"))),
               box(
                 title = "Controls",
                 awesomeRadio("violin_geneList_option", label = "Genes by:",
