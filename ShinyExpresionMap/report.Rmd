@@ -12,8 +12,6 @@ header-includes:
   } {
   \endorigfigure
   }
-params:
-  n: NA
 ---
 
 ```{r setup, echo=FALSE, include=FALSE}
@@ -22,18 +20,17 @@ library(gginnards)
 library(captioner)
 
 fig_nums <- captioner()
-
 if (pages_to_report == "DevProg" || pages_to_report == "all" & exists("ovary_map_dataset_plotted")) {
   distPlot_to_display = TRUE
   if (input$cartoon_toggle == FALSE) {
-    distPlot_legend_to_display = FALSE
+    distPlot_cartoon_to_display = TRUE
     ovary_map_text_raw =
       figure_legends_table %>%
       filter(plot == "ovary_map") %>%
       filter(dataset == "Cartoon") %>%
       pull(text)
     ovary_map_text = ovary_map_text_raw
-    fig_nums("ovary_map", ovary_map_text)
+    fig_nums("ovary_map_figure_legend", ovary_map_text)
   }else{
     distPlot_legend_to_display = TRUE
     ovary_map_text_raw =
@@ -42,7 +39,7 @@ if (pages_to_report == "DevProg" || pages_to_report == "all" & exists("ovary_map
       filter(dataset == ovary_map_dataset_plotted) %>%
       pull(text)
     ovary_map_text = str_replace(ovary_map_text_raw, "input_gene_of_interest", input$gene_of_interest)
-    fig_nums("ovary_map", ovary_map_text)
+    fig_nums("ovary_map_figure_legend", ovary_map_text)
   }
 }else{
   distPlot_legend_to_display = FALSE
@@ -80,21 +77,41 @@ if (pages_to_report == "violin" || pages_to_report == "all" & exists("violin_plo
 ```
 <br><br>
 
-```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center", eval=distPlot_legend_to_display}
-  ovary_map_legend
+
+```{r echo=FALSE, fig.align="center", fig.cap=fig_nums("ovary_map_figure_legend"), fig.height=5, fig.width=14, message=FALSE, warning=FALSE, eval=distPlot_cartoon_to_display}
+ovary_cartoon_plot
 ```
 
-```{r, echo=FALSE, fig.height = 5, fig.width= 14, fig.align = "center", eval=distPlot_to_display, fig.cap=fig_nums("ovary_map")}
-  ovary_map_plot
+```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center", eval=!distPlot_cartoon_to_display}
+ovary_map_legend
+```
+
+```{r echo=FALSE, fig.align="center", fig.cap=fig_nums("ovary_map_figure_legend"), fig.height=5, fig.width=14, message=FALSE, warning=FALSE,eval=!distPlot_cartoon_to_display}
+source("server_modules/ovary_map.R")
+ovary_map(data_set_to_plot = ovary_map_SeqDataset,
+          gene_name_format = input$dataset, 
+          displayTPM = input$displayTPM, 
+          display_stage_labels = input$display_stage_labels,
+          gene_of_interest = input$gene_of_interest, 
+          text_scale = 12/ggplot2::.pt, 
+          graphic_to_generate = "map")
+
 ```
 
 `r if(distPlot_to_display){"<br><br><br><br>"}`
 
 ```{r, echo=FALSE, fig.height = 6, fig.width= 6, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map")}
-  heat_map_global
+heat_map_global
 ```
 <br><br><br><br>
 ```{r, echo=FALSE, fig.height = 4, fig.width= 12, fig.align = "center", eval=violin_to_display, fig.cap=fig_nums("violin_plot")}
-  gene_violin_plot_global
+# gene_violin_plot_global
+source("server_modules/violin_genes.R")
+gene_violin(data_set_to_plot = violinPlot_SeqDataset,
+            genes_by_GO = input$violin_geneList_option,
+            GO_term = input$GO_term,
+            gene_of_interest = input$Gene_interest_list,
+            normalization = input$violin_normalization_option,
+            text_scale = 12)
 ```
 

@@ -79,12 +79,12 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
     
     dist_leg = ggplot(legend.data.cull)+
       geom_area(aes(x=1, y=1, fill=Name))+
-      scale_fill_manual(values = pal, name="Binned\nExpression")+
+      scale_fill_manual(values = pal, name="Binned Expression")+
       theme_void()+
       guides(fill = guide_legend(nrow = 1))+
       theme(legend.position = "top",
-            legend.text = element_text(size=13),
-            legend.title = element_text(size=16))
+            legend.text = element_text(size=text_scale),
+            legend.title = element_text(size=text_scale*1.2))
     return(dist_leg)
   }else if (graphic_to_generate == "map"){
     if (gene_name_format == "FBID") {

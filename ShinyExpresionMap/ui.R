@@ -36,7 +36,7 @@ ui = dashboardPage(skin = "purple",
         add_class("view_violin"),
       menuItem("Generate report", icon = icon("fas fa-file-download"), tabName = "DownloadTab",
              # Input directly under menuItem
-             radioButtons("reportPage", "Generate Report for:",
+             awesomeRadio("reportPage", "Generate Report for:",
                          choices = list("Current Page", "All Pages"), selected = "Current Page",
                          width = '98%'),
              downloadButton("report")) %>% 
@@ -54,15 +54,21 @@ ui = dashboardPage(skin = "purple",
               fluidRow(
                 box(
                   width = 12,
-                  plotOutput("legend", height = "40px"),
-                  withSpinner(plotOutput("ovary_map", height = "auto"))),
+                  plotOutput("legend", height = "auto"),
+                  withSpinner(plotOutput("ovary_map", height = "auto")))
+              ),
+                
+                fluidRow( id = "DevProg_control_box",
+                           style="margin-bottom:50px;",
                 box(
                   title = "Controls",
                   withSpinner(uiOutput("choose_dataset")),
                   selectizeInput('gene_of_interest', label = "Gene of Interest", choices = NULL),
-                  checkboxInput("displayTPM", "Display Expression Values", TRUE),
-                  checkboxInput("display_stage_labels", "Display Stage Labels", TRUE),
-                  br()))),
+                  prettyCheckbox("displayTPM", "Display Expression Values", TRUE, icon = icon("check"), status = "success"),
+                  prettyCheckbox("display_stage_labels", "Display Stage Labels", TRUE, icon = icon("check"), status = "success")
+                  )
+                )
+                ),
       
       # Second tab content
       tabItem(tabName = "heatmap", 
@@ -84,14 +90,14 @@ ui = dashboardPage(skin = "purple",
                   withSpinner(plotOutput("violinPlot", width = "auto"))),
               box(
                 title = "Controls",
-                radioButtons("violin_geneList_option", label = "Genes by:",
+                awesomeRadio("violin_geneList_option", label = "Genes by:",
                              choices = list("Select genes by GO term" = "GO_term_selection", 
                                             "Enter custom list of genes" = "Custom_selection"), 
                              selected = "GO_term_selection"),
                 selectizeInput('GO_term', label = "choose_GO_term", choices = NULL),
                 textInput("Gene_interest_list", "Genes of Interest List", "Enter a list of FBids"),
                 verbatimTextOutput("value"),
-                radioButtons("violin_normalization_option", label = "Normalization",
+                awesomeRadio("violin_normalization_option", label = "Normalization",
                              choices = list("Normalize each gene" = "each_gene", 
                                             "Log normalized Expression" = "unNorm"), 
                              selected = "each_gene"),

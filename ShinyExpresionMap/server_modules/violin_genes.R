@@ -3,7 +3,8 @@ data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
                        GO_term=NA, gene_of_interest=NA, 
-                       normalization="each_gene"){
+                       normalization="each_gene",
+                       text_scale){
   
   if(data_set_to_plot=="Input_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
@@ -233,14 +234,18 @@ gene_violin = function(data_set_to_plot="Input_seq",
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
-      stat_pvalue_manual(stats)+
+      stat_pvalue_manual(stats, size = text_scale/3)+
       ylab(yaxis_label)+
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)))+
       stat_summary(mapping = aes(group = Genotype), 
                    fun = median, fun.min = median, fun.max = median,
                    geom = "crossbar", width = 0.4)+
       geom_point(position = position_jitter(seed = 1, width = 0.2), color="grey60")+
-      theme_white()
+      theme_white()+
+      theme(axis.text.x = element_text(size = text_scale),
+            axis.text.y = element_text(size = text_scale), 
+            axis.title.x = element_text(size = text_scale),
+            axis.title.y = element_text(size = text_scale))
       # geom_line(mapping = aes(group = FBGN))
     .GlobalEnv$violin_plot_dataset_plotted = data_set_to_plot
     return(gene_violin_plot)

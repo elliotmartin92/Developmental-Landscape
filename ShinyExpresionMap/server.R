@@ -19,6 +19,7 @@ library(Cairo)
 source("server_modules/ggplotWhiteTheme.R")
 options(shiny.usecairo=T)
 
+shinyEnv = new.env()
 ps = .libPaths()
 data_sets <- c("FBID", "Symbol")
 GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
@@ -84,15 +85,16 @@ shinyServer(function(input, output, session) {
   observe({
     if (input$violin_geneList_option == "GO_term_selection") {
       shinyjs::show("GO_term")
-      shinyjs::hide("Gene_interest_list")
+      shinyjs::hide("Gene_interest_list", anim = TRUE, animType = "slide")
     } else {
-      shinyjs::show("Gene_interest_list")
+      shinyjs::show("Gene_interest_list", anim = TRUE, animType = "slide")
       shinyjs::hide("GO_term")
     }
     if (input$tabs == "DevProg") {
-      shinyjs::show("cartoon_toggle")
+      shinyjs::show("cartoon_toggle", anim = TRUE, animType = "slide")
+      shinyjs::toggle(id = "DevProg_control_box", condition = {input$cartoon_toggle == TRUE}) 
     } else {
-      shinyjs::hide("cartoon_toggle")
+      shinyjs::hide("cartoon_toggle", anim = TRUE, animType = "slide")
     }
   })
   # Output the data as a table for GO selection
@@ -100,53 +102,56 @@ shinyServer(function(input, output, session) {
                         label = "GO Term to Plot", choices = GO_term_description, server = TRUE, )
   
 ####Plotting ovary_map####
-  output$ovary_map <- renderPlot({
+  output$ovary_map = renderPlot({
     #scale text off of tab size
-    plotwidth <- session$clientData[["output_ovary_map_width"]]
-    text_scale = plotwidth/375
-    
+    plotwidth = round(session$clientData[["output_ovary_map_width"]], -2)
+    text_scale_map = plotwidth/375
     if (input$cartoon_toggle == FALSE) {
       source("server_modules/ovary_map_cartoon.R")
       cartoon_toggle_global <<- FALSE
-        ovary_map_plot <<- ovary_map_cartoon(text_scale = text_scale)
-        ovary_map_plot
+        ovary_cartoon_plot <<- ovary_map_cartoon(text_scale = text_scale_map)
+        ovary_cartoon_plot
     }else{
       source("server_modules/ovary_map.R")
       cartoon_toggle_global <<- TRUE
       if(is.null(input$gene_of_interest) | is.null(input$dataset)) {
         return()
       }
+      assign("input", input, envir = shinyEnv)
+      assign("ovary_map_SeqDataset", input$SeqDataset, envir = shinyEnv)
       ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
                                    gene_name_format = input$dataset, 
                                    displayTPM = input$displayTPM, 
                                    display_stage_labels = input$display_stage_labels,
                                    gene_of_interest = input$gene_of_interest, 
-                                   text_scale = text_scale, 
+                                   text_scale = text_scale_map, 
                                    graphic_to_generate = "map")
       ovary_map_plot
-    }
-  }, height = function() { session$clientData$output_ovary_map_width*0.3} #sets aspect ratio of plot, in conjuction width=auto in UI
+    } #sets aspect ratio of plot, in conjunction height=auto in UI, rounding hack prevents infinite rendering loop between textsize and height
+  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.33}, 
   )
   
-  # Dont render legend in cartoon view
-  output$legend <- renderPlot({
+    # Dont render legend in cartoon view
+  output$legend = renderPlot({
     if (input$cartoon_toggle == FALSE) {
     # Adding separate legend so that all legend values can always be displayed
     }else{
-      ovary_map_legend <<- ovary_map(graphic_to_generate = "legend")
+      plotwidth = round(session$clientData[["output_ovary_map_width"]], -2)
+      text_scale_legend = plotwidth/100
+      ovary_map_legend <<- ovary_map(graphic_to_generate = "legend", text_scale = text_scale_legend)
       ovary_map_legend
     }
-  })
+  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.03}, )
   
 #### Plotting of heatmap ####
-  output$heatPlot <- renderPlotly({
+  output$heatPlot = renderPlotly({
     source("server_modules/heat_map.R")
     DE_heatmap(data_set_to_plot = input$SeqDataset, row_labels = input$display_heatmap_row_labs)
     heat_map_global
   })
 
 #### Plotting of violinplot ####
-output$violinPlot <- renderPlot({
+output$violinPlot = renderPlot({
   source("server_modules/violin_genes.R")
   if (is.null(input$GO_term)) {
     return()
@@ -157,11 +162,17 @@ output$violinPlot <- renderPlot({
   validate(
     need(input$Gene_interest_list != "" | input$violin_geneList_option != "Custom_selection", "Please enter a list of FBids")
   )
+  
+  plotwidth = round(session$clientData[["output_violinPlot_width"]], -2)
+  text_scale_violin = plotwidth/80
+  assign("input", input, envir = shinyEnv)
+  assign("violinPlot_SeqDataset", input$SeqDataset, envir = shinyEnv)
   gene_violin_plot_global <<- gene_violin(data_set_to_plot = input$SeqDataset,
                                           genes_by_GO = input$violin_geneList_option, 
                                           GO_term = input$GO_term,
                                           gene_of_interest = input$Gene_interest_list,
-                                          normalization = input$violin_normalization_option)
+                                          normalization = input$violin_normalization_option,
+                                          text_scale = text_scale_violin)
   gene_violin_plot_global
 })
   
@@ -173,12 +184,12 @@ output$violinPlot <- renderPlot({
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      tempReport = file.path(tempdir(), "report.Rmd")
-      file.copy("report.Rmd", tempReport, overwrite = TRUE)
+      tempReport = file.path(getwd(), "report.Rmd")
+      # file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document
       # from the code in this app).
-      rmarkdown::render(tempReport, output_file = file)
+      rmarkdown::render("report.Rmd", output_file = file, envir = shinyEnv)
       })
 })
