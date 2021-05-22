@@ -52,7 +52,7 @@ ui = dashboardPage(skin = "purple",
       # First tab content
       tabItem(tabName = "DevProg",
               fluidRow(
-                box(
+                box(id = "DevProg_legend_box",
                   width = 12,
                   plotOutput("legend", height = "auto"),
                   withSpinner(plotOutput("ovary_map", height = "auto")))

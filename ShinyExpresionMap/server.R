@@ -92,7 +92,8 @@ shinyServer(function(input, output, session) {
     }
     if (input$tabs == "DevProg") {
       shinyjs::show("cartoon_toggle", anim = TRUE, animType = "slide")
-      shinyjs::toggle(id = "DevProg_control_box", condition = {input$cartoon_toggle == TRUE}) 
+      shinyjs::toggle(id = c("DevProg_control_box"), condition = {input$cartoon_toggle == TRUE})
+      # shinyjs::toggle(id = c("DevProg_legend_box"), condition = {input$cartoon_toggle == TRUE}) 
     } else {
       shinyjs::hide("cartoon_toggle", anim = TRUE, animType = "slide")
     }
@@ -128,7 +129,7 @@ shinyServer(function(input, output, session) {
                                    graphic_to_generate = "map")
       ovary_map_plot
     } #sets aspect ratio of plot, in conjunction height=auto in UI, rounding hack prevents infinite rendering loop between textsize and height
-  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.33}, 
+  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.28}, 
   )
   
     # Dont render legend in cartoon view
@@ -141,7 +142,7 @@ shinyServer(function(input, output, session) {
       ovary_map_legend <<- ovary_map(graphic_to_generate = "legend", text_scale = text_scale_legend)
       ovary_map_legend
     }
-  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.03}, )
+  }, height = function() { round(session$clientData$output_legend_width, -2)*0.025}, )
   
 #### Plotting of heatmap ####
   output$heatPlot = renderPlotly({

@@ -1,13 +1,13 @@
 library(sf)
 library(tidyverse)
 
-lines = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_lines_v5")
-shape = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_poly_v5")
+lines = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_lines_v6")
+shape = read_sf(dsn = "germPoly", layer = "germ_soma_cartoon_poly_v6")
 lines$cell_type = "line"
 lines$region = "line"
 lines$color = "line"
 shape$color = "White"
-line.plot = data.frame(lines) %>% select(-path)
+line.plot = data.frame(lines)
 shape.plot = data.frame(shape)
 merge_plot = rbind(shape.plot, line.plot)
 merge_plot$color = factor(merge_plot$color, 

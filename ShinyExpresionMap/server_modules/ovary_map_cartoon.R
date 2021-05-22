@@ -100,20 +100,20 @@ ovary_map_cartoon <- function(text_scale) {
   shape_centroids = st_centroid(shape)
   shape_ymin = st_bbox(shape$geometry)[[2]]
   shape_ymax = st_bbox(shape$geometry)[[4]]
-  shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
+  shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2), shape$cell_type)
   
   dist_pl = dist_pl+
-    annotate("text", label="GSC", x=shape.x.y[1,1], y=shape_ymin-0.26, size=12/ggplot2::.pt)+
-    annotate("text", label="CB", x=shape.x.y[3,1], y=shape_ymax+0.12, size=12/ggplot2::.pt)+
-    annotate("text", label="2-CC", x=shape.x.y[4,1], y=shape_ymin-0.26, size=12/ggplot2::.pt)+
-    annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.12, size=12/ggplot2::.pt)+
-    annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.26, size=12/ggplot2::.pt)+
-    annotate("text", label="16-CC", x=(bounding_16CC[1]+bounding_16CC[3])/2, y=shape_ymin-0.26, size=12/ggplot2::.pt)+
-    annotate("text", label="Stage 2 egg chamber", x=shape.x.y[12,1], y=shape_ymin-0.24, size=12/ggplot2::.pt)+
-    annotate("text", label="Region 1", x=(bounding_region_1[1]+bounding_region_1[3])/2, y=shape_ymax+0.32, size=12/ggplot2::.pt)+
-    annotate("text", label="Region 2a", x=(bounding_region_2a[1]+bounding_region_2a[3])/2, y=shape_ymax+0.32, size=12/ggplot2::.pt)+
-    annotate("text", label="Region 2b", x=(bounding_region_2b[1]+bounding_region_2b[3])/2, y=shape_ymax+0.32, size=12/ggplot2::.pt)+
-    annotate("text", label="Region 3", x=(bounding_region_3[1]+bounding_region_3[3])/2, y=shape_ymax+0.32, size=12/ggplot2::.pt)+
+    annotate("text", label="GSC", x=shape.x.y[1,1], y=shape_ymin-0.26, size=text_scale)+
+    annotate("text", label="CB", x=shape.x.y[3,1], y=shape_ymax+0.12, size=text_scale)+
+    annotate("text", label="2-CC", x=shape.x.y[4,1], y=shape_ymin-0.26, size=text_scale)+
+    annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.12, size=text_scale)+
+    annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.26, size=text_scale)+
+    annotate("text", label="16-CC", x=(bounding_16CC[1]+bounding_16CC[3])/2, y=shape_ymin-0.26, size=text_scale)+
+    annotate("text", label="Stage 2 egg chamber", x=shape.x.y[12,1], y=shape_ymin-0.24, size=text_scale)+
+    annotate("text", label="Region 1", x=(bounding_region_1[1]+bounding_region_1[3])/2, y=shape_ymax+0.32, size=text_scale)+
+    annotate("text", label="Region 2a", x=(bounding_region_2a[1]+bounding_region_2a[3])/2, y=shape_ymax+0.32, size=text_scale)+
+    annotate("text", label="Region 2b", x=(bounding_region_2b[1]+bounding_region_2b[3])/2, y=shape_ymax+0.32, size=text_scale)+
+    annotate("text", label="Region 3", x=(bounding_region_3[1]+bounding_region_3[3])/2, y=shape_ymax+0.32, size=text_scale)+
     
     # GSC
     annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1],

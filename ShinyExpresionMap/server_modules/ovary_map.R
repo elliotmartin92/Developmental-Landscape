@@ -139,12 +139,54 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
             legend.position = "none")
     dist_pl_rmd <<- dist_pl
     
+    ### labeling map ####
     # fetch parameters required for either type of label
     if (displayTPM==TRUE | display_stage_labels==TRUE){
       shape_centroids = st_centroid(shape)
       shape_ymin = st_bbox(shape$geometry)[[2]]
       shape_ymax = st_bbox(shape$geometry)[[4]]
-      shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2))
+      shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2), shape$cell_type)
+      
+      # Segments needed for TPM or stage label
+      
+      if (data_set_to_plot == "Single_cell_seq_germline"){
+      # GSC/CB/2CC
+        dist_pl = dist_pl+
+        annotate("segment", x=st_bbox(shape[1,])[[1]], xend=st_bbox(shape[4,])[[3]], 
+                 y=shape_ymin+0.13, yend=shape_ymin+0.13)
+        
+      }else if (data_set_to_plot == "Single_cell_seq_soma"){
+        dist_pl = dist_pl+
+        annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="TF/CC"][[1]][1], 
+                 xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="TF/CC"][[1]][3], 
+                 y=shape_ymin+0.5, yend=shape_ymin+0.5)+
+          
+          annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][1], 
+                   xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][3], 
+                   y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][4]+0.2, 
+                   yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][4]+0.2)+
+          
+          annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][1], 
+                   xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][3], 
+                   y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][2]-0.2, 
+                   yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][2]-0.2)+
+          
+          annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][1], 
+                   xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][3], 
+                   y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][4]+0.2, 
+                   yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][4]+0.2)+
+          
+          annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][1], 
+                   xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][3], 
+                   y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.2, 
+                   yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.2)+
+          
+          annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][1], 
+                   xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][3], 
+                   y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.2, 
+                   yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.2)
+        }
+      
     }
     if (displayTPM==FALSE){ #switch for TPM display
     }else{
@@ -186,8 +228,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
             # GSC-2CC
             annotate("text", label=paste0(TPMs[1], " ", expression_unit), 
                      x=st_bbox(shape[1,])[[1]]+(st_bbox(shape[4,])[[3]]-st_bbox(shape[1,])[[1]])/2,
-                     y=shape_ymin+0.26, size=text_scale)+
-            annotate("segment", x=st_bbox(shape[1,])[[1]], xend=st_bbox(shape[4,])[[3]], y=shape_ymin+0.2, yend=shape_ymin+0.2)+
+                     y=shape_ymin+0.2, size=text_scale)+
             # 4CC
             annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[5,1], y=shape.x.y[5,2], size=text_scale)+
             # 8CC
@@ -227,13 +268,17 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
                      x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="FSC"], 
                      y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.13, size=text_scale)+
             # pre-stalk
-            annotate("text", label=paste0(TPMs[6], " ", expression_unit), x=shape.x.y[39,1], y=shape.x.y[39,2], size=text_scale)+
+            annotate("text", label=paste0(TPMs[6], "\n", expression_unit),
+                     x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="pre-stalk"], 
+                     y=group_geometry_bounding$y[group_geometry_bounding$cell_type=="pre-stalk"], size=text_scale)+
             # stalk
             annotate("text", label=paste0(TPMs[7], " ", expression_unit), 
                      x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="stalk"], 
                      y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.13, size=text_scale)+
             # polar
-            annotate("text", label=paste0(TPMs[8], " ", expression_unit), x=shape.x.y[45,1], y=shape.x.y[45,2], size=text_scale)
+            annotate("text", label=paste0(TPMs[8], "\n", expression_unit), 
+                     x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="polar"], 
+                     y=group_geometry_bounding$y[group_geometry_bounding$cell_type=="polar"], size=text_scale)
         }
     }
         if (display_stage_labels==FALSE){ #switch for label display
@@ -259,7 +304,7 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
             dist_pl = dist_pl+
               annotate("text", label="GSC/CB/2CC", 
                        x=st_bbox(shape[1,])[[1]]+(st_bbox(shape[4,])[[3]]-st_bbox(shape[1,])[[1]])/2,
-                       y=shape_ymin+0.15, size=text_scale)+
+                       y=shape_ymin+0.06, size=text_scale)+
               annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.24, size=text_scale)+
               annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.24, size=text_scale)+
               annotate("text", label="16-CC 2a I", x=shape.x.y[7,1], y=shape_ymax+0.24, size=text_scale)+
@@ -269,9 +314,8 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
               annotate("text", label="16-CC 3", x=shape.x.y[11,1], y=shape_ymax+0.24, size=text_scale)+
               annotate("text", label="Stage 2 egg chamber", x=shape.x.y[12,1], y=shape_ymin-0.24, size=text_scale)+
               
-              # GSC/CB/2CC
-              annotate("segment", x=st_bbox(shape[1,])[[1]], xend=st_bbox(shape[4,])[[3]], 
-                       y=shape_ymin+0.2, yend=shape_ymin+0.2)+
+              # GSC/CB/2CC rendered above
+              
               # 4CC
               annotate("segment", x=shape.x.y[5,1], xend=shape.x.y[5,1],
                        y=st_bbox(shape$geometry[5])[[4]], yend=shape_ymax+0.17)+
@@ -302,61 +346,42 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
               
               annotate("text", label="Terminal filiment cell/Cap Cell", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="TF/CC"], 
                        y=shape_ymin+0.43, size=text_scale)+
-              annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="TF/CC"][[1]][1], 
-                       xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="TF/CC"][[1]][3], 
-                       y=shape_ymin+0.5, yend=shape_ymin+0.5)+
-            
+          
               annotate("text", label="Anterior escort cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="EC_a"], 
                      y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][4]+0.27, size=text_scale)+
-              annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][1], 
-                       xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][3], 
-                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][4]+0.2, 
-                       yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_a"][[1]][4]+0.2)+
-            
+
               annotate("text", label="Central escort cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="EC_c"], 
                      y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][2]-0.27, size=text_scale)+
-              annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][1], 
-                       xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][3], 
-                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][2]-0.2, 
-                       yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_c"][[1]][2]-0.2)+
               
               annotate("text", label="Posterior escort cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="EC_p"], 
                        y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][4]+0.27, size=text_scale)+
-              annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][1], 
-                       xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][3], 
-                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][4]+0.2, 
-                       yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="EC_p"][[1]][4]+0.2)+
-              
+
               annotate("text", label="Pre-follicle stem cell/Follicle stem cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="FSC"], 
                        y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.27, size=text_scale)+
-              annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][1], 
-                       xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][3], 
-                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.2, 
-                       yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.2)+
-              
+     
               annotate("text", label="Pre-stalk cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="pre-stalk"], 
                        y=shape_ymax+0.24, size=text_scale)+
+
+              annotate("text", label="Polar cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="polar"], 
+                       y=shape_ymax+0.24, size=text_scale)+
+  
+              annotate("text", label="Stalk cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="stalk"], 
+                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.27, size=text_scale)+
+              
               annotate("segment", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="pre-stalk"], 
                        xend=group_geometry_bounding$x[group_geometry_bounding$cell_type=="pre-stalk"], 
                        y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="pre-stalk"][[1]][4], 
                        yend=shape_ymax+0.17)+
               
-              annotate("text", label="Polar cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="polar"], 
-                       y=shape_ymax+0.24, size=text_scale)+
               annotate("segment", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="polar"], 
                        xend=group_geometry_bounding$x[group_geometry_bounding$cell_type=="polar"], 
                        y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="polar"][[1]][4], 
-                       yend=shape_ymax+0.17)+
-            
-              annotate("text", label="Stalk cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="stalk"], 
-                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.27, size=text_scale)+
-              annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][1], 
-                       xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][3], 
-                       y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.2, 
-                       yend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.2)
+                       yend=shape_ymax+0.17)
+   
           }
         }
-        .GlobalEnv$ovary_map_dataset_plotted = data_set_to_plot
+    #### finish up ####
+        .GlobalEnv$ovary_map_dataset_plotted = data_set_to_plot #keep track of plot plotted globally
         return(dist_pl)
       }else{
         message("graphic_to_generate should be of type 'map', or 'legend'")
