@@ -1,6 +1,8 @@
+library(tidyverse)
+library(heatmaply)
 modls = function(x){log2(x+1)}
 
-DE_heatmap = function(data_set_to_plot="Input_seq"){
+DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_colnames = FALSE){
   if(data_set_to_plot == "Input_seq"){
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list.RDS")
@@ -86,15 +88,24 @@ DE_heatmap = function(data_set_to_plot="Input_seq"){
                                 labCol=column_labels,
                                 seriate = "none",
                                 Colv = FALSE)
-  write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_plotly_heatmap.RDS"))
+  if (write_to_rds == TRUE) {
+    write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_plotly_heatmap.RDS"))
+  }else if (write_to_rds == FALSE & display_colnames == FALSE) {
+    return(heat_map_plotly)
+  }
   
   heat_map_plotly = heatmaply(heat_data,
                               showticklabels = c(TRUE, TRUE),
                               labCol=column_labels,
                               seriate = "none",
                               Colv = FALSE)
-  write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_row_labels_plotly_heatmap.RDS"))
+  if (write_to_rds == TRUE) {
+    write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_row_labels_plotly_heatmap.RDS"))
+  }else if (write_to_rds == FALSE & display_colnames == TRUE) {
+    return(heat_map_plotly)
+  }
+  
 }
 
-data_sets = c("Input_seq", "Polysome_seq", "Single_cell_seq_germline", "Single_cell_seq_soma")
-lapply(data_sets, DE_heatmap)
+# data_sets = c("Input_seq", "Polysome_seq", "Single_cell_seq_germline", "Single_cell_seq_soma")
+# lapply(data_sets, DE_heatmap)

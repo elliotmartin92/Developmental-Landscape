@@ -1,3 +1,6 @@
+library(tidyverse)
+library(sf)
+
 ovary_map_cartoon <- function(text_scale) {
   merge_plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
   shape = readRDS("Preprocessed_data/preloaded_shape.RDS") #shape file for distPlot
@@ -103,17 +106,17 @@ ovary_map_cartoon <- function(text_scale) {
   shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2), shape$cell_type)
   
   dist_pl = dist_pl+
-    annotate("text", label="GSC", x=shape.x.y[1,1], y=shape_ymin-0.26, size=text_scale)+
-    annotate("text", label="CB", x=shape.x.y[3,1], y=shape_ymax+0.12, size=text_scale)+
-    annotate("text", label="2-CC", x=shape.x.y[4,1], y=shape_ymin-0.26, size=text_scale)+
-    annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.12, size=text_scale)+
-    annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.26, size=text_scale)+
-    annotate("text", label="16-CC", x=(bounding_16CC[1]+bounding_16CC[3])/2, y=shape_ymin-0.26, size=text_scale)+
-    annotate("text", label="Stage 2 egg chamber", x=shape.x.y[12,1], y=shape_ymin-0.24, size=text_scale)+
-    annotate("text", label="Region 1", x=(bounding_region_1[1]+bounding_region_1[3])/2, y=shape_ymax+0.32, size=text_scale)+
-    annotate("text", label="Region 2a", x=(bounding_region_2a[1]+bounding_region_2a[3])/2, y=shape_ymax+0.32, size=text_scale)+
-    annotate("text", label="Region 2b", x=(bounding_region_2b[1]+bounding_region_2b[3])/2, y=shape_ymax+0.32, size=text_scale)+
-    annotate("text", label="Region 3", x=(bounding_region_3[1]+bounding_region_3[3])/2, y=shape_ymax+0.32, size=text_scale)+
+    annotate("text", label="GSC", x=shape.x.y[1,1], y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="CB", x=shape.x.y[3,1], y=shape_ymax+0.16, size=text_scale)+
+    annotate("text", label="2-CC", x=shape.x.y[4,1], y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.16, size=text_scale)+
+    annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="16-CC", x=(bounding_16CC[1]+bounding_16CC[3])/2, y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="Stage 2 Egg Chamber", x=shape.x.y[12,1], y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="Region 1", x=(bounding_region_1[1]+bounding_region_1[3])/2, y=shape_ymax+0.5, size=text_scale)+
+    annotate("text", label="Region 2a", x=(bounding_region_2a[1]+bounding_region_2a[3])/2, y=shape_ymax+0.5, size=text_scale)+
+    annotate("text", label="Region 2b", x=(bounding_region_2b[1]+bounding_region_2b[3])/2, y=shape_ymax+0.5, size=text_scale)+
+    annotate("text", label="Region 3", x=(bounding_region_3[1]+bounding_region_3[3])/2, y=shape_ymax+0.5, size=text_scale)+
     
     # GSC
     annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1],
@@ -131,18 +134,19 @@ ovary_map_cartoon <- function(text_scale) {
     annotate("segment", x=shape.x.y[6,1], xend=shape.x.y[6,1],
              y=st_bbox(shape$geometry[6])[[2]], yend=shape_ymin-0.17)+
     # 16CC
-    annotate("segment", x=bounding_16CC[1], xend=bounding_16CC[3], y=shape_ymin-.17, yend=shape_ymin-0.17)+
+    annotate("segment", x=bounding_16CC[1]*1.05, xend=bounding_16CC[3]*.95, y=shape_ymin-.17, yend=shape_ymin-0.17)+
     # ST2
     annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1],
              y=st_bbox(shape$geometry[12])[[2]], yend=shape_ymin-0.17)+
     # region 1
-    annotate("segment", x=bounding_region_1[1], xend=bounding_region_1[3], y=shape_ymax+0.21, yend=shape_ymax+0.21)+
+    annotate("segment", x=bounding_region_1[1], xend=bounding_region_1[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)+
     # region 2a
-    annotate("segment", x=bounding_region_2a[1], xend=bounding_region_2a[3], y=shape_ymax+0.21, yend=shape_ymax+0.21)+
+    annotate("segment", x=bounding_region_2a[1], xend=bounding_region_2a[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)+
     # region 2b
-    annotate("segment", x=bounding_region_2b[1], xend=bounding_region_2b[3], y=shape_ymax+0.21, yend=shape_ymax+0.21)+
+    annotate("segment", x=bounding_region_2b[1], xend=bounding_region_2b[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)+
     # region 3
-    annotate("segment", x=bounding_region_3[1], xend=bounding_region_3[3], y=shape_ymax+0.21, yend=shape_ymax+0.21)
+    annotate("segment", x=bounding_region_3[1], xend=bounding_region_3[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)
     
   dist_pl_rmd <<- dist_pl
 }
+

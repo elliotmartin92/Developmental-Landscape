@@ -52,7 +52,7 @@ ui = dashboardPage(skin = "purple",
       # First tab content
       tabItem(tabName = "DevProg",
               fluidRow(
-                box(id = "DevProg_legend_box",
+                box(
                   width = 12,
                   plotOutput("legend", height = "auto"),
                   withSpinner(plotOutput("ovary_map", height = "auto")))
@@ -87,7 +87,7 @@ ui = dashboardPage(skin = "purple",
               fluidRow(
                 box(
                   width = 12,
-                  withSpinner(plotOutput("violinPlot", height = "auto"))),
+                  withSpinner(plotOutput("violinPlot", width = "auto"))),
               box(
                 title = "Controls",
                 awesomeRadio("violin_geneList_option", label = "Genes by:",
