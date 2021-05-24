@@ -148,12 +148,17 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
       shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2), shape$cell_type)
       
       # Segments needed for TPM or stage label
+      if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq"){
+        dist_pl = dist_pl+
+        annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1], 
+                 xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3], 
+                 y=shape_ymin-0.22, yend=shape_ymin-0.22)
       
-      if (data_set_to_plot == "Single_cell_seq_germline"){
+      }else if (data_set_to_plot == "Single_cell_seq_germline"){
       # GSC/CB/2CC
         dist_pl = dist_pl+
         annotate("segment", x=st_bbox(shape[1,])[[1]], xend=st_bbox(shape[4,])[[3]], 
-                 y=shape_ymin+0.13, yend=shape_ymin+0.13)
+                 y=shape_ymin+0.10, yend=shape_ymin+0.10)
         
       }else if (data_set_to_plot == "Single_cell_seq_soma"){
         dist_pl = dist_pl+
@@ -220,15 +225,18 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
           dist_pl = dist_pl+
             annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[1,1], y=shape.x.y[1,2], size=text_scale)+
             annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[3,1], y=shape.x.y[3,2], size=text_scale)+
-            annotate("text", label=paste0(TPMs[3], " ", expression_unit), x=shape.x.y[4,1]+2.10,  y=shape_ymin-.1, size=text_scale)+
-            annotate("segment", x=shape.x.y[4,1], xend=shape.x.y[10,1]+.7, y=shape_ymin-.17, yend=shape_ymin-0.17)+
+            annotate("text", label=paste0(TPMs[3], " ", expression_unit), 
+                     x=((group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1]+
+                          group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3])/2),
+                     y=shape_ymin-0.13, size=text_scale)+
             annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[12,1], y=shape.x.y[12,2]+.25, size=text_scale)
+          
         }else if (data_set_to_plot=="Single_cell_seq_germline"){
           dist_pl = dist_pl+
             # GSC-2CC
             annotate("text", label=paste0(TPMs[1], " ", expression_unit), 
                      x=st_bbox(shape[1,])[[1]]+(st_bbox(shape[4,])[[3]]-st_bbox(shape[1,])[[1]])/2,
-                     y=shape_ymin+0.2, size=text_scale)+
+                     y=shape_ymin+0.16, size=text_scale)+
             # 4CC
             annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[5,1], y=shape.x.y[5,2], size=text_scale)+
             # 8CC
@@ -286,33 +294,35 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
           if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
             dist_pl = dist_pl+
               # TKV cell label
-              annotate("text", label="UAS-Tkv", x=shape.x.y[1,1]-0.24, y=shape_ymin-0.24, size=text_scale)+
-              annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1]-0.24, 
+              annotate("text", label="UAS-Tkv", x=shape.x.y[1,1]-0.30, y=shape_ymin-0.30, size=text_scale)+
+              annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1]-0.30, 
                        y=st_bbox(shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
               # bamRNAi cell label
-              annotate("text", label="bam RNAi", x=shape.x.y[3,1]-0.24, y=shape_ymax+0.24, size=text_scale)+
-              annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1]-0.24, 
+              annotate("text", label="bam RNAi", x=shape.x.y[3,1]-0.30, y=shape_ymax+0.30, size=text_scale)+
+              annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1]-0.30, 
                        y=st_bbox(shape$geometry[3])[[4]], yend=shape_ymax+0.17)+
               # bamHSbam line label (redraws line in case)
-              annotate("text", label="bamRNAi HS-bam", x=shape.x.y[4,1]+2.10, y=shape_ymin-0.24, size=text_scale)+
-              annotate("segment", x=shape.x.y[4,1], xend=shape.x.y[11,1]+0.7, y=shape_ymin-0.17, yend=shape_ymin-0.17)+
+              annotate("text", label="bamRNAi HS-bam", 
+                       x=((group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1]+
+                             group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3])/2), 
+                       y=shape_ymin-0.30, size=text_scale)+
               # youngWT cell label 
-              annotate("text", label="young WT", x=shape.x.y[12,1]+0.24, y=shape_ymax+0.24, size=text_scale)+
-              annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1]+0.24, y=st_bbox(shape$geometry[12,1])[[4]], yend=shape_ymax+0.17)
+              annotate("text", label="young WT", x=shape.x.y[12,1]+0.30, y=shape_ymax+0.30, size=text_scale)+
+              annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1]+0.30, y=st_bbox(shape$geometry[12,1])[[4]], yend=shape_ymax+0.17)
             
           }else if (data_set_to_plot=="Single_cell_seq_germline"){
             dist_pl = dist_pl+
               annotate("text", label="GSC/CB/2CC", 
                        x=st_bbox(shape[1,])[[1]]+(st_bbox(shape[4,])[[3]]-st_bbox(shape[1,])[[1]])/2,
-                       y=shape_ymin+0.06, size=text_scale)+
-              annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.24, size=text_scale)+
-              annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.24, size=text_scale)+
-              annotate("text", label="16-CC 2a I", x=shape.x.y[7,1], y=shape_ymax+0.24, size=text_scale)+
-              annotate("text", label="16-CC 2a II", x=shape.x.y[8,1], y=shape_ymin-0.24, size=text_scale)+
-              annotate("text", label="16-CC 2ab", x=shape.x.y[9,1], y=shape_ymax+0.24, size=text_scale)+
-              annotate("text", label="16-CC 2b", x=shape.x.y[10,1], y=shape_ymin-0.24, size=text_scale)+
-              annotate("text", label="16-CC 3", x=shape.x.y[11,1], y=shape_ymax+0.24, size=text_scale)+
-              annotate("text", label="Stage 2 egg chamber", x=shape.x.y[12,1], y=shape_ymin-0.24, size=text_scale)+
+                       y=shape_ymin+0.02, size=text_scale)+
+              annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.30, size=text_scale)+
+              annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.30, size=text_scale)+
+              annotate("text", label="16-CC 2a I", x=shape.x.y[7,1], y=shape_ymax+0.30, size=text_scale)+
+              annotate("text", label="16-CC 2a II", x=shape.x.y[8,1], y=shape_ymin-0.30, size=text_scale)+
+              annotate("text", label="16-CC 2ab", x=shape.x.y[9,1], y=shape_ymax+0.30, size=text_scale)+
+              annotate("text", label="16-CC 2b", x=shape.x.y[10,1], y=shape_ymin-0.30, size=text_scale)+
+              annotate("text", label="16-CC 3", x=shape.x.y[11,1], y=shape_ymax+0.30, size=text_scale)+
+              annotate("text", label="Stage 2 egg chamber", x=shape.x.y[12,1], y=shape_ymin-0.30, size=text_scale)+
               
               # GSC/CB/2CC rendered above
               
@@ -360,10 +370,10 @@ ovary_map = function(data_set_to_plot="Input_seq", gene_name_format="Symbol", di
                        y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="FSC"][[1]][2]-0.27, size=text_scale)+
      
               annotate("text", label="Pre-stalk cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="pre-stalk"], 
-                       y=shape_ymax+0.24, size=text_scale)+
+                       y=shape_ymax+0.30, size=text_scale)+
 
               annotate("text", label="Polar cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="polar"], 
-                       y=shape_ymax+0.24, size=text_scale)+
+                       y=shape_ymax+0.30, size=text_scale)+
   
               annotate("text", label="Stalk cells", x=group_geometry_bounding$x[group_geometry_bounding$cell_type=="stalk"], 
                        y=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="stalk"][[1]][4]+0.27, size=text_scale)+

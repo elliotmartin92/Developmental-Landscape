@@ -87,7 +87,10 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
                                 showticklabels = c(TRUE, FALSE),
                                 labCol=column_labels,
                                 seriate = "none",
-                                Colv = FALSE)
+                                Colv = FALSE) %>% 
+    layout(xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
+            yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)))
+  
   if (write_to_rds == TRUE) {
     write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_plotly_heatmap.RDS"))
   }else if (write_to_rds == FALSE & display_colnames == FALSE) {
@@ -98,7 +101,10 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
                               showticklabels = c(TRUE, TRUE),
                               labCol=column_labels,
                               seriate = "none",
-                              Colv = FALSE)
+                              Colv = FALSE) %>% 
+    layout(xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
+           yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)))
+  
   if (write_to_rds == TRUE) {
     write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_row_labels_plotly_heatmap.RDS"))
   }else if (write_to_rds == FALSE & display_colnames == TRUE) {
@@ -107,5 +113,5 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
   
 }
 
-# data_sets = c("Input_seq", "Polysome_seq", "Single_cell_seq_germline", "Single_cell_seq_soma")
-# lapply(data_sets, DE_heatmap)
+data_sets = c("Input_seq", "Polysome_seq", "Single_cell_seq_germline", "Single_cell_seq_soma")
+lapply(data_sets, DE_heatmap)

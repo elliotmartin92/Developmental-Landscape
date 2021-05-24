@@ -106,7 +106,7 @@ shinyServer(function(input, output, session) {
   output$ovary_map = renderPlot({
     #scale text off of tab size
     plotwidth = round(session$clientData[["output_ovary_map_width"]], -2)
-    text_scale_map = plotwidth/375
+    text_scale_map = plotwidth/330
     if (input$cartoon_toggle == FALSE) {
       source("server_modules/ovary_map_cartoon.R")
       cartoon_toggle_global <<- FALSE

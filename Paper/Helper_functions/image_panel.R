@@ -85,14 +85,18 @@ image_panel = function(path, colors_to_return, genotype_annotation,
   options("multipanelfigure.defaultdpi"= 245) 
   
   figure = multi_panel_figure(
-    width = c(2.0694, 2.0694, 2.0694),
+    width = rep(2.0694, length(all_gg_ordered)),
     height = c(1.1837), rows = 1, row_spacing = 0, column_spacing = 0.025, unit = "in", panel_label_type = "none")
+
+  for (fig_index in 1:length(all_gg_ordered)) {
+    figure = figure %>% fill_panel(all_gg_ordered[[fig_index]], label = "", scaling = "fit", panel_clip = "off")
+  }
   
-  figure = figure %>% 
-    fill_panel(all_gg_ordered[[1]], label = "", scaling = "fit", panel_clip = "off") %>% 
-    fill_panel(all_gg_ordered[[2]], label = "", scaling = "fit", panel_clip = "off") %>% 
-    fill_panel(all_gg_ordered[[3]], label = "", scaling = "fit", panel_clip = "off")
-  figure
+  # figure = figure %>% 
+  #   fill_panel(all_gg_ordered[[1]], label = "", scaling = "fit", panel_clip = "off") %>% 
+  #   fill_panel(all_gg_ordered[[2]], label = "", scaling = "fit", panel_clip = "off") %>% 
+  #   fill_panel(all_gg_ordered[[3]], label = "", scaling = "fit", panel_clip = "off")
+  # figure
   
   return(figure)
   
