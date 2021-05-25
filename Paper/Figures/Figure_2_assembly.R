@@ -30,12 +30,12 @@ Fig2B = image_panel(path = "../Paper/Figures/placeholder.tif",
                     label_letters = c("C", "C'", "C''"))
 
 Fig2C = image_panel(path = "../Paper/Figures/Figure_2/Control.Rps19b-GFP.40x.4_s3_5.tif", 
-                    colors_to_return = c("green", "blue", "red"), 
+                    colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
                     red_annotation = "1B1", 
                     green_annotation = "GFP", 
                     blue_annotation = "Vasa",
-                    label_letters = c("D", "D'", "D''", "D'''"))
+                    label_letters = c("D", "D'", "D''"))
 
 Figure2 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),

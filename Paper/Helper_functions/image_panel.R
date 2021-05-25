@@ -91,13 +91,6 @@ image_panel = function(path, colors_to_return, genotype_annotation,
   for (fig_index in 1:length(all_gg_ordered)) {
     figure = figure %>% fill_panel(all_gg_ordered[[fig_index]], label = "", scaling = "fit", panel_clip = "off")
   }
-  
-  # figure = figure %>% 
-  #   fill_panel(all_gg_ordered[[1]], label = "", scaling = "fit", panel_clip = "off") %>% 
-  #   fill_panel(all_gg_ordered[[2]], label = "", scaling = "fit", panel_clip = "off") %>% 
-  #   fill_panel(all_gg_ordered[[3]], label = "", scaling = "fit", panel_clip = "off")
-  # figure
-  
   return(figure)
   
 }

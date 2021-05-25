@@ -83,13 +83,22 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
         "polar")
   }
   
-  heat_map_plotly = heatmaply(heat_data,
-                                showticklabels = c(TRUE, FALSE),
-                                labCol=column_labels,
-                                seriate = "none",
-                                Colv = FALSE) %>% 
-    layout(xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
-            yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)))
+  font_properties = list(
+    family = "Helvetica",
+    size = 12,
+    color = 'black')
+  
+  heat_map_plotly = heatmaply(
+    heat_data,
+    showticklabels = c(TRUE, FALSE),
+    labCol = column_labels,
+    seriate = "none",
+    Colv = FALSE, 
+    font = font_properties) %>%
+    layout(
+      xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
+      yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12))
+    )
   
   if (write_to_rds == TRUE) {
     write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_plotly_heatmap.RDS"))
@@ -97,13 +106,17 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     return(heat_map_plotly)
   }
   
-  heat_map_plotly = heatmaply(heat_data,
-                              showticklabels = c(TRUE, TRUE),
-                              labCol=column_labels,
-                              seriate = "none",
-                              Colv = FALSE) %>% 
-    layout(xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
-           yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)))
+  heat_map_plotly = heatmaply(
+    heat_data,
+    showticklabels = c(TRUE, TRUE),
+    labCol = column_labels,
+    seriate = "none",
+    Colv = FALSE, 
+    font = font_properties) %>%
+    layout(
+      xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
+      yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12))
+    )
   
   if (write_to_rds == TRUE) {
     write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_row_labels_plotly_heatmap.RDS"))
