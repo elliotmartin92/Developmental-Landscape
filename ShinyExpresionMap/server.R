@@ -198,7 +198,13 @@ output$violinPlot = renderPlot({
   # subset data and serve csv with subsetted data for dl
   output$violin_data_download <- downloadHandler(
     # For PDF output, change this to "report.pdf"
-    filename = "Selected_gene_expression.csv",
+    filename = function() {
+      if (input$violin_geneList_option == "GO_term_selection") {
+        paste0("Selected_gene_expression_from_", input$SeqDataset, "_of_GO_term_", input$GO_term, ".csv")
+      }else if (input$violin_geneList_option == "Custom_selection") {
+        paste0("Selected_gene_expression_from_", input$SeqDataset, "_of_custom_list_of_genes.csv")
+      }
+    },
     content = function(file) {
       # selected data passed from violin_genes
       

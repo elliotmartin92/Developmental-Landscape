@@ -9,8 +9,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
   
   if(data_set_to_plot=="Input_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
-    data.seq_pared = data.seq[1:5] #extract columns used for plotting
+    data.seq_pared = data.seq[c(1, 10, 2:5)] #extract columns used for plotting
     column_names = c("FBGN",
+                     "Symbol",
                      "UAS-tkv", 
                      "bam RNAi", 
                      "bam RNAi; HS-bam", 
@@ -23,8 +24,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
     
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
-    data.seq_pared = data.seq[c(1, 3:6)] #extract columns used for plotting
+    data.seq_pared = data.seq[c(1, 23, 3:6)] #extract columns used for plotting
     column_names = c("FBGN",
+                     "Symbol",
                      "UAS-tkv", 
                      "bam RNAi", 
                      "bam RNAi; HS-bam", 
@@ -37,8 +39,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
     
   }else if (data_set_to_plot == "Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS")
-    data.seq_pared = data.seq[c(1, 3:11)] #extract columns used for plotting
+    data.seq_pared = data.seq[c(1, 2, 3:11)] #extract columns used for plotting
     column_names = c("FBGN",
+                     "Symbol",
                      "GSC CB 2CC", 
                      "4CC", 
                      "8CC", 
@@ -61,14 +64,16 @@ gene_violin = function(data_set_to_plot="Input_seq",
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     if (normalization == "each_gene") {
       data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS")
-      data.seq_pared = data.seq[c(1, 3:10)] #extract columns used for plotting
-    }else if (data_set_to_plot == "unNorm") {
+      data.seq_pared = data.seq[c(1, 2, 3:10)] #extract columns used for plotting
+    }else if (normalization == "unNorm") {
       data.seq = readRDS("Preprocessed_data/single_cell_seq_fold_changes_germarium_soma.RDS")
-      data.seq_pared = data.seq[-1]
+      data.seq_pared = data.seq %>% 
+        relocate(Symbol, .after = FBGN)
     }
 
     
     column_names = c("FBGN",
+                     "Symbol",
                      "TF/CC", 
                      "aEc", 
                      "cEc", 
@@ -98,7 +103,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       data.seq_pared %>% 
       set_names(column_names) %>% 
       filter(FBGN %in% FBIDs_in_GO_id) %>%
-      pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_expression")
+      pivot_longer(cols = -c(FBGN, Symbol), names_to = "Genotype", values_to = "Mean_expression")
     # Use custom gene list
   }else if(genes_by_GO=="Custom_selection"){
     # tokenize input to get around variable seps from user
@@ -107,7 +112,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       data.seq_pared %>% 
       set_names(column_names) %>%
       filter(FBGN %in% gene_of_interest_tokens) %>%
-      pivot_longer(cols = -FBGN, names_to = "Genotype", values_to = "Mean_expression")
+      pivot_longer(cols = -c(FBGN, Symbol), names_to = "Genotype", values_to = "Mean_expression")
   }
   # normalize each gene to the value in UAS-tkv 
   # (also +1 to num and denom to prevent div zero errors and Infs from log)
@@ -117,7 +122,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM)")
       selected_gene_data_norm = 
         selected_gene_data %>% 
-        dplyr::group_by(FBGN) %>% 
+        dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>%
@@ -144,7 +149,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     if(normalization == "each_gene"){
       yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TE)")
       selected_gene_data_norm = selected_gene_data %>% 
-        dplyr::group_by(FBGN) %>% 
+        dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>% 
@@ -172,7 +177,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     if(normalization == "each_gene"){
       yaxis_label = expression("log normalized expression to GSC/CB/2CC")
       selected_gene_data_norm = selected_gene_data %>% 
-        dplyr::group_by(FBGN) %>% 
+        dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = Mean_expression-Mean_expression[Genotype=="GSC CB 2CC"])
       
       stats = selected_gene_data_norm %>% 
@@ -202,7 +207,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     if(normalization == "each_gene"){
       yaxis_label = expression("log normalized expression to TF/CC")
       selected_gene_data_norm = selected_gene_data %>% 
-        dplyr::group_by(FBGN) %>% 
+        dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = Mean_expression-Mean_expression[Genotype=="TF/CC"])
       
       stats = selected_gene_data_norm %>% 
@@ -231,8 +236,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # order factors
   selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
                                             levels = genotype_levels)
-  
+  # Data for download
   selected_gene_data_norm_global <<- selected_gene_data_norm
+  
   # violin plot
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
