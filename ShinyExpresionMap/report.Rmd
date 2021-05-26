@@ -32,6 +32,7 @@ if (pages_to_report == "DevProg" || pages_to_report == "all" & exists("ovary_map
     ovary_map_text = ovary_map_text_raw
     fig_nums("ovary_map_figure_legend", ovary_map_text)
   }else{
+    distPlot_cartoon_to_display = FALSE
     distPlot_legend_to_display = TRUE
     ovary_map_text_raw =
       figure_legends_table %>%
@@ -82,8 +83,11 @@ if (pages_to_report == "violin" || pages_to_report == "all" & exists("violin_plo
 ovary_cartoon_plot
 ```
 
-```{r, echo=FALSE, fig.height = 0.5, fig.width = 8.5, fig.align = "center", eval=!distPlot_cartoon_to_display}
-ovary_map_legend
+```{r, echo=FALSE, fig.height = 0.25, fig.width = 8.5, fig.align = "center", eval=!distPlot_cartoon_to_display}
+source("server_modules/ovary_map.R")
+      ovary_map_legend = ovary_map(graphic_to_generate = "legend", text_scale = 8)+ 
+        theme(aspect.ratio = 0.025)
+      ovary_map_legend
 ```
 
 ```{r echo=FALSE, fig.align="center", fig.cap=fig_nums("ovary_map_figure_legend"), fig.height=5, fig.width=14, message=FALSE, warning=FALSE,eval=!distPlot_cartoon_to_display}

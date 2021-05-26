@@ -165,7 +165,7 @@ output$violinPlot = renderPlot({
   )
   
   plotwidth = round(session$clientData[["output_violinPlot_width"]], -2)
-  text_scale_violin = plotwidth/60
+  text_scale_violin = plotwidth/90
   assign("input", input, envir = shinyEnv)
   assign("violinPlot_SeqDataset", input$SeqDataset, envir = shinyEnv)
   gene_violin_plot_global <<- gene_violin(data_set_to_plot = input$SeqDataset,
@@ -175,8 +175,8 @@ output$violinPlot = renderPlot({
                                           normalization = input$violin_normalization_option,
                                           text_scale = text_scale_violin)
   gene_violin_plot_global
-}, height = function() { round(session$clientData$output_violinPlot_width, -2)*.25},)
-  
+}, height = function() { round(session$clientData$output_violinPlot_width, -2)*.3},)
+
   # report function calls report.Rmd to knit an rmarkdown file to save data analysis
   output$report <- downloadHandler(
     # For PDF output, change this to "report.pdf"
@@ -184,13 +184,32 @@ output$violinPlot = renderPlot({
     content = function(file) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
-      # can happen when deployed).
-      tempReport = file.path(getwd(), "report.Rmd")
+      # can happen when deployed)
+      # writing locally can break report on deployment, but otherwise how to access modules w/o file structure?
+      # Maybe run .rmd locally, but export to temp dir via YAML?
+      tempReport = file.path(getwd(), "report.Rmd") 
       # file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document
       # from the code in this app).
       rmarkdown::render("report.Rmd", output_file = file, envir = shinyEnv)
-      })
+    })
+    
+  # subset data and serve csv with subsetted data for dl
+  # output$violin_data_download <- downloadHandler(
+  #   # For PDF output, change this to "report.pdf"
+  #   filename = "Ovary_App_Report.html",
+  #   content = function(file) {
+  #     # Copy the report file to a temporary directory before processing it, in
+  #     # case we don't have write permissions to the current working dir (which
+  #     # can happen when deployed).
+  #     tempReport = file.path(getwd(), "report.Rmd")
+  #     # file.copy("report.Rmd", tempReport, overwrite = TRUE)
+  #     
+  #     # Knit the document, passing in the `params` list, and eval it in a
+  #     # child of the global environment (this isolates the code in the document
+  #     # from the code in this app).
+  #     rmarkdown::render("report.Rmd", output_file = file, envir = shinyEnv)
+      # })
 })

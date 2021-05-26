@@ -41,7 +41,7 @@ ui = dashboardPage(skin = "purple",
                          width = '98%'),
              downloadButton("report")) %>% 
                add_class("view_report"),
-      actionButton("help_btn","Help", icon = icon("far fa-question-circle"))
+      actionButton("help_btn","Take a tour!", icon = icon("far fa-question-circle"))
   )),
     dashboardBody(
       shinyjs::useShinyjs(),
@@ -87,7 +87,7 @@ ui = dashboardPage(skin = "purple",
               fluidRow(
                 box(
                   width = 12,
-                  withSpinner(plotOutput("violinPlot", width = "auto"))),
+                  withSpinner(plotOutput("violinPlot", height = "auto"))),
               box(
                 title = "Controls",
                 awesomeRadio("violin_geneList_option", label = "Genes by:",
@@ -101,6 +101,7 @@ ui = dashboardPage(skin = "purple",
                              choices = list("Normalize each gene" = "each_gene", 
                                             "Log normalized Expression" = "unNorm"), 
                              selected = "each_gene"),
+                downloadButton(outputId = "violin_data_download", label = "Download expression values for selected data"),
                 br())))
     ))
 )
