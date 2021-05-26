@@ -89,6 +89,7 @@ ui = dashboardPage(skin = "purple",
                   width = 12,
                   withSpinner(plotOutput("violinPlot", height = "auto"))),
               box(
+                width = 8,
                 title = "Controls",
                 awesomeRadio("violin_geneList_option", label = "Genes by:",
                              choices = list("Select genes by GO term" = "GO_term_selection", 
