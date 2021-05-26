@@ -175,7 +175,7 @@ output$violinPlot = renderPlot({
                                           normalization = input$violin_normalization_option,
                                           text_scale = text_scale_violin)
   gene_violin_plot_global
-}, height = function() { round(session$clientData$output_violinPlot_width, -2)*0.33},)
+}, height = function() { round(session$clientData$output_violinPlot_width, -2)*.25},)
   
   # report function calls report.Rmd to knit an rmarkdown file to save data analysis
   output$report <- downloadHandler(
