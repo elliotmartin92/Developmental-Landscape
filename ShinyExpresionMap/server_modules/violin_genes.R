@@ -2,7 +2,8 @@ data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
-                       GO_term=NA, gene_of_interest=NA, 
+                       GO_term=NA, 
+                       gene_of_interest=NA, 
                        normalization="each_gene",
                        text_scale){
   
@@ -230,6 +231,8 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # order factors
   selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
                                             levels = genotype_levels)
+  
+  selected_gene_data_norm_global <<- selected_gene_data_norm
   # violin plot
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+

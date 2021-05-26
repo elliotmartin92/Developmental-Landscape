@@ -15,6 +15,7 @@ library(quanteda)
 library(ggpubr)
 library(rstatix)
 library(Cairo)
+library(rlang)
 # source("server_modules/ovary_map.R")
 source("server_modules/ggplotWhiteTheme.R")
 options(shiny.usecairo=T)
@@ -99,7 +100,7 @@ shinyServer(function(input, output, session) {
     }
   })
   # Output the data as a table for GO selection
-  updateSelectizeInput(session = session, inputId = "GO_term", selected = "large ribosomal subunit",
+  updateSelectizeInput(session = session, inputId = "GO_term", selected = "cytosolic ribosome",
                         label = "GO Term to Plot", choices = GO_term_description, server = TRUE, )
   
 ####Plotting ovary_map####
@@ -187,29 +188,21 @@ output$violinPlot = renderPlot({
       # can happen when deployed)
       # writing locally can break report on deployment, but otherwise how to access modules w/o file structure?
       # Maybe run .rmd locally, but export to temp dir via YAML?
-      tempReport = file.path(getwd(), "report.Rmd") 
+      # tempReport = file.path(getwd(), "report.Rmd") 
       # file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
-      # Knit the document, passing in the `params` list, and eval it in a
-      # child of the global environment (this isolates the code in the document
-      # from the code in this app).
+      # Rather than pass data via params, assign data to a shinyEnv environment for the report code
       rmarkdown::render("report.Rmd", output_file = file, envir = shinyEnv)
     })
     
   # subset data and serve csv with subsetted data for dl
-  # output$violin_data_download <- downloadHandler(
-  #   # For PDF output, change this to "report.pdf"
-  #   filename = "Ovary_App_Report.html",
-  #   content = function(file) {
-  #     # Copy the report file to a temporary directory before processing it, in
-  #     # case we don't have write permissions to the current working dir (which
-  #     # can happen when deployed).
-  #     tempReport = file.path(getwd(), "report.Rmd")
-  #     # file.copy("report.Rmd", tempReport, overwrite = TRUE)
-  #     
-  #     # Knit the document, passing in the `params` list, and eval it in a
-  #     # child of the global environment (this isolates the code in the document
-  #     # from the code in this app).
-  #     rmarkdown::render("report.Rmd", output_file = file, envir = shinyEnv)
-      # })
+  output$violin_data_download <- downloadHandler(
+    # For PDF output, change this to "report.pdf"
+    filename = "Selected_gene_expression.csv",
+    content = function(file) {
+      # selected data passed from violin_genes
+      
+      # write .csv of selected data
+      write.csv(selected_gene_data_norm_global, file, row.names = FALSE)
+  })
 })
