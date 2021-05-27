@@ -45,9 +45,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
                      "GSC CB 2CC", 
                      "4CC", 
                      "8CC", 
-                     "16CC",
                      "16CC 2a 1",
                      "16CC 2a 2",
+                     "16CC 2ab",
                      "16CC 2b",
                      "16CC 3",
                      "St2")
@@ -55,9 +55,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
     genotype_levels = c("GSC CB 2CC", 
                         "4CC", 
                         "8CC", 
-                        "16CC",
                         "16CC 2a 1",
                         "16CC 2a 2",
+                        "16CC 2ab",
                         "16CC 2b",
                         "16CC 3",
                         "St2")
@@ -178,11 +178,13 @@ gene_violin = function(data_set_to_plot="Input_seq",
       yaxis_label = expression("log normalized expression to GSC/CB/2CC")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
-        dplyr::mutate(Norm_expression = Mean_expression-Mean_expression[Genotype=="GSC CB 2CC"])
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC CB 2CC"]+1)))
       
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>% 
-        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% #bug here
+        filter(Genotype != "GSC CB 2CC") %>% 
+        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
+        rbind(c("GSC CB 2CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
         add_xy_position(x = "Genotype", dodge = 0.8) %>% 
         mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
         arrange(Genotype) %>% 
@@ -208,11 +210,13 @@ gene_violin = function(data_set_to_plot="Input_seq",
       yaxis_label = expression("log normalized expression to TF/CC")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
-        dplyr::mutate(Norm_expression = Mean_expression-Mean_expression[Genotype=="TF/CC"])
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="TF/CC"]+1)))
       
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>% 
+        filter(Genotype != "TF/CC") %>% 
         rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
+        rbind(c("TF/CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
         add_xy_position(x = "Genotype", dodge = 0.8) %>% 
         mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
         arrange(Genotype) %>% 
