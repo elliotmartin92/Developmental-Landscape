@@ -1,5 +1,10 @@
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
+if (!exists("GO_term_tib")) {
+  GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
+  GO_term_description <<- GO_term_tib$description
+}
+
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
                        GO_term=NA, 
