@@ -35,15 +35,15 @@ Figure1S
 
 Figure1S = Figure1S %>% 
   fill_panel(Figure1S_A, label = "A", 
-             label_just = "bottom", scaling = "none", panel_clip = "off", row = 2:3, column = 2:6, family = "Helvetica") %>% 
-  fill_panel(Figure1S_C[[1]], label = "B", 
-             label_just = "bottom", scaling = "none", panel_clip = "off", row = 5:7, column = 2:3, family = "Helvetica") %>% 
+             label_just = "bottom", scaling = "none", panel_clip = "off", row = 2:3, column = 2:6) %>% 
+  fill_panel(Figure1S_C[[1]], 
+             label_just = "bottom", scaling = "none", panel_clip = "off", row = 5:7, column = 2:3) %>% 
   fill_panel(Figure1S_C[[2]], label = "B'", 
-             label_just = "bottom", scaling = "none", panel_clip = "off", row = 5:7, column = 4:5, family = "Helvetica") %>% 
+             label_just = "bottom", scaling = "none", panel_clip = "off", row = 5:7, column = 4:5) %>% 
   fill_panel(Figure1S_C[[3]], label = "C", 
-             label_just = "bottom", scaling = "none", panel_clip = "off", row = 8:10, column = 2:3, family = "Helvetica") %>%  
+             label_just = "bottom", scaling = "none", panel_clip = "off", row = 8:10, column = 2:3) %>%  
   fill_panel(Figure1S_C[[4]], label = "C'", 
-             label_just = "bottom", scaling = "none", panel_clip = "off", row = 8:10, column = 4:5, family = "Helvetica")
+             label_just = "bottom", scaling = "none", panel_clip = "off", row = 8:10, column = 4:5)
 Figure1S
 
 ggsave(filename = "Supplemental_Figure1.pdf", plot = Figure1S, path = "../Paper/Figures/", width = 8.5, height = 11, device = cairo_pdf)

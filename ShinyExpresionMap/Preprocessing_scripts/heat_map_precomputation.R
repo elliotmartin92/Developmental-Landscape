@@ -4,6 +4,7 @@ modls = function(x){log2(x+1)}
 
 DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_colnames = FALSE){
   if(data_set_to_plot == "Input_seq"){
+    plot_title = "Bulk mRNAseq"
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list.RDS")
     column_labels =
@@ -32,6 +33,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
       data.frame()
     
   }else if (data_set_to_plot == "Polysome_seq"){
+    plot_title = "Bulk Polysome-seq"
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_polysome_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list_polysome.RDS")
     column_labels =
@@ -57,7 +59,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     
   }else if (data_set_to_plot == "Single_cell_seq_germline"){
     heat_data = readRDS("ShinyExpresionMap/Preprocessed_data/single_cell_seq_regulated_gene_fold_change_list_GC.RDS")
-    
+    plot_title = "Germline SC-seq"
     column_labels =
       c("GSC CB 2CC", 
         "4CC", 
@@ -71,7 +73,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
   }
   else if (data_set_to_plot == "Single_cell_seq_soma"){
     heat_data = readRDS("ShinyExpresionMap/Preprocessed_data/single_cell_seq_regulated_gene_fold_change_list_germarium_soma.RDS")
-    
+    plot_title = "Soma SC-seq"
     column_labels =
       c("TF/CC", 
         "aEc", 
@@ -84,7 +86,6 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
   }
   
   font_properties = list(
-    family = "Helvetica",
     size = 12,
     color = 'black')
   
@@ -94,6 +95,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     labCol = column_labels,
     seriate = "none",
     Colv = FALSE, 
+    textfont = font_properties,
     font = font_properties) %>%
     layout(
       xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
@@ -114,6 +116,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     Colv = FALSE, 
     font = font_properties) %>%
     layout(
+      title = plot_title,
       xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
       yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12))
     )

@@ -9,6 +9,6 @@ eps_as_gg = function(path) {
   PostScriptTrace(path, charpath = FALSE, outfilename = temp_path)
   my_shape = readPicture(temp_path)
   file.remove(temp_path)
-  image_gg = grImport::pictureGrob(my_shape, gp=gpar(fontfamily="Helvetica"))
+  image_gg = grImport::pictureGrob(my_shape)
   return(image_gg)
 }
