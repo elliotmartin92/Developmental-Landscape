@@ -40,6 +40,7 @@ GO_plot_from_panther = function(all_GO_file_names){
   GO_plot = 
     ggplot(data = top_cleaned_GOs_df)+
     geom_tile(aes(x=comparison, y=labels, fill=-log10(FDR)))+
+    labs(fill = expression(paste(-log[10],~'(FDR)')))+
     ylab("")+
     xlab("")+
     theme_white()+
@@ -74,6 +75,11 @@ files_to_plot_ordered =
   mutate(type = fct_relevel(type, c("TKV", "BamRNAi", "BamHSbam"))) %>%
   arrange(type)
 files_to_plot_BP = files_to_plot_ordered$files_to_plot[str_detect(files_to_plot_ordered$files_to_plot, "_BP")]
+files_to_plot_BP_Up = files_to_plot_ordered$files_to_plot[str_detect(files_to_plot_ordered$files_to_plot, "up_")]
+files_to_plot_BP_Down = files_to_plot_ordered$files_to_plot[str_detect(files_to_plot_ordered$files_to_plot, "down_")]
 
-GO_plot_from_panther(files_to_plot_BP)
+BP_Up = GO_plot_from_panther(files_to_plot_BP_Up)
+BP_Down = GO_plot_from_panther(files_to_plot_BP_Down)
 
+saveRDS(BP_Up, "Paper/Figures/Figure_2/Input_mRNAseq_GO_BP_up.RDS")
+saveRDS(BP_Down, "Paper/Figures/Figure_2/Input_mRNAseq_GO_BP_down.RDS")

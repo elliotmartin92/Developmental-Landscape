@@ -90,10 +90,10 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     color = 'black')
   
   margins_plotly = list(
-    l = 50,
-    r = 50,
-    b = 50,
-    t = 50,
+    l = 10,
+    r = 10,
+    b = 10,
+    t = 20,
     pad = 4
   )
   
