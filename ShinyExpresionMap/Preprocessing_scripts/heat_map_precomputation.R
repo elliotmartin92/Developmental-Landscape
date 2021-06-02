@@ -8,7 +8,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list.RDS")
     column_labels =
-      c("UAS-tkv", 
+      c("UAS-Tkv", 
         "bam RNAi", 
         "bam RNAi; HS-bam", 
         "Young WT")
@@ -37,7 +37,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_polysome_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list_polysome.RDS")
     column_labels =
-      c("UAS-tkv", 
+      c("UAS-Tkv", 
         "bam RNAi", 
         "bam RNAi; HS-bam", 
         "Young WT")
@@ -61,7 +61,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     heat_data = readRDS("ShinyExpresionMap/Preprocessed_data/single_cell_seq_regulated_gene_fold_change_list_GC.RDS")
     plot_title = "Germline SC-seq"
     column_labels =
-      c("GSC CB 2CC", 
+      c("GSC/CB/2CC", 
         "4CC", 
         "8CC", 
         "16CC",
@@ -89,17 +89,27 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     size = 12,
     color = 'black')
   
+  margins_plotly = list(
+    l = 50,
+    r = 50,
+    b = 50,
+    t = 50,
+    pad = 4
+  )
+  
   heat_map_plotly = heatmaply(
     heat_data,
     showticklabels = c(TRUE, FALSE),
     labCol = column_labels,
     seriate = "none",
-    Colv = FALSE, 
-    textfont = font_properties,
-    font = font_properties) %>%
+    Colv = FALSE) %>%
     layout(
-      xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
-      yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12))
+      titlefont = font_properties,
+      font = font_properties,
+      title = plot_title,
+      xaxis = list(titlefont = font_properties, tickfont = font_properties),
+      yaxis = list(titlefont = font_properties, tickfont = font_properties),
+      margin = margins_plotly
     )
   
   if (write_to_rds == TRUE) {
@@ -113,12 +123,14 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     showticklabels = c(TRUE, TRUE),
     labCol = column_labels,
     seriate = "none",
-    Colv = FALSE, 
-    font = font_properties) %>%
+    Colv = FALSE) %>%
     layout(
+      titlefont = font_properties,
+      font = font_properties,
       title = plot_title,
-      xaxis = list(titlefont = list(size = 12), tickfont = list(size = 12)),
-      yaxis = list(titlefont = list(size = 12), tickfont = list(size = 12))
+      xaxis = list(titlefont = font_properties, tickfont = font_properties),
+      yaxis = list(titlefont = font_properties, tickfont = font_properties),
+      margin = margins_plotly
     )
   
   if (write_to_rds == TRUE) {

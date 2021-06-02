@@ -18,8 +18,8 @@ plotly_files = c("Preprocessed_data/Input_seq_plotly_heatmap.RDS",
 
 plotly_file_names = lapply(plotly_files, basename)
 input_plotlys = lapply(plotly_files, readRDS)
-# mapply(export_plotly2SVG, input_plotlys, filename = plotly_file_names,
-#        parent_path = "../Paper/Figures/Figure_1/", width = 300, height = 275)
+mapply(export_plotly2SVG, input_plotlys, filename = plotly_file_names,
+       parent_path = "../Paper/Figures/Figure_1/", width = 300, height = 250)
 # had to manually adust svgs and export as png
 
 Figure1S_C_paths = list.files(path = "../Paper/Figures/Figure_1/", pattern = "*heatmap.RDS.png", full.names = TRUE)
