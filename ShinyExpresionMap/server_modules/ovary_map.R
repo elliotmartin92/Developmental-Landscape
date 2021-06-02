@@ -37,6 +37,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
                      gene_name_format="Symbol", 
                      displayTPM=TRUE, 
                      display_stage_labels=TRUE,
+                     display_title=FALSE,
                      gene_of_interest="RpS19b", 
                      text_scale=10, 
                      map_line_width=0.5,
@@ -45,10 +46,12 @@ ovary_map = function(data_set_to_plot="Input_seq",
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
     expression_unit = "TPM"
     bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
+    title_plot = "Bulk mRNAseq"
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed TE (binned/organized)
     expression_unit = "TE"
     bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
+    title_plot = "Bulk Polysome-seq"
   }else if(data_set_to_plot=="Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS") #data from preprocessed germline SC-seq (binned/organized)
     expression_unit = "NE"
@@ -61,6 +64,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
              "bin_16-cc.2b",
              "bin_16-cc.3",
              "bin_St2")
+    title_plot = "Germline SC-seq"
   }else if(data_set_to_plot=="Single_cell_seq_soma"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS") #data from preprocessed somaSC-seq (binned/organized)
     expression_unit = "NE"
@@ -72,6 +76,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
              "bin_pre-stalk",
              "bin_stalk",
              "bin_polar")
+    title_plot = "Soma SC-seq"
   }else{
     return("Missing data_set_to_plot")
   }
@@ -97,7 +102,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
     }else{
       all.colors = data.seq[data.seq$Symbol %in% gene_of_interest, names(data.seq) %in% bins]
     }
-    #mapping different features in shape to have proper base colors
+    #### mapping different features in shape to have proper base colors #### 
     if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
       cysts_stages = c("2CC", "4CC", "8CC", "16CC_2A1", "16CC_2A2", "16CC_2AB", "16CC_2B", "16CC_3")
       merge_plot$color[merge_plot$cell_type=="GSC"] = all.colors[[1]]
@@ -127,7 +132,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
       merge_plot$color[merge_plot$cell_type=="polar"] = all.colors[[8]]
     }
     
-    #plotting distplot
+    #### initial plotting distplot ####
     dist_pl = merge_plot %>%
       st_as_sf() %>% 
       arrange(region) %>% 
@@ -144,7 +149,14 @@ ovary_map = function(data_set_to_plot="Input_seq",
             legend.position = "none")
     dist_pl_rmd <<- dist_pl
     
-    ### labeling map ####
+    #### add title ####
+    if (display_title == TRUE) {
+      dist_pl = dist_pl+
+        ggtitle(title_plot)+
+        theme(plot.title = element_text(size = text_scale*ggplot2::.pt, face = "bold", hjust = 0.5))
+    }
+    
+    #### labeling map ####
     # fetch parameters required for either type of label
     if (displayTPM==TRUE | display_stage_labels==TRUE){
       shape_centroids = st_centroid(shape)

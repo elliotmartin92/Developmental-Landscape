@@ -20,7 +20,7 @@ Figure1 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.0, rep(2.0694, 2), 2.0, 0.0694, (8.5-4*(2.0694+0.025))/2),
   height = c((11-8*(1.1837+0.025))/2-.2, 1.4837, rep(1.1837, 6), 1.0, 0.4837, (11-8*(1.1837+0.025))/2-.2), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
-  panel_label_type = "none", figure_name = "RpS19b_control_grouped")
+  panel_label_type = "none", figure_name = "Figure1")
 Figure1
 
 Figure1 = Figure1 %>% 

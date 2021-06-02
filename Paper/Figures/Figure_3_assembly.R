@@ -9,7 +9,8 @@ source("server_modules/ovary_map.R")
 Figure3A1 = ovary_map(data_set_to_plot = "Input_seq",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
-                      display_stage_labels = TRUE,
+                      display_stage_labels = TRUE, 
+                      display_title = TRUE,
                       gene_of_interest = "RpS19b", 
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
@@ -19,19 +20,20 @@ Figure3A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
                       display_stage_labels = TRUE,
+                      display_title = TRUE,
                       gene_of_interest = "RpS19b", 
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5,
                       graphic_to_generate = "map")
 
-Fig2B = image_panel(path = "../Paper/Figures/placeholder.tif", 
+Figure3B = image_panel(path = "../Paper/Figures/placeholder.tif", 
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "RpS19b mRNA", 
                     blue_annotation = "Vasa",
                     label_letters = c("C", "C'", "C''"))
 
-Fig2C = image_panel(path = "../Paper/Figures/Figure_2/Control.Rps19b-GFP.40x.4_s3_5.tif", 
+Figure3C = image_panel(path = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4_s3_5.tif", 
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
                     red_annotation = "1B1", 
@@ -41,16 +43,16 @@ Fig2C = image_panel(path = "../Paper/Figures/Figure_2/Control.Rps19b-GFP.40x.4_s
 
 Figure3 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c((11-8*(1.1837+0.025))/2-.3, 1.4837, rep(1.1837, 6), 1.4837, (11-8*(1.1837+0.025))/2-.3), 
+  height = c(0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
-  panel_label_type = "none", figure_name = "RpS19b_control_grouped")
+  panel_label_type = "none", figure_name = "Figure3")
 Figure3
 
 Figure3 = Figure3 %>% 
   fill_panel(Figure3A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:6) %>% 
-  fill_panel(Figure3A2, label = "B", scaling = "fit", panel_clip = "on", row = 4:5, column = 3:6) %>% 
-  fill_panel(Fig2B, label = "", scaling = "none", panel_clip = "off", row = 6, column = 2:5) %>% 
-  fill_panel(Fig2C, label = "", scaling = "none", panel_clip = "off", row = 7, column = 2:5)
+  fill_panel(Figure3A2, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:6) %>% 
+  fill_panel(Figure3B, label = "", scaling = "none", panel_clip = "off", row = 8, column = 2:5) %>% 
+  fill_panel(Figure3C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5)
 
 Figure3
 

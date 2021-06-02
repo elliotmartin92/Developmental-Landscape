@@ -1,0 +1,61 @@
+---
+knit: (function(input, ...) {
+    rmarkdown::render(
+      input,
+      output_dir = "Compiled_panels/",
+      output_file = paste0("Compiled_panels/Developmental_Landscape_compiled_figures", '_', Sys.Date(), '.pdf'),
+      envir = globalenv()
+    )
+  })
+geometry: margin=0.25in
+output:
+  pdf_document: 
+    latex_engine: xelatex
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \pagenumbering{gobble}
+---
+
+```{r, echo=FALSE, results='hide', warning=FALSE}
+if(dir.exists("Compiled_panels/deprecated") == FALSE){
+  dir.create("Compiled_panels/deprecated")
+}
+
+deprecated_compiled_figs = setdiff(list.files(path = "Compiled_panels/", recursive = FALSE), 
+                                   list.dirs(path = "Compiled_panels", recursive = FALSE, full.names = FALSE))
+file.rename(from = paste0("Compiled_panels/", deprecated_compiled_figs), paste0("Compiled_panels/deprecated/", deprecated_compiled_figs))
+source("Figure_1_assembly.R")
+source("Figure_2_assembly.R")
+source("Figure_3_assembly.R")
+source("Figure_4_assembly.R")
+source("Figure_1S_assembly.R")
+source("Figure_2S_assembly.R")
+# source("Figure_3S_assembly.R")
+# source("Figure_4S_assembly.R")
+```
+
+```{r F1, echo=FALSE, fig.cap = "Figure 1"}
+knitr::include_graphics(path = "Figure1.pdf")
+```
+
+```{r F2, echo=FALSE, fig.cap = "Figure 2"}
+knitr::include_graphics(path = "Figure2.pdf")
+```
+
+```{r F3, echo=FALSE, fig.cap = "Figure 3"}
+knitr::include_graphics(path = "Figure3.pdf")
+```
+
+```{r SF1, echo=FALSE, fig.cap = "Supplemental Figure 1"}
+knitr::include_graphics(path = "Supplemental_Figure1.pdf")
+```
+
+```{r SF3, echo=FALSE, fig.cap = "Supplemental Figure 3"}
+knitr::include_graphics(path = "Supplemental_Figure3.pdf")
+```
+
+```{r, echo=FALSE, results='hide', warning=FALSE}
+file.rename(from = paste0("Developmental_Landscape_compiled_figures", '_', Sys.Date(), '.log'),
+  paste0("Compiled_panels/", paste0("Developmental_Landscape_compiled_figures", '_', Sys.Date(), '.log')))
+```
