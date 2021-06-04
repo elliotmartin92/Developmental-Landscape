@@ -55,7 +55,7 @@ fbgn_to_symbol =  function(fbid){
 pairwise_dds = function(GenotypeA, GenotypeB, pval_cutoff=0.05, log2FC_cutoff=1){
   if(GenotypeA==GenotypeB){return(NA)}
   res <- results(dds, contrast = c("genotype", GenotypeA, GenotypeB))
-  resTable <- data.table(rownames(res), as.data.table(res))
+  resTable <- as_tibble(data.table(rownames(res), as.data.table(res)))
   resTable = dplyr::rename(resTable, FBGN = "V1")
   fb_symbols = fbgn_to_symbol(resTable$FBGN)[[2]]
   resTable = add_column(resTable, symbol=fb_symbols, .after = "FBGN")
@@ -74,6 +74,7 @@ pairwise_dds = function(GenotypeA, GenotypeB, pval_cutoff=0.05, log2FC_cutoff=1)
   changing_genes = c(up$FBGN, down$FBGN)
   return(changing_genes)
 }
+
 # extract samples to be compared
 comparison_samples = as.character(unique(design$genotype))
 comparison_samples = comparison_samples[c(3,2,1,4)]
@@ -82,10 +83,15 @@ number_comparisons = (length(comparison_samples)*((length(comparison_samples)-1)
 wb = createWorkbook()
 # pairwise_dds call
 all_pairwise_comparisions = sapply(comparison_samples, function(GenotypeA) sapply(comparison_samples, function(GenotypeB) pairwise_dds(GenotypeA, GenotypeB)))
-saveWorkbook(wb, file = "DE_Analysis/input_DE_pairwise_comparisions.xlsx", overwrite = TRUE) #save workbook
+saveWorkbook(wb, file = "DE_Analysis/polysome_DE_pairwise_comparisions.xlsx", overwrite = TRUE) #save workbook
 head(all_pairwise_comparisions)
 # flatten pairwise comparisons and remove redundant entries
 all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
 head(all_pairwise_comparisions_uniqueflat)
 # write all DE genes to an RDS
-write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/developmentally_regulated_gene_list.RDS")
+# write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/polysome_developmentally_regulated_gene_list.RDS")
+
+trbl = function(GenotypeA, GenotypeB){
+  if(GenotypeA==GenotypeB){return(NA)}
+  print(c(GenotypeA, GenotypeB))
+}

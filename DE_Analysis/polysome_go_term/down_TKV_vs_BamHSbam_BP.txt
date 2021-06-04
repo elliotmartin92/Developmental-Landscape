@@ -1,0 +1,59 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4735677 Released 2021-05-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (105)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+specification of segmental identity, head (GO:0007380)	11	3	.08	+	35.87	1.43E-04	2.80E-02
+head development (GO:0060322)	139	7	1.06	+	6.62	1.17E-04	2.47E-02
+regulation of growth (GO:0040008)	307	14	2.33	+	6.00	1.26E-07	2.47E-04
+regulation of developmental growth (GO:0048638)	235	9	1.79	+	5.04	9.40E-05	2.10E-02
+embryo development (GO:0009790)	501	15	3.81	+	3.94	7.22E-06	3.53E-03
+positive regulation of transcription by RNA polymerase II (GO:0045944)	336	10	2.55	+	3.91	2.82E-04	4.69E-02
+positive regulation of RNA biosynthetic process (GO:1902680)	451	13	3.43	+	3.79	4.54E-05	1.32E-02
+positive regulation of transcription, DNA-templated (GO:0045893)	451	13	3.43	+	3.79	4.54E-05	1.27E-02
+positive regulation of nucleic acid-templated transcription (GO:1903508)	451	13	3.43	+	3.79	4.54E-05	1.23E-02
+positive regulation of RNA metabolic process (GO:0051254)	499	13	3.79	+	3.43	1.23E-04	2.53E-02
+positive regulation of macromolecule biosynthetic process (GO:0010557)	509	13	3.87	+	3.36	1.49E-04	2.84E-02
+positive regulation of nucleobase-containing compound metabolic process (GO:0045935)	516	13	3.92	+	3.31	1.70E-04	3.09E-02
+regulation of cellular protein metabolic process (GO:0032268)	524	13	3.98	+	3.26	1.97E-04	3.50E-02
+regulation of multicellular organismal process (GO:0051239)	572	14	4.35	+	3.22	1.26E-04	2.53E-02
+regulation of developmental process (GO:0050793)	666	16	5.06	+	3.16	4.93E-05	1.25E-02
+neuron differentiation (GO:0030182)	687	16	5.22	+	3.06	7.07E-05	1.73E-02
+positive regulation of nitrogen compound metabolic process (GO:0051173)	776	18	5.90	+	3.05	2.48E-05	7.77E-03
+regulation of transcription by RNA polymerase II (GO:0006357)	868	20	6.60	+	3.03	9.00E-06	3.35E-03
+positive regulation of macromolecule metabolic process (GO:0010604)	851	19	6.47	+	2.94	2.40E-05	7.84E-03
+generation of neurons (GO:0048699)	794	17	6.04	+	2.82	1.13E-04	2.46E-02
+regulation of cellular macromolecule biosynthetic process (GO:2000112)	1369	29	10.41	+	2.79	2.88E-07	4.51E-04
+regulation of macromolecule biosynthetic process (GO:0010556)	1374	29	10.45	+	2.78	3.11E-07	4.05E-04
+positive regulation of cellular metabolic process (GO:0031325)	860	18	6.54	+	2.75	9.20E-05	2.12E-02
+negative regulation of cellular process (GO:0048523)	1275	26	9.69	+	2.68	2.85E-06	1.59E-03
+regulation of cellular biosynthetic process (GO:0031326)	1428	29	10.86	+	2.67	6.86E-07	6.71E-04
+regulation of RNA biosynthetic process (GO:2001141)	1184	24	9.00	+	2.67	8.36E-06	3.85E-03
+regulation of transcription, DNA-templated (GO:0006355)	1184	24	9.00	+	2.67	8.36E-06	3.64E-03
+regulation of nucleic acid-templated transcription (GO:1903506)	1184	24	9.00	+	2.67	8.36E-06	3.44E-03
+positive regulation of metabolic process (GO:0009893)	939	19	7.14	+	2.66	8.88E-05	2.11E-02
+neurogenesis (GO:0022008)	841	17	6.39	+	2.66	2.22E-04	3.86E-02
+regulation of biosynthetic process (GO:0009889)	1435	29	10.91	+	2.66	7.58E-07	5.93E-04
+nervous system development (GO:0007399)	1011	19	7.69	+	2.47	2.28E-04	3.89E-02
+regulation of RNA metabolic process (GO:0051252)	1335	25	10.15	+	2.46	1.99E-05	6.79E-03
+negative regulation of biological process (GO:0048519)	1448	27	11.01	+	2.45	9.10E-06	3.24E-03
+regulation of nitrogen compound metabolic process (GO:0051171)	1845	34	14.03	+	2.42	7.36E-07	6.40E-04
+regulation of gene expression (GO:0010468)	1637	30	12.45	+	2.41	4.89E-06	2.55E-03
+regulation of nucleobase-containing compound metabolic process (GO:0019219)	1377	25	10.47	+	2.39	4.71E-05	1.23E-02
+regulation of primary metabolic process (GO:0080090)	1875	34	14.25	+	2.39	9.13E-07	6.50E-04
+positive regulation of cellular process (GO:0048522)	1606	29	12.21	+	2.38	8.97E-06	3.51E-03
+regulation of macromolecule metabolic process (GO:0060255)	2027	36	15.41	+	2.34	5.38E-07	6.01E-04
+regulation of cellular metabolic process (GO:0031323)	2003	35	15.23	+	2.30	1.18E-06	7.70E-04
+regulation of metabolic process (GO:0019222)	2186	37	16.62	+	2.23	1.27E-06	7.62E-04
+positive regulation of biological process (GO:0048518)	1741	29	13.24	+	2.19	4.22E-05	1.27E-02
+regulation of cellular process (GO:0050794)	3684	57	28.01	+	2.04	2.83E-09	2.21E-05
+regulation of biological process (GO:0050789)	3948	59	30.02	+	1.97	6.06E-09	2.37E-05
+multicellular organism development (GO:0007275)	2258	33	17.17	+	1.92	1.60E-04	2.97E-02
+biological regulation (GO:0065007)	4403	61	33.47	+	1.82	4.14E-08	1.08E-04

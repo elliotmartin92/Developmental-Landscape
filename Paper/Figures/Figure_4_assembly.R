@@ -1,7 +1,25 @@
 setwd("ShinyExpresionMap")
+library(shiny)
+# library(shinyWidgets)
+library(dtplyr)
 library(tidyverse)
+library(heatmaply)
+library(rgdal)
+library(sf)
+library(ggplot2)
+library(plotly)
+library(ggmap)
+library(cowplot)
+library(purrr)
+library(tinytex)
+library(quanteda)
+library(ggpubr)
+library(rstatix)
+library(Cairo)
+library(rlang)
 source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
+source("server_modules/ggplotWhiteTheme.R")
 
 # Figure4A1 = png_as_gg("Paper/Figures/Figure_4/RpS19b_input.png")
 # Figure4A2 = png_as_gg("../Paper/Figures/Figure_4/RpS19b_SC_GC.png")
@@ -13,7 +31,11 @@ Figure4A1 = gene_violin(data_set_to_plot="Input_seq",
                        gene_of_interest=NA, 
                        normalization="each_gene",
                        12)+ 
-  expand_limits(y = c(-4, 2.5))
+  expand_limits(y = c(-4, 2.5))+
+  ggtitle("GO term: double-strand break repair")+
+  theme(aspect.ratio = 0.5, 
+        plot.title = element_text(size = 12),
+        plot.margin = margin(0.0, 0.0, 0.0, 0.0, unit = "in"))
 
 Figure4A2 = gene_violin(data_set_to_plot="Polysome_seq", 
                         genes_by_GO="GO_term_selection", 
@@ -21,7 +43,9 @@ Figure4A2 = gene_violin(data_set_to_plot="Polysome_seq",
                         gene_of_interest=NA, 
                         normalization="each_gene",
                         12)+ 
-  expand_limits(y = c(-2, 3.5))
+  expand_limits(y = c(-2, 3.5))+
+  ggtitle("GO term: double-strand break repair")+
+  theme(aspect.ratio = 0.5, title = element_text(size = 12))
 
 Fig4B = image_panel(path = "../Paper/Figures/placeholder.tif", 
                     colors_to_return = c("green", "blue"), 

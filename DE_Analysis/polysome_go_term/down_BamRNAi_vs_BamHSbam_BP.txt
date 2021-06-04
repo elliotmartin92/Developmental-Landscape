@@ -1,0 +1,16 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20210224)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.4735677 Released 2021-05-01
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13811)	upload_1 (82)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+regulation of growth (GO:0040008)	307	10	1.82	+	5.49	1.66E-05	3.24E-02
+regulation of cellular process (GO:0050794)	3684	42	21.87	+	1.92	3.71E-06	2.91E-02
+regulation of biological process (GO:0050789)	3948	43	23.44	+	1.83	6.70E-06	2.62E-02
+biological regulation (GO:0065007)	4403	46	26.14	+	1.76	7.41E-06	1.93E-02
