@@ -25,14 +25,7 @@ if(dir.exists("Compiled_panels/deprecated") == FALSE){
 deprecated_compiled_figs = setdiff(list.files(path = "Compiled_panels/", recursive = FALSE), 
                                    list.dirs(path = "Compiled_panels", recursive = FALSE, full.names = FALSE))
 file.rename(from = paste0("Compiled_panels/", deprecated_compiled_figs), paste0("Compiled_panels/deprecated/", deprecated_compiled_figs))
-source("Figure_1_assembly.R")
-source("Figure_2_assembly.R")
-source("Figure_3_assembly.R")
-source("Figure_4_assembly.R")
-source("Figure_1S_assembly.R")
-source("Figure_2S_assembly.R")
-# source("Figure_3S_assembly.R")
-# source("Figure_4S_assembly.R")
+
 ```
 
 ```{r F1, echo=FALSE, fig.cap = "Figure 1"}

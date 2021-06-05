@@ -33,9 +33,8 @@ Figure4A1 = gene_violin(data_set_to_plot="Input_seq",
                        12)+ 
   expand_limits(y = c(-4, 2.5))+
   ggtitle("GO term: double-strand break repair")+
-  theme(aspect.ratio = 0.5, 
-        plot.title = element_text(size = 12),
-        plot.margin = margin(0.0, 0.0, 0.0, 0.0, unit = "in"))
+  theme(aspect.ratio = 0.2, 
+        plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
 
 Figure4A2 = gene_violin(data_set_to_plot="Polysome_seq", 
                         genes_by_GO="GO_term_selection", 
@@ -45,7 +44,9 @@ Figure4A2 = gene_violin(data_set_to_plot="Polysome_seq",
                         12)+ 
   expand_limits(y = c(-2, 3.5))+
   ggtitle("GO term: double-strand break repair")+
-  theme(aspect.ratio = 0.5, title = element_text(size = 12))
+  theme(aspect.ratio = 0.2, 
+        plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
+
 
 Fig4B = image_panel(path = "../Paper/Figures/placeholder.tif", 
                     colors_to_return = c("green", "blue"), 
@@ -62,17 +63,17 @@ Fig4C = image_panel(path = "../Paper/Figures/placeholder.tif",
                     label_letters = c("D", "D'", "D''"))
 
 Figure4 = multi_panel_figure(
-  width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c((11-8*(1.1837+0.025))/2-.3, 1.4837, rep(1.1837, 6), 1.4837, (11-8*(1.1837+0.025))/2-.3), 
+  width = c((8.5-4*(2.0694+0.025))/2, 0.2, 1.7944, 2.0944, 2.0944, 2.0944, (8.5-4*(2.0694+0.025))/2),
+  height = c((11-8*(1.1837+0.025))/2-.5, rep(1.1837, 2), 0.2, rep(1.1837, 2), 0.2, rep(1.1837, 4), (11-8*(1.1837+0.025))/2-.5), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure4")
 Figure4
 
 Figure4 = Figure4 %>% 
   fill_panel(Figure4A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:6) %>% 
-  fill_panel(Figure4A2, label = "B", scaling = "fit", panel_clip = "on", row = 4:5, column = 3:6) %>% 
-  fill_panel(Fig4B, label = "", scaling = "none", panel_clip = "off", row = 6, column = 2:5) %>% 
-  fill_panel(Fig4C, label = "", scaling = "none", panel_clip = "off", row = 7, column = 2:5)
+  fill_panel(Figure4A2, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:6) %>% 
+  fill_panel(Fig4B, label = "", scaling = "none", panel_clip = "off", row = 8, column = 2:5) %>% 
+  fill_panel(Fig4C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5)
 
 Figure4
 
