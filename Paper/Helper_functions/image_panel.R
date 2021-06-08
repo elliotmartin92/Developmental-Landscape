@@ -4,12 +4,15 @@ library(cowplot)
 library(multipanelfigure)
 library(extrafont)
 library(ijtiff)
-font_import(paths = c("C:/Users/Elliot/AppData/Local/Microsoft/Windows/Fonts/"), prompt = F)
+library(reticulate)
+library(tools)
+source_python("../Paper/Helper_functions/pixel_size.py")
 
-
+# font_import(paths = c("C:/Users/Elliot/AppData/Local/Microsoft/Windows/Fonts/"), prompt = F)
 
 image_panel = function(path, colors_to_return, genotype_annotation,
-                       red_annotation=NA, green_annotation=NA, blue_annotation=NA, label_letters) {
+                       red_annotation=NA, green_annotation=NA, blue_annotation=NA, label_letters,
+                       scale_bar_length) {
   
   greyscale_annotate = function(greyscale, color_annotation, label_letters){
     gg = ggdraw() + draw_image(greyscale, scale = 1)+
@@ -71,12 +74,15 @@ image_panel = function(path, colors_to_return, genotype_annotation,
   #                                  color = "white", size = 12*3.402778, font = "Helvetica") %>% 
   #   image_annotate(text = label_letters[[1]], gravity = "northwest", color = "white", 
   #                  size = 12*3.402778, font = "Helvetica", location = "0")
-  
+  base_path = file_path_sans_ext(path)
+  pixel_size = image_pixelsize(file.path(paste0(base_path, ".czi")))*10^6 #in micron/px
+  scale_bar_length_pixels = round(10/pixel_size, digits = 0)
   color_gg = image_ano+
     annotate(geom = "text", x = 0.02, y = 0.96, hjust = 0, vjust = 1, 
              label = label_letters[[1]], color = "white", size = 12/.pt)+
     annotate(geom = "text", x = 0.02, y = 0.04, hjust = 0, vjust = 0, 
-             label = genotype_annotation, color = "white", size = 12/.pt)
+             label = genotype_annotation, color = "white", size = 12/.pt)+
+    annotate(geom = "segment", xmin = 0.5, xmax = 0.98, y = 0.04)
   
   color_gg
   all_gg$color = color_gg
