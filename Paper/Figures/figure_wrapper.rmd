@@ -40,12 +40,24 @@ knitr::include_graphics(path = "Figure2.pdf")
 knitr::include_graphics(path = "Figure3.pdf")
 ```
 
+```{r F4, echo=FALSE, fig.cap = "Figure 4"}
+knitr::include_graphics(path = "Figure4.pdf")
+```
+
 ```{r SF1, echo=FALSE, fig.cap = "Supplemental Figure 1"}
 knitr::include_graphics(path = "Supplemental_Figure1.pdf")
 ```
 
+```{r SF2, echo=FALSE, fig.cap = "Supplemental Figure 2"}
+knitr::include_graphics(path = "Supplemental_Figure2.pdf")
+```
+
 ```{r SF3, echo=FALSE, fig.cap = "Supplemental Figure 3"}
 knitr::include_graphics(path = "Supplemental_Figure3.pdf")
+```
+
+```{r SF4, echo=FALSE, fig.cap = "Supplemental Figure 4"}
+knitr::include_graphics(path = "Supplemental_Figure4.pdf")
 ```
 
 ```{r, echo=FALSE, results='hide', warning=FALSE}

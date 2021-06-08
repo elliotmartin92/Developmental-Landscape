@@ -1,30 +1,17 @@
-setwd("ShinyExpresionMap")
-library(shiny)
-# library(shinyWidgets)
-library(dtplyr)
-library(tidyverse)
-library(heatmaply)
-library(rgdal)
-library(sf)
-library(ggplot2)
-library(plotly)
-library(ggmap)
-library(cowplot)
-library(purrr)
-library(tinytex)
-library(quanteda)
-library(ggpubr)
-library(rstatix)
-library(Cairo)
-library(rlang)
+
+if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
+  setwd("ShinyExpresionMap")
+}else if (strsplit(getwd(), "Developmental-Landscape")[[1]][2] == "/ShinyExpresionMap") {
+  warning("WD already set to /ShinyExpresionMap")
+}else{
+  errorCondition("WD is invalid")
+}
+
 source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("server_modules/ggplotWhiteTheme.R")
-
-# Figure4A1 = png_as_gg("Paper/Figures/Figure_4/RpS19b_input.png")
-# Figure4A2 = png_as_gg("../Paper/Figures/Figure_4/RpS19b_SC_GC.png")
-
 source("server_modules/violin_genes.R")
+
 Figure4A1 = gene_violin(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
                        GO_term="double-strand break repair", 

@@ -109,4 +109,4 @@ files_to_plot_BP_Down = files_to_plot_ordered$files_to_plot[str_detect(files_to_
 
 # BP_Up = GO_plot_from_panther(files_to_plot_BP_Up, "BP GO terms of upregulated genes")
 BP_Down = GO_plot_from_panther(files_to_plot_BP_Down, "BP GO terms of downregulated genes", n_per_geno = 10)
-saveRDS(BP_Down, "Paper/Figures/Figure_2/Polysome_mRNAseq_GO_BP_down.RDS")
+saveRDS(BP_Down, "Paper/Figures/Figure_4/Polysome_mRNAseq_GO_BP_down.RDS")

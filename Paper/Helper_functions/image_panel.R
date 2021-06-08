@@ -3,7 +3,10 @@ library(ggplot2)
 library(cowplot)
 library(multipanelfigure)
 library(extrafont)
+library(ijtiff)
 font_import(paths = c("C:/Users/Elliot/AppData/Local/Microsoft/Windows/Fonts/"), prompt = F)
+
+
 
 image_panel = function(path, colors_to_return, genotype_annotation,
                        red_annotation=NA, green_annotation=NA, blue_annotation=NA, label_letters) {

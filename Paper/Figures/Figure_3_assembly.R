@@ -1,4 +1,12 @@
-setwd("ShinyExpresionMap")
+
+if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
+  setwd("ShinyExpresionMap")
+}else if (strsplit(getwd(), "Developmental-Landscape")[[1]][2] == "/ShinyExpresionMap") {
+  warning("WD already set to /ShinyExpresionMap")
+}else{
+  errorCondition("WD is invalid")
+}
+
 source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 

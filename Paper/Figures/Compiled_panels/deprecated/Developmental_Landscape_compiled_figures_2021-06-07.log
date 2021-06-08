@@ -1,9 +1,12 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.30)  7 JUN 2021 09:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.30)  7 JUN 2021 09:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**figure_wrapper.tex
-(./figure_wrapper.tex
+**E:/Documents/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmen
+tal_Landscape_compiled_figures_2021-06-07.tex
+
+(e:/Documents/Developmental-Landscape/Paper/Figures/Compiled_panels/Development
+al_Landscape_compiled_figures_2021-06-07.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-05-27> (c:/Users/Elliot/AppData/Roaming/TinyTeX/texm
 f-dist/tex/latex/base/article.cls
@@ -467,8 +470,8 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count299
 \c@continuedfloat=\count300
 Package caption Info: hyperref package is loaded.
-) (./figure_wrapper.aux)
-\openout1 = `figure_wrapper.aux'.
+) (./Developmental_Landscape_compiled_figures_2021-06-07.aux)
+\openout1 = `Developmental_Landscape_compiled_figures_2021-06-07.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
 LaTeX Font Info:    ... okay on input line 70.
@@ -775,9 +778,10 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 70.
 LaTeX Info: Redefining \pageref on input line 70.
 LaTeX Info: Redefining \nameref on input line 70.
-(./figure_wrapper.out) (./figure_wrapper.out)
+(./Developmental_Landscape_compiled_figures_2021-06-07.out) (./Developmental_La
+ndscape_compiled_figures_2021-06-07.out)
 \@outlinefile=\write3
-\openout3 = `figure_wrapper.out'.
+\openout3 = `Developmental_Landscape_compiled_figures_2021-06-07.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -845,17 +849,20 @@ File: Supplemental_Figure3.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 106.
 
-[1] [2] [3] [4] [5] [6] (./figure_wrapper.aux)
-Package rerunfilecheck Info: File `figure_wrapper.out' has not changed.
+[1] [2] [3] [4] [5] [6] (./Developmental_Landscape_compiled_figures_2021-06-07.
+aux)
+Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_202
+1-06-07.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16877 strings out of 478682
- 305583 string characters out of 5860878
- 753919 words of memory out of 5000000
+ 16879 strings out of 478682
+ 306478 string characters out of 5860878
+ 754030 words of memory out of 5000000
  36813 multiletter control sequences out of 15000+600000
  404066 words of font info for 34 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 87i,6n,120p,308b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,6n,120p,412b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on figure_wrapper.pdf (6 pages).
+Output written on Developmental_Landscape_compiled_figures_2021-06-07.pdf (6 pa
+ges).
