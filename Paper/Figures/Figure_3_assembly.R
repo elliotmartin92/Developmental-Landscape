@@ -42,12 +42,14 @@ Figure3B = image_panel(path = "../Paper/Figures/placeholder.tif",
                     label_letters = c("C", "C'", "C''"))
 
 Figure3C = image_panel(path = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4_s3_5.tif", 
+                       path_to_czi = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
                     red_annotation = "1B1", 
                     green_annotation = "GFP", 
                     blue_annotation = "Vasa",
-                    label_letters = c("D", "D'", "D''"))
+                    label_letters = c("D", "D'", "D''"),
+                    scale_bar_length = 20)
 
 Figure3 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
