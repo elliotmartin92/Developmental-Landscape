@@ -1644,5 +1644,9 @@
       "Source": "Bioconductor",
       "Hash": "effcbe90f6986ca6f81ce4d67db7238b"
     }
+  },
+  "Python": {
+    "Version": "3.6.13",
+    "Type": "conda"
   }
 }

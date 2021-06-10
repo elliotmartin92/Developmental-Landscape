@@ -36,18 +36,22 @@ Figure4A2 = gene_violin(data_set_to_plot="Polysome_seq",
 
 
 Fig4B = image_panel(path = "../Paper/Figures/placeholder.tif", 
+                    path_to_czi = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "Brca2 mRNA", 
                     blue_annotation = "Vasa",
-                    label_letters = c("C", "C'", "C''"))
+                    label_letters = c("C", "C'", "C''"),
+                    scale_bar_length = 20)
 
 Fig4C = image_panel(path = "../Paper/Figures/placeholder.tif", 
+                    path_to_czi = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "Brca2 translation", 
                     blue_annotation = "Vasa",
-                    label_letters = c("D", "D'", "D''"))
+                    label_letters = c("D", "D'", "D''"),
+                    scale_bar_length = 20)
 
 Figure4 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.2, 1.7944, 2.0944, 2.0944, 2.0944, (8.5-4*(2.0694+0.025))/2),

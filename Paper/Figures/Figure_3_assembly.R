@@ -9,11 +9,8 @@ if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
 
 source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
-
-# Figure3A1 = png_as_gg("Paper/Figures/Figure_2/RpS19b_input.png")
-# Figure3A2 = png_as_gg("../Paper/Figures/Figure_2/RpS19b_SC_GC.png")
-
 source("server_modules/ovary_map.R")
+
 Figure3A1 = ovary_map(data_set_to_plot = "Input_seq",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
@@ -34,12 +31,14 @@ Figure3A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       map_line_width = 0.5,
                       graphic_to_generate = "map")
 
-Figure3B = image_panel(path = "../Paper/Figures/placeholder.tif", 
+Figure3B = image_panel(path = "../Paper/Figures/placeholder.tif",
+                       path_to_czi = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "RpS19b mRNA", 
                     blue_annotation = "Vasa",
-                    label_letters = c("C", "C'", "C''"))
+                    label_letters = c("C", "C'", "C''"),
+                    scale_bar_length = 20)
 
 Figure3C = image_panel(path = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4_s3_5.tif", 
                        path_to_czi = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.4.czi",
