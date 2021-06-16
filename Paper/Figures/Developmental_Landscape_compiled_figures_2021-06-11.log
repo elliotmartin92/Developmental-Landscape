@@ -1,108 +1,32 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.30)  7 JUN 2021 09:49
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.3.29)  11 JUN 2021 15:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**E:/Documents/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmen
-tal_Landscape_compiled_figures_2021-06-07.tex
+**D:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developme
+ntal_Landscape_compiled_figures_2021-06-11.tex
 
-(e:/Documents/Developmental-Landscape/Paper/Figures/Compiled_panels/Development
-al_Landscape_compiled_figures_2021-06-07.tex
+(d:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmen
+tal_Landscape_compiled_figures_2021-06-11.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-05-27> (c:/Users/Elliot/AppData/Roaming/TinyTeX/texm
+L3 programming layer <2021-02-18> (c:/Users/Elliot/AppData/Roaming/TinyTeX/texm
 f-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count177
-\c@section=\count178
-\c@subsection=\count179
-\c@subsubsection=\count180
-\c@paragraph=\count181
-\c@subparagraph=\count182
-\c@figure=\count183
-\c@table=\count184
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-)
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.s
-ty
-Package: amsmath 2020/09/23 v2.17i AMS math features
-\@mathmargin=\skip49
-For additional information on amsmath, use the `?' option.
-
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.s
-ty
-Package: amstext 2000/06/29 v2.01 AMS text
-
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.st
-y
-File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks15
-\ex@=\dimen139
-))
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.st
-y
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen140
-)
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.st
-y
-Package: amsopn 2016/03/08 v2.02 operator names
-)
-\inf@bad=\count185
-LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count186
-\leftroot@=\count187
-LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count188
-\DOTSCASE@=\count189
-LaTeX Info: Redefining \ldots on input line 496.
-LaTeX Info: Redefining \dots on input line 499.
-LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box47
-\strutbox@=\box48
-\big@size=\dimen141
-LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count190
-\c@MaxMatrixCols=\count191
-\dotsspace@=\muskip16
-\c@parentequation=\count192
-\dspbrk@lvl=\count193
-\tag@help=\toks16
-\row@=\count194
-\column@=\count195
-\maxfields@=\count196
-\andhelp@=\toks17
-\eqnshift@=\dimen142
-\alignsep@=\dimen143
-\tagshift@=\dimen144
-\tagwidth@=\dimen145
-\totwidth@=\dimen146
-\lineht@=\dimen147
-\@envbody=\toks18
-\multlinegap=\skip50
-\multlinetaggap=\skip51
-\mathdisplay@stack=\toks19
-LaTeX Info: Redefining \[ on input line 2923.
-LaTeX Info: Redefining \] on input line 2924.
-)
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.
-sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts
-.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
-Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+) (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
@@ -136,6 +60,83 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.
+sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts
+.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.s
+ty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip49
+For additional information on amsmath, use the `?' option.
+
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.s
+ty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.st
+y
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks16
+\ex@=\dimen139
+))
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.st
+y
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen140
+)
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.st
+y
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count183
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count184
+\leftroot@=\count185
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count186
+\DOTSCASE@=\count187
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen141
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count188
+\c@MaxMatrixCols=\count189
+\dotsspace@=\muskip16
+\c@parentequation=\count190
+\dspbrk@lvl=\count191
+\tag@help=\toks17
+\row@=\count192
+\column@=\count193
+\maxfields@=\count194
+\andhelp@=\toks18
+\eqnshift@=\dimen142
+\alignsep@=\dimen143
+\tagshift@=\dimen144
+\tagwidth@=\dimen145
+\totwidth@=\dimen146
+\lineht@=\dimen147
+\@envbody=\toks19
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.s
 ty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
@@ -151,20 +152,20 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ode-math.sty
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.st
 y
-Package: expl3 2021-05-27 L3 programming layer (loader) 
+Package: expl3 2021-02-18 L3 programming layer (loader) 
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backe
 nd-xetex.def
-File: l3backend-xetex.def 2021-05-07 L3 backend support: XeTeX
+File: l3backend-xetex.def 2021-03-18 L3 backend support: XeTeX
 (|extractbb --version)
-\c__kernel_sys_dvipdfmx_version_int=\count197
-\l__color_backend_stack_int=\count198
-\g__color_backend_stack_int=\count199
-\g__graphics_track_int=\count266
+\c__kernel_sys_dvipdfmx_version_int=\count195
+\l__color_backend_stack_int=\count196
+\g__color_backend_stack_int=\count197
+\g__graphics_track_int=\count198
 \l__pdf_internal_box=\box49
-\g__pdf_backend_object_int=\count267
-\g__pdf_backend_annotation_int=\count268
-\g__pdf_backend_link_int=\count269
+\g__pdf_backend_object_int=\count199
+\g__pdf_backend_annotation_int=\count266
+\g__pdf_backend_link_int=\count267
 ))
 Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
 
@@ -181,7 +182,7 @@ TeX
 /xparse-generic.tex)))
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys
 2e/l3keys2e.sty
-Package: l3keys2e 2021-05-27 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec
 .sty
@@ -191,17 +192,17 @@ Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
 -xetex.sty
 Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
 X
-\l__fontspec_script_int=\count270
-\l__fontspec_language_int=\count271
-\l__fontspec_strnum_int=\count272
-\l__fontspec_tmp_int=\count273
-\l__fontspec_tmpa_int=\count274
-\l__fontspec_tmpb_int=\count275
-\l__fontspec_tmpc_int=\count276
-\l__fontspec_em_int=\count277
-\l__fontspec_emdef_int=\count278
-\l__fontspec_strong_int=\count279
-\l__fontspec_strongdef_int=\count280
+\l__fontspec_script_int=\count268
+\l__fontspec_language_int=\count269
+\l__fontspec_strnum_int=\count270
+\l__fontspec_tmp_int=\count271
+\l__fontspec_tmpa_int=\count272
+\l__fontspec_tmpb_int=\count273
+\l__fontspec_tmpc_int=\count274
+\l__fontspec_em_int=\count275
+\l__fontspec_emdef_int=\count276
+\l__fontspec_strong_int=\count277
+\l__fontspec_strongdef_int=\count278
 \l__fontspec_tmpa_dim=\dimen148
 \l__fontspec_tmpb_dim=\dimen149
 \l__fontspec_tmpc_dim=\dimen150
@@ -216,9 +217,9 @@ Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 ))
-\g__um_fam_int=\count281
-\g__um_fonts_used_int=\count282
-\l__um_primecount_int=\count283
+\g__um_fam_int=\count279
+\g__um_fonts_used_int=\count280
+\l__um_primecount_int=\count281
 \g__um_primekern_muskip=\muskip17
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unic
@@ -234,7 +235,7 @@ Package xcolor Info: Driver file: xetex.def on input line 225.
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xete
 x.def
-File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
+File: xetex.def 2020/08/26 v5.0i Graphics/color driver for xetex
 )
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
 Package xcolor Info: Model `RGB' extended on input line 1364.
@@ -269,7 +270,7 @@ Package pdftexcmds Info: \pdfdraftmode not found.
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.s
 ty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks20
+\KV@toks@=\toks21
 )
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvset
 keys.sty
@@ -300,8 +301,8 @@ ns.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen151
-\Hy@linkcounter=\count284
-\Hy@pagecounter=\count285
+\Hy@linkcounter=\count282
+\Hy@pagecounter=\count283
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.d
 ef
@@ -320,7 +321,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 ds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count286
+\Hy@SavedSpaceFactor=\count284
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.de
 f
@@ -334,7 +335,7 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count287
+\c@Hy@tempcnt=\count285
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -351,7 +352,7 @@ ntcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count288
+\Fld@menulength=\count286
 \Field@Width=\dimen153
 \Fld@charsize=\dimen154
 Package hyperref Info: Hyper figures OFF on input line 6075.
@@ -370,9 +371,9 @@ Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
 ge
 with kernel methods
 )
-\Hy@abspage=\count289
-\c@Item=\count290
-\c@Hfootnote=\count291
+\Hy@abspage=\count287
+\c@Item=\count288
+\c@Hfootnote=\count289
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 
@@ -386,10 +387,10 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \pdfm@box=\box50
-\c@Hy@AnnotLevel=\count292
-\HyField@AnnotCount=\count293
-\Fld@listcount=\count294
-\c@bookmark@seq@number=\count295
+\c@Hy@AnnotLevel=\count290
+\HyField@AnnotCount=\count291
+\Fld@listcount=\count292
+\c@bookmark@seq@number=\count293
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/re
 runfilecheck.sty
@@ -418,9 +419,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 y
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count296
-\Gm@cntv=\count297
-\c@Gm@tempcnt=\count298
+\Gm@cnth=\count294
+\Gm@cntv=\count295
+\c@Gm@tempcnt=\count296
 \Gm@bindingoffset=\dimen155
 \Gm@wd@mp=\dimen156
 \Gm@odd@mp=\dimen157
@@ -429,7 +430,7 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen160
 \Gm@layouthoffset=\dimen161
 \Gm@layoutvoffset=\dimen162
-\Gm@dimlist=\toks21
+\Gm@dimlist=\toks22
 )
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx
 .sty
@@ -467,46 +468,46 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen171
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count299
-\c@continuedfloat=\count300
+\c@caption@flags=\count297
+\c@continuedfloat=\count298
 Package caption Info: hyperref package is loaded.
-) (./Developmental_Landscape_compiled_figures_2021-06-07.aux)
-\openout1 = `Developmental_Landscape_compiled_figures_2021-06-07.aux'.
+) (./Developmental_Landscape_compiled_figures_2021-06-11.aux)
+\openout1 = `Developmental_Landscape_compiled_figures_2021-06-11.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 70.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 70.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 70.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 70.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 70.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 70.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 70.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 67.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -535,7 +536,7 @@ pt=math;language=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 70.
+(Font)              scaled to size 10.0pt on input line 67.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -574,17 +575,17 @@ pt=math;language=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 70.
+(Font)              scaled to size 10.0pt on input line 67.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 70.
+(Font)              `operators' in the math version `normal' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 70.
+ line 67.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 70.
+(Font)              `operators' in the math version `bold' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 70.
+t line 67.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -671,15 +672,15 @@ t=math;language=dflt;"
 (fontspec)             \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 70.
+(Font)              `symbols' in the math version `normal' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 70.
+t line 67.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 70.
+(Font)              `symbols' in the math version `bold' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 70.
+t line 67.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -748,18 +749,18 @@ pt=math;language=dflt;"
 (fontspec)             =6.0pt\relax \fontdimen 13\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 7
-0.
+(Font)              `largesymbols' in the math version `normal' on input line 6
+7.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 70.
+t line 67.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 70.
+(Font)              `largesymbols' in the math version `bold' on input line 67.
 
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 70.
-Package hyperref Info: Link coloring OFF on input line 70.
+t line 67.
+Package hyperref Info: Link coloring OFF on input line 67.
 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.
 sty
@@ -773,15 +774,15 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count301
+\c@section@level=\count299
 )
-LaTeX Info: Redefining \ref on input line 70.
-LaTeX Info: Redefining \pageref on input line 70.
-LaTeX Info: Redefining \nameref on input line 70.
-(./Developmental_Landscape_compiled_figures_2021-06-07.out) (./Developmental_La
-ndscape_compiled_figures_2021-06-07.out)
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
+(./Developmental_Landscape_compiled_figures_2021-06-11.out) (./Developmental_La
+ndscape_compiled_figures_2021-06-11.out)
 \@outlinefile=\write3
-\openout3 = `Developmental_Landscape_compiled_figures_2021-06-07.out'.
+\openout3 = `Developmental_Landscape_compiled_figures_2021-06-11.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -822,52 +823,57 @@ Package caption Info: End \AtBeginDocument code.
 File: Figure1.pdf Graphic file (type pdf)
 <use Figure1.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 76.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 73.
 
 File: Figure2.pdf Graphic file (type pdf)
 <use Figure2.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 82.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 79.
 
 File: Figure3.pdf Graphic file (type pdf)
 <use Figure3.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 88.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 85.
 
 File: Figure4.pdf Graphic file (type pdf)
 <use Figure4.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 94.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 91.
 
 File: Supplemental_Figure1.pdf Graphic file (type pdf)
 <use Supplemental_Figure1.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 100.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 97.
+
+File: Supplemental_Figure2.pdf Graphic file (type pdf)
+<use Supplemental_Figure2.pdf>
+
+LaTeX Warning: Float too large for page by 11.41943pt on input line 103.
 
 File: Supplemental_Figure3.pdf Graphic file (type pdf)
 <use Supplemental_Figure3.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 106.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 109.
 
 File: Supplemental_Figure4.pdf Graphic file (type pdf)
 <use Supplemental_Figure4.pdf>
 
-LaTeX Warning: Float too large for page by 11.41943pt on input line 112.
+LaTeX Warning: Float too large for page by 11.41943pt on input line 115.
 
-[1] [2] [3] [4] [5] [6] [7] (./Developmental_Landscape_compiled_figures_2021-06
--07.aux)
+[1] [2] [3] [4] [5] [6] [7] [8] (./Developmental_Landscape_compiled_figures_202
+1-06-11.aux)
 Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_202
-1-06-07.out' has not changed.
+1-06-11.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16887 strings out of 478682
- 306721 string characters out of 5860878
- 754030 words of memory out of 5000000
- 36820 multiletter control sequences out of 15000+600000
+ 16799 strings out of 478922
+ 304176 string characters out of 5865052
+ 760543 words of memory out of 5000000
+ 36498 multiletter control sequences out of 15000+600000
  404066 words of font info for 34 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 87i,6n,120p,412b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 98i,6n,122p,413b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Developmental_Landscape_compiled_figures_2021-06-07.pdf (7 pa
+Output written on Developmental_Landscape_compiled_figures_2021-06-11.pdf (8 pa
 ges).

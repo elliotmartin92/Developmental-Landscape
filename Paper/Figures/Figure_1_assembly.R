@@ -1,12 +1,10 @@
 
 if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
-  setwd("ShinyExpresionMap")
-}else if (strsplit(getwd(), "Developmental-Landscape")[[1]][2]) {
-  
+  setwd("ShinyExpresionMap/")
+}else if (!is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
 }else{
   errorCondition("WD is invalid")
 }
-
 
 library(ggplot2)
 library(multipanelfigure)

@@ -14,10 +14,11 @@ library(rstatix)
 # library(Cairo)
 library(rlang)
 library(reticulate)
-use_condaenv("renv-python")
 
 here::i_am("Paper/figure_wrapper.R")
 library(here)
+here()
+# use_condaenv(here("renv/python/condaenvs/renv-python/"))
 source(here("ShinyExpresionMap/server_modules/ggplotWhiteTheme.R"))
        
 setwd(here())
