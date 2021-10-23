@@ -1,8 +1,7 @@
 
 if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
-  setwd("ShinyExpresionMap")
-}else if (strsplit(getwd(), "Developmental-Landscape")[[1]][2] == "/ShinyExpresionMap") {
-  warning("WD already set to /ShinyExpresionMap")
+  setwd("ShinyExpresionMap/")
+}else if (!is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
 }else{
   errorCondition("WD is invalid")
 }

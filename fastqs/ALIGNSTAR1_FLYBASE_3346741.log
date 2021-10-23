@@ -1,0 +1,62 @@
+Fri Jul 23 16:24:36 EDT 2021
+rhea-09.rit.albany.edu
+/network/rit/home/em949587/ranganlab/Data/ElliotMartin/rawdata/DevelomentLandscape/fastqs
+/network/rit/home/em949587/.bashrc: line 17: /network/rit/misc/software/jupyterhub/miniconda3/etc/profile.d/conda.: No such file or directory
+Jul 23 16:24:37 ..... started STAR run
+Jul 23 16:24:37 ..... loading genome
+Jul 23 16:24:39 ..... started mapping
+Jul 23 16:27:48 ..... started sorting BAM
+Jul 23 16:28:15 ..... finished successfully
+Jul 23 16:28:17 ..... started STAR run
+Jul 23 16:28:17 ..... loading genome
+Jul 23 16:28:19 ..... started mapping
+Jul 23 16:31:06 ..... started sorting BAM
+Jul 23 16:31:27 ..... finished successfully
+Jul 23 16:31:29 ..... started STAR run
+Jul 23 16:31:29 ..... loading genome
+Jul 23 16:31:31 ..... started mapping
+Jul 23 16:35:04 ..... started sorting BAM
+Jul 23 16:35:23 ..... finished successfully
+Jul 23 16:35:24 ..... started STAR run
+Jul 23 16:35:24 ..... loading genome
+Jul 23 16:35:26 ..... started mapping
+Jul 23 16:37:46 ..... started sorting BAM
+Jul 23 16:38:02 ..... finished successfully
+Jul 23 16:38:04 ..... started STAR run
+Jul 23 16:38:04 ..... loading genome
+Jul 23 16:38:06 ..... started mapping
+Jul 23 16:39:50 ..... started sorting BAM
+Jul 23 16:40:10 ..... finished successfully
+Jul 23 16:40:12 ..... started STAR run
+Jul 23 16:40:12 ..... loading genome
+Jul 23 16:40:14 ..... started mapping
+Jul 23 16:41:42 ..... started sorting BAM
+Jul 23 16:41:46 ..... finished successfully
+Jul 23 16:41:48 ..... started STAR run
+Jul 23 16:41:48 ..... loading genome
+Jul 23 16:41:50 ..... started mapping
+Jul 23 16:46:20 ..... started sorting BAM
+Jul 23 16:47:02 ..... finished successfully
+Jul 23 16:47:05 ..... started STAR run
+Jul 23 16:47:05 ..... loading genome
+Jul 23 16:47:07 ..... started mapping
+Jul 23 16:48:25 ..... started sorting BAM
+Jul 23 16:48:39 ..... finished successfully
+Jul 23 16:48:41 ..... started STAR run
+Jul 23 16:48:41 ..... loading genome
+Jul 23 16:48:43 ..... started mapping
+Jul 23 16:50:10 ..... started sorting BAM
+Jul 23 16:50:32 ..... finished successfully
+Jul 23 16:50:34 ..... started STAR run
+Jul 23 16:50:34 ..... loading genome
+Jul 23 16:50:35 ..... started mapping
+Jul 23 16:54:42 ..... started sorting BAM
+Jul 23 16:55:18 ..... finished successfully
+Jul 23 16:55:20 ..... started STAR run
+Jul 23 16:55:20 ..... loading genome
+Jul 23 16:55:22 ..... started mapping
+Jul 23 16:57:10 ..... started sorting BAM
+Jul 23 16:57:32 ..... finished successfully
+Jul 23 16:57:34 ..... started STAR run
+Jul 23 16:57:34 ..... loading genome
+Jul 23 16:57:36 ..... started mapping
