@@ -33,8 +33,7 @@
   },
   "Python": {
     "Version": "3.6.13",
-    "Type": "conda",
-    "Name": null
+    "Type": "conda"
   },
   "Packages": {
     "AnnotationDbi": {
