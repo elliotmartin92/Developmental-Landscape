@@ -10,13 +10,14 @@ source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("server_modules/ggplotWhiteTheme.R")
 source("server_modules/violin_genes.R")
+source("server_modules/ovary_map.R")
 
 Figure4A1 = ovary_map(data_set_to_plot = "Input_seq",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
                       display_stage_labels = TRUE, 
                       display_title = TRUE,
-                      gene_of_interest = "ord", 
+                      gene_of_interest = "ord",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")
@@ -31,7 +32,6 @@ Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")
 
-
 Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif", 
                     path_to_czi = "../Paper/Figures/Figure_4/Image 2.czi",
                     colors_to_return = c("red", "green"), 
@@ -42,7 +42,7 @@ Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif",
                     label_letters = c("C", "C'", "C''"),
                     scale_bar_length = 20)
 
-Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s7.tif", 
+Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s6_8.tif", 
                        path_to_czi = "../Paper/Figures/Figure_4/Image 11.czi",
                        colors_to_return = c("red", "green"), 
                        genotype_annotation = "Control",

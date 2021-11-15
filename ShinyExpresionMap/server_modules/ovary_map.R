@@ -46,12 +46,12 @@ ovary_map = function(data_set_to_plot="Input_seq",
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS") #data from preprocessed tpms (binned/organized)
     expression_unit = "TPM"
     bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
-    title_plot = "Bulk mRNAseq"
+    title_plot = paste("Bulk mRNAseq:", gene_of_interest)
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS") #data from preprocessed TE (binned/organized)
     expression_unit = "TE"
     bins = c("TKVbin1", "Bambin1", "Cystbin1", "Virginbin1")
-    title_plot = "Bulk Polysome-seq"
+    title_plot = paste("Bulk Polysome-seq:", gene_of_interest)
   }else if(data_set_to_plot=="Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS") #data from preprocessed germline SC-seq (binned/organized)
     expression_unit = "NE"
