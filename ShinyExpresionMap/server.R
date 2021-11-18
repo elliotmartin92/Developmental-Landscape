@@ -101,7 +101,7 @@ shinyServer(function(input, output, session) {
   })
   # Output the data as a table for GO selection
   updateSelectizeInput(session = session, inputId = "GO_term", selected = "cytosolic ribosome",
-                        label = "GO Term to Plot", choices = GO_term_description, server = TRUE, )
+                        label = "GO Term to Plot", choices = GO_term_description, server = TRUE)
   
 ####Plotting ovary_map####
   output$ovary_map = renderPlot({

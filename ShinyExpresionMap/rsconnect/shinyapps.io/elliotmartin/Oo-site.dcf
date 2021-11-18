@@ -1,0 +1,13 @@
+name: Oo-site
+title: Oo-site
+username:
+account: elliotmartin
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5129428
+bundleId: 5254892
+url: https://elliotmartin.shinyapps.io/Oo-site/
+when: 1637001339.41086
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: depricated_ui.R|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds

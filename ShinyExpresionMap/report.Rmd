@@ -88,14 +88,14 @@ if (pages_to_report == "violin" || pages_to_report == "all" & exists("violin_plo
 ovary_cartoon_plot
 ```
 
-```{r, echo=FALSE, fig.height = 0.25, fig.width = 8.5, fig.align = "center", eval=distPlot_legend_to_display}
+```{r, echo=FALSE, fig.height = 0.25, fig.width = 8.5, fig.align = "center", eval=distPlot_legend_to_display, message=FALSE, warning=FALSE}
 source("server_modules/ovary_map.R")
       ovary_map_legend = ovary_map(graphic_to_generate = "legend", text_scale = 8)+ 
         theme(aspect.ratio = 0.025)
       ovary_map_legend
 ```
 
-```{r echo=FALSE, fig.align="center", fig.cap=fig_nums("ovary_map_figure_legend"), fig.height=5, fig.width=14, message=FALSE, warning=FALSE,eval=distPlot_map_to_display}
+```{r echo=FALSE, fig.align="center", fig.cap=fig_nums("ovary_map_figure_legend"), fig.height=5, fig.width=14, message=FALSE, warning=FALSE, eval=distPlot_map_to_display}
 source("server_modules/ovary_map.R")
 ovary_map(data_set_to_plot = ovary_map_SeqDataset,
           gene_name_format = input$dataset, 
@@ -109,11 +109,11 @@ ovary_map(data_set_to_plot = ovary_map_SeqDataset,
 
 `r if(distPlot_to_display){"<br><br><br><br>"}`
 
-```{r, echo=FALSE, fig.height = 6, fig.width= 6, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map")}
+```{r, echo=FALSE, fig.height = 6, fig.width= 6, fig.align = "center", eval=heatmap_to_display, fig.cap=fig_nums("heat_map"), message=FALSE, warning=FALSE}
 heat_map_global
 ```
 <br><br><br><br>
-```{r, echo=FALSE, fig.height = 4, fig.width= 12, fig.align = "center", eval=violin_to_display, fig.cap=fig_nums("violin_plot")}
+```{r, echo=FALSE, fig.height = 4, fig.width= 12, fig.align = "center", eval=violin_to_display, fig.cap=fig_nums("violin_plot"), message=FALSE, warning=FALSE}
 # gene_violin_plot_global
 source("server_modules/violin_genes.R")
 gene_violin(data_set_to_plot = violinPlot_SeqDataset,
