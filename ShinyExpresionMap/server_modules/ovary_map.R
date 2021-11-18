@@ -167,9 +167,18 @@ ovary_map = function(data_set_to_plot="Input_seq",
       # Segments needed for TPM or stage label
       if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq"){
         dist_pl = dist_pl+
-        annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1], 
-                 xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3], 
-                 y=shape_ymin-0.22, yend=shape_ymin-0.22)
+          # UAS-tkv cell line
+          annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1]-0.47, 
+                   y=st_bbox(shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
+          # bamRNAi cell line
+          annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1]-0.30, 
+                   y=st_bbox(shape$geometry[3])[[4]], yend=shape_ymax+0.17)+
+          # bamHSbam  line
+          annotate("segment", x=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1], 
+                   xend=group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3], 
+                   y=shape_ymin-0.385, yend=shape_ymin-0.385)
+          # youngWT cell line 
+          annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1]+0.30, y=st_bbox(shape$geometry[12,1])[[4]], yend=shape_ymax+0.17)
       
       }else if (data_set_to_plot == "Single_cell_seq_germline"){
       # GSC/CB/2CC
@@ -247,16 +256,20 @@ ovary_map = function(data_set_to_plot="Input_seq",
           TPMs = signif(data.seq[data.seq$Symbol %in% gene_of_interest, 3:10][1,], 2)
         }
       }
-        #adding TPM values to the proper place on the shape
+        # adding TPM values to the proper place on the shape
         if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
           dist_pl = dist_pl+
-            annotate("text", label=paste0(TPMs[1], "\n", expression_unit), x=shape.x.y[1,1], y=shape.x.y[1,2], size=text_scale)+
-            annotate("text", label=paste0(TPMs[2], "\n", expression_unit), x=shape.x.y[3,1], y=shape.x.y[3,2], size=text_scale)+
+            # UAS-tkv TPM value
+            annotate("text", label=paste0(TPMs[1], " ", expression_unit), x=shape.x.y[1,1]-0.47, y=shape_ymin-0.30, size=text_scale)+
+            # bamRNAi TPM value
+            annotate("text", label=paste0(TPMs[2], " ", expression_unit), x=shape.x.y[3,1]-0.30, y=shape_ymax+0.30, size=text_scale)+
+            # bamRNAi HS-bam TPM value
             annotate("text", label=paste0(TPMs[3], " ", expression_unit), 
                      x=((group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1]+
                           group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3])/2),
-                     y=shape_ymin-0.13, size=text_scale)+
-            annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[12,1], y=shape.x.y[12,2]+.25, size=text_scale)
+                     y=shape_ymin-0.24, size=text_scale)+
+            # young WT TPM value
+            annotate("text", label=paste0(TPMs[4], " ", expression_unit), x=shape.x.y[12,1]+0.30, y=shape_ymax+0.30, size=text_scale)
           
         }else if (data_set_to_plot=="Single_cell_seq_germline"){
           dist_pl = dist_pl+
@@ -321,20 +334,20 @@ ovary_map = function(data_set_to_plot="Input_seq",
           if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
             dist_pl = dist_pl+
               # TKV cell label
-              annotate("text", label="UAS-Tkv", x=shape.x.y[1,1]-0.30, y=shape_ymin-0.30, size=text_scale)+
-              annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1]-0.30, 
+              annotate("text", label="UAS-tkv", x=shape.x.y[1,1]-0.50, y=shape_ymin-0.50, size=text_scale)+
+              annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1]-0.47, 
                        y=st_bbox(shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
               # bamRNAi cell label
-              annotate("text", label="bam RNAi", x=shape.x.y[3,1]-0.30, y=shape_ymax+0.30, size=text_scale)+
+              annotate("text", label="bam RNAi", x=shape.x.y[3,1]-0.30, y=shape_ymax+0.50, size=text_scale)+
               annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1]-0.30, 
                        y=st_bbox(shape$geometry[3])[[4]], yend=shape_ymax+0.17)+
-              # bamHSbam line label (redraws line in case)
-              annotate("text", label="bamRNAi HS-bam", 
+              # bamHSbam line label
+              annotate("text", label="bam RNAi HS-bam", 
                        x=((group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1]+
                              group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3])/2), 
-                       y=shape_ymin-0.30, size=text_scale)+
+                       y=shape_ymin-0.50, size=text_scale)+
               # youngWT cell label 
-              annotate("text", label="young WT", x=shape.x.y[12,1]+0.30, y=shape_ymax+0.30, size=text_scale)+
+              annotate("text", label="young WT", x=shape.x.y[12,1]+0.30, y=shape_ymax+0.50, size=text_scale)+
               annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1]+0.30, y=st_bbox(shape$geometry[12,1])[[4]], yend=shape_ymax+0.17)
             
           }else if (data_set_to_plot=="Single_cell_seq_germline"){
