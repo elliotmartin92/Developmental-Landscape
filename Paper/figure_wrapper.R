@@ -14,6 +14,7 @@ library(rstatix)
 # library(Cairo)
 library(rlang)
 library(reticulate)
+library(multipanelfigure)
 
 here::i_am("Paper/figure_wrapper.R")
 library(here)
