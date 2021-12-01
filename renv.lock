@@ -33,7 +33,8 @@
   },
   "Python": {
     "Version": "3.6.13",
-    "Type": "conda"
+    "Type": "conda",
+    "Name": null
   },
   "Packages": {
     "AnnotationDbi": {
@@ -476,6 +477,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "25da2c6fba6a13b5da94e37acdb3f532"
+    },
+    "captioner": {
+      "Package": "captioner",
+      "Version": "2.2.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "67d494ef44c6ea5f9a8803a1fc4b851a"
     },
     "car": {
       "Package": "car",
