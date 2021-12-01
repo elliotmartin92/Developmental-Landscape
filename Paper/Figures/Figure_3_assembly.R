@@ -51,16 +51,16 @@ Figure3C = image_panel(path = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.
 
 Figure3 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25), 
+  height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25-0.25), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure3")
 # Figure3
 
 Figure3 = Figure3 %>% 
-  fill_panel(Figure3A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:6) %>% 
-  fill_panel(Figure3A2, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:6) %>% 
-  fill_panel(Figure3B, label = "", scaling = "none", panel_clip = "off", row = 8, column = 2:5) %>% 
-  fill_panel(Figure3C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5)
+  fill_panel(Figure3A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
+  fill_panel(Figure3A2, label = "B", scaling = "fit", panel_clip = "on", row = 6:7, column = 3:6) %>% 
+  fill_panel(Figure3B, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
+  fill_panel(Figure3C, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5)
 
 Figure3
 
