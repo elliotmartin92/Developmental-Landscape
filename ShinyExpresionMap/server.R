@@ -130,7 +130,7 @@ shinyServer(function(input, output, session) {
                                    graphic_to_generate = "map")
       ovary_map_plot
     } #sets aspect ratio of plot, in conjunction height=auto in UI, rounding hack prevents infinite rendering loop between textsize and height
-  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.28}, 
+  }, height = function() { round(session$clientData$output_ovary_map_width, -2)*0.28} 
   )
   
     # Dont render legend in cartoon view
@@ -143,7 +143,7 @@ shinyServer(function(input, output, session) {
       ovary_map_legend <<- ovary_map(graphic_to_generate = "legend", text_scale = text_scale_legend)
       ovary_map_legend
     }
-  }, height = function() { round(session$clientData$output_legend_width, -2)*0.025}, )
+  }, height = function() { round(session$clientData$output_legend_width, -2)*0.025} )
   
 #### Plotting of heatmap ####
   output$heatPlot = renderPlotly({
@@ -176,9 +176,10 @@ output$violinPlot = renderPlot({
                                           normalization = input$violin_normalization_option,
                                           text_scale = text_scale_violin)
   gene_violin_plot_global
-}, height = function() { round(session$clientData$output_violinPlot_width, -2)*.3},)
+}, height = function() { round(session$clientData$output_violinPlot_width, -2)*.3})
 
   # report function calls report.Rmd to knit an rmarkdown file to save data analysis
+  # Filenames don't work when app is run locally, but work when deployed
   output$report <- downloadHandler(
     # For PDF output, change this to "report.pdf"
     filename = "Ovary_App_Report.html",
