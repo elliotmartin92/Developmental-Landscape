@@ -85,10 +85,10 @@ number_comparisons = (length(comparison_samples)*((length(comparison_samples)-1)
 wb = createWorkbook()
 # pairwise_dds call
 all_pairwise_comparisions = sapply(comparison_samples, function(GenotypeA) sapply(comparison_samples, function(GenotypeB) pairwise_dds(GenotypeA, GenotypeB)))
-saveWorkbook(wb, file = "DE_Analysis/input_DE_pairwise_comparisions.xlsx", overwrite = TRUE) #save workbook
+saveWorkbook(wb, file = "DE_Analysis/2_fold_0.1fdr_input_DE_pairwise_comparisions.xlsx", overwrite = TRUE) #save workbook
 head(all_pairwise_comparisions)
 # flatten pairwise comparisons and remove redundant entries
 all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
 head(all_pairwise_comparisions_uniqueflat)
 # write all DE genes to an RDS
-# write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/2_fold_developmentally_regulated_gene_list.RDS")
+# write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/2_fold_0.1fdr_developmentally_regulated_gene_list.RDS")
