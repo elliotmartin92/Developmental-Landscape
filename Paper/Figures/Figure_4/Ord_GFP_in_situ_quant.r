@@ -2,6 +2,8 @@ library(tidyverse)
 library(openxlsx)
 library(rstatix)
 library(scales)
+library(here)
+source("Paper/Helper_functions/ggplotWhiteTheme.R")
 
 fiji_output = read.xlsx("Paper/Figures/Figure_4/Ord_GFP_in_situ_quant.xlsx")
 
@@ -19,18 +21,35 @@ translation_efficiency =
   mutate(Protein_mRNA_ratio = proximal_niche_mean_norm[Staining=="protein"]/proximal_niche_mean_percent_area[Staining=="mRNA"]) %>% 
   filter(Staining!="mRNA")
 
+ord_TE_plot =
 ggplot(translation_efficiency, aes(x = X, y = Protein_mRNA_ratio))+
-  geom_point()
+  ylab("Ord translation efficiency (mRNA/protein) (A.U.)")+
+  xlab("Distance from niche (micron)")+
+  geom_point()+
+  theme_white()
   # geom_smooth(method='loess', formula= y~x)
 
+ord_mRNA_plot =
 fiji_output_normalized %>% filter(Staining=="mRNA") %>% 
-ggplot(aes(x = X, y = proximal_niche_mean_percent_area))+
-  geom_point()
-  # ylim(c(0, 1))
+ggplot(aes(x = X, y = Mean))+
+  ylab("Ord mRNA expression (A.U.)")+
+  xlab("Distance from niche (micron)")+
+  geom_point()+
+  theme_white()+
+  theme(aspect.ratio = 1)
+  # ylim(c(0, 1.2))
 
-fiji_output_normalized %>% filter(Staining=="protein") %>% 
-  ggplot(aes(x = X, y = proximal_niche_mean_norm))+
+ord_protein_plot = 
+fiji_output_normalized %>% 
+  filter(Staining=="protein") %>% 
+  ggplot(aes(x = X, y = Mean))+
   ylab("Ord protein expression (A.U.)")+
   xlab("Distance from niche (micron)")+
   geom_point()+
-  ylim(c(0, 1.2))
+  theme_white()+
+  theme(aspect.ratio = 1)
+  # ylim(c(0, 1.2))
+
+ggsave(filename = here("Paper", "Figures", "Figure_4", "ord_TE_plot.png"), ord_TE_plot, width = 3, height = 3, dpi = 300)
+ggsave(filename = here("Paper", "Figures", "Figure_4", "ord_mRNA_plot.png"), ord_mRNA_plot, width = 3, height = 3, dpi = 300)
+ggsave(filename = here("Paper", "Figures", "Figure_4", "ord_protein_plot.png"), ord_protein_plot, width = 3, height = 3, dpi = 300)
