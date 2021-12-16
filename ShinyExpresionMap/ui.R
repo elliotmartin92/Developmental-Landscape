@@ -12,7 +12,7 @@ add_class <- function(x, class) {
 }
 
 ui = dashboardPage(skin = "purple",
-  dashboardHeader(title = "Oogenesis Viz"),
+  dashboardHeader(title = "Oo-site"),
   dashboardSidebar(
     introjsUI(),
     sidebarMenu(id = "tabs",

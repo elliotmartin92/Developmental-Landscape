@@ -54,3 +54,5 @@ po/*~
 .Rhistory
 .Rprofile
 Paper/Figures/nul
+nul/
+.Rhistory

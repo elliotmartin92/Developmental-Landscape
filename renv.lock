@@ -33,7 +33,8 @@
   },
   "Python": {
     "Version": "3.6.13",
-    "Type": "conda"
+    "Type": "conda",
+    "Name": null
   },
   "Packages": {
     "AnnotationDbi": {
@@ -477,6 +478,13 @@
       "Repository": "CRAN",
       "Hash": "25da2c6fba6a13b5da94e37acdb3f532"
     },
+    "captioner": {
+      "Package": "captioner",
+      "Version": "2.2.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "67d494ef44c6ea5f9a8803a1fc4b851a"
+    },
     "car": {
       "Package": "car",
       "Version": "3.0-10",
@@ -521,10 +529,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "2.3.1",
+      "Version": "3.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3e3f28efcadfda442cd18651fbcbbecf"
+      "Hash": "66a3834e54593c89d8beefb312347e58"
     },
     "clipr": {
       "Package": "clipr",
@@ -894,6 +902,13 @@
       "Repository": "CRAN",
       "Hash": "5b79228594f02385d4df4979284879ae"
     },
+    "gt": {
+      "Package": "gt",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e027761c361e66a24e22f9446b3dd86c"
+    },
     "gtable": {
       "Package": "gtable",
       "Version": "0.3.0",
@@ -1151,6 +1166,18 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "eaee7d2a6f3ed4491df868611cb064cc"
+    },
+    "mmtable2": {
+      "Package": "mmtable2",
+      "Version": "0.1.3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "mmtable2",
+      "RemoteUsername": "ianmoran11",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "02ffc53ca05baef7c3216afb82068e8762de3323",
+      "Hash": "a03ef2babe7eaf8cc94b90e730b2a051"
     },
     "modelr": {
       "Package": "modelr",
@@ -1865,6 +1892,13 @@
       "Version": "1.36.0",
       "Source": "Bioconductor",
       "Hash": "effcbe90f6986ca6f81ce4d67db7238b"
+    },
+    "zoo": {
+      "Package": "zoo",
+      "Version": "1.8-9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "035d1c7c12593038c26fb1c2fd40c4d2"
     }
   }
 }
