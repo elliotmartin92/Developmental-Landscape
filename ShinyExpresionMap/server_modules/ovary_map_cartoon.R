@@ -2,11 +2,13 @@ library(tidyverse)
 library(sf)
 
 ovary_map_cartoon <- function(text_scale) {
-  merge_plot = readRDS("Preprocessed_data/preprocessed_sf.RDS") #data to populate shape file for distPlot
-  shape = readRDS("Preprocessed_data/preloaded_shape.RDS") #shape file for distPlot
+  merge_plot = readRDS("Preprocessed_data/preprocessed_sf_cartoon.RDS") #data to populate shape file for distPlot
+  shape = readRDS("Preprocessed_data/preloaded_shape_cartoon.RDS.") #shape file for distPlot
   
   pal <- c(
     "Black" = "Black",
+    "1B1" = "darkred",
+    "oocyte" = "grey30",
     "GSC" = "#7BC260",
     "CB" = "#83D2E7",
     "Early_cyst" = "#4E8CCA",
@@ -71,7 +73,9 @@ ovary_map_cartoon <- function(text_scale) {
                                    y=map_dbl(group_geometry$centroid, 2),
                                    bbox=st_bbox_by_feature(group_geometry$geometry))
   
-  merge_plot$color = factor(merge_plot$color, levels = c("Black", "GSC", "CB", "Early_cyst", "Late_cyst", "soma", "White", "line"))
+  merge_plot$color = factor(merge_plot$color, levels = c("1B1", "Black", "oocyte", "GSC", "CB", "Early_cyst", "Late_cyst", "soma", "White", "line"))
+  merge_plot$color[merge_plot$cell_type=="1B1"] = "1B1"
+  merge_plot$color[merge_plot$cell_type=="oocyte"] = "oocyte"
   merge_plot$color[merge_plot$cell_type=="GSC"] = "GSC"
   merge_plot$color[merge_plot$cell_type=="CB"] = "CB"
   merge_plot$color[merge_plot$cell_type=="2CC"] = "Early_cyst"
@@ -92,18 +96,20 @@ ovary_map_cartoon <- function(text_scale) {
     mutate(color = color %>% forcats::fct_reorder(-region_index)) %>%
     filter(region != "background") %>%
     ggplot()+
-    geom_sf(aes(geometry=geometry, fill=color), color = "grey50")+
+    geom_sf(aes(geometry=geometry, fill=color, color=region))+
     scale_fill_manual(values = pal, name="Binned Expression")+
+    scale_color_manual(values = c("marker" = NA, "line" = "grey50", "germline" = "grey50", "soma" = "grey50"))+
     theme_void()+
     theme(panel.grid.major = element_line(colour = "transparent"),
           panel.background = element_rect(fill = "transparent", colour = "transparent"),
           panel.border = element_rect(fill = "transparent", colour = "transparent"),
           legend.position = "none")
   
-  shape_centroids = st_centroid(shape)
+  nonmarker_shape = shape %>% filter(region != "marker")
+  nonmarker_centroids = st_centroid(nonmarker_shape)
   shape_ymin = st_bbox(shape$geometry)[[2]]
   shape_ymax = st_bbox(shape$geometry)[[4]]
-  shape.x.y = data.frame(x=map_dbl(shape_centroids$geometry, 1), y=map_dbl(shape_centroids$geometry, 2), shape$cell_type)
+  shape.x.y = data.frame(x=map_dbl(nonmarker_centroids$geometry, 1), y=map_dbl(nonmarker_centroids$geometry, 2), nonmarker_shape$cell_type)
   
   dist_pl = dist_pl+
     annotate("text", label="GSC", x=shape.x.y[1,1], y=shape_ymin-0.30, size=text_scale)+
@@ -120,24 +126,24 @@ ovary_map_cartoon <- function(text_scale) {
     
     # GSC
     annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1],
-             y=st_bbox(shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
+             y=st_bbox(nonmarker_shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
     # CB
     annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1],
-             y=st_bbox(shape$geometry[3])[[4]], yend=shape_ymax+0.03)+
+             y=st_bbox(nonmarker_shape$geometry[3])[[4]], yend=shape_ymax+0.03)+
     # 2CC
     annotate("segment", x=shape.x.y[4,1], xend=shape.x.y[4,1],
-             y=st_bbox(shape$geometry[4])[[2]], yend=shape_ymin-0.17)+
+             y=st_bbox(nonmarker_shape$geometry[4])[[2]], yend=shape_ymin-0.17)+
     # 4CC
     annotate("segment", x=shape.x.y[5,1], xend=shape.x.y[5,1],
-             y=st_bbox(shape$geometry[5])[[4]], yend=shape_ymax+0.03)+
+             y=st_bbox(nonmarker_shape$geometry[5])[[4]], yend=shape_ymax+0.03)+
     # 8CC
     annotate("segment", x=shape.x.y[6,1], xend=shape.x.y[6,1],
-             y=st_bbox(shape$geometry[6])[[2]], yend=shape_ymin-0.17)+
+             y=st_bbox(nonmarker_shape$geometry[6])[[2]], yend=shape_ymin-0.17)+
     # 16CC
     annotate("segment", x=bounding_16CC[1]*1.05, xend=bounding_16CC[3]*.95, y=shape_ymin-.17, yend=shape_ymin-0.17)+
     # ST2
     annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1],
-             y=st_bbox(shape$geometry[12])[[2]], yend=shape_ymin-0.17)+
+             y=st_bbox(nonmarker_shape$geometry[12])[[2]], yend=shape_ymin-0.17)+
     # region 1
     annotate("segment", x=bounding_region_1[1], xend=bounding_region_1[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)+
     # region 2a
@@ -148,5 +154,6 @@ ovary_map_cartoon <- function(text_scale) {
     annotate("segment", x=bounding_region_3[1], xend=bounding_region_3[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)
     
   dist_pl_rmd <<- dist_pl
+  
 }
 

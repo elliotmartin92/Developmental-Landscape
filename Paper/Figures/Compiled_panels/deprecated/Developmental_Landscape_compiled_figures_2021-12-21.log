@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.12.15)  21 DEC 2021 14:30
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.12.15)  21 DEC 2021 14:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -664,13 +664,13 @@ File: Figure3.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 88.
 
-File: Figure5.pdf Graphic file (type pdf)
-<use Figure5.pdf>
+File: Figure4.pdf Graphic file (type pdf)
+<use Figure4.pdf>
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 94.
 
-File: Figure4.pdf Graphic file (type pdf)
-<use Figure4.pdf>
+File: Figure5.pdf Graphic file (type pdf)
+<use Figure5.pdf>
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 100.
 
@@ -694,26 +694,17 @@ File: Supplemental_Figure4.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 124.
 
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 127.
-
-Overfull \hbox (64.43973pt too wide) in paragraph at lines 127--127
-[][]\TU/lmtt/b/n/14.4 {r SF5, echo=FALSE, fig.cap = "Supplemental Figure 5"} # knitr::include_graphics(path
- []
-
-[1
-
-] [2] [3] [4] [5] [6] [7] [8] [9] [10] (./Developmental_Landscape_compiled_figures_2021-12-21.aux)
+[1] [2] [3] [4] [5] [6] [7] [8] [9] (./Developmental_Landscape_compiled_figures_2021-12-21.aux)
 Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_2021-12-21.out' has not changed.
-(rerunfilecheck)             Checksum: 15617BD6F85BD7A1663A759309A4AE0C;690.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17468 strings out of 478256
- 326892 string characters out of 5854376
- 764164 words of memory out of 5000000
- 37838 multiletter control sequences out of 15000+600000
- 404090 words of font info for 37 fonts, out of 8000000 for 9000
+ 17455 strings out of 478256
+ 326541 string characters out of 5854376
+ 763897 words of memory out of 5000000
+ 37831 multiletter control sequences out of 15000+600000
+ 404066 words of font info for 34 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,6n,121p,835b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,6n,121p,413b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Developmental_Landscape_compiled_figures_2021-12-21.pdf (10 pages).
+Output written on Developmental_Landscape_compiled_figures_2021-12-21.pdf (9 pages).

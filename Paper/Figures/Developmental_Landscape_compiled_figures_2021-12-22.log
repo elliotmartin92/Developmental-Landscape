@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.12.15)  21 DEC 2021 14:34
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.12.5)  22 DEC 2021 18:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**D:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2021-12-21.tex
-(d:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2021-12-21.tex
-LaTeX2e <2021-11-15> patch level 1
+**E:/Documents/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2021-12-22.tex
+(e:/Documents/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2021-12-22.tex
+LaTeX2e <2021-11-15>
 L3 programming layer <2021-11-22> (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -117,12 +117,16 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+) (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+(c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
+)) (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ) (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-11-22 L3 programming layer (loader) 
 (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2021-12-14 L3 backend support: XeTeX
+File: l3backend-xetex.def 2021-10-18 L3 backend support: XeTeX
 (|extractbb --version)
 \c__kernel_sys_dvipdfmx_version_int=\count199
 \l__color_backend_stack_int=\count266
@@ -341,8 +345,8 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count301
 \c@continuedfloat=\count302
 Package caption Info: hyperref package is loaded.
-) (./Developmental_Landscape_compiled_figures_2021-12-21.aux)
-\openout1 = `Developmental_Landscape_compiled_figures_2021-12-21.aux'.
+) (./Developmental_Landscape_compiled_figures_2021-12-22.aux)
+\openout1 = `Developmental_Landscape_compiled_figures_2021-12-22.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
 LaTeX Font Info:    ... okay on input line 70.
@@ -609,9 +613,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 70.
 LaTeX Info: Redefining \pageref on input line 70.
 LaTeX Info: Redefining \nameref on input line 70.
-(./Developmental_Landscape_compiled_figures_2021-12-21.out) (./Developmental_Landscape_compiled_figures_2021-12-21.out)
+(./Developmental_Landscape_compiled_figures_2021-12-22.out) (./Developmental_Landscape_compiled_figures_2021-12-22.out)
 \@outlinefile=\write3
-\openout3 = `Developmental_Landscape_compiled_figures_2021-12-21.out'.
+\openout3 = `Developmental_Landscape_compiled_figures_2021-12-22.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -694,17 +698,17 @@ File: Supplemental_Figure4.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 124.
 
-[1] [2] [3] [4] [5] [6] [7] [8] [9] (./Developmental_Landscape_compiled_figures_2021-12-21.aux)
-Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_2021-12-21.out' has not changed.
+[1] [2] [3] [4] [5] [6] [7] [8] [9] (./Developmental_Landscape_compiled_figures_2021-12-22.aux)
+Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_2021-12-22.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17455 strings out of 478256
- 326541 string characters out of 5854376
- 763897 words of memory out of 5000000
- 37831 multiletter control sequences out of 15000+600000
+ 17496 strings out of 478256
+ 327894 string characters out of 5854377
+ 764070 words of memory out of 5000000
+ 37867 multiletter control sequences out of 15000+600000
  404066 words of font info for 34 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,6n,121p,413b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,6n,121p,412b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Developmental_Landscape_compiled_figures_2021-12-21.pdf (9 pages).
+Output written on Developmental_Landscape_compiled_figures_2021-12-22.pdf (9 pages).
