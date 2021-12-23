@@ -3,7 +3,7 @@ library(sf)
 
 ovary_map_cartoon <- function(text_scale) {
   merge_plot = readRDS("Preprocessed_data/preprocessed_sf_cartoon.RDS") #data to populate shape file for distPlot
-  shape = readRDS("Preprocessed_data/preloaded_shape_cartoon.RDS.") #shape file for distPlot
+  shape = readRDS("Preprocessed_data/preloaded_shape_cartoon.RDS") #shape file for distPlot
   
   pal <- c(
     "Black" = "Black",
@@ -74,7 +74,11 @@ ovary_map_cartoon <- function(text_scale) {
                                    bbox=st_bbox_by_feature(group_geometry$geometry))
   
   merge_plot$color = factor(merge_plot$color, levels = c("1B1", "Black", "oocyte", "GSC", "CB", "Early_cyst", "Late_cyst", "soma", "White", "line"))
-  merge_plot$color[merge_plot$cell_type=="1B1"] = "1B1"
+  
+  # Toggle lines to display 1B1
+  merge_plot = merge_plot %>% filter(cell_type != "1B1")
+  # merge_plot$color[merge_plot$cell_type=="1B1"] = "1B1"
+  
   merge_plot$color[merge_plot$cell_type=="oocyte"] = "oocyte"
   merge_plot$color[merge_plot$cell_type=="GSC"] = "GSC"
   merge_plot$color[merge_plot$cell_type=="CB"] = "CB"
@@ -110,6 +114,10 @@ ovary_map_cartoon <- function(text_scale) {
   shape_ymin = st_bbox(shape$geometry)[[2]]
   shape_ymax = st_bbox(shape$geometry)[[4]]
   shape.x.y = data.frame(x=map_dbl(nonmarker_centroids$geometry, 1), y=map_dbl(nonmarker_centroids$geometry, 2), nonmarker_shape$cell_type)
+  
+  marker_shape = shape %>% filter(region == "marker")
+  marker_centroids = st_centroid(marker_shape)
+  marker_shape.x.y = data.frame(x=map_dbl(marker_centroids$geometry, 1), y=map_dbl(marker_centroids$geometry, 2), marker_centroids$cell_type)
   
   dist_pl = dist_pl+
     annotate("text", label="GSC", x=shape.x.y[1,1], y=shape_ymin-0.30, size=text_scale)+
@@ -152,6 +160,17 @@ ovary_map_cartoon <- function(text_scale) {
     annotate("segment", x=bounding_region_2b[1], xend=bounding_region_2b[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)+
     # region 3
     annotate("segment", x=bounding_region_3[1], xend=bounding_region_3[3], y=shape_ymax+0.30, yend=shape_ymax+0.30)
+  
+  # markers
+  dist_pl = dist_pl+
+    # Oocyte
+    annotate("text", label="Oocyte", x=shape.x.y[12,1], y=shape_ymax+.5, size=text_scale)+
+    annotate("segment", x=marker_shape.x.y[11,1], xend=shape.x.y[12,1],
+             y=st_bbox(marker_shape$geometry[11])[[4]], yend=shape_ymax+0.30)+
+    annotate("segment", x=marker_shape.x.y[12,1], xend=shape.x.y[12,1],
+             y=st_bbox(marker_shape$geometry[10])[[4]], yend=shape_ymax+0.30)
+  
+  # dist_pl
     
   dist_pl_rmd <<- dist_pl
   

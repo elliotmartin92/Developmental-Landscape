@@ -21,6 +21,7 @@ source("server_modules/ovary_map_cartoon.R")
 Figure1_A1 =  ovary_map_cartoon(text_scale = 12/ggplot2::.pt)+
   theme(aspect.ratio = .28,
         plot.margin = margin(0.0, 0.0, 0.1, 0.0, unit = "in"))
+Figure1_A1
 
 Figure1_B1 = png_as_gg("../Paper/Figures/Figure_1/screenshot_1.png")
 
