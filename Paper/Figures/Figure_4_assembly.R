@@ -42,15 +42,15 @@ Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif",
                     label_letters = c("C", "C'", "C''"),
                     scale_bar_length = 20)
 
-Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s6_8.tif", 
-                       path_to_czi = "../Paper/Figures/Figure_4/Image 11.czi",
-                       colors_to_return = c("red", "green"), 
-                       genotype_annotation = "Control",
-                       green_annotation = "C(3)G", 
-                       red_annotation = "c(3)G mRNA",
-                       blue_annotation = "Vasa",
-                       label_letters = c("D", "D'", "D''"),
-                       scale_bar_length = 20)
+# Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s6_8.tif", 
+#                        path_to_czi = "../Paper/Figures/Figure_4/Image 11.czi",
+#                        colors_to_return = c("red", "green"), 
+#                        genotype_annotation = "Control",
+#                        green_annotation = "C(3)G", 
+#                        red_annotation = "c(3)G mRNA",
+#                        blue_annotation = "Vasa",
+#                        label_letters = c("D", "D'", "D''"),
+#                        scale_bar_length = 20)
 
 
 Figure4 = multi_panel_figure(
@@ -63,8 +63,8 @@ Figure4
 Figure4 = Figure4 %>% 
   fill_panel(Figure4A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:6) %>% 
   fill_panel(Figure4B, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:6) %>% 
-  fill_panel(Figure4C, label = "", scaling = "none", panel_clip = "off", row = 8, column = 2:5) %>% 
-  fill_panel(Figure4D, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5)
+  fill_panel(Figure4C, label = "", scaling = "none", panel_clip = "off", row = 8, column = 2:5) 
+  # fill_panel(Figure4D, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5)
 
 Figure4
 
