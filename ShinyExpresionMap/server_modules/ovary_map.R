@@ -64,7 +64,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
              "bin_16-cc.2b",
              "bin_16-cc.3",
              "bin_St2")
-    title_plot = "Germline SC-seq"
+    title_plot = paste("Germline SC-seq:", gene_of_interest)
   }else if(data_set_to_plot=="Single_cell_seq_soma"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS") #data from preprocessed somaSC-seq (binned/organized)
     expression_unit = "NE"
@@ -76,7 +76,7 @@ ovary_map = function(data_set_to_plot="Input_seq",
              "bin_pre-stalk",
              "bin_stalk",
              "bin_polar")
-    title_plot = "Soma SC-seq"
+    title_plot = paste("Soma SC-seq:", gene_of_interest) 
   }else{
     return("Missing data_set_to_plot")
   }
