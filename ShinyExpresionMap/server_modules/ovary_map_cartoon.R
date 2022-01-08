@@ -120,9 +120,9 @@ ovary_map_cartoon <- function(text_scale) {
   marker_shape.x.y = data.frame(x=map_dbl(marker_centroids$geometry, 1), y=map_dbl(marker_centroids$geometry, 2), marker_centroids$cell_type)
   
   dist_pl = dist_pl+
-    annotate("text", label="GSC", x=shape.x.y[18,1], y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="GSC", x=shape.x.y[16,1], y=shape_ymin-0.30, size=text_scale)+
     annotate("text", label="CB", x=shape.x.y[3,1], y=shape_ymax+0.16, size=text_scale)+
-    annotate("text", label="2-CC", x=mean(c(shape.x.y[18,1], shape.x.y[4,1])), y=shape_ymin-0.30, size=text_scale)+
+    annotate("text", label="2-CC", x=shape.x.y[23,1], y=shape_ymin-0.30, size=text_scale)+
     annotate("text", label="4-CC", x=shape.x.y[5,1], y=shape_ymax+0.16, size=text_scale)+
     annotate("text", label="8-CC", x=shape.x.y[6,1], y=shape_ymin-0.30, size=text_scale)+
     annotate("text", label="16-CC", x=(bounding_16CC[1]+bounding_16CC[3])/2, y=shape_ymin-0.30, size=text_scale)+
@@ -133,13 +133,13 @@ ovary_map_cartoon <- function(text_scale) {
     annotate("text", label="Region 3", x=(bounding_region_3[1]+bounding_region_3[3])/2, y=shape_ymax+0.5, size=text_scale)+
     
     # GSC
-    annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[18,1],
+    annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[16,1],
              y=st_bbox(nonmarker_shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
     # CB
     annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1],
              y=st_bbox(nonmarker_shape$geometry[3])[[4]], yend=shape_ymax+0.03)+
     # 2CC
-    annotate("segment", x=1.896065, xend=mean(c(shape.x.y[18,1], shape.x.y[4,1])),
+    annotate("segment", x=1.896065, xend=shape.x.y[23,1],
              y=5.716519, yend=shape_ymin-0.17)+
     # 4CC
     annotate("segment", x=shape.x.y[5,1], xend=shape.x.y[5,1],
@@ -174,12 +174,12 @@ ovary_map_cartoon <- function(text_scale) {
     annotate("segment", x=marker_shape.x.y[6,1], xend=shape.x.y[18,1],
              y=st_bbox(marker_shape$geometry[6])[[4]], yend=shape_ymax+0.30)+
   # Fusome
-  annotate("text", label="Fusomes", x=shape.x.y[4,1], y=shape_ymin-0.30, size=text_scale)+
+  annotate("text", label="Fusomes", x=shape.x.y[4,1]-.1, y=shape_ymin-0.30, size=text_scale)+
     # 2CC fusome
-    annotate("segment", x=2.010876, xend=shape.x.y[4,1],
+    annotate("segment", x=2.010876, xend=shape.x.y[4,1]-.1,
              y=st_bbox(marker_shape$geometry[1])[[2]], yend=shape_ymin-0.16)+
     # 8CC fusome
-    annotate("segment", x=2.518981, xend=shape.x.y[4,1],
+    annotate("segment", x=2.518981, xend=shape.x.y[4,1]-.1,
              y=st_bbox(marker_shape$geometry[8])[[2]], yend=shape_ymin-0.16)
   dist_pl
     
