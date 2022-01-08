@@ -45,7 +45,7 @@ Figure1
 
 Figure1 = Figure1 %>% 
   fill_panel(Figure1_A1, label = "A", 
-             label_just = "bottom", scaling = "none", panel_clip = "off", row = 2:3, column = 3:6) %>% 
+             label_just = "bottom", scaling = "none", panel_clip = "off", row = 2:3, column = 2:7) %>% 
   fill_panel(Figure1_B1, label = "B", 
              label_just = "bottom", scaling = "none", panel_clip = "off", row = 4:6, column = 3:5) %>% 
   fill_panel(Table_1C, label = "C", 
