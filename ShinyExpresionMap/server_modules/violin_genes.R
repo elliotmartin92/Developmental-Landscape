@@ -47,24 +47,24 @@ gene_violin = function(data_set_to_plot="Input_seq",
     data.seq_pared = data.seq[c(1, 2, 3:11)] #extract columns used for plotting
     column_names = c("FBGN",
                      "Symbol",
-                     "GSC CB 2CC", 
+                     "GSC/CB/2CC", 
                      "4CC", 
                      "8CC", 
-                     "16CC 2a 1",
-                     "16CC 2a 2",
-                     "16CC 2ab",
-                     "16CC 2b",
-                     "16CC 3",
+                     "16CC\n2a 1",
+                     "16CC\n2a 2",
+                     "16CC\n2ab",
+                     "16CC\n2b",
+                     "16CC\n3",
                      "St2")
     
-    genotype_levels = c("GSC CB 2CC", 
+    genotype_levels = c("GSC/CB/2CC", 
                         "4CC", 
                         "8CC", 
-                        "16CC 2a 1",
-                        "16CC 2a 2",
-                        "16CC 2ab",
-                        "16CC 2b",
-                        "16CC 3",
+                        "16CC\n2a 1",
+                        "16CC\n2a 2",
+                        "16CC\n2ab",
+                        "16CC\n2b",
+                        "16CC\n3",
                         "St2")
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     if (normalization == "each_gene") {
@@ -183,13 +183,13 @@ gene_violin = function(data_set_to_plot="Input_seq",
       yaxis_label = expression("log normalized expression to GSC/CB/2CC")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
-        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC CB 2CC"]+1)))
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC/CB/2CC"]+1)))
       
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>% 
-        filter(Genotype != "GSC CB 2CC") %>% 
+        filter(Genotype != "GSC/CB/2CC") %>% 
         rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
-        rbind(c("GSC CB 2CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
+        rbind(c("GSC/CB/2CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
         add_xy_position(x = "Genotype", dodge = 0.8) %>% 
         mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
         arrange(Genotype) %>% 

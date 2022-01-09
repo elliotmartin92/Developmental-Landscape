@@ -37,8 +37,9 @@ Figure5C = gene_violin(data_set_to_plot="Single_cell_seq_germline",
                        GO_term = "double-strand break repair",
                        normalization="each_gene",
                        text_scale = 12)+ 
-  expand_limits(y = c(-1, 1))+
-  ggtitle("Double-strand break repair - Single-cell seq")+
+  expand_limits(y = c(-1, 1.2))+
+  ggtitle("Double-strand break repair - sc-RNAseq")+
+  ylab("log normalized expression\ntoGSC/CB/2CC")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
 
