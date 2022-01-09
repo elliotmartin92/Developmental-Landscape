@@ -41,6 +41,9 @@ FigureS4C = gene_violin(data_set_to_plot="Single_cell_seq_germline",
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
 
+FigureS4C_SC_seq_vals = read_csv("../Paper/Figures/Figure_4/Selected_gene_expression_from_Single_cell_seq_germline_of_GO_term_meiosis I.csv")
+FigureS4C_SC_seq_vals %>% group_by(Genotype) %>% summarise(Mean = mean(Norm_expression))
+
 FigureS4D = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
@@ -50,7 +53,6 @@ FigureS4D = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")
-
 
 FigureS4 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
