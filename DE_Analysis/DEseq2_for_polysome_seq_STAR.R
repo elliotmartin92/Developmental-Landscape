@@ -41,6 +41,7 @@ design
 dds = DESeqDataSetFromMatrix(countData = allseq,
                              colData = design,
                              design =  ~ type + genotype + genotype:type)
+plotPCA(dds)
 
 dds = DESeq(dds, test="LRT", reduced = ~ type + genotype)
 resultsNames(dds)

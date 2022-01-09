@@ -124,7 +124,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # type of normalization changes y-axis label here
   if(data_set_to_plot=="Input_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM)")
+      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM+1)")
       selected_gene_data_norm = 
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
