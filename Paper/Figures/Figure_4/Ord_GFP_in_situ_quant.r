@@ -3,16 +3,15 @@ library(openxlsx)
 library(rstatix)
 library(scales)
 library(here)
-source("Paper/Helper_functions/ggplotWhiteTheme.R")
 
 plot_ord_quant = function(staining_to_plot) {
   fiji_output = read.xlsx("../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant.xlsx")
   
-  # fiji_output_normalized = 
-  #   fiji_output %>% 
-  #   dplyr::group_by(Rep, Staining) %>% 
-  #   dplyr::mutate(proximal_niche_mean_norm = rescale(Mean, to = c(0.1, 1))) %>% 
-  #   dplyr::mutate(proximal_niche_mean_percent_area = rescale(Percent.Area, to = c(0.1, 1)))
+  fiji_output_normalized =
+    fiji_output %>%
+    dplyr::group_by(Rep, Staining) %>%
+    dplyr::mutate(proximal_niche_mean_norm = rescale(Mean, to = c(0.1, 1))) %>%
+    dplyr::mutate(proximal_niche_mean_percent_area = rescale(Percent.Area, to = c(0.1, 1)))
   
   # Maybe percent area isn't the best, or thresholding is wrong. Mean seems to work better. Requant to get proper mean for mRNA
   
@@ -37,7 +36,7 @@ if(staining_to_plot == "mRNA")
     xlab("Distance from niche (micron)")+
     geom_point()+
     theme_white()+
-    theme(aspect.ratio = 1)
+    theme(aspect.ratio = 0.5)
     # ylim(c(0, 1.2))
   
   else if (staining_to_plot == "protein") {
@@ -48,7 +47,7 @@ if(staining_to_plot == "mRNA")
     xlab("Distance from niche (micron)")+
     geom_point()+
     theme_white()+
-    theme(aspect.ratio = 1)
+    theme(aspect.ratio = 0.5)
     # ylim(c(0, 1.2))
   }else{errorCondition("staining_to_plot provided should be of mRNA or protein")}
 }

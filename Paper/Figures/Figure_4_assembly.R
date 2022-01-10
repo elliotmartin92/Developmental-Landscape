@@ -59,7 +59,7 @@ Figure4D2 = plot_ord_quant("protein")
 
 Figure4 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25), 
+  height = c(0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25-0.25), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure4")
 Figure4
@@ -68,8 +68,8 @@ Figure4 = Figure4 %>%
   fill_panel(Figure4A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:6) %>% 
   fill_panel(Figure4B, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:6) %>% 
   fill_panel(Figure4C, label = "", scaling = "none", panel_clip = "off", row = 8, column = 2:5) %>% 
-  fill_panel(Figure4C, label = "D", scaling = "fit", panel_clip = "off", row = 9, column = 3:4) %>% 
-  fill_panel(Figure4C, label = "D", scaling = "fit", panel_clip = "off", row = 9, column = 5:6)
+  fill_panel(Figure4D1, label = "D", scaling = "fit", panel_clip = "off", row = 10:11, column = 3:4) %>% 
+  fill_panel(Figure4D2, label = "D'", scaling = "fit", panel_clip = "off", row = 10:11, column = 5:6)
 Figure4
 
 ggsave(filename = "Figure4.pdf", plot = Figure4, path = "../Paper/Figures/", width = 8.5, height = 11, device = cairo_pdf)
