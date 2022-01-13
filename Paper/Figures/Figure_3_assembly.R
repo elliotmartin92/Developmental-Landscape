@@ -35,7 +35,7 @@ Figure3B = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_in_situ_DAPI_Ima
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "RpS19b mRNA", 
-                    blue_annotation = "Vasa",
+                    blue_annotation = "DAPI",
                     label_letters = c("C", "C'", "C''"),
                     scale_bar_length = 20)
 
