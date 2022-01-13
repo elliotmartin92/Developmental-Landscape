@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+PRODID:-//54.189.73.143//NONSGML iCalcreator 2.6//
+VERSION:2.0
+BEGIN:VEVENT
+UID:747216918@scheduling
+DTSTAMP:20220113T162032Z
+DESCRIPTION:Client time zone: America/New_York\n\nChange Appointment: https
+ ://app.acuityscheduling.com/schedule.php?owner=24841628&action=appt&id%5B%
+ 5D=62adb72591ccd0e7e16dafcf708ad0ff\n\n\n\nThank you for choosing our comm
+ unity testing site\, conveniently located on a SUNY campus.\n\nClick here 
+ to read Governor Hochul’s press release.\n\nPrior to your appointment:\n\n
+ 1. Register for an account on our website at\nhttps://app.clarifi-covid-19
+ .com/. \n\n2. After registering for an account\, click the 'Add Profile' o
+ ption to create your individual profile. If the test recipient is a minor\
+ , under the age of 18\, parent/guardians can register their child's profil
+ e under the parent/guardian's account.\n\n3. Prior to arriving for your te
+ st:\nDo NOT to eat or drink anything (with the exception of water)\, inclu
+ ding chewing gum\, mints or lozenges\, tobacco or smokeless tobacco produc
+ ts\, within 30 minutes of reporting to the collection site.Mouthwash and t
+ oothpaste should NOT be used within an hour of testing.
+DTSTART:20220118T182000Z
+DTEND:20220118T183000Z
+LOCATION:Colonial Dining Hall-1400 Washington Ave\, Albany\, NY 12222
+SUMMARY:Quadrant Biosciences Inc.: PCR COVID-19 Test-SUNY Albany | Colonial
+  Dining Hall-1400 Washington Ave\, Albany\, NY 12222 (Rensselaer County Co
+ mmunity Testing Site at SUNY Albany-PCR COVID-19 Test)
+END:VEVENT
+END:VCALENDAR
