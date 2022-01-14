@@ -16,8 +16,8 @@ source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("../Paper/Helper_functions/export_plotly2SVG.R")
 # font_import(paths = c("C:/Users/Elliot/AppData/Local/Microsoft/Windows/Fonts/"), prompt = F)
-
 source("server_modules/ovary_map_cartoon.R")
+
 Figure1_A1 =  ovary_map_cartoon(text_scale = 12/ggplot2::.pt)+
   theme(aspect.ratio = .28,
         plot.margin = margin(0.0, 0.0, 0.1, 0.0, unit = "in"))

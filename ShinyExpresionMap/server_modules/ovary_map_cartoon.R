@@ -5,10 +5,10 @@ ovary_map_cartoon <- function(text_scale) {
   merge_plot = readRDS("Preprocessed_data/preprocessed_sf_cartoon.RDS") #data to populate shape file for distPlot
   shape = readRDS("Preprocessed_data/preloaded_shape_cartoon.RDS") #shape file for distPlot
   
-  pal <- c(
+  pal = c(
     "Black" = "Black",
-    "1B1" = "darkred",
     "oocyte" = "grey30",
+    "1B1" = "darkred",
     "GSC" = "#7BC260",
     "CB" = "#83D2E7",
     "Early_cyst" = "#4E8CCA",
@@ -24,7 +24,7 @@ ovary_map_cartoon <- function(text_scale) {
   
   st_bbox_by_feature = function(x) {
     x = st_geometry(x)
-    f <- function(y) (st_bbox(y))
+    f = function(y) (st_bbox(y))
     lapply(x, f)
   }
   
@@ -73,12 +73,12 @@ ovary_map_cartoon <- function(text_scale) {
                                    y=map_dbl(group_geometry$centroid, 2),
                                    bbox=st_bbox_by_feature(group_geometry$geometry))
   
-  merge_plot$color = factor(merge_plot$color, levels = c("1B1", "Black", "oocyte", "GSC", "CB", "Early_cyst", "Late_cyst", "soma", "White", "line"))
+  merge_plot$color = factor(merge_plot$color, 
+                            levels = c("Black", "oocyte", "1B1", "GSC", "CB", "Early_cyst", "Late_cyst", "soma", "White", "line"))
   
   # Toggle lines to display 1B1
   # merge_plot = merge_plot %>% filter(cell_type != "1B1")
   merge_plot$color[merge_plot$cell_type=="1B1"] = "1B1"
-  
   merge_plot$color[merge_plot$cell_type=="oocyte"] = "oocyte"
   merge_plot$color[merge_plot$cell_type=="GSC"] = "GSC"
   merge_plot$color[merge_plot$cell_type=="CB"] = "CB"
