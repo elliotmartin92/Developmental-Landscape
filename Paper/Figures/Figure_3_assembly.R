@@ -39,8 +39,8 @@ Figure3B = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_in_situ_DAPI_Ima
                     label_letters = c("C", "C'", "C''"),
                     scale_bar_length = 20)
 
-Figure3C = image_panel(path = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.1s3_5.tif", 
-                       path_to_czi = "../Paper/Figures/Figure_3/Control.Rps19b-GFP.40x.1.czi",
+Figure3C = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
+                       path_to_czi = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6 Image 11.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
                     red_annotation = "1B1", 
