@@ -13,15 +13,21 @@ source_python("../Paper/Helper_functions/pixel_size.py")
 
 image_panel = function(path, path_to_czi, colors_to_return, genotype_annotation,
                        red_annotation=NA, green_annotation=NA, blue_annotation=NA, label_letters,
-                       scale_bar_length=10) {
+                       scale_bar_length=10, additional_annotation = FALSE, ...) {
   
-  greyscale_annotate = function(greyscale, color_annotation, label_letters){
+  greyscale_annotate = function(greyscale, color_annotation, label_letters, 
+                                additional_annotation = FALSE, ...){
     gg = ggdraw() + draw_image(greyscale, scale = 1)+
       theme(plot.margin = unit(c(0, 0, 0, 0), units = "in"))+
       annotate(geom = "text",  x = 0.98, y = 0.96, hjust = 1, vjust = 1,
                label = color_annotation, color = "white", size = 12/.pt)+
       annotate(geom = "text", x = 0.02, y = 0.96, hjust = 0, vjust = 1,
                label = label_letters, color = "white", size = 12/.pt)
+    
+    if(additional_annotation == TRUE){
+      gg = gg+
+        annotate(...)
+    }
     return(gg)
   }
   
@@ -42,7 +48,8 @@ image_panel = function(path, path_to_czi, colors_to_return, genotype_annotation,
                   greyscale = greyscales_ordered, 
                   color_annotation = all_grey_annotation_pared, 
                   label_letters = label_letters_grey,
-                  SIMPLIFY = FALSE, USE.NAMES = T)
+                  SIMPLIFY = FALSE, USE.NAMES = T, 
+                  additional_annotation = additional_annotation, ...)
   
   annotation_spacer = 0
   # image_ano = rgb_image_raw
@@ -87,6 +94,11 @@ image_panel = function(path, path_to_czi, colors_to_return, genotype_annotation,
     annotate(geom = "text", x = 0.02, y = 0.04, hjust = 0, vjust = 0, 
              label = genotype_annotation, color = "white", size = 12/.pt)+
     annotate(geom = "segment", x = 0.96-scale_bar_prop, xend = 0.96, y = 0.04, yend = 0.04, color = "white")
+  
+  if(additional_annotation == TRUE){
+    color_gg = color_gg+
+      annotate(...)
+  }
   
   color_gg
   all_gg$color = color_gg
