@@ -37,7 +37,10 @@ Figure3B = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_in_situ_DAPI_Ima
                     green_annotation = "RpS19b mRNA", 
                     blue_annotation = "DAPI",
                     label_letters = c("C", "C'", "C''"),
-                    scale_bar_length = 20)
+                    scale_bar_length = 20, 
+                    additional_annotation = TRUE, 
+                    geom = "segment", x = .1, xend=.22, y=.35, yend=.42, color="gold")
+Figure3B
 
 Figure3C = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
                        path_to_czi = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6 Image 11.czi",
@@ -47,7 +50,10 @@ Figure3C = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_
                     green_annotation = "GFP", 
                     blue_annotation = "Vasa",
                     label_letters = c("D", "D'", "D''"),
-                    scale_bar_length = 20)
+                    scale_bar_length = 20, 
+                    additional_annotation = TRUE, 
+                    geom = "segment", x = .08, xend=.3, y=.32, yend=.28, color="gold")
+Figure3C
 
 Figure3 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
