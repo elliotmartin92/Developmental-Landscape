@@ -12,37 +12,61 @@ source("server_modules/ovary_map.R")
 
 FigureS4A = gene_violin(data_set_to_plot="Input_seq", 
                          genes_by_GO="GO_term_selection", 
-                        GO_term = "meiosis I",
+                        GO_term = "meiotic cell cycle",
                          normalization="each_gene",
                          text_scale = 12)+ 
   expand_limits(y = c(-4, 3))+
-  ggtitle("Meiosis I - Input")+
+  ggtitle("Meiotic cell cycle - Input")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
 
+FigureS4A_input_seq_vals = read_csv("../Paper/Figures/Figure_4/Selected_gene_expression_from_Input_seq_of_GO_term_meiotic cell cycle.csv")
+
+all_genes = read_rds("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
+all_genes %>% select(1:5) %>%
+  pivot_longer(-FBGN, names_to = "Genotype", values_to = "Expression") %>% 
+  filter(Genotype == "MeanTPM_TKV_input") %>% 
+  summarise(deciles = quantile(Expression, probs = seq(.1, .9, by = 0.1)))
+
+FigureS4A_input_seq_vals %>% 
+  group_by(Genotype) %>% 
+  dplyr::summarise(Median = median(Mean_expression))
+
 FigureS4B = gene_violin(data_set_to_plot="Polysome_seq", 
                         genes_by_GO="GO_term_selection", 
-                        GO_term = "meiosis I",
+                        GO_term = "meiotic cell cycle",
                         normalization="each_gene",
                         text_scale = 12)+ 
   expand_limits(y = c(-2, 10))+
-  ggtitle("Meiosis I - Polysome")+
+  ggtitle("Meiotic cell cycle - Polysome")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
 
 FigureS4C = gene_violin(data_set_to_plot="Single_cell_seq_germline", 
                         genes_by_GO="GO_term_selection", 
-                        GO_term = "meiosis I",
+                        GO_term = "meiotic cell cycle",
                         normalization="each_gene",
                         text_scale = 12)+ 
   expand_limits(y = c(-2, 2))+
-  ggtitle("Meiosis I - sc-RNAseq")+
+  ggtitle("Meiotic cell cycle - sc-RNAseq")+
   ylab("log normalized expression\ntoGSC/CB/2CC")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
 
-FigureS4C_SC_seq_vals = read_csv("../Paper/Figures/Figure_4/Selected_gene_expression_from_Single_cell_seq_germline_of_GO_term_meiosis I.csv")
-FigureS4C_SC_seq_vals %>% group_by(Genotype) %>% summarise(Mean = mean(Norm_expression))
+FigureS4C_SC_seq_vals = read_csv("../Paper/Figures/Figure_4/Selected_gene_expression_from_Single_cell_seq_germline_of_GO_term_meiotic cell cycle.csv")
+
+FigureS4C_SC_seq_vals %>% 
+  group_by(FBGN) %>% 
+  mutate(Norm_to_1 = Mean_expression/Mean_expression[Genotype=="GSC/CB/2CC"]) %>% 
+  drop_na() %>% 
+  filter_all(all_vars(!is.infinite(.))) %>% 
+  group_by(Genotype) %>% 
+  dplyr::summarise(Median = median(Norm_to_1))
+
+FigureS4C_SC_seq_vals %>% 
+  group_by(Genotype) %>% 
+  dplyr::summarise(Median = median(Mean_expression))
+
 
 FigureS4D = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_name_format = "Symbol",
