@@ -60,7 +60,7 @@ Figure2 = multi_panel_figure(
   height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25-0.25), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure2")
-# Figure2
+Figure2
 
 Figure2 = Figure2 %>% 
   fill_panel(Figure2A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 

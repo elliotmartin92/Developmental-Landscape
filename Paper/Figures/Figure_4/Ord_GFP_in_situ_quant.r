@@ -23,7 +23,9 @@ if(staining_to_plot == "mRNA")
     ylim(0.5, 1)+
     geom_point()+
     theme_white()+
-    theme(aspect.ratio = 0.5)
+    theme(aspect.ratio = 0.5, 
+          axis.text.x = element_text(size=10),
+          plot.margin =  margin(c(.2,.2,.1,.1), unit = "in"))
   
   else if (staining_to_plot == "protein") {
     fiji_output_normalized %>% 
@@ -35,7 +37,9 @@ if(staining_to_plot == "mRNA")
     ylim(0.5, 1)+
     geom_point()+
     theme_white()+
-    theme(aspect.ratio = 0.5)
+    theme(aspect.ratio = 0.5, 
+          axis.text.x = element_text(size=10),
+          plot.margin =  margin(c(.2,.2,.1,.1), unit = "in"))
     
   }else if (staining_to_plot == "TE") {    
     translation_efficiency =
@@ -52,7 +56,10 @@ if(staining_to_plot == "mRNA")
       geom_smooth(method='loess', formula= y~x)+
       geom_point()+
       theme_white()+
-      theme(aspect.ratio = 0.5)
+      theme(aspect.ratio = 0.5, 
+            axis.text.x = element_text(size=10),
+            plot.margin =  margin(c(.2,.2,.1,.1), unit = "in"))
+      
   }else{errorCondition("staining_to_plot provided should be of mRNA or protein")}
 }
 
