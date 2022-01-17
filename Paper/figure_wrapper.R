@@ -15,6 +15,7 @@ library(rstatix)
 library(rlang)
 library(reticulate)
 library(multipanelfigure)
+library(latex2exp)
 
 here::i_am("Paper/figure_wrapper.R")
 library(here)
