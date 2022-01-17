@@ -9,7 +9,6 @@ if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
 source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("server_modules/ggplotWhiteTheme.R")
-source("server_modules/violin_genes.R")
 source("server_modules/ovary_map.R")
 
 Figure4A1 = ovary_map(data_set_to_plot = "Input_seq",

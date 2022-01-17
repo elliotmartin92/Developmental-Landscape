@@ -1,9 +1,12 @@
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
+# Read list containing all GO terms, delcared globally to allow for access in the following function and by the Shiny app (defined scope would be better)
 if (!exists("GO_term_tib")) {
   GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
   GO_term_description <<- GO_term_tib$description
 }
+
+# Function that produces violin plots
 
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
@@ -12,6 +15,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                        normalization="each_gene",
                        text_scale){
   
+  # Set parameters based on dataset selected
   if(data_set_to_plot=="Input_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     data.seq_pared = data.seq[c(1, 10, 2:5)] #extract columns used for plotting
@@ -98,10 +102,10 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "polar")
   }
 
-  #select either by GO term or with a custom list of FBGNs
+  # select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
     GO_Term_to_FBID = read_rds("Preprocessed_data/GO_Term_to_FBID.rds")
-    # method to take go term and make list of gen
+    # method to take go term and make list of genes
     selected_GO_id = GO_term_tib$GOID[GO_term_tib$description == GO_term] #Globally declared map of ID to description
     FBIDs_in_GO_id = GO_Term_to_FBID$ensembl_id[GO_Term_to_FBID$go_id == selected_GO_id]
     selected_gene_data = 
@@ -248,7 +252,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # Data for download
   selected_gene_data_norm_global <<- selected_gene_data_norm
   
-  # violin plot
+  # violin plot with points for each gene
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
@@ -258,7 +262,8 @@ gene_violin = function(data_set_to_plot="Input_seq",
       stat_summary(mapping = aes(group = Genotype), 
                    fun = median, fun.min = median, fun.max = median,
                    geom = "crossbar", width = 0.4)+
-      geom_point(position = position_jitter(seed = 1, width = 0.2), color="grey60")+
+      geom_point(position = position_jitter(seed = 1, width = 0.2), 
+                 color="grey60", shape = 1, alpha = 0.7)+
       theme_white()+
       theme(axis.text.x = element_text(size = text_scale),
             axis.text.y = element_text(size = text_scale), 

@@ -14,7 +14,7 @@ convert_sc_symbol_to_FBGN = function(sheet_name){
     pivot_longer(-c(FBGN, Symbol), names_to = "Stage", values_to = "Expression") %>% 
     dplyr::group_by(Symbol, Stage) %>% 
     mutate(bin = cut(as.numeric(Expression), 
-                     breaks = c(-1,0.05,0.25,0.5,2.5,25,200), 
+                     breaks = c(-1,0.1,0.35,0.5,2.5,25,200), 
                      labels=c("None","Very Low","Low","Med","High","Very High"))) %>% 
     pivot_wider(id_cols = c(FBGN, Symbol), names_from = Stage, values_from = c(Expression, bin))
     
