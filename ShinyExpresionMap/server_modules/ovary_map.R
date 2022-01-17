@@ -12,8 +12,8 @@ pal <- c(
   "High" = "#66ffff",
   "Med" = "#99ffff", 
   "Low" = "#ccffff", 
-  "Very Low" = "#d9ffff",
-  "None" = "#bdbdbd",
+  "Very Low" = "#e6ffff",
+  "None" = "#e3e3e3",
   "White" = "White",
   "line" = "Black")
 
@@ -432,4 +432,4 @@ ovary_map = function(data_set_to_plot="Input_seq",
       }else{
         message("graphic_to_generate should be of type 'map', or 'legend'")
       }
-    }
+}
