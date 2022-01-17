@@ -44,6 +44,7 @@ Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif",
 source("../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant.r")
 Figure4D1 = plot_ord_quant("mRNA")
 Figure4D2 = plot_ord_quant("protein")
+# plot_ord_quant("TE")
 
 # Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s6_8.tif", 
 #                        path_to_czi = "../Paper/Figures/Figure_4/Image 11.czi",
