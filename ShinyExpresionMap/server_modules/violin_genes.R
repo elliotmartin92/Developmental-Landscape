@@ -1,4 +1,5 @@
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
+par(lheight=0.2)
 
 # Read list containing all GO terms, delcared globally to allow for access in the following function and by the Shiny app (defined scope would be better)
 if (!exists("GO_term_tib")) {
@@ -31,6 +32,15 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "bam RNAi; HS-bam", 
                         "Young WT")
     
+    formatted_labels = c("UAS-tkv" = 
+                           parse(text = TeX(r'($\overset{> UAS- \textit{tkv}}{(GSCs)}$)')),
+                         "bam RNAi" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi}{(CBs)}$)')), 
+                         "bam RNAi; HS-bam" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi; \, hs-\textit{bam}}{(Cysts)}$)')), 
+                         "Young WT" = 
+                           "Young WT")
+    
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
     data.seq_pared = data.seq[c(1, 23, 3:6)] #extract columns used for plotting
@@ -45,6 +55,15 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "bam RNAi", 
                         "bam RNAi; HS-bam", 
                         "Young WT")
+    
+    formatted_labels = c("UAS-tkv" = 
+                           parse(text = TeX(r'($\overset{> UAS- \textit{tkv}}{(GSCs)}$)')),
+                         "bam RNAi" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi}{(CBs)}$)')), 
+                         "bam RNAi; HS-bam" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi; \, hs-\textit{bam}}{(Cysts)}$)')), 
+                         "Young WT" = 
+                           "Young WT")
     
   }else if (data_set_to_plot == "Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS")
@@ -70,6 +89,17 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "16CC\n2b",
                         "16CC\n3",
                         "St2")
+    
+    formatted_labels = c("GSC/CB/2CC", 
+                        "4CC", 
+                        "8CC", 
+                        "16CC\n2a 1",
+                        "16CC\n2a 2",
+                        "16CC\n2ab",
+                        "16CC\n2b",
+                        "16CC\n3",
+                        "St2")
+    
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     if (normalization == "each_gene") {
       data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS")
@@ -93,6 +123,15 @@ gene_violin = function(data_set_to_plot="Input_seq",
                      "polar")
     
     genotype_levels = c("TF/CC", 
+                        "aEc", 
+                        "cEc", 
+                        "pEc",
+                        "FSC/pre-FC",
+                        "pre-stalk",
+                        "stalk",
+                        "polar")
+    
+    formatted_labels = c("TF/CC", 
                         "aEc", 
                         "cEc", 
                         "pEc",
@@ -128,7 +167,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # type of normalization changes y-axis label here
   if(data_set_to_plot=="Input_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM+1)")
+      yaxis_label = TeX(r'($log _2 \,> UAS- \textit{tkv}\, Normalized\, TPM+1$)')
       selected_gene_data_norm = 
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
@@ -156,7 +195,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     }
   }else if(data_set_to_plot=="Polysome_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TE)")
+      yaxis_label = TeX(r'($log _2 \,> UAS- \textit{tkv}\, Normalized\, TE$)')
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
@@ -257,7 +296,9 @@ gene_violin = function(data_set_to_plot="Input_seq",
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
       stat_pvalue_manual(stats, size = text_scale/3)+
+      xlab("")+
       ylab(yaxis_label)+
+      scale_x_discrete(labels = formatted_labels)+
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)))+
       stat_summary(mapping = aes(group = Genotype), 
                    fun = median, fun.min = median, fun.max = median,

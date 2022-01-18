@@ -23,7 +23,10 @@ Figure1_A1 =  ovary_map_cartoon(text_scale = 12/ggplot2::.pt)+
         plot.margin = margin(0.0, 0.0, 0.1, 0.0, unit = "in"))
 Figure1_A1
 
-table_raw = tibble("Sample"=c("UAS-tkv", "bam RNAi", "bam RNAi; HS-bam", "Young-WT"), 
+table_raw = tibble("Sample"=c(
+  # TeX(r'($ > UAS- \textit{tkv}$)'), 
+                              "UAS-tkv", 
+                              "bam RNAi", "bam RNAi; HS-bam", "Young-WT"), 
                    "Enriched cell type"=c("GSCs", "CBs", "Cysts", "All early stages"))
 
 Table_1B = qplot(1:10, 1:10, geom = "blank") + 

@@ -19,6 +19,7 @@ FigureS4A = gene_violin(data_set_to_plot="Input_seq",
   ggtitle("Meiotic cell cycle - Input")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
+FigureS4A
 
 FigureS4A_input_seq_vals = read_csv("../Paper/Figures/Figure_4/Selected_gene_expression_from_Input_seq_of_GO_term_meiotic cell cycle.csv")
 
