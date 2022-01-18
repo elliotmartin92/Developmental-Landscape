@@ -23,19 +23,27 @@ Figure1_A1 =  ovary_map_cartoon(text_scale = 12/ggplot2::.pt)+
         plot.margin = margin(0.0, 0.0, 0.1, 0.0, unit = "in"))
 Figure1_A1
 
-table_raw = tibble("Sample"=c(
-  # TeX(r'($ > UAS- \textit{tkv}$)'), 
-                              "UAS-tkv", 
-                              "bam RNAi", "bam RNAi; HS-bam", "Young-WT"), 
-                   "Enriched cell type"=c("GSCs", "CBs", "Cysts", "All early stages"))
+Genotypes = c(expression(paste(">UAS-", italic('tkv'))),
+              expression(paste(">", italic('bam'), " RNAi")),
+              expression(paste(">", italic('bam'), " RNAi; hs-", italic("bam"))), 
+              "Young-WT")
 
-Table_1B = qplot(1:10, 1:10, geom = "blank") + 
+Enriched_cell_type = c("GSCs", "CBs", "Cysts", "All early stages")
+
+# Define theme to parse plotmath expressions
+tt = ttheme_default(core=list(fg_params=list(parse=TRUE)))
+
+tg_geno = tableGrob(d = Genotypes, cols = "Genotype", theme=tt)
+tg_ct = tableGrob(d = Enriched_cell_type, cols = "Enriched cell type", theme=tt)
+table_grob = gtable_cbind(tg_geno, tg_ct)
+
+Table_1C = qplot(1:10, 1:10, geom = "blank") + 
   theme_void() +
   annotation_custom(
-    grob = tableGrob(table_raw, rows = NULL), 
+    grob = table_grob, 
     xmin = 0, xmax = 10, ymin = 0, ymax = 10
   )
-Table_1B
+Table_1C
 
 Figure1_C1 = png_as_gg("../Paper/Figures/Figure_1/screenshot_1.png")
 
