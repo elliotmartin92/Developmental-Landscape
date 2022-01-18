@@ -334,20 +334,23 @@ ovary_map = function(data_set_to_plot="Input_seq",
           if (data_set_to_plot == "Input_seq" | data_set_to_plot == "Polysome_seq") {
             dist_pl = dist_pl+
               # TKV cell label
-              annotate("text", label=TeX(r'($> UAS- \textit{tkv}\, (GSCs)$)'), x=shape.x.y[1,1]-0.50, y=shape_ymin-0.50, size=text_scale)+
+              annotate("text", label=TeX(r'($> UAS- \textit{tkv}\, (GSCs)$)'), 
+                       x=shape.x.y[1,1]-0.50, y=shape_ymin-0.50, size=text_scale)+
               annotate("segment", x=shape.x.y[1,1], xend=shape.x.y[1,1]-0.47, 
                        y=st_bbox(shape$geometry[1])[[2]], yend=shape_ymin-0.17)+
               # bamRNAi cell label
-              annotate("text", label="bam RNAi (CBs)", x=shape.x.y[3,1]-0.30, y=shape_ymax+0.50, size=text_scale)+
+              annotate("text", label=TeX(r'($> \textit{bam}\, RNAi\, (CBs)$)'), 
+                       x=shape.x.y[3,1]-0.30, y=shape_ymax+0.50, size=text_scale)+
               annotate("segment", x=shape.x.y[3,1], xend=shape.x.y[3,1]-0.30, 
                        y=st_bbox(shape$geometry[3])[[4]], yend=shape_ymax+0.17)+
               # bamHSbam line label
-              annotate("text", label="bam RNAi; hs-bam (Cysts)", 
+              annotate("text", label=TeX(r'($> \textit{bam}\, RNAi;\, hs-\textit{bam}\,(Cysts)$)'), 
                        x=((group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="2CC"][[1]][1]+
                              group_geometry_bounding$bbox[group_geometry_bounding$cell_type=="16CC_3"][[1]][3])/2), 
                        y=shape_ymin-0.50, size=text_scale)+
               # youngWT cell label 
-              annotate("text", label="young WT", x=shape.x.y[12,1]+0.30, y=shape_ymax+0.50, size=text_scale)+
+              annotate("text", label="young WT", 
+                       x=shape.x.y[12,1]+0.30, y=shape_ymax+0.50, size=text_scale)+
               annotate("segment", x=shape.x.y[12,1], xend=shape.x.y[12,1]+0.30, y=st_bbox(shape$geometry[12,1])[[4]], yend=shape_ymax+0.17)
             
           }else if (data_set_to_plot=="Single_cell_seq_germline"){

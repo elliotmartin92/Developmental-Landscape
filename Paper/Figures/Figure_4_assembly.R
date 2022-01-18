@@ -20,6 +20,7 @@ Figure4A1 = ovary_map(data_set_to_plot = "Input_seq",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")
+Figure4A1
 
 Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       gene_name_format = "Symbol",
