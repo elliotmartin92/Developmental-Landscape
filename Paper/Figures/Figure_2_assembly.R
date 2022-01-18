@@ -30,8 +30,8 @@ Figure2A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       map_line_width = 0.5,
                       graphic_to_generate = "map")
 
-Figure2B = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_in_situ_DAPI_Image7_s10.tif",
-                       path_to_czi = "../Paper/Figures/Figure_3/RpS19b_in_situ_DAPI_Image7.czi",
+Figure2B = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7_s10.tif",
+                       path_to_czi = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "RpS19b mRNA", 
@@ -42,8 +42,8 @@ Figure2B = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_in_situ_DAPI_Ima
                     geom = "segment", x = .1, xend=.22, y=.35, yend=.42, color="gold")
 Figure2B
 
-Figure2C = image_panel(path = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
-                       path_to_czi = "../Paper/Figures/Figure_3/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6 Image 11.czi",
+Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
+                       path_to_czi = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6 Image 11.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
                     red_annotation = "1B1", 

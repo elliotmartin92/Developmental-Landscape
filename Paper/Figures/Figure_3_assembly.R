@@ -16,8 +16,8 @@ source("../Paper/Helper_functions/eps_as_gg.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("../Paper/Helper_functions/export_plotly2SVG.R")
 
-Figure3_A1 = read_rds("../Paper/Figures/Figure_2/Input_mRNAseq_All_GO_down.RDS")
-Figure3_A2 = read_rds("../Paper/Figures/Figure_2/Input_mRNAseq_All_GO_up.RDS")
+Figure3_A1 = read_rds("../Paper/Figures/Figure_3/Input_mRNAseq_All_GO_down.RDS")
+Figure3_A2 = read_rds("../Paper/Figures/Figure_3/Input_mRNAseq_All_GO_up.RDS")
 
 Figure3 = multi_panel_figure(
   width = c((8.5-(8))/2, 8, (8.5-(8))/2),

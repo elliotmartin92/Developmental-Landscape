@@ -37,13 +37,13 @@ tg_geno = tableGrob(d = Genotypes, cols = "Genotype", theme=tt)
 tg_ct = tableGrob(d = Enriched_cell_type, cols = "Enriched cell type", theme=tt)
 table_grob = gtable_cbind(tg_geno, tg_ct)
 
-Table_1C = qplot(1:10, 1:10, geom = "blank") + 
+Table_1B = qplot(1:10, 1:10, geom = "blank") + 
   theme_void() +
   annotation_custom(
     grob = table_grob, 
     xmin = 0, xmax = 10, ymin = 0, ymax = 10
   )
-Table_1C
+Table_1B
 
 Figure1_C1 = png_as_gg("../Paper/Figures/Figure_1/screenshot_1.png")
 
@@ -58,9 +58,9 @@ Figure1
 Figure1 = Figure1 %>% 
   fill_panel(Figure1_A1, label = "A", 
              label_just = "bottom", scaling = "none", panel_clip = "off", row = 2:3, column = 2:7) %>% 
-  fill_panel(Table_1C, label = "B", 
+  fill_panel(Table_1B, label = "B", 
              label_just = "top", scaling = "none", panel_clip = "off", row = 4, column = 3:4) %>% 
-  fill_panel(Figure1_B1, label = "C", 
+  fill_panel(Figure1_C1, label = "C", 
              label_just = "bottom", scaling = "none", panel_clip = "off", row = 6:9, column = 3:5)
 Figure1
   
