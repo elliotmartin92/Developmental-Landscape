@@ -1,9 +1,13 @@
 data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
+par(lheight=0.2)
 
+# Read list containing all GO terms, delcared globally to allow for access in the following function and by the Shiny app (defined scope would be better)
 if (!exists("GO_term_tib")) {
   GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
   GO_term_description <<- GO_term_tib$description
 }
+
+# Function that produces violin plots
 
 gene_violin = function(data_set_to_plot="Input_seq", 
                        genes_by_GO="GO_term_selection", 
@@ -12,6 +16,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                        normalization="each_gene",
                        text_scale){
   
+  # Set parameters based on dataset selected
   if(data_set_to_plot=="Input_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     data.seq_pared = data.seq[c(1, 10, 2:5)] #extract columns used for plotting
@@ -26,6 +31,15 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "bam RNAi", 
                         "bam RNAi; HS-bam", 
                         "Young WT")
+    
+    formatted_labels = c("UAS-tkv" = 
+                           parse(text = TeX(r'($\overset{> UAS- \textit{tkv}}{(GSCs)}$)')),
+                         "bam RNAi" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi}{(CBs)}$)')), 
+                         "bam RNAi; HS-bam" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi; \, hs-\textit{bam}}{(Cysts)}$)')), 
+                         "Young WT" = 
+                           "Young WT")
     
   }else if(data_set_to_plot=="Polysome_seq"){
     data.seq = readRDS("Preprocessed_data/preprocessed_polysome_seq_data.RDS")
@@ -42,30 +56,50 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "bam RNAi; HS-bam", 
                         "Young WT")
     
+    formatted_labels = c("UAS-tkv" = 
+                           parse(text = TeX(r'($\overset{> UAS- \textit{tkv}}{(GSCs)}$)')),
+                         "bam RNAi" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi}{(CBs)}$)')), 
+                         "bam RNAi; HS-bam" = 
+                           parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi; \, hs-\textit{bam}}{(Cysts)}$)')), 
+                         "Young WT" = 
+                           "Young WT")
+    
   }else if (data_set_to_plot == "Single_cell_seq_germline"){
     data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_GC.RDS")
     data.seq_pared = data.seq[c(1, 2, 3:11)] #extract columns used for plotting
     column_names = c("FBGN",
                      "Symbol",
-                     "GSC CB 2CC", 
+                     "GSC/CB/2CC", 
                      "4CC", 
                      "8CC", 
-                     "16CC 2a 1",
-                     "16CC 2a 2",
-                     "16CC 2ab",
-                     "16CC 2b",
-                     "16CC 3",
+                     "16CC\n2a 1",
+                     "16CC\n2a 2",
+                     "16CC\n2ab",
+                     "16CC\n2b",
+                     "16CC\n3",
                      "St2")
     
-    genotype_levels = c("GSC CB 2CC", 
+    genotype_levels = c("GSC/CB/2CC", 
                         "4CC", 
                         "8CC", 
-                        "16CC 2a 1",
-                        "16CC 2a 2",
-                        "16CC 2ab",
-                        "16CC 2b",
-                        "16CC 3",
+                        "16CC\n2a 1",
+                        "16CC\n2a 2",
+                        "16CC\n2ab",
+                        "16CC\n2b",
+                        "16CC\n3",
                         "St2")
+    
+    formatted_labels = c("GSC/CB/2CC", 
+                        "4CC", 
+                        "8CC", 
+                        "16CC\n2a 1",
+                        "16CC\n2a 2",
+                        "16CC\n2ab",
+                        "16CC\n2b",
+                        "16CC\n3",
+                        "St2")
+    
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     if (normalization == "each_gene") {
       data.seq = readRDS("Preprocessed_data/preprocessed_single_cell_seq_data_germarium_soma.RDS")
@@ -96,12 +130,21 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "pre-stalk",
                         "stalk",
                         "polar")
+    
+    formatted_labels = c("TF/CC", 
+                        "aEc", 
+                        "cEc", 
+                        "pEc",
+                        "FSC/pre-FC",
+                        "pre-stalk",
+                        "stalk",
+                        "polar")
   }
 
-  #select either by GO term or with a custom list of FBGNs
+  # select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
     GO_Term_to_FBID = read_rds("Preprocessed_data/GO_Term_to_FBID.rds")
-    # method to take go term and make list of gen
+    # method to take go term and make list of genes
     selected_GO_id = GO_term_tib$GOID[GO_term_tib$description == GO_term] #Globally declared map of ID to description
     FBIDs_in_GO_id = GO_Term_to_FBID$ensembl_id[GO_Term_to_FBID$go_id == selected_GO_id]
     selected_gene_data = 
@@ -124,7 +167,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # type of normalization changes y-axis label here
   if(data_set_to_plot=="Input_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TPM)")
+      yaxis_label = TeX(r'($log _2 \,> UAS- \textit{tkv}\, Normalized\, TPM+1$)')
       selected_gene_data_norm = 
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
@@ -152,7 +195,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     }
   }else if(data_set_to_plot=="Polysome_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = expression("log"[2]*"(UAS-TKV Normalized TE)")
+      yaxis_label = TeX(r'($log _2 \,> UAS- \textit{tkv}\, Normalized\, TE$)')
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
@@ -183,13 +226,13 @@ gene_violin = function(data_set_to_plot="Input_seq",
       yaxis_label = expression("log normalized expression to GSC/CB/2CC")
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
-        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC CB 2CC"]+1)))
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC/CB/2CC"]+1)))
       
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>% 
-        filter(Genotype != "GSC CB 2CC") %>% 
+        filter(Genotype != "GSC/CB/2CC") %>% 
         rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
-        rbind(c("GSC CB 2CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
+        rbind(c("GSC/CB/2CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
         add_xy_position(x = "Genotype", dodge = 0.8) %>% 
         mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
         arrange(Genotype) %>% 
@@ -248,17 +291,20 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # Data for download
   selected_gene_data_norm_global <<- selected_gene_data_norm
   
-  # violin plot
+  # violin plot with points for each gene
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
       stat_pvalue_manual(stats, size = text_scale/3)+
+      xlab("")+
       ylab(yaxis_label)+
+      scale_x_discrete(labels = formatted_labels)+
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)))+
       stat_summary(mapping = aes(group = Genotype), 
                    fun = median, fun.min = median, fun.max = median,
                    geom = "crossbar", width = 0.4)+
-      geom_point(position = position_jitter(seed = 1, width = 0.2), color="grey60")+
+      geom_point(position = position_jitter(seed = 1, width = 0.2), 
+                 color="grey60", shape = 1, alpha = 0.7)+
       theme_white()+
       theme(axis.text.x = element_text(size = text_scale),
             axis.text.y = element_text(size = text_scale), 

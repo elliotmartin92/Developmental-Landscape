@@ -15,6 +15,7 @@ library(rstatix)
 library(rlang)
 library(reticulate)
 library(multipanelfigure)
+library(latex2exp)
 
 here::i_am("Paper/figure_wrapper.R")
 library(here)
@@ -22,16 +23,18 @@ here()
 # use_condaenv(here("renv/python/condaenvs/renv-python/"))
 Sys.setenv(RETICULATE_PYTHON = here("renv/python/condaenvs/renv-python/"))
 source(here("ShinyExpresionMap/server_modules/ggplotWhiteTheme.R"))
-       
+
 setwd(here())
 source(here("Paper/Figures/Figure_1_assembly.R"))
 source(here("Paper/Figures/Figure_2_assembly.R"))
 source(here("Paper/Figures/Figure_3_assembly.R"))
 source(here("Paper/Figures/Figure_4_assembly.R"))
+source(here("Paper/Figures/Figure_5_assembly.R"))
 source(here("Paper/Figures/Figure_1S_assembly.R"))
 source(here("Paper/Figures/Figure_2S_assembly.R"))
 source(here("Paper/Figures/Figure_3S_assembly.R"))
 source(here("Paper/Figures/Figure_4S_assembly.R"))
+source(here("Paper/Figures/Figure_5S_assembly.R"))
 setwd(here())
 
 rmarkdown::render(here("Paper/Figures/figure_wrapper.rmd"), 
