@@ -3,6 +3,7 @@ library(ggplot2)
 library(stringr)
 library(gridExtra)
 library(grid)
+library(latex2exp)
 source("ShinyExpresionMap/server_modules/ggplotWhiteTheme.R")
 
 GO_plot_from_panther = function(all_GO_file_names, plot_title, n_per_geno=5, return_all_go_list = FALSE){
@@ -23,7 +24,7 @@ GO_plot_from_panther = function(all_GO_file_names, plot_title, n_per_geno=5, ret
                               index = as.numeric(row.names(GO_file)))
     
     # Order terms FDR and wrap strings
-    GO_file_cleaning$comparison = str_replace(GO_title, c(" vs "), "\nvs\n")
+    GO_file_cleaning$comparison = GO_title
     # GO_file_cleaning$comparison = str_wrap(GO_title_vs, width = 12)
     GO_file_cleaning$labels = str_wrap(GO_file_cleaning$GO_term, width = 40)
     GO_file_cleaning$labels = factor(GO_file_cleaning$labels, levels = GO_file_cleaning$labels[order(GO_file_cleaning$FDR)])
@@ -55,6 +56,15 @@ GO_plot_from_panther = function(all_GO_file_names, plot_title, n_per_geno=5, ret
     arrange(-FDR) %>% 
     group_by(comparison) %>% 
     filter(labels %in% top_cleaned_GOs)
+  
+  formatted_labels = c("TKV vs BamHSbam" = 
+                         parse(text = TeX(r'($\overset{> UAS- \textit{tkv}}{(GSCs)}$)')),
+                       "bam RNAi" = 
+                         parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi}{(CBs)}$)')), 
+                       "bam RNAi; HS-bam" = 
+                         parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi; \, hs-\textit{bam}}{(Cysts)}$)')), 
+                       "Young WT" = 
+                         "Young WT")
   
   GO_plot = 
     ggplot(data = top_cleaned_GOs_df)+
@@ -104,8 +114,8 @@ files_to_plot_BP_Down = files_to_plot_BP[str_detect(files_to_plot_BP, "down_")]
 BP_Up = GO_plot_from_panther(files_to_plot_BP_Up, "BP GO terms of upregulated genes")
 BP_Down = GO_plot_from_panther(files_to_plot_BP_Down, "BP GO terms of downregulated genes")
 
-# saveRDS(BP_Up, "Paper/Figures/Figure_2/Input_mRNAseq_GO_BP_up.RDS")
-# saveRDS(BP_Down, "Paper/Figures/Figure_2/Input_mRNAseq_GO_BP_down.RDS")
+# saveRDS(BP_Up, "Paper/Figures/Figure_3/Input_mRNAseq_GO_BP_up.RDS")
+# saveRDS(BP_Down, "Paper/Figures/Figure_3/Input_mRNAseq_GO_BP_down.RDS")
 
 files_to_plot_Up = files_to_plot_ordered$files_to_plot[str_detect(files_to_plot_ordered$files_to_plot, "up_")]
 files_to_plot_Down = files_to_plot_ordered$files_to_plot[str_detect(files_to_plot_ordered$files_to_plot, "down_")]
@@ -114,15 +124,15 @@ files_to_plot_Down = files_to_plot_ordered$files_to_plot[str_detect(files_to_plo
 all_GO_Up = GO_plot_from_panther(files_to_plot_Up, "GO terms of upregulated genes")
 all_GO_Down = GO_plot_from_panther(files_to_plot_Down, "GO terms of downregulated genes")
 
-# saveRDS(all_GO_Up, "Paper/Figures/Figure_2/Input_mRNAseq_All_GO_up.RDS")
-# saveRDS(all_GO_Down, "Paper/Figures/Figure_2/Input_mRNAseq_All_GO_down.RDS")
+# saveRDS(all_GO_Up, "Paper/Figures/Figure_3/Input_mRNAseq_All_GO_up.RDS")
+# saveRDS(all_GO_Down, "Paper/Figures/Figure_3/Input_mRNAseq_All_GO_down.RDS")
 
 #lists of GO terms from any category per comparison
 all_GO_Up_list = GO_plot_from_panther(files_to_plot_Up, "GO terms of upregulated genes", return_all_go_list = TRUE)
 all_GO_Down_list = GO_plot_from_panther(files_to_plot_Down, "GO terms of downregulated genes", return_all_go_list = TRUE)
 
 # list_of_datasets <- list("all GO terms_Up" = all_GO_Up_list, "all GO terms Down" = all_GO_Down_list)
-# write.xlsx(list_of_datasets, file = "Paper/Figures/Figure_2/Input_mRNAseq_All_GO_terms.xlsx")
+# write.xlsx(list_of_datasets, file = "Paper/Figures/Figure_3/Input_mRNAseq_All_GO_terms.xlsx")
 
 files_to_plot = list.files(path = "DE_Analysis/polysome_go_term/", pattern = "*txt$", recursive = FALSE, full.names = TRUE) #find files with correct ending
 files_to_plot_order = data.frame(files_to_plot, index=0)
@@ -141,3 +151,11 @@ files_to_plot_BP_Down = files_to_plot_ordered$files_to_plot[str_detect(files_to_
 # BP_Up = GO_plot_from_panther(files_to_plot_BP_Up, "BP GO terms of upregulated genes")
 BP_Down = GO_plot_from_panther(files_to_plot_BP_Down, "BP GO terms of downregulated genes", n_per_geno = 10)
 # saveRDS(BP_Down, "Paper/Figures/Figure_4/Polysome_mRNAseq_GO_BP_down.RDS")
+
+
+plot(expression(atop(atop(displaystyle(paste(">UAS-", italic(paste("tkv")))), displaystyle("vs")), 
+                     paste(">", italic(paste("bam")), "RNAi; ", "hs-", italic(paste("bam")))
+)))
+
+
+     
