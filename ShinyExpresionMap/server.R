@@ -21,6 +21,7 @@ library(latex2exp)
 source("server_modules/ggplotWhiteTheme.R")
 options(shiny.usecairo=T)
 
+# initialize shinyEnv and declare some variables that will be required in server/modules
 shinyEnv = new.env()
 ps = .libPaths()
 data_sets <- c("FBID", "Symbol")
@@ -29,7 +30,7 @@ GO_term_description <<- GO_term_tib$description
 figure_legends_table <<- read_csv("Figure_legends.csv")
 
 ####Shiny Server gene_of_interest initialization and housekeeping####
-#server initialization and check to ensure server shuts down cleanly on tab closure
+# server initialization and check to ensure server shuts down cleanly on tab closure
 shinyServer(function(input, output, session) {
   session$onSessionEnded(function(){stopApp()})
   
@@ -58,7 +59,7 @@ shinyServer(function(input, output, session) {
   # observes help button press, initiates tutorial on press
   observeEvent(input$help_btn,
                introjs(session, options = list(steps=steps(), "nextLabel"="Next", "nextToDone"="true")))
-  #keeping track of the page being viewed for report output
+  # keeping track of the page being viewed for report output
   observe({
   
   if(input$reportPage == "All Pages"){

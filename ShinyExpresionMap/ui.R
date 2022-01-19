@@ -13,6 +13,7 @@ add_class <- function(x, class) {
 
 ui = dashboardPage(skin = "purple",
   dashboardHeader(title = "Oo-site"),
+  # Hamburger side bar with selector for each tool/tab
   dashboardSidebar(
     introjsUI(),
     sidebarMenu(id = "tabs",
@@ -49,7 +50,7 @@ ui = dashboardPage(skin = "purple",
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")),
       tabItems(
-      # First tab content
+      # First tab content - developmental progression
       tabItem(tabName = "DevProg",
               fluidRow(
                 box(
@@ -70,7 +71,7 @@ ui = dashboardPage(skin = "purple",
                 )
                 ),
       
-      # Second tab content
+      # Second tab content - heatmaps
       tabItem(tabName = "heatmap", 
               fluidRow(
                 box(
@@ -82,7 +83,7 @@ ui = dashboardPage(skin = "purple",
                     )
                 )),
       
-      # third tab content
+      # third tab content - violin_plot
       tabItem(tabName = "violin",
               fluidRow(
                 box(
