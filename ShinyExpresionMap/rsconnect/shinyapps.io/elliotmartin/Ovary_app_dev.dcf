@@ -5,9 +5,10 @@ account: elliotmartin
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4185969
-bundleId: 5315558
+bundleId: 5486025
 url: https://elliotmartin.shinyapps.io/Ovary_app_dev/
-when: 1638381419.41014
+when: 1642616063.40525
+lastSyncTime: 1642616063.40525
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds
+ignoredFiles: .Rprofile|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds
