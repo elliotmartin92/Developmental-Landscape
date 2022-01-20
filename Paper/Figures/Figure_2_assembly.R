@@ -18,7 +18,8 @@ Figure2A1 = ovary_map(data_set_to_plot = "Input_seq",
                       gene_of_interest = "RpS19b", 
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
-                      graphic_to_generate = "map")
+                      graphic_to_generate = "map")+
+  theme(plot.margin = margin(0,60,0,0))
 
 Figure2A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_name_format = "Symbol",
@@ -28,7 +29,8 @@ Figure2A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_of_interest = "RpS19b", 
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5,
-                      graphic_to_generate = "map")
+                      graphic_to_generate = "map")+
+  theme(plot.margin = margin(0,60,0,0))
 
 Figure2B = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7_s10.tif",
                        path_to_czi = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7.czi",

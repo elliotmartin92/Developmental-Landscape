@@ -19,8 +19,8 @@ Figure4A1 = ovary_map(data_set_to_plot = "Input_seq",
                       gene_of_interest = "ord",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
-                      graphic_to_generate = "map")
-Figure4A1
+                      graphic_to_generate = "map")+
+  theme(plot.margin = margin(c(0,600,5,0)))
 
 Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       gene_name_format = "Symbol",
@@ -30,7 +30,8 @@ Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       gene_of_interest = "ord", 
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
-                      graphic_to_generate = "map")
+                      graphic_to_generate = "map")+
+  theme(plot.margin = margin(c(5,60,0,0)))
 
 Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif", 
                     path_to_czi = "../Paper/Figures/Figure_4/Image 2.czi",
@@ -60,13 +61,13 @@ Figure4D2 = plot_ord_quant("protein")
 
 Figure4 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 0.25, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25), 
+  height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-(4*0.25)), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure4")
 Figure4
 
 Figure4 = Figure4 %>% 
-  fill_panel(Figure4A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
+  fill_panel(Figure4A, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
   fill_panel(Figure4B, label = "B", scaling = "fit", panel_clip = "on", row = 5:7, column = 3:6) %>% 
   fill_panel(Figure4C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
   fill_panel(Figure4D1, label = "D", scaling = "fit", panel_clip = "off", row = 11:12, column = 3:4) %>% 
