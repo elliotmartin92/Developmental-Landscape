@@ -43,7 +43,8 @@ Figure5C = gene_violin(data_set_to_plot="Single_cell_seq_germline",
   ggtitle("Double-strand break repair - sc-RNAseq")+
   ylab("log normalized expression\ntoGSC/CB/2CC")+
   theme(aspect.ratio = 0.2, 
-        plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
+        plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
+  plot.margin = margin(0,0,0,0))
 
 Figure5 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
