@@ -11,7 +11,7 @@ source("../Paper/Helper_functions/png_as_gg.R")
 source("server_modules/ggplotWhiteTheme.R")
 source("server_modules/ovary_map.R")
 
-Figure4A1 = ovary_map(data_set_to_plot = "Input_seq",
+Figure4A = ovary_map(data_set_to_plot = "Input_seq",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
                       display_stage_labels = TRUE, 
@@ -20,7 +20,7 @@ Figure4A1 = ovary_map(data_set_to_plot = "Input_seq",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")+
-  theme(plot.margin = margin(c(0,600,5,0)))
+  theme(plot.margin = margin(c(0,60,5,0)))
 
 Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       gene_name_format = "Symbol",
@@ -61,7 +61,7 @@ Figure4D2 = plot_ord_quant("protein")
 
 Figure4 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-(4*0.25)), 
+  height = c(0.5, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-(5*0.25)), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure4")
 Figure4
