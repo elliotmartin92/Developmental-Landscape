@@ -75,7 +75,7 @@ Figure2 = Figure2 %>%
   fill_panel(Figure2B, label = "B", scaling = "fit", panel_clip = "on", row = 6:7, column = 3:6) %>% 
   fill_panel(Figure2C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
   fill_panel(Figure2D, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5) %>% 
-  fill_panel(Figure2E, label = "D", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)
+  fill_panel(Figure2E, label = "E", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)
 
 Figure2
 
