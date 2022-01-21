@@ -6,11 +6,14 @@ if (is.na(strsplit(getwd(), "Developmental-Landscape")[[1]][2])) {
   errorCondition("WD is invalid")
 }
 
+source("server_modules/ggplotWhiteTheme.R")
 source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("server_modules/ovary_map.R")
+source("../Paper/Helper_functions/in_situ_quant.r")
 
-Figure2A1 = ovary_map(data_set_to_plot = "Input_seq",
+
+Figure2A = ovary_map(data_set_to_plot = "Input_seq",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
                       display_stage_labels = TRUE, 
@@ -21,7 +24,7 @@ Figure2A1 = ovary_map(data_set_to_plot = "Input_seq",
                       graphic_to_generate = "map")+
   theme(plot.margin = margin(0,60,0,0))
 
-Figure2A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
+Figure2B = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_name_format = "Symbol",
                       displayTPM = TRUE, 
                       display_stage_labels = TRUE,
@@ -32,7 +35,7 @@ Figure2A2 = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       graphic_to_generate = "map")+
   theme(plot.margin = margin(0,60,0,0))
 
-Figure2B = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7_s10.tif",
+Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7_s10.tif",
                        path_to_czi = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
@@ -43,7 +46,7 @@ Figure2B = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Ima
                     additional_annotation = TRUE, 
                     geom = "segment", x = .1, xend=.22, y=.35, yend=.42, color="gold")
 
-Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
+Figure2D = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
                        path_to_czi = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6 Image 11.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
@@ -55,23 +58,24 @@ Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_
                     additional_annotation = TRUE, 
                     geom = "segment", x = .08, xend=.3, y=.32, yend=.28, color="gold")
 
-Figure2D = plot_insitu_quant(staining_to_plot = "mRNA", 
+Figure2E = plot_insitu_quant(staining_to_plot = "mRNA", 
                               xlsx_file = "../Paper/Figures/Figure_2/RpS19b_in_situ_quant.xlsx",
-                              gene_name = "RpS19B")
+                              gene_name = "RpS19b")+
+  expand_limits(x=c(0, 60))
 
 Figure2 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25-0.25), 
+  height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, (11-8*(1.1837+0.025))-5*(0.25)-0.05), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure2")
 Figure2
 
 Figure2 = Figure2 %>% 
-  fill_panel(Figure2A1, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
-  fill_panel(Figure2A2, label = "B", scaling = "fit", panel_clip = "on", row = 6:7, column = 3:6) %>% 
-  fill_panel(Figure2B, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
-  fill_panel(Figure2C, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5) %>% 
-  fill_panel(Figure2D, label = "D", scaling = "fit", panel_clip = "on", row = 11, column = 3:4)
+  fill_panel(Figure2A, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
+  fill_panel(Figure2B, label = "B", scaling = "fit", panel_clip = "on", row = 6:7, column = 3:6) %>% 
+  fill_panel(Figure2C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
+  fill_panel(Figure2D, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5) %>% 
+  fill_panel(Figure2E, label = "D", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)
 
 Figure2
 
