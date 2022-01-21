@@ -20,7 +20,8 @@ Figure5A = gene_violin(data_set_to_plot="Input_seq",
   expand_limits(y = c(-4, 2.5))+
   ggtitle("Double-strand break repair - Input")+
   theme(aspect.ratio = 0.2, 
-        plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
+        plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
+        plot.margin = margin(0,0,0,0))
 
 Figure5B = gene_violin(data_set_to_plot="Polysome_seq", 
                        genes_by_GO="GO_term_selection", 
@@ -30,7 +31,8 @@ Figure5B = gene_violin(data_set_to_plot="Polysome_seq",
   expand_limits(y = c(-3, 4))+
   ggtitle("Double-strand break repair - Polysome")+
   theme(aspect.ratio = 0.2, 
-        plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
+        plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
+        plot.margin = margin(0,0,0,0))
 
 Figure5C = gene_violin(data_set_to_plot="Single_cell_seq_germline", 
                        genes_by_GO="GO_term_selection", 
@@ -41,18 +43,19 @@ Figure5C = gene_violin(data_set_to_plot="Single_cell_seq_germline",
   ggtitle("Double-strand break repair - sc-RNAseq")+
   ylab("log normalized expression\ntoGSC/CB/2CC")+
   theme(aspect.ratio = 0.2, 
-        plot.title = element_text(size = 12, margin = margin(0,0,4,0)))
+        plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
+  plot.margin = margin(0,0,0,0))
 
 Figure5 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25-0.25), 
+  height = c(0.5, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-0.25-0.25), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure5")
 Figure5
 
 Figure5 = Figure5 %>% 
-  fill_panel(Figure5A, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:5) %>% 
-  fill_panel(Figure5B, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:5) %>%
+  fill_panel(Figure5A, label = "A", scaling = "fit", panel_clip = "on", row = 2:3, column = 3:6) %>% 
+  fill_panel(Figure5B, label = "B", scaling = "fit", panel_clip = "on", row = 5:6, column = 3:6) %>%
   fill_panel(Figure5C, label = "C", scaling = "fit", panel_clip = "on", row = 8:10, column = 3:6)
 Figure5
 

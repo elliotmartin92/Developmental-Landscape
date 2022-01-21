@@ -2,15 +2,22 @@ library(tidyverse)
 library(heatmaply)
 modls = function(x){log2(x+1)}
 
-DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_colnames = FALSE){
+DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_rownames = FALSE){
   if(data_set_to_plot == "Input_seq"){
     plot_title = "Bulk mRNAseq"
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list.RDS")
+    
     column_labels =
       c("UAS-Tkv", 
         "bam RNAi", 
         "bam RNAi; HS-bam", 
+        "Young WT")
+    
+    formatted_labels =
+      c(">UAS-<i>tkv</i>", 
+        "><i>bam</i> RNAi", 
+        "><i>bam</i> RNAi; hs-<i>bam</i>", 
         "Young WT")
     
     heat_data = data.seq %>%
@@ -36,10 +43,17 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
     plot_title = "Bulk Polysome-seq"
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_polysome_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list_polysome.RDS")
+    
     column_labels =
       c("UAS-Tkv", 
         "bam RNAi", 
         "bam RNAi; HS-bam", 
+        "Young WT")
+    
+    formatted_labels =
+      c(">UAS-<i>tkv</i>", 
+        "><i>bam</i> RNAi", 
+        "><i>bam</i> RNAi; hs-<i>bam</i>", 
         "Young WT")
     
     heat_data = data.seq %>%
@@ -69,7 +83,9 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
         "16CC 2a 2",
         "16CC 2b",
         "16CC 3",
-        "St2")
+        "St2")    
+    
+    formatted_labels = column_labels
   }
   else if (data_set_to_plot == "Single_cell_seq_soma"){
     heat_data = readRDS("ShinyExpresionMap/Preprocessed_data/single_cell_seq_regulated_gene_fold_change_list_germarium_soma.RDS")
@@ -82,7 +98,9 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
         "FSC/pre-FC",
         "pre-stalk",
         "stalk",
-        "polar")
+        "polar")    
+    
+    formatted_labels = column_labels
   }
   
   font_properties = list(
@@ -100,7 +118,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
   heat_map_plotly = heatmaply(
     heat_data,
     showticklabels = c(TRUE, FALSE),
-    labCol = column_labels,
+    labCol = formatted_labels,
     seriate = "none",
     Colv = FALSE) %>%
     layout(
@@ -114,28 +132,28 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_c
   
   if (write_to_rds == TRUE) {
     write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_plotly_heatmap.RDS"))
-  }else if (write_to_rds == FALSE & display_colnames == FALSE) {
+  }else if (write_to_rds == FALSE & display_rownames == FALSE) {
     return(heat_map_plotly)
   }
   
   heat_map_plotly = heatmaply(
     heat_data,
     showticklabels = c(TRUE, TRUE),
-    labCol = column_labels,
+    labCol = formatted_labels,
     seriate = "none",
     Colv = FALSE) %>%
     layout(
       titlefont = font_properties,
       font = font_properties,
       title = plot_title,
-      xaxis = list(titlefont = font_properties, tickfont = font_properties),
+      # xaxis = list(titlefont = font_properties, tickfont = font_properties),
       yaxis = list(titlefont = font_properties, tickfont = font_properties),
       margin = margins_plotly
     )
   
   if (write_to_rds == TRUE) {
     write_rds(x = heat_map_plotly, file = paste0("ShinyExpresionMap/Preprocessed_data/", data_set_to_plot, "_row_labels_plotly_heatmap.RDS"))
-  }else if (write_to_rds == FALSE & display_colnames == TRUE) {
+  }else if (write_to_rds == FALSE & display_rownames == TRUE) {
     return(heat_map_plotly)
   }
   

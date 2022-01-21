@@ -167,14 +167,18 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # type of normalization changes y-axis label here
   if(data_set_to_plot=="Input_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = TeX(r'($log _2 \,> UAS- \textit{tkv}\, Normalized\, TPM+1$)')
+      yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized\, TPM+1)}$)')
       selected_gene_data_norm = 
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>%
+        # filter control to prevent NaN values from test
+        filter(Genotype != "UAS-tkv") %>%
         rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>%
+        # add back control row
+        rbind(c("UAS-tkv", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
         add_xy_position(x = "Genotype", dodge = 0.8) %>% 
         mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
         arrange(Genotype) %>% 
@@ -195,13 +199,17 @@ gene_violin = function(data_set_to_plot="Input_seq",
     }
   }else if(data_set_to_plot=="Polysome_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = TeX(r'($log _2 \,> UAS- \textit{tkv}\, Normalized\, TE$)')
+      yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized\, TE)}$)')
       selected_gene_data_norm = selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
       stats = selected_gene_data_norm %>% 
         group_by(Genotype) %>% 
+        # filter control to prevent NaN values from test
+        filter(Genotype != "UAS-tkv") %>%
         rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
+        # add back control row
+        rbind(c("UAS-tkv", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
         add_xy_position(x = "Genotype", dodge = 0.8) %>% 
        mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
         arrange(Genotype) %>% 

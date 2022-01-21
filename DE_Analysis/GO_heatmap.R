@@ -58,25 +58,28 @@ GO_plot_from_panther = function(all_GO_file_names, plot_title, n_per_geno=5, ret
     filter(labels %in% top_cleaned_GOs)
   
   formatted_labels = c("TKV vs BamHSbam" = 
-                         parse(text = TeX(r'($\overset{> UAS- \textit{tkv}}{(GSCs)}$)')),
-                       "bam RNAi" = 
-                         parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi}{(CBs)}$)')), 
-                       "bam RNAi; HS-bam" = 
-                         parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi; \, hs-\textit{bam}}{(Cysts)}$)')), 
-                       "Young WT" = 
-                         "Young WT")
+                         parse(text = TeX(r'($\overset{>UAS-\textit{tkv}\, vs}{> \textit{bam}\, RNAi;\, hs-\textit{bam}}$)')),
+                       "TKV vs youngWT" = 
+                         parse(text = TeX(r'($\overset{>UAS-\textit{tkv}\, vs}{young\, WT}$)')), 
+                       "BamRNAi vs BamHSbam" = 
+                         parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi\, vs}{> \textit{bam}\, RNAi;\, hs-\textit{bam}}$)')), 
+                       "BamRNAi vs youngWT" = 
+                         parse(text = TeX(r'($\overset{> \textit{bam} \, RNAi\, vs}{young\, WT}$)')),  
+                       "BamHSbam vs youngWT" = 
+                         parse(text = TeX(r'($\overset{> \textit{bam}\, RNAi;\, hs-\textit{bam}}{vs\, young\, WT}$)')))
   
   GO_plot = 
     ggplot(data = top_cleaned_GOs_df)+
     geom_tile(aes(x=comparison, y=labels, fill=-log10(FDR)))+
-    labs(fill = expression(paste(-log[10],~'(FDR)')))+
+    labs(fill = TeX(r'($\overset{-log_{10}}{FDR}$)'), parse=TRUE)+
     ggtitle(plot_title)+
+    scale_x_discrete(labels = formatted_labels)+
     ylab("")+
     xlab("")+
     theme_white()+
     theme(plot.title = element_text(size = 12, margin=margin(0,0,5,0)),
-          axis.text.x = element_text(size = 10),
-          axis.text.y = element_text(size = 10))
+          axis.text.x = element_text(size = 8),
+          axis.text.y = element_text(size = 8))
   
   # ggsave(paste0("DE_Analysis/input_go_term/", GO_file_basename, "8_bar.pdf"), plot = GO_plot,  height=4.5, width=4.5)
   return(GO_plot)
@@ -153,9 +156,5 @@ BP_Down = GO_plot_from_panther(files_to_plot_BP_Down, "BP GO terms of downregula
 # saveRDS(BP_Down, "Paper/Figures/Figure_4/Polysome_mRNAseq_GO_BP_down.RDS")
 
 
-plot(expression(atop(atop(displaystyle(paste(">UAS-", italic(paste("tkv")))), displaystyle("vs")), 
-                     paste(">", italic(paste("bam")), "RNAi; ", "hs-", italic(paste("bam")))
-)))
-
-
+plot(TeX(r'($\overset{>UAS-\textit{tkv}\,\nvs}{> \textit{bam}\, RNAi;\, hs-\textit{bam}}$)'))
      

@@ -5,7 +5,7 @@ library(scales)
 library(here)
 
 plot_ord_quant = function(staining_to_plot) {
-  fiji_output = read.xlsx("../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx", sheet = 2)
+  fiji_output = read.xlsx("../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx", sheet = 1)
   
   fiji_output_normalized =
     fiji_output %>%
