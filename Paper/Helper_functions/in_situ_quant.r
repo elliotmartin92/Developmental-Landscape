@@ -4,8 +4,8 @@ library(rstatix)
 library(scales)
 library(here)
 
-plot_ord_quant = function(staining_to_plot) {
-  fiji_output = read.xlsx("../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx", sheet = 1)
+plot_insitu_quant = function(staining_to_plot, xlsx_file, gene_name) {
+  fiji_output = read.xlsx(xlsx_file, sheet = 1)
   
   fiji_output_normalized =
     fiji_output %>%
@@ -18,7 +18,7 @@ if(staining_to_plot == "mRNA")
     filter(Staining==staining_to_plot) %>% 
   ggplot(aes(x = X, y = norm_to_1))+
     geom_smooth(method='loess', formula= y~x)+
-    ylab("Ord mRNA expression (A.U.)")+
+    ylab(paste(gene_name, "mRNA expression (A.U.)"))+
     xlab("Distance from niche (micron)")+
     ylim(0.5, 1)+
     geom_point()+
@@ -32,7 +32,7 @@ if(staining_to_plot == "mRNA")
     filter(Staining==staining_to_plot) %>% 
     ggplot(aes(x = X, y = norm_to_1))+
     geom_smooth(method='loess', formula= y~x)+
-    ylab("Ord protein expression (A.U.)")+
+    ylab(paste(gene_name, "protein expression (A.U.)"))+
     xlab("Distance from niche (micron)")+
     ylim(0.5, 1)+
     geom_point()+
