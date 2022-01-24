@@ -1,4 +1,5 @@
 library(DESeq2)
+library(openxlsx)
 library(data.table)
 library(tidyverse)
 library(org.Dm.eg.db)
@@ -52,7 +53,7 @@ fbgn_to_symbol =  function(fbid){
 }
 
 # function to extract pairwise comparisions from deseq2 dds object
-pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.1, log2FC_cutoff=1){
+pairwise_dds = function(GenotypeA, GenotypeB, padj_cutoff=0.05, log2FC_cutoff=2){
   if(GenotypeA==GenotypeB){return(NA)}
   res <- results(dds, contrast = c("all", GenotypeA, GenotypeB))
   resTable <- data.table(rownames(res), as.data.table(res))
@@ -91,4 +92,5 @@ head(all_pairwise_comparisions)
 all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
 head(all_pairwise_comparisions_uniqueflat)
 # write all DE genes to an RDS
-# write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/2_fold_developmentally_regulated_gene_list.RDS")
+write_rds(all_pairwise_comparisions_uniqueflat, 
+          file = "ShinyExpresionMap/Preprocessed_data/Input_4fold_p0.05_developmentally_regulated_gene_list.RDS")

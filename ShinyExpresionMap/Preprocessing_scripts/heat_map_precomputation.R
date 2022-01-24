@@ -6,7 +6,7 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_r
   if(data_set_to_plot == "Input_seq"){
     plot_title = "Bulk mRNAseq"
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS")
-    changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list.RDS")
+    changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/Input_4fold_p0.05_developmentally_regulated_gene_list.RDS")
     
     column_labels =
       c("UAS-Tkv", 
