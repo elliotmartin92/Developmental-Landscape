@@ -172,20 +172,18 @@ gene_violin = function(data_set_to_plot="Input_seq",
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
+    
+      selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
+                                                levels = genotype_levels)
+      
+        comparisons = list(c("UAS-tkv", "bam RNAi"), 
+                         c("UAS-tkv", "bam RNAi; HS-bam"), 
+                         c("UAS-tkv", "Young WT"))
+      
       stats = selected_gene_data_norm %>% 
-        group_by(Genotype) %>%
-        # filter control to prevent NaN values from test
-        filter(Genotype != "UAS-tkv") %>%
-        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>%
-        # add back control row
-        rbind(c("UAS-tkv", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
-        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
-        mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
-        arrange(Genotype) %>% 
-        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
-        bind_cols("x" = 1:length(genotype_levels),
-                  "xmin" = 1:length(genotype_levels),
-                  "xmax" = 1:length(genotype_levels))
+        ungroup() %>% 
+        rstatix::t_test(formula = Norm_expression~Genotype, comparisons = comparisons, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", step.increase = 0.5) 
         
     } else if(normalization == "unNorm"){
       yaxis_label = expression("log"[2]*"(TPM+1)")
@@ -195,28 +193,28 @@ gene_violin = function(data_set_to_plot="Input_seq",
       stats = selected_gene_data_norm %>% 
         ungroup() %>% 
         wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
-        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.7)
     }
   }else if(data_set_to_plot=="Polysome_seq"){
     if(normalization == "each_gene"){
       yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized\, TE)}$)')
-      selected_gene_data_norm = selected_gene_data %>% 
+      
+      selected_gene_data_norm = 
+        selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
-        dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
+        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
+      
+      selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
+                                                levels = genotype_levels)
+      
+      comparisons = list(c("UAS-tkv", "bam RNAi"), 
+                         c("UAS-tkv", "bam RNAi; HS-bam"), 
+                         c("UAS-tkv", "Young WT"))
+      
       stats = selected_gene_data_norm %>% 
-        group_by(Genotype) %>% 
-        # filter control to prevent NaN values from test
-        filter(Genotype != "UAS-tkv") %>%
-        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
-        # add back control row
-        rbind(c("UAS-tkv", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
-        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
-       mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
-        arrange(Genotype) %>% 
-        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
-        bind_cols("x" = 1:length(genotype_levels),
-                  "xmin" = 1:length(genotype_levels),
-                  "xmax" = 1:length(genotype_levels))
+        ungroup() %>% 
+        rstatix::t_test(formula = Norm_expression~Genotype, comparisons = comparisons, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", step.increase = 0.5) 
       
     }else if(normalization == "unNorm"){
       yaxis_label = expression("log"[2]*"(TE)")
@@ -227,7 +225,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       stats = selected_gene_data_norm %>% 
         ungroup() %>% 
         wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
-        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.7)
     }
   }else if(data_set_to_plot=="Single_cell_seq_germline"){
     if(normalization == "each_gene"){
@@ -236,18 +234,23 @@ gene_violin = function(data_set_to_plot="Input_seq",
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="GSC/CB/2CC"]+1)))
       
+      selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
+                                                levels = genotype_levels)
+      
+      comparisons = list(c("GSC/CB/2CC", "4CC"), 
+                         c("GSC/CB/2CC", "8CC"), 
+                         c("GSC/CB/2CC", "16CC\n2a 1"),
+                         c("GSC/CB/2CC", "16CC\n2a 2"),
+                         c("GSC/CB/2CC", "16CC\n2ab"),
+                         c("GSC/CB/2CC", "16CC\n2b"),
+                         c("GSC/CB/2CC", "16CC\n2b"),
+                         c("GSC/CB/2CC", "16CC\n3"),
+                         c("GSC/CB/2CC", "St2"))
+      
       stats = selected_gene_data_norm %>% 
-        group_by(Genotype) %>% 
-        filter(Genotype != "GSC/CB/2CC") %>% 
-        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
-        rbind(c("GSC/CB/2CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
-        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
-        mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
-        arrange(Genotype) %>% 
-        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
-        bind_cols("x" = 1:length(genotype_levels),
-                  "xmin" = 1:length(genotype_levels),
-                  "xmax" = 1:length(genotype_levels))
+        ungroup() %>% 
+        rstatix::t_test(formula = Norm_expression~Genotype, comparisons = comparisons, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", step.increase = 0.5) 
       
     }else if(normalization == "unNorm"){
       yaxis_label = expression("log normalized expression")
@@ -258,7 +261,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       stats = selected_gene_data_norm %>% 
         ungroup() %>% 
         wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
-        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.7)
     }
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     
@@ -268,18 +271,21 @@ gene_violin = function(data_set_to_plot="Input_seq",
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="TF/CC"]+1)))
       
+      selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
+                                                levels = genotype_levels)
+      
+      comparisons = list(c("TF/CC", "aEc"), 
+                         c("TF/CC", "cEc"), 
+                         c("TF/CC", "pEc"),
+                         c("TF/CC", "FSC/pre-FC"),
+                         c("TF/CC", "pre-stalk"),
+                         c("TF/CC", "stalk"),
+                         c("TF/CC", "polar"))
+      
       stats = selected_gene_data_norm %>% 
-        group_by(Genotype) %>% 
-        filter(Genotype != "TF/CC") %>% 
-        rstatix::t_test(formula = Norm_expression~0, mu=0, p.adjust.method = "holm") %>% 
-        rbind(c("TF/CC", "Norm_expression" , 1, "null model", NA, NA, NA, NA)) %>% 
-        add_xy_position(x = "Genotype", dodge = 0.8) %>% 
-        mutate(Genotype = factor(Genotype, genotype_levels)) %>%   # Reorder stats to match data
-        arrange(Genotype) %>% 
-        select(-c("x", "xmin", "xmax")) %>%           #workaround to apparent bug with add_xy_position order
-        bind_cols("x" = 1:length(genotype_levels),
-                  "xmin" = 1:length(genotype_levels),
-                  "xmax" = 1:length(genotype_levels))
+        ungroup() %>% 
+        rstatix::t_test(formula = Norm_expression~Genotype, comparisons = comparisons, p.adjust.method = "holm") %>%
+        add_xy_position(x = "Genotype", step.increase = 0.5) 
       
     }else if(normalization == "unNorm"){
       yaxis_label = expression("Relative log fold change")
@@ -290,7 +296,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       stats = selected_gene_data_norm %>% 
         ungroup() %>% 
         wilcox_test(formula = Norm_expression~Genotype, paired = TRUE, p.adjust.method = "holm") %>%
-        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.5)
+        add_xy_position(x = "Genotype", dodge = 0.8, step.increase = 0.7)
     }
   }
   # order factors
@@ -303,7 +309,6 @@ gene_violin = function(data_set_to_plot="Input_seq",
     gene_violin_plot = 
       ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
       geom_violin()+
-      stat_pvalue_manual(stats, size = text_scale/3)+
       xlab("")+
       ylab(yaxis_label)+
       scale_x_discrete(labels = formatted_labels)+
@@ -318,7 +323,25 @@ gene_violin = function(data_set_to_plot="Input_seq",
             axis.text.y = element_text(size = text_scale), 
             axis.title.x = element_text(size = text_scale),
             axis.title.y = element_text(size = text_scale))
-      # geom_line(mapping = aes(group = FBGN))
+    
+    if(normalization == "each_gene"){
+      stats_flat = stats
+      stats_flat$y.position = min(stats$y.position)+0.5+text_scale/48
+      
+      gene_violin_plot = gene_violin_plot+
+      add_pvalue(stats_flat, label.size = text_scale/3, label = "p.adj", tip.length = 0.0, remove.bracket = TRUE)+
+        annotate(geom = "segment", x = 1, xend = mean(stats$xmax)-text_scale/48, 
+                 y = min(stats$y.position)+2, yend = min(stats$y.position)+2)+
+        annotate(geom = "segment", x = min(stats$xmax), xend = max(stats$xmax), 
+                 y = min(stats$y.position), yend = min(stats$y.position))+
+        annotate(geom = "segment", x = 1, xend = 1, 
+                 y = min(stats$y.position), yend = min(stats$y.position)+2)+
+        annotate(geom = "segment", x = mean(stats$xmax)-text_scale/48, xend = mean(stats$xmax)-text_scale/48, 
+                 y = min(stats$y.position), yend = min(stats$y.position)+2)
+    }else if(normalization == "unNorm"){
+      gene_violin_plot = gene_violin_plot+
+        add_pvalue(stats, label.size = text_scale/3, label = "p.adj", tip.length = 0.0)
+    }
     .GlobalEnv$violin_plot_dataset_plotted = data_set_to_plot
     return(gene_violin_plot)
 }

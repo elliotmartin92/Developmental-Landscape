@@ -16,6 +16,7 @@ library(rlang)
 library(reticulate)
 library(multipanelfigure)
 library(latex2exp)
+library(ggprism)
 
 here::i_am("Paper/figure_wrapper.R")
 library(here)
