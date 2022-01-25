@@ -40,13 +40,14 @@ Figure2SA2 = gene_violin(data_set_to_plot="Input_seq",
                          genes_by_GO="Custom_selection", 
                          gene_of_interest=up_bam_stringent, 
                          normalization="each_gene",
-                         text_scale = 12)+ 
+                         text_scale = 12, 
+                         pval_yadj = 2.8)+ 
   expand_limits(y = c(-4, 10))+
   ggtitle(TeX(r'($Bulk\, mRNAseq:\, > \textit{bam}\, RNAi\, upregulated\, genes\, (Wilcockson\, 2019)$)'))+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
         plot.margin = margin(0,30,0,0))
-Figure2SA2
+# Figure2SA2
 
 Figure2SB = ovary_map(data_set_to_plot = "Polysome_seq",
                        gene_name_format = "Symbol",

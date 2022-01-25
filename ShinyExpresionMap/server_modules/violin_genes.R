@@ -15,7 +15,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
                        gene_of_interest=NA, 
                        normalization="each_gene",
                        text_scale,
-                       pval_yadj=0){
+                       pval_yadj=2){
   
   # Set parameters based on dataset selected
   if(data_set_to_plot=="Input_seq"){
@@ -327,18 +327,18 @@ gene_violin = function(data_set_to_plot="Input_seq",
   
   if(normalization == "each_gene"){
     stats_flat = stats
-    stats_flat$y.position = min(stats$y.position)+0.5+(text_scale/48)+pval_yadj
+    stats_flat$y.position = min(stats$y.position)+0.5+(text_scale/48)+pval_yadj-2
     
     gene_violin_plot = gene_violin_plot+
       add_pvalue(stats_flat, label.size = text_scale/3, label = "p.adj", tip.length = 0.0, remove.bracket = TRUE)+
       annotate(geom = "segment", x = 1, xend = mean(stats$xmax)-text_scale/48, 
-               y = min(stats$y.position)+2, yend = min(stats$y.position)+2)+
+               y = min(stats$y.position)+pval_yadj, yend = min(stats$y.position)+pval_yadj)+
       annotate(geom = "segment", x = min(stats$xmax), xend = max(stats$xmax), 
                y = min(stats$y.position), yend = min(stats$y.position))+
       annotate(geom = "segment", x = 1, xend = 1, 
-               y = min(stats$y.position), yend = min(stats$y.position)+2)+
+               y = min(stats$y.position), yend = min(stats$y.position)+pval_yadj)+
       annotate(geom = "segment", x = mean(stats$xmax)-text_scale/48, xend = mean(stats$xmax)-text_scale/48, 
-               y = min(stats$y.position), yend = min(stats$y.position)+2)
+               y = min(stats$y.position), yend = min(stats$y.position)+pval_yadj)
   }else if(normalization == "unNorm"){
     gene_violin_plot = gene_violin_plot+
       add_pvalue(stats, label.size = text_scale/3, label = "p.adj", tip.length = 0.0)
