@@ -244,7 +244,6 @@ gene_violin = function(data_set_to_plot="Input_seq",
                          c("GSC/CB/2CC", "16CC\n2a 2"),
                          c("GSC/CB/2CC", "16CC\n2ab"),
                          c("GSC/CB/2CC", "16CC\n2b"),
-                         c("GSC/CB/2CC", "16CC\n2b"),
                          c("GSC/CB/2CC", "16CC\n3"),
                          c("GSC/CB/2CC", "St2"))
       
