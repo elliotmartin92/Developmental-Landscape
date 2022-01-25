@@ -92,14 +92,14 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "St2")
     
     formatted_labels = c("GSC/CB/2CC", 
-                        "4CC", 
-                        "8CC", 
-                        "16CC\n2a 1",
-                        "16CC\n2a 2",
-                        "16CC\n2ab",
-                        "16CC\n2b",
-                        "16CC\n3",
-                        "St2")
+                         "4CC", 
+                         "8CC", 
+                         "16CC\n2a 1",
+                         "16CC\n2a 2",
+                         "16CC\n2ab",
+                         "16CC\n2b",
+                         "16CC\n3",
+                         "St2")
     
   }else if (data_set_to_plot == "Single_cell_seq_soma"){
     if (normalization == "each_gene") {
@@ -110,7 +110,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       data.seq_pared = data.seq %>% 
         relocate(Symbol, .after = FBGN)
     }
-
+    
     
     column_names = c("FBGN",
                      "Symbol",
@@ -133,15 +133,15 @@ gene_violin = function(data_set_to_plot="Input_seq",
                         "polar")
     
     formatted_labels = c("TF/CC", 
-                        "aEc", 
-                        "cEc", 
-                        "pEc",
-                        "FSC/pre-FC",
-                        "pre-stalk",
-                        "stalk",
-                        "polar")
+                         "aEc", 
+                         "cEc", 
+                         "pEc",
+                         "FSC/pre-FC",
+                         "pre-stalk",
+                         "stalk",
+                         "polar")
   }
-
+  
   # select either by GO term or with a custom list of FBGNs
   if(genes_by_GO=="GO_term_selection"){
     GO_Term_to_FBID = read_rds("Preprocessed_data/GO_Term_to_FBID.rds")
@@ -173,11 +173,11 @@ gene_violin = function(data_set_to_plot="Input_seq",
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
         dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
-    
+      
       selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
                                                 levels = genotype_levels)
       
-        comparisons = list(c("UAS-tkv", "bam RNAi"), 
+      comparisons = list(c("UAS-tkv", "bam RNAi"), 
                          c("UAS-tkv", "bam RNAi; HS-bam"), 
                          c("UAS-tkv", "Young WT"))
       
@@ -185,7 +185,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
         ungroup() %>% 
         rstatix::t_test(formula = Norm_expression~Genotype, comparisons = comparisons, p.adjust.method = "holm") %>%
         add_xy_position(x = "Genotype", step.increase = 0.5) 
-        
+      
     } else if(normalization == "unNorm"){
       yaxis_label = expression("log"[2]*"(TPM+1)")
       selected_gene_data_norm = selected_gene_data %>% 
@@ -307,42 +307,42 @@ gene_violin = function(data_set_to_plot="Input_seq",
   selected_gene_data_norm_global <<- selected_gene_data_norm
   
   # violin plot with points for each gene
-    gene_violin_plot = 
-      ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
-      geom_violin()+
-      xlab("")+
-      ylab(yaxis_label)+
-      scale_x_discrete(labels = formatted_labels)+
-      scale_y_continuous(expand = expansion(mult = c(0, 0.1)))+
-      stat_summary(mapping = aes(group = Genotype), 
-                   fun = median, fun.min = median, fun.max = median,
-                   geom = "crossbar", width = 0.4)+
-      geom_point(position = position_jitter(seed = 1, width = 0.2), 
-                 color="grey60", shape = 1, alpha = 0.7)+
-      theme_white()+
-      theme(axis.text.x = element_text(size = text_scale),
-            axis.text.y = element_text(size = text_scale), 
-            axis.title.x = element_text(size = text_scale),
-            axis.title.y = element_text(size = text_scale))
+  gene_violin_plot = 
+    ggplot(data = selected_gene_data_norm, mapping = aes(x = Genotype, y = Norm_expression))+
+    geom_violin()+
+    xlab("")+
+    ylab(yaxis_label)+
+    scale_x_discrete(labels = formatted_labels)+
+    scale_y_continuous(expand = expansion(mult = c(0, 0.1)))+
+    stat_summary(mapping = aes(group = Genotype), 
+                 fun = median, fun.min = median, fun.max = median,
+                 geom = "crossbar", width = 0.4)+
+    geom_point(position = position_jitter(seed = 1, width = 0.2), 
+               color="grey60", shape = 1, alpha = 0.7)+
+    theme_white()+
+    theme(axis.text.x = element_text(size = text_scale),
+          axis.text.y = element_text(size = text_scale), 
+          axis.title.x = element_text(size = text_scale),
+          axis.title.y = element_text(size = text_scale))
+  
+  if(normalization == "each_gene"){
+    stats_flat = stats
+    stats_flat$y.position = min(stats$y.position)+0.5+(text_scale/48)+pval_yadj
     
-    if(normalization == "each_gene"){
-      stats_flat = stats
-      stats_flat$y.position = min(stats$y.position)+0.5+(text_scale/48)+pval_yadj
-      
-      gene_violin_plot = gene_violin_plot+
+    gene_violin_plot = gene_violin_plot+
       add_pvalue(stats_flat, label.size = text_scale/3, label = "p.adj", tip.length = 0.0, remove.bracket = TRUE)+
-        annotate(geom = "segment", x = 1, xend = mean(stats$xmax)-text_scale/48, 
-                 y = min(stats$y.position)+2, yend = min(stats$y.position)+2)+
-        annotate(geom = "segment", x = min(stats$xmax), xend = max(stats$xmax), 
-                 y = min(stats$y.position), yend = min(stats$y.position))+
-        annotate(geom = "segment", x = 1, xend = 1, 
-                 y = min(stats$y.position), yend = min(stats$y.position)+2)+
-        annotate(geom = "segment", x = mean(stats$xmax)-text_scale/48, xend = mean(stats$xmax)-text_scale/48, 
-                 y = min(stats$y.position), yend = min(stats$y.position)+2)
-    }else if(normalization == "unNorm"){
-      gene_violin_plot = gene_violin_plot+
-        add_pvalue(stats, label.size = text_scale/3, label = "p.adj", tip.length = 0.0)
-    }
-    .GlobalEnv$violin_plot_dataset_plotted = data_set_to_plot
-    return(gene_violin_plot)
+      annotate(geom = "segment", x = 1, xend = mean(stats$xmax)-text_scale/48, 
+               y = min(stats$y.position)+2, yend = min(stats$y.position)+2)+
+      annotate(geom = "segment", x = min(stats$xmax), xend = max(stats$xmax), 
+               y = min(stats$y.position), yend = min(stats$y.position))+
+      annotate(geom = "segment", x = 1, xend = 1, 
+               y = min(stats$y.position), yend = min(stats$y.position)+2)+
+      annotate(geom = "segment", x = mean(stats$xmax)-text_scale/48, xend = mean(stats$xmax)-text_scale/48, 
+               y = min(stats$y.position), yend = min(stats$y.position)+2)
+  }else if(normalization == "unNorm"){
+    gene_violin_plot = gene_violin_plot+
+      add_pvalue(stats, label.size = text_scale/3, label = "p.adj", tip.length = 0.0)
+  }
+  .GlobalEnv$violin_plot_dataset_plotted = data_set_to_plot
+  return(gene_violin_plot)
 }
