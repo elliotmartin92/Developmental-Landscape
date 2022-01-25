@@ -14,7 +14,8 @@ gene_violin = function(data_set_to_plot="Input_seq",
                        GO_term=NA, 
                        gene_of_interest=NA, 
                        normalization="each_gene",
-                       text_scale){
+                       text_scale,
+                       pval_yadj=0){
   
   # Set parameters based on dataset selected
   if(data_set_to_plot=="Input_seq"){
@@ -167,7 +168,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
   # type of normalization changes y-axis label here
   if(data_set_to_plot=="Input_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized\, TPM+1)}$)')
+      yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized \, TPM+1)}$)')
       selected_gene_data_norm = 
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
@@ -197,7 +198,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     }
   }else if(data_set_to_plot=="Polysome_seq"){
     if(normalization == "each_gene"){
-      yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized\, TE)}$)')
+      yaxis_label = TeX(r'($\overset{log _2 \,(> UAS- \textit{tkv}}{Normalized \, TE)}$)')
       
       selected_gene_data_norm = 
         selected_gene_data %>% 
@@ -326,7 +327,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
     
     if(normalization == "each_gene"){
       stats_flat = stats
-      stats_flat$y.position = min(stats$y.position)+0.5+text_scale/48
+      stats_flat$y.position = min(stats$y.position)+0.5+(text_scale/48)+pval_yadj
       
       gene_violin_plot = gene_violin_plot+
       add_pvalue(stats_flat, label.size = text_scale/3, label = "p.adj", tip.length = 0.0, remove.bracket = TRUE)+

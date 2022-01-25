@@ -46,6 +46,7 @@ Figure2SA2 = gene_violin(data_set_to_plot="Input_seq",
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
         plot.margin = margin(0,30,0,0))
+Figure2SA2
 
 Figure2SB = ovary_map(data_set_to_plot = "Polysome_seq",
                        gene_name_format = "Symbol",
