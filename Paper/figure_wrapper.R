@@ -34,8 +34,6 @@ source(here("Paper/Figures/Figure_5_assembly.R"))
 source(here("Paper/Figures/Figure_1S_assembly.R"))
 source(here("Paper/Figures/Figure_2S_assembly.R"))
 source(here("Paper/Figures/Figure_3S_assembly.R"))
-source(here("Paper/Figures/Figure_4S_assembly.R"))
-source(here("Paper/Figures/Figure_5S_assembly.R"))
 setwd(here())
 
 rmarkdown::render(here("Paper/Figures/figure_wrapper.rmd"), 
