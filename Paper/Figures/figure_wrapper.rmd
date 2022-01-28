@@ -21,11 +21,10 @@ header-includes:
 if(dir.exists("Compiled_panels/deprecated") == FALSE){
   dir.create("Compiled_panels/deprecated")
 }
-
+file.remove(list.files(pattern = "*.log"))
 deprecated_compiled_figs = setdiff(list.files(path = "Compiled_panels/", recursive = FALSE), 
                                    list.dirs(path = "Compiled_panels", recursive = FALSE, full.names = FALSE))
 file.rename(from = paste0("Compiled_panels/", deprecated_compiled_figs), paste0("Compiled_panels/deprecated/", deprecated_compiled_figs))
-file.remove(list.files(pattern = "*.log"))
 ```
 
 ```{r F1, echo=FALSE, fig.cap = "Figure 1"}
