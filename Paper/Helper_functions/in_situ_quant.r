@@ -18,7 +18,7 @@ if(staining_to_plot == "mRNA")
     filter(Staining==staining_to_plot) %>% 
   ggplot(aes(x = X, y = norm_to_1))+
     geom_smooth(method='loess', formula= y~x)+
-    ylab(paste(gene_name, "mRNA expression (A.U.)"))+
+    ylab(TeX(paste("$\\textit{", gene_name, "}\\, mRNA\\, expression\\, (A.U.)$")))+
     xlab("Distance from niche (micron)")+
     ylim(0.5, 1)+
     geom_point()+
@@ -32,7 +32,7 @@ if(staining_to_plot == "mRNA")
     filter(Staining==staining_to_plot) %>% 
     ggplot(aes(x = X, y = norm_to_1))+
     geom_smooth(method='loess', formula= y~x)+
-    ylab(paste(gene_name, "protein expression (A.U.)"))+
+    ylab(TeX(paste("$", gene_name, "\\, protein\\, expression\\, (A.U.)$")))+
     xlab("Distance from niche (micron)")+
     ylim(0.5, 1)+
     geom_point()+
@@ -51,7 +51,7 @@ if(staining_to_plot == "mRNA")
       filter(Staining!="mRNA")
     
       ggplot(translation_efficiency, aes(x = X, y = Protein_mRNA_Mean_ratio))+
-      ylab("Ord translation efficiency (mRNA/protein) (A.U.)")+
+      ylab(TeX(paste("$\\textit{", gene_name, "}\\, translation\\, efficiency (mRNA/protein)\\, (A.U.)$")))+
       xlab("Distance from niche (micron)")+
       geom_smooth(method='loess', formula= y~x)+
       geom_point()+

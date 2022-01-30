@@ -22,7 +22,7 @@ Figure2A = ovary_map(data_set_to_plot = "Input_seq",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")+
-  theme(plot.margin = margin(0,60,0,0))
+  theme(plot.margin = margin(0,0,0,0))
 
 Figure2B = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       gene_name_format = "Symbol",
@@ -33,7 +33,7 @@ Figure2B = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5,
                       graphic_to_generate = "map")+
-  theme(plot.margin = margin(0,60,0,0))
+  theme(plot.margin = margin(0,0,0,0))
 
 Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7_s10.tif",
                        path_to_czi = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7.czi",
@@ -65,14 +65,14 @@ Figure2E = plot_insitu_quant(staining_to_plot = "mRNA",
 
 Figure2 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.25, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, (11-8*(1.1837+0.025))-5*(0.25)-0.05), 
+  height = c(0.30, 0.50, 1.1837, 1.1837, 0.2, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, (11-8*(1.1837+0.025))-5*(0.25)-0.05), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure2")
 Figure2
 
 Figure2 = Figure2 %>% 
   fill_panel(Figure2A, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
-  fill_panel(Figure2B, label = "B", scaling = "fit", panel_clip = "on", row = 6:7, column = 3:6) %>% 
+  fill_panel(Figure2B, label = "B", scaling = "fit", panel_clip = "on", row = 6:8, column = 3:6) %>% 
   fill_panel(Figure2C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
   fill_panel(Figure2D, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5) %>% 
   fill_panel(Figure2E, label = "E", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)

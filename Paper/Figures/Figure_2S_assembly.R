@@ -58,12 +58,12 @@ Figure2SB = ovary_map(data_set_to_plot = "Polysome_seq",
                        text_scale = 10/ggplot2::.pt,
                        map_line_width = 0.5,
                        graphic_to_generate = "map")+
-  theme(plot.margin = margin(0,60,0,0))
+  theme(plot.margin = margin(0,0,0,0))
 
 
 Figure2S = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.1388, 2.025, rep(2.0694+0.025, 2), 2.025, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.5, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, .25, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-4*(0.25)-.05), 
+  height = c(0.5, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 0.5, 1.1837, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-5*(0.25)-.05), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure2S")
 Figure2S
