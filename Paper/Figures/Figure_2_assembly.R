@@ -46,8 +46,8 @@ Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Ima
                     additional_annotation = TRUE, 
                     geom = "segment", x = .1, xend=.22, y=.35, yend=.42, color="gold")
 
-Figure2D = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6.tif", 
-                       path_to_czi = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_Image 11_s4_6 Image 11.czi",
+Figure2D = image_panel(path = "../Paper/Figures/Figure_2/RpS19bGFP_GFP_1B1_vasa_s1_Image 3.tif", 
+                       path_to_czi = "../Paper/Figures/Figure_2/RpS19bGFP_GFP_1B1_vasa_Image 3.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "RpS19b::GFP",
                     red_annotation = "1B1", 
@@ -56,7 +56,8 @@ Figure2D = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_GFP_1B1_GFP_Vas_
                     label_letters = c("D", "D'", "D''"),
                     scale_bar_length = 20, 
                     additional_annotation = TRUE, 
-                    geom = "segment", x = .08, xend=.3, y=.32, yend=.28, color="gold")
+                    geom = "segment", x = .05, xend=.45, y=.39, yend=.24, color="gold")
+Figure2D
 
 Figure2E = plot_insitu_quant(staining_to_plot = "mRNA", 
                               xlsx_file = "../Paper/Figures/Figure_2/RpS19b_in_situ_quant.xlsx",
