@@ -36,7 +36,7 @@ Figure3
 Figure3 = Figure3 %>% 
   fill_panel(Figure3_A1, label = "A", 
              label_just = "bottom", scaling = "none", panel_clip = "off", row = 2, column = 2) %>% 
-  fill_panel(Figure3_A2, label = "A'", 
+  fill_panel(Figure3_A2, label = "B", 
              label_just = "bottom", scaling = "none", panel_clip = "off", row = 3, column = 2)
 Figure3
 
