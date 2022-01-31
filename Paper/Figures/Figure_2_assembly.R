@@ -35,8 +35,8 @@ Figure2B = ovary_map(data_set_to_plot = "Single_cell_seq_germline",
                       graphic_to_generate = "map")+
   theme(plot.margin = margin(0,0,0,0))
 
-Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7_s10.tif",
-                       path_to_czi = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image7.czi",
+Figure2C = image_panel(path = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image3.tif",
+                       path_to_czi = "../Paper/Figures/Figure_2/RpS19b_in_situ_DAPI_Image3.czi",
                     colors_to_return = c("green", "blue"), 
                     genotype_annotation = "Control",
                     green_annotation = "RpS19b mRNA", 
