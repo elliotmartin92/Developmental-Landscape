@@ -20,7 +20,6 @@ if(staining_to_plot == "mRNA")
     geom_smooth(method='loess', formula= y~x)+
     ylab(TeX(paste("$\\textit{", gene_name, "}\\, mRNA\\, expression\\, (A.U.)$")))+
     xlab("Distance from niche (micron)")+
-    ylim(0.5, 1)+
     geom_point()+
     theme_white()+
     theme(aspect.ratio = 0.5, 
@@ -34,7 +33,6 @@ if(staining_to_plot == "mRNA")
     geom_smooth(method='loess', formula= y~x)+
     ylab(TeX(paste("$", gene_name, "\\, protein\\, expression\\, (A.U.)$")))+
     xlab("Distance from niche (micron)")+
-    ylim(0.5, 1)+
     geom_point()+
     theme_white()+
     theme(aspect.ratio = 0.5, 

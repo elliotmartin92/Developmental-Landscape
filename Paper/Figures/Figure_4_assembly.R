@@ -46,11 +46,13 @@ Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif",
 
 Figure4D1 = plot_insitu_quant(staining_to_plot = "mRNA", 
                               xlsx_file = "../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx",
-                              gene_name = "Ord")
+                              gene_name = "Ord")+
+  ylim(c(0.5, 1))
 
 Figure4D2 = plot_insitu_quant(staining_to_plot = "protein", 
                               xlsx_file = "../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx",
-                              gene_name = "Ord")
+                              gene_name = "Ord")+
+  ylim(c(0.5, 1))
 # plot_ord_quant("TE")
 
 # Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s6_8.tif", 

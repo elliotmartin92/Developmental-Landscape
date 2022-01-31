@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.1.5)  30 JAN 2022 18:25
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.1.5)  31 JAN 2022 10:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**D:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2022-01-30.tex
-(d:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2022-01-30.tex
+**D:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2022-01-31.tex
+(d:/R_projects/Developmental-Landscape/Paper/Figures/Compiled_panels/Developmental_Landscape_compiled_figures_2022-01-31.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (c:/Users/Elliot/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -341,8 +341,8 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count301
 \c@continuedfloat=\count302
 Package caption Info: hyperref package is loaded.
-) (./Developmental_Landscape_compiled_figures_2022-01-30.aux)
-\openout1 = `Developmental_Landscape_compiled_figures_2022-01-30.aux'.
+) (./Developmental_Landscape_compiled_figures_2022-01-31.aux)
+\openout1 = `Developmental_Landscape_compiled_figures_2022-01-31.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
 LaTeX Font Info:    ... okay on input line 70.
@@ -609,9 +609,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 70.
 LaTeX Info: Redefining \pageref on input line 70.
 LaTeX Info: Redefining \nameref on input line 70.
-(./Developmental_Landscape_compiled_figures_2022-01-30.out) (./Developmental_Landscape_compiled_figures_2022-01-30.out)
+(./Developmental_Landscape_compiled_figures_2022-01-31.out) (./Developmental_Landscape_compiled_figures_2022-01-31.out)
 \@outlinefile=\write3
-\openout3 = `Developmental_Landscape_compiled_figures_2022-01-30.out'.
+\openout3 = `Developmental_Landscape_compiled_figures_2022-01-31.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -689,8 +689,8 @@ File: Supplemental_Figure3.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 11.41943pt on input line 118.
 
-[1] [2] [3] [4] [5] [6] [7] [8] (./Developmental_Landscape_compiled_figures_2022-01-30.aux)
-Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_2022-01-30.out' has not changed.
+[1] [2] [3] [4] [5] [6] [7] [8] (./Developmental_Landscape_compiled_figures_2022-01-31.aux)
+Package rerunfilecheck Info: File `Developmental_Landscape_compiled_figures_2022-01-31.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
@@ -702,4 +702,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  86i,6n,121p,413b,334s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Developmental_Landscape_compiled_figures_2022-01-30.pdf (8 pages).
+Output written on Developmental_Landscape_compiled_figures_2022-01-31.pdf (8 pages).

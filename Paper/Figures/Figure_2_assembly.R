@@ -62,12 +62,14 @@ Figure2D
 Figure2E1 = plot_insitu_quant(staining_to_plot = "mRNA", 
                               xlsx_file = "../Paper/Figures/Figure_2/RpS19b_in_situ_quant.xlsx",
                               gene_name = "RpS19b")+
-  expand_limits(x=c(0, 60))
+  xlim(c(-1, 66))+
+  scale_y_continuous(limits = c(0.3, 1.05), n.breaks = 6)
 
 Figure2E2 = plot_insitu_quant(staining_to_plot = "protein", 
                              xlsx_file = "../Paper/Figures/Figure_2/RpS19b_GFP_protein_quant.xlsx",
                              gene_name = "RpS19b")+
-  expand_limits(x=c(0, 60))
+  xlim(c(-1, 66))+
+  scale_y_continuous(limits = c(0.3, 1.05), n.breaks = 6)
 
 Figure2 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
@@ -81,7 +83,8 @@ Figure2 = Figure2 %>%
   fill_panel(Figure2B, label = "B", scaling = "fit", panel_clip = "on", row = 6:8, column = 3:6) %>% 
   fill_panel(Figure2C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
   fill_panel(Figure2D, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5) %>% 
-  fill_panel(Figure2E1, label = "E", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)
+  fill_panel(Figure2E1, label = "E", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4) %>% 
+  fill_panel(Figure2E2, label = "E'", scaling = "fit", panel_clip = "on", row = 12:13, column = 5:6)
 
 Figure2
 
