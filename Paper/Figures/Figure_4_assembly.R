@@ -21,7 +21,7 @@ Figure4A = ovary_map(data_set_to_plot = "Input_seq",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")+
-  theme(plot.margin = margin(c(0,60,5,0)))
+  theme(plot.margin = margin(c(0,0,0,0)))
 
 Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       gene_name_format = "Symbol",
@@ -32,7 +32,7 @@ Figure4B = ovary_map(data_set_to_plot = "Polysome_seq",
                       text_scale = 10/ggplot2::.pt,
                       map_line_width = 0.5, 
                       graphic_to_generate = "map")+
-  theme(plot.margin = margin(c(5,60,0,0)))
+  theme(plot.margin = margin(c(0,0,5,0)))
 
 Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif", 
                     path_to_czi = "../Paper/Figures/Figure_4/Image 2.czi",
@@ -46,11 +46,13 @@ Figure4C = image_panel(path = "../Paper/Figures/Figure_4/img2_24_RGB ps.tif",
 
 Figure4D1 = plot_insitu_quant(staining_to_plot = "mRNA", 
                               xlsx_file = "../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx",
-                              gene_name = "Ord")
+                              gene_name = "Ord")+
+  ylim(c(0.5, 1))
 
 Figure4D2 = plot_insitu_quant(staining_to_plot = "protein", 
                               xlsx_file = "../Paper/Figures/Figure_4/Ord_GFP_in_situ_quant_Kahini.xlsx",
-                              gene_name = "Ord")
+                              gene_name = "Ord")+
+  ylim(c(0.5, 1))
 # plot_ord_quant("TE")
 
 # Figure4D = image_panel(path = "../Paper/Figures/Figure_4/control_C3Gprot_C3Grna_Vasa_11_s6_8.tif", 
@@ -66,14 +68,14 @@ Figure4D2 = plot_insitu_quant(staining_to_plot = "protein",
 
 Figure4 = multi_panel_figure(
   width = c((8.5-4*(2.0694+0.025))/2, 0.0694, 2.025, rep(2.0694+0.025, 2), 2.025, 0.0694, (8.5-4*(2.0694+0.025))/2),
-  height = c(0.5, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 1.1837, 0.25, 1.1837, 0.25, 1.1837, 1.1837, 1.1837, (11-8*(1.1837+0.025))-(5*0.25)), 
+  height = c(0.30, 0.50, 1.1837, 1.1837, 0.2, 1.1837, 1.1837, 0.6, 1.1837, 0.25, 1.1837, 1.1837, (11-7*(1.1837+0.025))-6*(0.25)-0.085), 
   row_spacing = 0.025, column_spacing = 0, unit = "in", 
   panel_label_type = "none", figure_name = "Figure4")
 Figure4
 
 Figure4 = Figure4 %>% 
   fill_panel(Figure4A, label = "A", scaling = "fit", panel_clip = "on", row = 2:4, column = 3:6) %>% 
-  fill_panel(Figure4B, label = "B", scaling = "fit", panel_clip = "on", row = 5:7, column = 3:6) %>% 
+  fill_panel(Figure4B, label = "B", scaling = "fit", panel_clip = "on", row = 6:8, column = 3:6) %>% 
   fill_panel(Figure4C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
   fill_panel(Figure4D1, label = "D", scaling = "fit", panel_clip = "off", row = 11:12, column = 3:4) %>% 
   fill_panel(Figure4D2, label = "D'", scaling = "fit", panel_clip = "off", row = 11:12, column = 5:6)

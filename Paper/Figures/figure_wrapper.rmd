@@ -21,11 +21,10 @@ header-includes:
 if(dir.exists("Compiled_panels/deprecated") == FALSE){
   dir.create("Compiled_panels/deprecated")
 }
-
+file.remove(list.files(pattern = "*.log"))
 deprecated_compiled_figs = setdiff(list.files(path = "Compiled_panels/", recursive = FALSE), 
                                    list.dirs(path = "Compiled_panels", recursive = FALSE, full.names = FALSE))
 file.rename(from = paste0("Compiled_panels/", deprecated_compiled_figs), paste0("Compiled_panels/deprecated/", deprecated_compiled_figs))
-file.remove(list.files(pattern = "*.log"))
 ```
 
 ```{r F1, echo=FALSE, fig.cap = "Figure 1"}
@@ -56,12 +55,8 @@ knitr::include_graphics(path = "Supplemental_Figure1.pdf")
 knitr::include_graphics(path = "Supplemental_Figure2.pdf")
 ```
 
-```{r SF3, echo=FALSE, fig.cap = "Supplemental Figure 3"}
+```{r SF4, echo=FALSE, fig.cap = "Supplemental Figure 3"}
 knitr::include_graphics(path = "Supplemental_Figure3.pdf")
-```
-
-```{r SF4, echo=FALSE, fig.cap = "Supplemental Figure 4"}
-knitr::include_graphics(path = "Supplemental_Figure4.pdf")
 ```
 
 <!-- ```{r SF5, echo=FALSE, fig.cap = "Supplemental Figure 5"} -->

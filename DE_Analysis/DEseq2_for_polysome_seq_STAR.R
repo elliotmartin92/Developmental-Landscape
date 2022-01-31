@@ -90,7 +90,7 @@ head(all_pairwise_comparisions)
 all_pairwise_comparisions_uniqueflat = unique(unlist(c(all_pairwise_comparisions)))
 head(all_pairwise_comparisions_uniqueflat)
 # write all DE genes to an RDS
-# write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/polysome_developmentally_regulated_gene_list.RDS")
+write_rds(all_pairwise_comparisions_uniqueflat, file = "ShinyExpresionMap/Preprocessed_data/developmentally_regulated_gene_list_polysome.RDS")
 
 trbl = function(GenotypeA, GenotypeB){
   if(GenotypeA==GenotypeB){return(NA)}
