@@ -59,9 +59,14 @@ Figure2D = image_panel(path = "../Paper/Figures/Figure_2/RpS19bGFP_GFP_1B1_vasa_
                     geom = "segment", x = .05, xend=.45, y=.39, yend=.24, color="gold")
 Figure2D
 
-Figure2E = plot_insitu_quant(staining_to_plot = "mRNA", 
+Figure2E1 = plot_insitu_quant(staining_to_plot = "mRNA", 
                               xlsx_file = "../Paper/Figures/Figure_2/RpS19b_in_situ_quant.xlsx",
                               gene_name = "RpS19b")+
+  expand_limits(x=c(0, 60))
+
+Figure2E2 = plot_insitu_quant(staining_to_plot = "protein", 
+                             xlsx_file = "../Paper/Figures/Figure_2/RpS19b_GFP_protein_quant.xlsx",
+                             gene_name = "RpS19b")+
   expand_limits(x=c(0, 60))
 
 Figure2 = multi_panel_figure(
@@ -76,7 +81,7 @@ Figure2 = Figure2 %>%
   fill_panel(Figure2B, label = "B", scaling = "fit", panel_clip = "on", row = 6:8, column = 3:6) %>% 
   fill_panel(Figure2C, label = "", scaling = "none", panel_clip = "off", row = 9, column = 2:5) %>% 
   fill_panel(Figure2D, label = "", scaling = "none", panel_clip = "off", row = 10, column = 2:5) %>% 
-  fill_panel(Figure2E, label = "E", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)
+  fill_panel(Figure2E1, label = "E", scaling = "fit", panel_clip = "on", row = 12:13, column = 3:4)
 
 Figure2
 

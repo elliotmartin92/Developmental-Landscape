@@ -28,7 +28,7 @@ Genotypes = c(expression(paste(">UAS-", italic('tkv'))),
               expression(paste(">", italic('bam'), " RNAi; hs-", italic("bam"))), 
               "Young-WT")
 
-Enriched_cell_type = c("GSCs", "CBs", "Cysts", "All early stages")
+Enriched_cell_type = c("GSCs", "CBs", "Cysts", "Germarium and\nearly egg chambers")
 
 # Define theme to parse plotmath expressions
 tt = ttheme_default(core=list(fg_params=list(parse=TRUE)))
