@@ -14,24 +14,11 @@ source("../Paper/Helper_functions/image_panel.R")
 source("../Paper/Helper_functions/eps_as_gg.R")
 source("../Paper/Helper_functions/png_as_gg.R")
 source("../Paper/Helper_functions/export_plotly2SVG.R")
-# font_import(paths = c("C:/Users/Elliot/AppData/Local/Microsoft/Windows/Fonts/"), prompt = F)
 
 Figure1S_A = eps_as_gg("../Paper/Figures/Figure_1/polysome_seq_diagram.eps")
 
-# plotly file preprocessing
-# plotly_files = c("Preprocessed_data/Input_seq_plotly_heatmap.RDS",
-#                  "Preprocessed_data/Polysome_seq_plotly_heatmap.RDS",
-#                  "Preprocessed_data/Single_cell_seq_germline_plotly_heatmap.RDS",
-#                  "Preprocessed_data/Single_cell_seq_soma_plotly_heatmap.RDS")
-
-# plotly_file_names = lapply(plotly_files, basename)
-# input_plotlys = lapply(plotly_files, readRDS)
-# mapply(export_plotly2SVG, input_plotlys, filename = plotly_file_names,
-#        parent_path = "../Paper/Figures/Figure_1/", width = 300, height = 275)
-# had to manually adust svgs and export as png
 
 Figure1S_C_paths = list.files(path = "../Paper/Figures/Figure_1/", pattern = "*heatmap.RDS.png", full.names = TRUE)
-# Figure1_C = lapply(Figure1_C_paths, eps_as_gg)
 Figure1S_C = lapply(Figure1S_C_paths, png_as_gg)
 
 Figure1S = multi_panel_figure(

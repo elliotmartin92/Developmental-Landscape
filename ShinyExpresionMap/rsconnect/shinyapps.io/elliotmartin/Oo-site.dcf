@@ -5,10 +5,10 @@ account: elliotmartin
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5129428
-bundleId: 5521625
+bundleId: 5543027
 url: https://elliotmartin.shinyapps.io/Oo-site/
-when: 1643472364.7874
-lastSyncTime: 1643472364.7874
+when: 1643987372.44371
+lastSyncTime: 1643987372.44371
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds
+ignoredFiles: .Rprofile|cache/902f8f2b7760fe55.rds|cache/fd1aecb73c6e42ca.rds
