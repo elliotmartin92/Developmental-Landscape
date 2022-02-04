@@ -203,7 +203,7 @@ gene_violin = function(data_set_to_plot="Input_seq",
       selected_gene_data_norm = 
         selected_gene_data %>% 
         dplyr::group_by(FBGN, Symbol) %>% 
-        dplyr::mutate(Norm_expression = log2((Mean_expression+1)/(Mean_expression[Genotype=="UAS-tkv"]+1)))
+        dplyr::mutate(Norm_expression = log2((Mean_expression)/(Mean_expression[Genotype=="UAS-tkv"])))
       
       selected_gene_data_norm$Genotype = factor(x = selected_gene_data$Genotype, 
                                                 levels = genotype_levels)
