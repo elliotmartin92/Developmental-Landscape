@@ -11,4 +11,5 @@ The Developmental-Landscape repo also contains validation of these datasets in t
 Oo-site code as well as supporting stainings. These data are compiled using code in the *Paper* directory and a compiled version of the current version of the text and figures 
 can be found there as well.
 
-## We have put out our preprint on Oo-site! You can find it [here](https://www.biorxiv.org/content/10.1101/2022.01.31.478569v1.full).
+## Publication
+We have put out our preprint on Oo-site! You can find it [here](https://www.biorxiv.org/content/10.1101/2022.01.31.478569v1.full).
