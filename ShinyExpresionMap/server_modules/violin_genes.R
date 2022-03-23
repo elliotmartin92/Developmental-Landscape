@@ -4,7 +4,7 @@ par(lheight=0.2)
 # Read list containing all GO terms, declared globally to allow for access in the following function and by the Shiny app (defined scope would be better)
 if (!exists("GO_term_tib")) {
   GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
-  GO_term_description <<- GO_term_tib$description
+  GO_term_description <<- sort(GO_term_tib$description)
 }
 
 # Function that produces violin plots

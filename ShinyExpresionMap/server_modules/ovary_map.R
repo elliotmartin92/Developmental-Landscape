@@ -4,7 +4,7 @@ data.seq = readRDS("Preprocessed_data/preprocessed_RNA_seq_data.RDS")
 
 #setting some variables for distPlot that must be declared outside of the server function
 FBID = data.seq$FBGN
-Symbol = data.seq$Symbol
+Symbol = sort(data.seq$Symbol)
 
 pal <- c(
   "Black" = "Black",

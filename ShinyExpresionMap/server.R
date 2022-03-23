@@ -27,7 +27,7 @@ shinyEnv = new.env()
 ps = .libPaths()
 data_sets <- c("FBID", "Symbol")
 GO_term_tib <<-  read_tsv("Preprocessed_data/all_go_terms.tsv")
-GO_term_description <<- GO_term_tib$description
+GO_term_description <<- sort(GO_term_tib$description)
 figure_legends_table <<- read_csv("Figure_legends.csv")
 
 ####Shiny Server gene_of_interest initialization and housekeeping####
@@ -122,8 +122,13 @@ shinyServer(function(input, output, session) {
       if(is.null(input$gene_of_interest) | is.null(input$dataset)) {
         return()
       }
+      validate(
+        need(input$gene_of_interest != "",  "Please select a gene")
+      )
+      
       assign("input", input, envir = shinyEnv)
       assign("ovary_map_SeqDataset", input$SeqDataset, envir = shinyEnv)
+    
       ovary_map_plot <<- ovary_map(data_set_to_plot = input$SeqDataset,
                                    gene_name_format = input$dataset, 
                                    displayTPM = input$displayTPM, 
