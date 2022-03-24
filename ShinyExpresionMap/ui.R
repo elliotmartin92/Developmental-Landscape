@@ -29,11 +29,11 @@ ui = dashboardPage(skin = "purple",
                                "Single Cell-seq: Soma"= "Single_cell_seq_soma"), 
                 selected = "Input_seq",
                 width = '98%')) %>% add_class("view_DatasetTab"), 
-      menuItem("Developmental Progression", tabName = "DevProg", icon = icon("dashboard")) %>% 
+      menuItem("Ovary-map", tabName = "DevProg", icon = icon("dashboard")) %>% 
         add_class("view_DevProg"),
-      menuItem("Heatmap", tabName = "heatmap", icon = icon("th")) %>% 
+      menuItem("Ovary-heatmap", tabName = "heatmap", icon = icon("th")) %>% 
         add_class("view_heatmap"),
-      menuItem("Gene Groups", tabName = "violin", icon = icon("far fa-chart-bar")) %>% 
+      menuItem("Ovary-violin", tabName = "violin", icon = icon("far fa-chart-bar")) %>% 
         add_class("view_violin"),
       menuItem("Generate report", icon = icon("fas fa-file-download"), tabName = "DownloadTab",
              # Input directly under menuItem
