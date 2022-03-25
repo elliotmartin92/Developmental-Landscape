@@ -78,9 +78,9 @@ DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_r
       c("GSC/CB/2CC", 
         "4CC", 
         "8CC", 
-        "16CC",
-        "16CC 2a 1",
-        "16CC 2a 2",
+        "16CC 2a I",
+        "16CC 2a II",
+        "16CC 2ab",
         "16CC 2b",
         "16CC 3",
         "St2")    
