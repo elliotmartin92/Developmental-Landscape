@@ -22,7 +22,7 @@ Figure1S_C_paths = list.files(path = "../Paper/Figures/Figure_1/", pattern = "*h
 Figure1S_C = lapply(Figure1S_C_paths, png_as_gg)
 
 Figure1S = multi_panel_figure(
-  width = c((8.5-4*(2.0694+0.025))/2, rep(2.0694, 2), 0.4, 1.6694, 2.0694, (8.5-4*(2.0694+0.025))/2),
+  width = c((8.5-4*(2.0694+0.025))/2, rep(2.0694, 2), 0.6, 1.4694, 2.0694, (8.5-4*(2.0694+0.025))/2),
   height = c((11-0.5-8*(1.1837+0.05))/2, rep(1.1837, 2), 0.5, rep(1.1837, 6), (11-0.5-8*(1.1837+0.05))/2), 
   row_spacing = 0.05, column_spacing = 0.025, unit = "in", 
   panel_label_type = "none", figure_name = "Supplemental_Figure1")
