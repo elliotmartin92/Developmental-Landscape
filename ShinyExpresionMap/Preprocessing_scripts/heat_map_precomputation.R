@@ -4,7 +4,7 @@ modls = function(x){log2(x+1)}
 
 DE_heatmap = function(data_set_to_plot="Input_seq", write_to_rds=TRUE, display_rownames = FALSE){
   if(data_set_to_plot == "Input_seq"){
-    plot_title = "Bulk mRNAseq"
+    plot_title = "Bulk RNA-seq"
     data.seq = readRDS("ShinyExpresionMap/Preprocessed_data/preprocessed_RNA_seq_data.RDS")
     changing_genes = readRDS("ShinyExpresionMap/Preprocessed_data/Input_4fold_p0.05_developmentally_regulated_gene_list.RDS")
     
