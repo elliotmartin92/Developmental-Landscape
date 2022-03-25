@@ -31,7 +31,7 @@ Figure2SA1 = gene_violin(data_set_to_plot="Input_seq",
                         normalization="each_gene",
                         text_scale = 12)+ 
   expand_limits(y = c(-4, 3))+
-  ggtitle(TeX(r'($Bulk\, mRNAseq:\, > \textit{bam}\, RNAi\, downregulated\, genes\, (Wilcockson\, 2019)$)'))+
+  ggtitle(TeX(r'($Bulk\, RNA-seq:\, > \textit{bam}\, RNAi\, downregulated\, genes\, (Wilcockson\, 2019)$)'))+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
         plot.margin = margin(0,30,0,0))
@@ -43,7 +43,7 @@ Figure2SA2 = gene_violin(data_set_to_plot="Input_seq",
                          text_scale = 12, 
                          pval_yadj = 2.8)+ 
   expand_limits(y = c(-4, 10))+
-  ggtitle(TeX(r'($Bulk\, mRNAseq:\, > \textit{bam}\, RNAi\, upregulated\, genes\, (Wilcockson\, 2019)$)'))+
+  ggtitle(TeX(r'($Bulk\, RNA-seq:\, > \textit{bam}\, RNAi\, upregulated\, genes\, (Wilcockson\, 2019)$)'))+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
         plot.margin = margin(0,30,0,0))

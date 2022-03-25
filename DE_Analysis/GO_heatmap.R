@@ -4,6 +4,7 @@ library(stringr)
 library(gridExtra)
 library(grid)
 library(latex2exp)
+library(viridis)
 source("ShinyExpresionMap/server_modules/ggplotWhiteTheme.R")
 
 GO_plot_from_panther = function(all_GO_file_names, plot_title, n_per_geno=5, return_all_go_list = FALSE){
@@ -74,6 +75,7 @@ GO_plot_from_panther = function(all_GO_file_names, plot_title, n_per_geno=5, ret
     labs(fill = TeX(r'($\overset{-log_{10}}{FDR}$)'), parse=TRUE)+
     ggtitle(plot_title)+
     scale_x_discrete(labels = formatted_labels)+
+    scale_fill_viridis()+
     ylab("")+
     xlab("")+
     theme_white()+

@@ -16,7 +16,7 @@ FigureS3A = gene_violin(data_set_to_plot="Input_seq",
                          normalization="each_gene",
                          text_scale = 12)+ 
   expand_limits(y = c(-4, 5))+
-  ggtitle("Bulk mRNAseq: Meiotic cell cycle")+
+  ggtitle("Bulk RNA-seq: Meiotic cell cycle")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
         plot.margin = margin(0,30,0,0))
@@ -50,7 +50,7 @@ FigureS3C = gene_violin(data_set_to_plot="Single_cell_seq_germline",
                         normalization="each_gene",
                         text_scale = 12)+ 
   expand_limits(y = c(-2, 2))+
-  ggtitle("Meiotic cell cycle - scRNAseq")+
+  ggtitle("Meiotic cell cycle - scRNA-seq")+
   ylab("log normalized expression\nto GSC/CB/2CC")+
   theme(aspect.ratio = 0.2, 
         plot.title = element_text(size = 12, margin = margin(0,0,4,0)),
