@@ -23,7 +23,7 @@ ui = dashboardPage(skin = "purple",
       menuItem("Select a dataset", icon = icon("fas fa-table"), tabName = "DatasetTab", startExpanded = TRUE,
               # Input directly under menuItem
               awesomeRadio("SeqDataset", "View dataset:",
-                choices = list("Input mRNAseq" = "Input_seq", 
+                choices = list("Bulk RNA-seq" = "Input_seq", 
                                "Polysome-seq"= "Polysome_seq",
                                "Single Cell-seq: Germline"= "Single_cell_seq_germline",
                                "Single Cell-seq: Soma"= "Single_cell_seq_soma"), 
