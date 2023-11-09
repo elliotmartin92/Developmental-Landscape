@@ -12,4 +12,4 @@ Oo-site code as well as supporting stainings. These data are compiled using code
 can be found there as well.
 
 ## Publication
-We have put out our preprint on Oo-site! You can find it [here](https://www.biorxiv.org/content/10.1101/2022.01.31.478569v1.full).
+Oo-site has been published! You can find it [here](10.1242/bio.059286). Or checkout Oo-site [here](https://www.ranganlab.com/Oo-site)
